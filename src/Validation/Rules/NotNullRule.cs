@@ -4,7 +4,7 @@
 /// A validation rule that ensures a value is not null.
 /// </summary>
 /// <typeparam name="T">The type of value to validate.</typeparam>
-public class NotNullRule<T> : IRule<T>
+public sealed class NotNullRule<T> : IRule<T>
 {
     #region Public Methods
 

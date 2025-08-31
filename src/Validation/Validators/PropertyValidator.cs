@@ -134,7 +134,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// Validates that the property value is not null.
     /// </summary>
     /// <returns>The concrete validator type for method chaining.</returns>
-    public TRule Notnull()
+    public TRule NotNull()
     {
         return AddRule(new NotNullRule<TProp>());
     }
