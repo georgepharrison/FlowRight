@@ -68,7 +68,7 @@
 - [x] **TASK-025**: Add Build method with factory pattern
 
 ### Property Validators
-- [ ] **TASK-026**: Implement StringPropertyValidator with fluent API
+- [x] **TASK-026**: Implement StringPropertyValidator with fluent API
 - [ ] **TASK-027**: Create NumericPropertyValidator for all numeric types
 - [ ] **TASK-028**: Build EnumerablePropertyValidator for collections
 - [ ] **TASK-029**: Add GuidPropertyValidator for unique identifiers
