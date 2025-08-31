@@ -381,6 +381,150 @@ public partial class Result : IResult
             };
     }
 
+    /// <summary>
+    /// Executes side-effect actions based on the result state, with simple success/failure handling.
+    /// </summary>
+    /// <param name="onSuccess">Action to execute if the result is successful.</param>
+    /// <param name="onFailure">Action to execute if the result is a failure. Receives the error message.</param>
+    /// <param name="includeOperationCancelledFailures">If <see langword="true"/>, operation cancelled failures will call <paramref name="onFailure"/>. If <see langword="false"/> (default), they will be ignored.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="onSuccess"/> or <paramref name="onFailure"/> is <see langword="null"/>.</exception>
+    /// <remarks>
+    /// <para>
+    /// This is the primary imperative pattern matching method for non-generic <see cref="Result"/>. Unlike the functional
+    /// <see cref="Match{TResult}(Func{TResult}, Func{string, TResult})"/> method, this executes actions with side effects
+    /// rather than returning transformed values.
+    /// </para>
+    /// <para>
+    /// This method treats most failure types (Error, Security, Validation) uniformly, calling <paramref name="onFailure"/>
+    /// with the error message. Operation cancelled failures are treated specially based on the
+    /// <paramref name="includeOperationCancelledFailures"/> parameter. For more granular failure handling,
+    /// use the overload that provides separate handlers for each failure type.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result operationResult = PerformOperation();
+    /// 
+    /// operationResult.Switch(
+    ///     onSuccess: () => {
+    ///         Console.WriteLine("Operation completed successfully!");
+    ///         LogSuccess("Operation", DateTime.Now);
+    ///     },
+    ///     onFailure: error => {
+    ///         Console.WriteLine($"Operation failed: {error}");
+    ///         LogError("Operation", error);
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public void Switch(Action onSuccess, Action<string> onFailure, bool includeOperationCancelledFailures = false)
+    {
+        ArgumentNullException.ThrowIfNull(onSuccess);
+        ArgumentNullException.ThrowIfNull(onFailure);
+
+        if (IsSuccess)
+        {
+            onSuccess();
+            return;
+        }
+
+        if (FailureType == ResultFailureType.OperationCanceled && !includeOperationCancelledFailures)
+        {
+            return;
+        }
+
+        onFailure(Error);
+    }
+
+    /// <summary>
+    /// Executes side-effect actions based on the result state with separate handlers for different failure types.
+    /// </summary>
+    /// <param name="onSuccess">Action to execute if the result is successful.</param>
+    /// <param name="onError">Action to execute if the result is a general error. Receives the error message.</param>
+    /// <param name="onSecurityException">Action to execute if the result is a security failure. Receives the error message.</param>
+    /// <param name="onValidationException">Action to execute if the result is a validation failure. Receives the validation errors dictionary.</param>
+    /// <param name="onOperationCanceledException">Optional action to execute if the result is a cancellation failure. Receives the error message. If <see langword="null"/>, cancellation failures are ignored.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="onSuccess"/>, <paramref name="onError"/>, <paramref name="onSecurityException"/>, or <paramref name="onValidationException"/> is <see langword="null"/>.</exception>
+    /// <remarks>
+    /// <para>
+    /// This overload of Switch provides granular control over different failure types using imperative actions,
+    /// allowing you to implement specific side effects for each category of failure. This is particularly useful
+    /// when different failure types require different handling strategies (logging, notifications, etc.).
+    /// </para>
+    /// <para>
+    /// The method routes failures to the appropriate handler based on <see cref="FailureType"/>:
+    /// <list type="bullet">
+    /// <item><description><see cref="ResultFailureType.Error"/> → <paramref name="onError"/></description></item>
+    /// <item><description><see cref="ResultFailureType.Security"/> → <paramref name="onSecurityException"/></description></item>
+    /// <item><description><see cref="ResultFailureType.Validation"/> → <paramref name="onValidationException"/></description></item>
+    /// <item><description><see cref="ResultFailureType.OperationCanceled"/> → <paramref name="onOperationCanceledException"/> (if not null)</description></item>
+    /// </list>
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result operationResult = ProcessRequest();
+    /// 
+    /// operationResult.Switch(
+    ///     onSuccess: () => {
+    ///         logger.LogInformation("Request processed successfully");
+    ///         SendSuccessNotification();
+    ///     },
+    ///     onError: error => {
+    ///         logger.LogError("System error: {Error}", error);
+    ///         SendErrorNotification(error);
+    ///     },
+    ///     onSecurityException: error => {
+    ///         logger.LogWarning("Security violation: {Error}", error);
+    ///         AlertSecurityTeam(error);
+    ///     },
+    ///     onValidationException: errors => {
+    ///         logger.LogInformation("Validation failed: {ErrorCount} errors", errors.Count);
+    ///         ShowValidationErrors(errors);
+    ///     },
+    ///     onOperationCanceledException: error => {
+    ///         logger.LogInformation("Request was cancelled: {Error}", error);
+    ///         CleanupResources();
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public void Switch(Action onSuccess, Action<string> onError, Action<string> onSecurityException, Action<IDictionary<string, string[]>> onValidationException, Action<string>? onOperationCanceledException = null)
+    {
+        ArgumentNullException.ThrowIfNull(onSuccess);
+        ArgumentNullException.ThrowIfNull(onError);
+        ArgumentNullException.ThrowIfNull(onSecurityException);
+        ArgumentNullException.ThrowIfNull(onValidationException);
+
+        if (IsSuccess)
+        {
+            onSuccess();
+            return;
+        }
+
+        switch (FailureType)
+        {
+            case ResultFailureType.Error:
+                onError(Error);
+                break;
+
+            case ResultFailureType.Security:
+                onSecurityException(Error);
+                break;
+
+            case ResultFailureType.Validation:
+                onValidationException(Failures);
+                break;
+
+            case ResultFailureType.OperationCanceled:
+                onOperationCanceledException?.Invoke(Error);
+                break;
+
+            default:
+                throw new NotImplementedException();
+        }
+    }
+
     #endregion Public Methods
 
     #region Internal Methods

@@ -468,4 +468,277 @@ public class ResultTests
     }
 
     #endregion Helper Methods
+
+    #region Switch Method Tests
+
+    [Fact]
+    public void Switch_SimpleWithNullOnSuccess_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        Result result = Result.Success();
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => result.Switch(null!, error => { }));
+    }
+
+    [Fact]
+    public void Switch_SimpleWithNullOnFailure_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        Result result = Result.Success();
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => result.Switch(() => { }, null!));
+    }
+
+    [Fact]
+    public void Switch_SimpleWithSuccessResult_ShouldCallOnSuccess()
+    {
+        // Arrange
+        Result result = Result.Success();
+        bool onSuccessCalled = false;
+        bool onFailureCalled = false;
+
+        // Act
+        result.Switch(
+            onSuccess: () => onSuccessCalled = true,
+            onFailure: error => onFailureCalled = true
+        );
+
+        // Assert
+        onSuccessCalled.ShouldBeTrue();
+        onFailureCalled.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void Switch_SimpleWithFailureResult_ShouldCallOnFailure()
+    {
+        // Arrange
+        const string errorMessage = "Something went wrong";
+        Result result = Result.Failure(errorMessage);
+        bool onSuccessCalled = false;
+        string? capturedError = null;
+
+        // Act
+        result.Switch(
+            onSuccess: () => onSuccessCalled = true,
+            onFailure: error => capturedError = error
+        );
+
+        // Assert
+        onSuccessCalled.ShouldBeFalse();
+        capturedError.ShouldBe(errorMessage);
+    }
+
+    [Fact]
+    public void Switch_SimpleWithOperationCancelledAndIncludeFlag_ShouldCallOnFailure()
+    {
+        // Arrange
+        const string cancelMessage = "Operation was cancelled";
+        Result result = Result.Failure(new OperationCanceledException(cancelMessage));
+        bool onSuccessCalled = false;
+        string? capturedError = null;
+
+        // Act
+        result.Switch(
+            onSuccess: () => onSuccessCalled = true,
+            onFailure: error => capturedError = error,
+            includeOperationCancelledFailures: true
+        );
+
+        // Assert
+        onSuccessCalled.ShouldBeFalse();
+        capturedError.ShouldBe(cancelMessage);
+    }
+
+    [Fact]
+    public void Switch_SimpleWithOperationCancelledAndNoIncludeFlag_ShouldNotCallHandlers()
+    {
+        // Arrange
+        const string cancelMessage = "Operation was cancelled";
+        Result result = Result.Failure(new OperationCanceledException(cancelMessage));
+        bool onSuccessCalled = false;
+        bool onFailureCalled = false;
+
+        // Act
+        result.Switch(
+            onSuccess: () => onSuccessCalled = true,
+            onFailure: error => onFailureCalled = true,
+            includeOperationCancelledFailures: false
+        );
+
+        // Assert
+        onSuccessCalled.ShouldBeFalse();
+        onFailureCalled.ShouldBeFalse();
+    }
+
+    // Complex Switch method tests
+
+    [Fact]
+    public void Switch_ComplexWithNullHandlers_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        Result result = Result.Success();
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => result.Switch(
+            null!, 
+            error => { }, 
+            sec => { }, 
+            val => { }
+        ));
+
+        Should.Throw<ArgumentNullException>(() => result.Switch(
+            () => { }, 
+            null!, 
+            sec => { }, 
+            val => { }
+        ));
+
+        Should.Throw<ArgumentNullException>(() => result.Switch(
+            () => { }, 
+            error => { }, 
+            null!, 
+            val => { }
+        ));
+
+        Should.Throw<ArgumentNullException>(() => result.Switch(
+            () => { }, 
+            error => { }, 
+            sec => { }, 
+            null!
+        ));
+    }
+
+    [Fact]
+    public void Switch_ComplexWithSuccess_ShouldCallOnSuccess()
+    {
+        // Arrange
+        Result result = Result.Success();
+        bool onSuccessCalled = false;
+        bool onErrorCalled = false;
+        bool onSecurityCalled = false;
+        bool onValidationCalled = false;
+        bool onCancelledCalled = false;
+
+        // Act
+        result.Switch(
+            onSuccess: () => onSuccessCalled = true,
+            onError: error => onErrorCalled = true,
+            onSecurityException: error => onSecurityCalled = true,
+            onValidationException: errors => onValidationCalled = true,
+            onOperationCanceledException: error => onCancelledCalled = true
+        );
+
+        // Assert
+        onSuccessCalled.ShouldBeTrue();
+        onErrorCalled.ShouldBeFalse();
+        onSecurityCalled.ShouldBeFalse();
+        onValidationCalled.ShouldBeFalse();
+        onCancelledCalled.ShouldBeFalse();
+    }
+
+    [Theory]
+    [InlineData(ResultFailureType.Error)]
+    [InlineData(ResultFailureType.Security)]
+    [InlineData(ResultFailureType.OperationCanceled)]
+    public void Switch_ComplexWithSpecificFailureTypes_ShouldRouteToCorrectHandler(ResultFailureType failureType)
+    {
+        // Arrange
+        Result result = CreateFailureByType(failureType);
+        string? handlerCalled = null;
+
+        // Act
+        result.Switch(
+            onSuccess: () => handlerCalled = "success",
+            onError: error => handlerCalled = "error",
+            onSecurityException: error => handlerCalled = "security",
+            onValidationException: errors => handlerCalled = "validation",
+            onOperationCanceledException: error => handlerCalled = "cancelled"
+        );
+
+        // Assert
+        string expected = failureType switch
+        {
+            ResultFailureType.Error => "error",
+            ResultFailureType.Security => "security",
+            ResultFailureType.OperationCanceled => "cancelled",
+            _ => throw new ArgumentException($"Unexpected failure type: {failureType}")
+        };
+        handlerCalled.ShouldBe(expected);
+    }
+
+    [Fact]
+    public void Switch_ComplexWithValidationFailure_ShouldCallOnValidationException()
+    {
+        // Arrange
+        Dictionary<string, string[]> validationErrors = new()
+        {
+            { "Email", ["Email is required"] },
+            { "Password", ["Password too short"] }
+        };
+        Result result = Result.Failure(validationErrors);
+        string? handlerCalled = null;
+        IDictionary<string, string[]>? capturedErrors = null;
+
+        // Act
+        result.Switch(
+            onSuccess: () => handlerCalled = "success",
+            onError: error => handlerCalled = "error",
+            onSecurityException: error => handlerCalled = "security",
+            onValidationException: errors => { handlerCalled = "validation"; capturedErrors = errors; },
+            onOperationCanceledException: error => handlerCalled = "cancelled"
+        );
+
+        // Assert
+        handlerCalled.ShouldBe("validation");
+        capturedErrors.ShouldNotBeNull();
+        capturedErrors.ShouldContainKey("Email");
+        capturedErrors.ShouldContainKey("Password");
+    }
+
+    [Fact]
+    public void Switch_ComplexWithOperationCancelledAndNullHandler_ShouldNotThrow()
+    {
+        // Arrange
+        Result result = Result.Failure(new OperationCanceledException("Cancelled"));
+        bool anyHandlerCalled = false;
+
+        // Act & Assert (should not throw)
+        result.Switch(
+            onSuccess: () => anyHandlerCalled = true,
+            onError: error => anyHandlerCalled = true,
+            onSecurityException: error => anyHandlerCalled = true,
+            onValidationException: errors => anyHandlerCalled = true,
+            onOperationCanceledException: null
+        );
+
+        // Assert
+        anyHandlerCalled.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void Switch_ComplexWithOperationCancelledAndHandler_ShouldCallHandler()
+    {
+        // Arrange
+        const string cancelMessage = "Operation timeout";
+        Result result = Result.Failure(new OperationCanceledException(cancelMessage));
+        string? handlerCalled = null;
+        string? capturedMessage = null;
+
+        // Act
+        result.Switch(
+            onSuccess: () => handlerCalled = "success",
+            onError: error => handlerCalled = "error",
+            onSecurityException: error => handlerCalled = "security",
+            onValidationException: errors => handlerCalled = "validation",
+            onOperationCanceledException: error => { handlerCalled = "cancelled"; capturedMessage = error; }
+        );
+
+        // Assert
+        handlerCalled.ShouldBe("cancelled");
+        capturedMessage.ShouldBe(cancelMessage);
+    }
+
+    #endregion Switch Method Tests
 }
