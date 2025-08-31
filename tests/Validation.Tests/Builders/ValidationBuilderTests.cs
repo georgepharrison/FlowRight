@@ -1071,7 +1071,7 @@ public class ValidationBuilderTests
             ValidationBuilder<User> builder = new();
 
             // Act
-            builder.RuleFor(u => u.Id, (Guid?)null).Notnull();
+            builder.RuleFor(u => u.Id, (Guid?)null).NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeTrue();
@@ -1140,7 +1140,7 @@ public class ValidationBuilderTests
 
             // Act
             GenericPropertyValidator<User, DateTime?> validator = builder.RuleFor(u => u.UpdatedAt, (DateTime?)null);
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeTrue();
@@ -1155,7 +1155,7 @@ public class ValidationBuilderTests
 
             // Act
             GenericPropertyValidator<User, DateTime?> validator = builder.RuleFor(u => u.UpdatedAt, testDate);
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeFalse();
@@ -1221,7 +1221,7 @@ public class ValidationBuilderTests
 
             // Act
             GenericPropertyValidator<User, bool?> validator = builder.RuleFor(u => u.IsVerified, (bool?)null);
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeTrue();
@@ -1235,7 +1235,7 @@ public class ValidationBuilderTests
 
             // Act
             GenericPropertyValidator<User, bool?> validator = builder.RuleFor(u => u.IsVerified, true);
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeFalse();
@@ -1790,7 +1790,7 @@ public class ValidationBuilderTests
 
             // Act
             GenericPropertyValidator<User, char?> validator = builder.RuleFor(u => u.MiddleInitial, (char?)null);
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeTrue();
@@ -1804,7 +1804,7 @@ public class ValidationBuilderTests
 
             // Act
             GenericPropertyValidator<User, char?> validator = builder.RuleFor(u => u.MiddleInitial, 'J');
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeFalse();
@@ -1917,7 +1917,7 @@ public class ValidationBuilderTests
 
             // Act
             GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, (Guid?)null);
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeTrue();
@@ -1932,7 +1932,7 @@ public class ValidationBuilderTests
 
             // Act
             GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
-            validator.Notnull();
+            validator.NotNull();
 
             // Assert
             builder.HasErrors.ShouldBeFalse();
