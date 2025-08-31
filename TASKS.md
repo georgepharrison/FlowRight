@@ -54,7 +54,7 @@
 - [x] **TASK-017**: Create custom JsonConverter for Result
 - [x] **TASK-018**: Create custom JsonConverter for Result<T>
 - [x] **TASK-019**: Handle ValidationProblemResponse serialization
-- [ ] **TASK-020**: Test round-trip serialization for all scenarios
+- [x] **TASK-020**: Test round-trip serialization for all scenarios
 
 ---
 
