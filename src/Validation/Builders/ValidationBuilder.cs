@@ -322,6 +322,157 @@ public class ValidationBuilder<T>
     public GenericPropertyValidator<T, TProp> RuleFor<TProp>(Expression<Func<T, TProp>> propertySelector, TProp value, string? displayName = null) =>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, TProp>(builder, display, val));
 
+    /// <summary>
+    /// Creates validation rules for a DateTime property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.CreatedAt).</param>
+    /// <param name="value">The actual DateTime value to be validated.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>A GenericPropertyValidator&lt;T, DateTime&gt; for chaining additional validation rules.</returns>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;Event&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.StartDate, request.StartDate)
+    ///     .NotEqual(default)
+    ///     .Must(date =&gt; date &gt; DateTime.Now, "Start date must be in the future")
+    ///     .WithMessage("Invalid start date provided");
+    /// </code>
+    /// </example>
+    public GenericPropertyValidator<T, DateTime> RuleFor(Expression<Func<T, DateTime>> propertySelector, DateTime value, string? displayName = null) =>
+        CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, DateTime>(builder, display, val));
+
+    /// <summary>
+    /// Creates validation rules for a nullable DateTime property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.UpdatedAt).</param>
+    /// <param name="value">The actual nullable DateTime value to be validated.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>A GenericPropertyValidator&lt;T, DateTime?&gt; for chaining additional validation rules.</returns>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;Event&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.EndDate, request.EndDate)
+    ///     .Notnull()
+    ///     .Must(date =&gt; date &gt; DateTime.Now, "End date must be in the future")
+    ///     .WithMessage("End date is required and must be valid");
+    /// </code>
+    /// </example>
+    public GenericPropertyValidator<T, DateTime?> RuleFor(Expression<Func<T, DateTime?>> propertySelector, DateTime? value, string? displayName = null) =>
+        CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, DateTime?>(builder, display, val));
+
+    /// <summary>
+    /// Creates validation rules for a boolean property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.IsActive).</param>
+    /// <param name="value">The actual boolean value to be validated.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>A GenericPropertyValidator&lt;T, bool&gt; for chaining additional validation rules.</returns>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;User&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.HasAcceptedTerms, request.HasAcceptedTerms)
+    ///     .Equal(true)
+    ///     .WithMessage("Terms and conditions must be accepted");
+    /// </code>
+    /// </example>
+    public GenericPropertyValidator<T, bool> RuleFor(Expression<Func<T, bool>> propertySelector, bool value, string? displayName = null) =>
+        CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, bool>(builder, display, val));
+
+    /// <summary>
+    /// Creates validation rules for a nullable boolean property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.IsVerified).</param>
+    /// <param name="value">The actual nullable boolean value to be validated.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>A GenericPropertyValidator&lt;T, bool?&gt; for chaining additional validation rules.</returns>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;Account&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.IsEmailVerified, request.IsEmailVerified)
+    ///     .Notnull()
+    ///     .Equal(true)
+    ///     .WithMessage("Email verification is required");
+    /// </code>
+    /// </example>
+    public GenericPropertyValidator<T, bool?> RuleFor(Expression<Func<T, bool?>> propertySelector, bool? value, string? displayName = null) =>
+        CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, bool?>(builder, display, val));
+
+    /// <summary>
+    /// Creates validation rules for a byte numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The byte value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
+    public NumericPropertyValidator<T, byte> RuleFor(Expression<Func<T, byte>> propertySelector, byte value, string? displayName = null) =>
+        CreateNumericValidator(propertySelector, value, displayName);
+
+    /// <summary>
+    /// Creates validation rules for a signed byte numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The sbyte value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
+    public NumericPropertyValidator<T, sbyte> RuleFor(Expression<Func<T, sbyte>> propertySelector, sbyte value, string? displayName = null) =>
+        CreateNumericValidator(propertySelector, value, displayName);
+
+    /// <summary>
+    /// Creates validation rules for an unsigned integer numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The uint value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
+    public NumericPropertyValidator<T, uint> RuleFor(Expression<Func<T, uint>> propertySelector, uint value, string? displayName = null) =>
+        CreateNumericValidator(propertySelector, value, displayName);
+
+    /// <summary>
+    /// Creates validation rules for an unsigned long numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The ulong value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
+    public NumericPropertyValidator<T, ulong> RuleFor(Expression<Func<T, ulong>> propertySelector, ulong value, string? displayName = null) =>
+        CreateNumericValidator(propertySelector, value, displayName);
+
+    /// <summary>
+    /// Creates validation rules for a character property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.Grade).</param>
+    /// <param name="value">The actual character value to be validated.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>A GenericPropertyValidator&lt;T, char&gt; for chaining additional validation rules.</returns>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;Student&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.Grade, request.Grade)
+    ///     .Must(grade =&gt; "ABCDF".Contains(grade), "Grade must be A, B, C, D, or F")
+    ///     .WithMessage("Invalid grade provided");
+    /// </code>
+    /// </example>
+    public GenericPropertyValidator<T, char> RuleFor(Expression<Func<T, char>> propertySelector, char value, string? displayName = null) =>
+        CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, char>(builder, display, val));
+
+    /// <summary>
+    /// Creates validation rules for a nullable character property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.MiddleInitial).</param>
+    /// <param name="value">The actual nullable character value to be validated.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>A GenericPropertyValidator&lt;T, char?&gt; for chaining additional validation rules.</returns>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;Person&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.MiddleInitial, request.MiddleInitial)
+    ///     .Must(initial =&gt; initial is null || char.IsLetter(initial.Value), "Middle initial must be a letter")
+    ///     .WithMessage("Invalid middle initial provided");
+    /// </code>
+    /// </example>
+    public GenericPropertyValidator<T, char?> RuleFor(Expression<Func<T, char?>> propertySelector, char? value, string? displayName = null) =>
+        CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, char?>(builder, display, val));
+
     #endregion Public Methods
 
     #region Internal Methods
