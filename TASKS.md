@@ -50,7 +50,7 @@
 - [x] **TASK-015**: Add async-friendly extension methods
 
 ### Serialization Support
-- [ ] **TASK-016**: Add JsonConstructor and JsonInclude attributes
+- [x] **TASK-016**: Add JsonConstructor and JsonInclude attributes
 - [ ] **TASK-017**: Create custom JsonConverter for Result
 - [ ] **TASK-018**: Create custom JsonConverter for Result<T>
 - [ ] **TASK-019**: Handle ValidationProblemResponse serialization
