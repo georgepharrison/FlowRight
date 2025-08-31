@@ -238,7 +238,7 @@ public interface IResultError<out T>
     /// The error message or information for failed results, or a default/empty value for successful results.
     /// The specific type and content depend on the implementing result type.
     /// </value>
-    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", 
+    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords",
         Justification = "In a Result pattern library, 'Error' is the most intuitive property name for error information. " +
                        "The benefit of clear, domain-appropriate naming outweighs potential keyword conflicts in other languages.")]
     T Error { get; }

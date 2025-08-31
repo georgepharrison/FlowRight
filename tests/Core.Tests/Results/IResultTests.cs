@@ -16,7 +16,7 @@ public class IResultTests
     {
         // Arrange & Act
         Type interfaceType = typeof(IResult);
-        
+
         // Assert
         interfaceType.GetProperty(nameof(IResult.Failures)).ShouldNotBeNull();
         interfaceType.GetProperty(nameof(IResult.FailureType)).ShouldNotBeNull();
@@ -30,7 +30,7 @@ public class IResultTests
     {
         // Arrange & Act
         Type propertyType = typeof(IResult).GetProperty(nameof(IResult.Failures))!.PropertyType;
-        
+
         // Assert
         propertyType.ShouldBe(typeof(IDictionary<string, string[]>));
     }
@@ -40,7 +40,7 @@ public class IResultTests
     {
         // Arrange & Act
         Type propertyType = typeof(IResult).GetProperty(nameof(IResult.FailureType))!.PropertyType;
-        
+
         // Assert
         propertyType.ShouldBe(typeof(ResultFailureType));
     }
@@ -50,7 +50,7 @@ public class IResultTests
     {
         // Arrange & Act
         Type propertyType = typeof(IResult).GetProperty(nameof(IResult.IsFailure))!.PropertyType;
-        
+
         // Assert
         propertyType.ShouldBe(typeof(bool));
     }
@@ -60,7 +60,7 @@ public class IResultTests
     {
         // Arrange & Act
         Type propertyType = typeof(IResult).GetProperty(nameof(IResult.IsSuccess))!.PropertyType;
-        
+
         // Assert
         propertyType.ShouldBe(typeof(bool));
     }
@@ -70,7 +70,7 @@ public class IResultTests
     {
         // Arrange & Act
         Type propertyType = typeof(IResult).GetProperty(nameof(IResult.ResultType))!.PropertyType;
-        
+
         // Assert
         propertyType.ShouldBe(typeof(ResultType));
     }
@@ -84,7 +84,7 @@ public class IResultTests
     {
         // Arrange & Act
         Type interfaceType = typeof(IResult<>);
-        
+
         // Assert
         interfaceType.GetInterfaces().ShouldContain(typeof(IResult));
     }
@@ -95,7 +95,7 @@ public class IResultTests
         // Arrange & Act
         Type interfaceType = typeof(IResult<>);
         Type[] interfaces = interfaceType.GetInterfaces();
-        
+
         // Assert
         interfaces.ShouldContain(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IResultError<>));
     }
@@ -106,7 +106,7 @@ public class IResultTests
         // Arrange & Act
         Type interfaceType = typeof(IResult<>);
         Type genericParameter = interfaceType.GetGenericArguments()[0];
-        
+
         // Assert - The 'out' keyword makes it covariant
         (genericParameter.GenericParameterAttributes & GenericParameterAttributes.Covariant).ShouldBe(GenericParameterAttributes.Covariant);
     }
@@ -116,20 +116,20 @@ public class IResultTests
     {
         // Arrange
         Type interfaceType = typeof(IResult<>);
-        
+
         // Act
         MethodInfo[] matchMethods = interfaceType.GetMethods()
             .Where(m => m.Name == "Match")
             .ToArray();
-        
+
         // Assert
         matchMethods.Length.ShouldBe(2);
-        
+
         // Simple Match method
         MethodInfo simpleMatch = matchMethods.First(m => m.GetParameters().Length == 2);
         simpleMatch.ShouldNotBeNull();
         simpleMatch.IsGenericMethodDefinition.ShouldBeTrue();
-        
+
         // Complex Match method with all failure types
         MethodInfo complexMatch = matchMethods.First(m => m.GetParameters().Length == 5);
         complexMatch.ShouldNotBeNull();
@@ -141,19 +141,19 @@ public class IResultTests
     {
         // Arrange
         Type interfaceType = typeof(IResult<>);
-        
+
         // Act
         MethodInfo[] switchMethods = interfaceType.GetMethods()
             .Where(m => m.Name == "Switch")
             .ToArray();
-        
+
         // Assert
         switchMethods.Length.ShouldBe(2);
-        
+
         // Simple Switch method
         MethodInfo simpleSwitch = switchMethods.First(m => m.GetParameters().Length == 3);
         simpleSwitch.ShouldNotBeNull();
-        
+
         // Complex Switch method with all failure types
         MethodInfo complexSwitch = switchMethods.First(m => m.GetParameters().Length == 5);
         complexSwitch.ShouldNotBeNull();
@@ -169,7 +169,7 @@ public class IResultTests
         // Arrange & Act
         Type interfaceType = typeof(IResultError<>);
         PropertyInfo? errorProperty = interfaceType.GetProperty("Error");
-        
+
         // Assert
         errorProperty.ShouldNotBeNull();
     }
@@ -180,7 +180,7 @@ public class IResultTests
         // Arrange & Act
         Type interfaceType = typeof(IResultError<>);
         Type genericParameter = interfaceType.GetGenericArguments()[0];
-        
+
         // Assert - The 'out' keyword makes it covariant
         (genericParameter.GenericParameterAttributes & GenericParameterAttributes.Covariant).ShouldBe(GenericParameterAttributes.Covariant);
     }
@@ -191,7 +191,7 @@ public class IResultTests
         // Arrange & Act
         Type interfaceType = typeof(IResultError<string>);
         PropertyInfo? errorProperty = interfaceType.GetProperty("Error");
-        
+
         // Assert
         errorProperty.ShouldNotBeNull();
         errorProperty.PropertyType.ShouldBe(typeof(string));
@@ -206,7 +206,7 @@ public class IResultTests
     {
         // Arrange & Act & Assert
         Enum.GetNames<ResultType>().ShouldBe(new[] { "Success", "Information", "Warning", "Error" });
-        
+
         ((int)ResultType.Success).ShouldBe(0);
         ((int)ResultType.Information).ShouldBe(1);
         ((int)ResultType.Warning).ShouldBe(2);
@@ -222,7 +222,7 @@ public class IResultTests
     {
         // Arrange & Act & Assert
         Enum.GetNames<ResultFailureType>().ShouldBe(new[] { "None", "Error", "Security", "Validation", "OperationCanceled" });
-        
+
         ((int)ResultFailureType.None).ShouldBe(0);
         ((int)ResultFailureType.Error).ShouldBe(1);
         ((int)ResultFailureType.Security).ShouldBe(2);

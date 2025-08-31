@@ -22,7 +22,7 @@ public enum ResultType
     /// This is the most positive result state and typically contains a success value.
     /// </summary>
     Success,
-    
+
     /// <summary>
     /// Indicates that the operation completed successfully and provides additional
     /// informational content that may be useful to the caller or end user.
@@ -33,7 +33,7 @@ public enum ResultType
     /// messages about data transformations, or notifications about side effects.
     /// </remarks>
     Information,
-    
+
     /// <summary>
     /// Indicates that the operation completed successfully but encountered conditions
     /// that warrant attention or may lead to issues in the future.
@@ -44,7 +44,7 @@ public enum ResultType
     /// APIs, approaching resource limits, or data quality concerns.
     /// </remarks>
     Warning,
-    
+
     /// <summary>
     /// Indicates that the operation failed to complete successfully due to an error condition.
     /// This represents a failure state and typically contains error information instead of a success value.
