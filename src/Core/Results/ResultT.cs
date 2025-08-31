@@ -486,6 +486,7 @@ public partial class Result<T> : IResult<T>
         return IsSuccess;
     }
 
+
     #endregion Public Methods
 
     #region Private Methods

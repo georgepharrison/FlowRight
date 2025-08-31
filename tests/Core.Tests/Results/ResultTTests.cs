@@ -663,6 +663,235 @@ public class ResultTTests
 
     #endregion Serialization Support Tests
 
+    #region Generic Combine Method Tests
+
+    [Fact]
+    public void Combine_WithNullResults_ShouldThrowArgumentNullException()
+    {
+        // Arrange & Act & Assert
+        Should.Throw<ArgumentNullException>(() => Result.Combine<string>(null!));
+    }
+
+    [Fact]
+    public void Combine_WithEmptyResults_ShouldReturnFailure()
+    {
+        // Arrange & Act
+        Result<string> result = Result.Combine<string>();
+
+        // Assert
+        result.IsFailure.ShouldBeTrue();
+        result.IsSuccess.ShouldBeFalse();
+        result.Error.ShouldBe("No results to combine");
+        result.FailureType.ShouldBe(ResultFailureType.Error);
+        result.ResultType.ShouldBe(ResultType.Error);
+        result.TryGetValue(out string? value).ShouldBeFalse();
+        value.ShouldBeNull();
+    }
+
+    [Fact]
+    public void Combine_WithAllSuccessResults_ShouldReturnSuccessWithFirstValue()
+    {
+        // Arrange
+        const string firstValue = "first";
+        const string secondValue = "second";
+        const string thirdValue = "third";
+        
+        Result<string>[] successResults = [
+            Result.Success(firstValue),
+            Result.Success(secondValue, ResultType.Information),
+            Result.Success(thirdValue, ResultType.Warning)
+        ];
+
+        // Act
+        Result<string> result = Result.Combine(successResults);
+
+        // Assert
+        result.IsSuccess.ShouldBeTrue();
+        result.IsFailure.ShouldBeFalse();
+        result.Error.ShouldBeEmpty();
+        result.Failures.ShouldBeEmpty();
+        result.FailureType.ShouldBe(ResultFailureType.None);
+        result.ResultType.ShouldBe(ResultType.Success);
+        result.TryGetValue(out string? value).ShouldBeTrue();
+        value.ShouldBe(firstValue); // Should return first successful value
+    }
+
+    [Fact]
+    public void Combine_WithSingleErrorResult_ShouldReturnFailureWithError()
+    {
+        // Arrange
+        const string errorMessage = "Operation failed";
+        const string successValue = "success";
+        
+        Result<string>[] results = [
+            Result.Success(successValue),
+            Result.Failure<string>(errorMessage),
+            Result.Success("another success")
+        ];
+
+        // Act
+        Result<string> result = Result.Combine(results);
+
+        // Assert
+        result.IsFailure.ShouldBeTrue();
+        result.IsSuccess.ShouldBeFalse();
+        result.ResultType.ShouldBe(ResultType.Error);
+        result.FailureType.ShouldBe(ResultFailureType.Validation);
+        result.Failures.ShouldContainKey(ResultFailureType.Error.ToString());
+        result.Failures[ResultFailureType.Error.ToString()].ShouldContain(errorMessage);
+        result.TryGetValue(out string? value).ShouldBeFalse();
+        value.ShouldBeNull();
+    }
+
+    [Fact]
+    public void Combine_WithMultipleErrorResults_ShouldAggregateAllErrors()
+    {
+        // Arrange
+        const string error1 = "First error";
+        const string error2 = "Second error";
+        const string error3 = "Third error";
+        
+        Result<int>[] results = [
+            Result.Failure<int>(error1),
+            Result.Success(42),
+            Result.Failure<int>(error2),
+            Result.Failure<int>(error3)
+        ];
+
+        // Act
+        Result<int> result = Result.Combine(results);
+
+        // Assert
+        result.IsFailure.ShouldBeTrue();
+        result.FailureType.ShouldBe(ResultFailureType.Validation);
+        result.Failures.ShouldContainKey(ResultFailureType.Error.ToString());
+        string[] errorMessages = result.Failures[ResultFailureType.Error.ToString()];
+        errorMessages.ShouldContain(error1);
+        errorMessages.ShouldContain(error2);
+        errorMessages.ShouldContain(error3);
+        errorMessages.Length.ShouldBe(3);
+        result.TryGetValue(out int value).ShouldBeFalse();
+        value.ShouldBe(0);
+    }
+
+    [Fact]
+    public void Combine_WithValidationResults_ShouldAggregateValidationErrors()
+    {
+        // Arrange
+        Dictionary<string, string[]> validationErrors1 = new()
+        {
+            { "Email", ["Email is required", "Invalid email format"] },
+            { "Password", ["Password is too short"] }
+        };
+        Dictionary<string, string[]> validationErrors2 = new()
+        {
+            { "Email", ["Email already exists"] },
+            { "Username", ["Username is required"] }
+        };
+
+        Result<TestModel>[] results = [
+            Result.Failure<TestModel>(validationErrors1),
+            Result.Success(new TestModel { Id = 1, Name = "Test" }),
+            Result.Failure<TestModel>(validationErrors2)
+        ];
+
+        // Act
+        Result<TestModel> result = Result.Combine(results);
+
+        // Assert
+        result.IsFailure.ShouldBeTrue();
+        result.FailureType.ShouldBe(ResultFailureType.Validation);
+        
+        // Check Email field has all errors from both validation results
+        result.Failures.ShouldContainKey("Email");
+        string[] emailErrors = result.Failures["Email"];
+        emailErrors.ShouldContain("Email is required");
+        emailErrors.ShouldContain("Invalid email format");
+        emailErrors.ShouldContain("Email already exists");
+        emailErrors.Length.ShouldBe(3);
+
+        // Check other fields
+        result.Failures.ShouldContainKey("Password");
+        result.Failures["Password"].ShouldContain("Password is too short");
+        result.Failures["Password"].Length.ShouldBe(1);
+
+        result.Failures.ShouldContainKey("Username");
+        result.Failures["Username"].ShouldContain("Username is required");
+        result.Failures["Username"].Length.ShouldBe(1);
+        
+        result.TryGetValue(out TestModel? value).ShouldBeFalse();
+        value.ShouldBeNull();
+    }
+
+    [Fact]
+    public void Combine_WithMixedFailureTypes_ShouldAggregateAllErrorTypes()
+    {
+        // Arrange
+        const string generalError = "General error";
+        const string securityError = "Security violation";
+        Dictionary<string, string[]> validationErrors = new()
+        {
+            { "Field1", ["Validation error"] }
+        };
+        const string cancelError = "Operation canceled";
+
+        Result<string>[] results = [
+            Result.Failure<string>(generalError),
+            Result.Failure<string>(new SecurityException(securityError)),
+            Result.Failure<string>(validationErrors),
+            Result.Failure<string>(new OperationCanceledException(cancelError)),
+            Result.Success("success value")
+        ];
+
+        // Act
+        Result<string> result = Result.Combine(results);
+
+        // Assert
+        result.IsFailure.ShouldBeTrue();
+        result.FailureType.ShouldBe(ResultFailureType.Validation);
+        
+        // Verify all error types are aggregated
+        result.Failures.ShouldContainKey(ResultFailureType.Error.ToString());
+        result.Failures[ResultFailureType.Error.ToString()].ShouldContain(generalError);
+        
+        result.Failures.ShouldContainKey(ResultFailureType.Security.ToString());
+        result.Failures[ResultFailureType.Security.ToString()].ShouldContain(securityError);
+        
+        result.Failures.ShouldContainKey("Field1");
+        result.Failures["Field1"].ShouldContain("Validation error");
+        
+        result.Failures.ShouldContainKey(ResultFailureType.OperationCanceled.ToString());
+        result.Failures[ResultFailureType.OperationCanceled.ToString()].ShouldContain(cancelError);
+        
+        result.Failures.Count.ShouldBe(4);
+        result.TryGetValue(out string? value).ShouldBeFalse();
+        value.ShouldBeNull();
+    }
+
+    [Fact]
+    public void Combine_WithResultTypePreservation_ShouldPreserveFirstSuccessResultType()
+    {
+        // Arrange
+        const string value1 = "info value";
+        const string value2 = "warning value";
+        
+        Result<string>[] results = [
+            Result.Success(value1, ResultType.Information),
+            Result.Success(value2, ResultType.Warning)
+        ];
+
+        // Act
+        Result<string> result = Result.Combine(results);
+
+        // Assert
+        result.IsSuccess.ShouldBeTrue();
+        result.ResultType.ShouldBe(ResultType.Information); // Should preserve first success result type
+        result.TryGetValue(out string? value).ShouldBeTrue();
+        value.ShouldBe(value1); // Should have first success value
+    }
+
+    #endregion Generic Combine Method Tests
+
     #region Helper Methods
 
     private static Result<T> CreateFailureByType<T>(ResultFailureType failureType)

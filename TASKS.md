@@ -39,8 +39,8 @@
 - [x] **TASK-006**: Implement IResult and IResult<T> interfaces
 - [x] **TASK-007**: Create Result class with static factory methods
 - [x] **TASK-008**: Implement Result<T> with generic type support
-- [ ] **TASK-009**: Add ResultType and ResultFailureType enums
-- [ ] **TASK-010**: Implement Combine method for result aggregation
+- [x] **TASK-009**: Add ResultType and ResultFailureType enums
+- [x] **TASK-010**: Implement Combine method for result aggregation
 
 ### Pattern Matching
 - [ ] **TASK-011**: Implement Match method with all overloads

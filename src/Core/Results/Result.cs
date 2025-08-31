@@ -173,6 +173,113 @@ public partial class Result : IResult
             : Success();
     }
 
+    /// <summary>
+    /// Combines multiple Result{T} instances into a single Result{T}, aggregating all failure information
+    /// and returning success only if all input results are successful.
+    /// </summary>
+    /// <typeparam name="T">The type of the success values in the results.</typeparam>
+    /// <param name="results">The array of Result{T} instances to combine.</param>
+    /// <returns>
+    /// A <see cref="Result{T}"/> that is successful with the value from the first successful result if all input results are successful, 
+    /// or a failure result containing aggregated error information from all failed results.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="results"/> is <see langword="null"/>.</exception>
+    /// <remarks>
+    /// <para>
+    /// This method provides a way to aggregate multiple operation results into a single result.
+    /// It's particularly useful for batch operations where you want to collect all errors
+    /// rather than failing on the first error encountered.
+    /// </para>
+    /// <para>
+    /// The combining logic preserves error categorization:
+    /// <list type="bullet">
+    /// <item><description>Validation errors are merged by field name</description></item>
+    /// <item><description>Other error types are grouped by failure type</description></item>
+    /// <item><description>Multiple errors of the same type are collected together</description></item>
+    /// </list>
+    /// </para>
+    /// <para>
+    /// If all results are successful, the returned result will contain the value from the first
+    /// successful result. If you need to combine the actual values, use a different approach
+    /// such as collecting the values after confirming all results are successful.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result{User}[] operations = [
+    ///     ValidateUser(user),
+    ///     ValidatePermissions(user),
+    ///     ValidateData(data)
+    /// ];
+    /// 
+    /// Result{User} combinedResult = Result.Combine(operations);
+    /// 
+    /// if (combinedResult.IsFailure)
+    /// {
+    ///     // Handle all collected errors at once
+    ///     LogErrors(combinedResult.Failures);
+    /// }
+    /// </code>
+    /// </example>
+    public static Result<T> Combine<T>(params Result<T>[] results)
+    {
+        ArgumentNullException.ThrowIfNull(results);
+
+        // Handle empty array case - return failure as there are no results to combine
+        if (results.Length == 0)
+        {
+            return Failure<T>("No results to combine");
+        }
+
+        Dictionary<string, List<string>> failures = [];
+        T? firstSuccessValue = default;
+        ResultType firstSuccessResultType = ResultType.Success;
+        bool hasSuccessValue = false;
+
+        foreach (Result<T> result in results)
+        {
+            if (result.IsSuccess && !hasSuccessValue)
+            {
+                result.TryGetValue(out firstSuccessValue);
+                firstSuccessResultType = result.ResultType;
+                hasSuccessValue = true;
+            }
+            else if (result.IsFailure)
+            {
+                switch (result.FailureType)
+                {
+                    case ResultFailureType.Error:
+                    case ResultFailureType.Security:
+                    case ResultFailureType.OperationCanceled:
+                        if (!failures.TryGetValue(result.FailureType.ToString(), out List<string>? errors))
+                        {
+                            failures[result.FailureType.ToString()] = errors ??= [];
+                        }
+                        errors.Add(result.Error);
+                        break;
+
+                    case ResultFailureType.Validation:
+                        foreach (KeyValuePair<string, string[]> failure in result.Failures)
+                        {
+                            if (!failures.TryGetValue(failure.Key, out List<string>? resultFailures))
+                            {
+                                failures[failure.Key] = resultFailures ??= [];
+                            }
+                            resultFailures.AddRange(failure.Value);
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        return failures.Count > 0
+            ? Failure<T>(failures.ToDictionary(x => x.Key, x => x.Value.ToArray()))
+            : Success(firstSuccessValue!, firstSuccessResultType);
+    }
+
     #endregion Public Methods
 
     #region Internal Methods
