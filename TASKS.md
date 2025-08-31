@@ -72,7 +72,7 @@
 - [x] **TASK-027**: Create NumericPropertyValidator for all numeric types
 - [x] **TASK-028**: Build EnumerablePropertyValidator for collections
 - [x] **TASK-029**: Add GuidPropertyValidator for unique identifiers
-- [ ] **TASK-030**: Create GenericPropertyValidator for custom types
+- [x] **TASK-030**: Create GenericPropertyValidator for custom types
 
 ### Validation Rules
 - [ ] **TASK-031**: Implement string rules (Length, Email, Regex, etc.)
