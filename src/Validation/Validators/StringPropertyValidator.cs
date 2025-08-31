@@ -160,5 +160,153 @@ public sealed class StringPropertyValidator<T> : PropertyValidator<T, string, St
     public StringPropertyValidator<T> MinimumLength(int min) =>
         AddRule(new MinLengthRule(min));
 
+    /// <summary>
+    /// Validates that the string is a properly formatted URL according to standard URL format rules.
+    /// </summary>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.Website, request.Website)
+    ///     .Url()
+    ///     .WithMessage("Please enter a valid URL");
+    ///
+    /// // Valid: "https://example.com", "http://www.test.org/path?query=1"
+    /// // Invalid: "not-a-url", "ftp://example.com", "example.com"
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> Url() =>
+        AddRule(new UrlRule());
+
+    /// <summary>
+    /// Validates that the string contains the specified substring.
+    /// </summary>
+    /// <param name="substring">The substring that must be contained in the value.</param>
+    /// <param name="comparison">The string comparison type to use.</param>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.Description, request.Description)
+    ///     .Contains("important")
+    ///     .WithMessage("Description must contain the word 'important'");
+    ///
+    /// // Case-insensitive search
+    /// builder.RuleFor(x =&gt; x.Title, request.Title)
+    ///     .Contains("urgent", StringComparison.OrdinalIgnoreCase)
+    ///     .WithMessage("Title must contain 'urgent' (case insensitive)");
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> Contains(string substring, StringComparison comparison = StringComparison.Ordinal) =>
+        AddRule(new ContainsRule(substring, comparison));
+
+    /// <summary>
+    /// Validates that the string starts with the specified prefix.
+    /// </summary>
+    /// <param name="prefix">The prefix that the value must start with.</param>
+    /// <param name="comparison">The string comparison type to use.</param>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.ProductCode, request.ProductCode)
+    ///     .StartsWith("PRD-")
+    ///     .WithMessage("Product code must start with 'PRD-'");
+    ///
+    /// // Case-insensitive prefix check
+    /// builder.RuleFor(x =&gt; x.Command, request.Command)
+    ///     .StartsWith("exec", StringComparison.OrdinalIgnoreCase)
+    ///     .WithMessage("Command must start with 'exec'");
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> StartsWith(string prefix, StringComparison comparison = StringComparison.Ordinal) =>
+        AddRule(new StartsWithRule(prefix, comparison));
+
+    /// <summary>
+    /// Validates that the string ends with the specified suffix.
+    /// </summary>
+    /// <param name="suffix">The suffix that the value must end with.</param>
+    /// <param name="comparison">The string comparison type to use.</param>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.FileName, request.FileName)
+    ///     .EndsWith(".txt")
+    ///     .WithMessage("File must be a text file (.txt)");
+    ///
+    /// // Case-insensitive suffix check
+    /// builder.RuleFor(x =&gt; x.ImagePath, request.ImagePath)
+    ///     .EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
+    ///     .WithMessage("Image must be a JPEG file");
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> EndsWith(string suffix, StringComparison comparison = StringComparison.Ordinal) =>
+        AddRule(new EndsWithRule(suffix, comparison));
+
+    /// <summary>
+    /// Validates that the string contains only alphabetic characters (letters).
+    /// </summary>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.FirstName, request.FirstName)
+    ///     .Alpha()
+    ///     .WithMessage("First name must contain only letters");
+    ///
+    /// // Valid: "John", "María", "José"
+    /// // Invalid: "John123", "John-Doe", "John Smith"
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> Alpha() =>
+        AddRule(new AlphaRule());
+
+    /// <summary>
+    /// Validates that the string contains only alphanumeric characters (letters and digits).
+    /// </summary>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.Username, request.Username)
+    ///     .AlphaNumeric()
+    ///     .WithMessage("Username must contain only letters and numbers");
+    ///
+    /// // Valid: "User123", "JohnDoe", "admin"
+    /// // Invalid: "user-123", "john_doe", "admin@"
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> AlphaNumeric() =>
+        AddRule(new AlphaNumericRule());
+
+    /// <summary>
+    /// Validates that the string is in uppercase.
+    /// </summary>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.CountryCode, request.CountryCode)
+    ///     .UpperCase()
+    ///     .WithMessage("Country code must be in uppercase");
+    ///
+    /// // Valid: "US", "CANADA", "UNITED KINGDOM"
+    /// // Invalid: "us", "canada", "United Kingdom"
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> UpperCase() =>
+        AddRule(new UpperCaseRule());
+
+    /// <summary>
+    /// Validates that the string is in lowercase.
+    /// </summary>
+    /// <returns>The StringPropertyValidator&lt;T&gt; for method chaining.</returns>
+    /// <example>
+    /// <code>
+    /// builder.RuleFor(x =&gt; x.Username, request.Username)
+    ///     .LowerCase()
+    ///     .WithMessage("Username must be in lowercase");
+    ///
+    /// // Valid: "user", "admin", "john.doe"
+    /// // Invalid: "User", "ADMIN", "John.Doe"
+    /// </code>
+    /// </example>
+    public StringPropertyValidator<T> LowerCase() =>
+        AddRule(new LowerCaseRule());
+
     #endregion Public Methods
 }

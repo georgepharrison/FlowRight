@@ -296,6 +296,246 @@ public class ValidationBuilderTests
             Dictionary<string, string[]> errors = builder.GetErrors();
             errors["Name"].ShouldContain(customMessage);
         }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithUrl_ShouldFailForInvalidUrl()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "not-a-url");
+            validator.Url();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithUrl_ShouldPassForValidUrl()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "https://www.example.com");
+            validator.Url();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithContains_ShouldFailWhenSubstringNotPresent()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.Contains("Test");
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithContains_ShouldPassWhenSubstringPresent()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.Contains("World");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithStartsWith_ShouldFailWhenPrefixNotPresent()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.StartsWith("Test");
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithStartsWith_ShouldPassWhenPrefixPresent()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.StartsWith("Hello");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithEndsWith_ShouldFailWhenSuffixNotPresent()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.EndsWith("Test");
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithEndsWith_ShouldPassWhenSuffixPresent()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.EndsWith("World");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithAlpha_ShouldFailForNonAlphabeticString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello123");
+            validator.Alpha();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithAlpha_ShouldPassForAlphabeticString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "HelloWorld");
+            validator.Alpha();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithAlphaNumeric_ShouldFailForNonAlphaNumericString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello-World");
+            validator.AlphaNumeric();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithAlphaNumeric_ShouldPassForAlphaNumericString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello123World");
+            validator.AlphaNumeric();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithUpperCase_ShouldFailForNonUpperCaseString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.UpperCase();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithUpperCase_ShouldPassForUpperCaseString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "HELLO WORLD");
+            validator.UpperCase();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithLowerCase_ShouldFailForNonLowerCaseString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "Hello World");
+            validator.LowerCase();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithLowerCase_ShouldPassForLowerCaseString()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "hello world");
+            validator.LowerCase();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_StringProperty_WithChainedNewValidations_ShouldAggregateAllErrors()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            StringPropertyValidator<User> validator = builder.RuleFor(u => u.Name, "hello-world123");
+            validator.Alpha().UpperCase().StartsWith("HELLO");
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors["Name"].Length.ShouldBeGreaterThan(1);
+        }
     }
 
     #endregion String Property Validation Tests
