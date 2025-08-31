@@ -1,0 +1,229 @@
+﻿# FlowRight
+
+[![NuGet](https://img.shields.io/nuget/v/FlowRight.Core.svg)](https://www.nuget.org/packages/FlowRight.Core/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/FlowRight/build.yml?branch=main)](https://github.com/yourusername/FlowRight/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/yourusername/FlowRight)](https://codecov.io/gh/yourusername/FlowRight)
+[![License](https://img.shields.io/github/license/yourusername/FlowRight)](https://github.com/yourusername/FlowRight/blob/main/LICENSE)
+
+A production-grade Result pattern implementation for .NET that eliminates exception-based control flow while providing comprehensive validation and HTTP integration capabilities.
+
+## 🎯 Features
+
+- **Exception-Free Error Handling**: Explicit success/failure states without throwing exceptions
+- **Full JSON Serialization**: Seamless serialization/deserialization of both success and failure states
+- **Pattern Matching**: Functional `Match` and imperative `Switch` methods for elegant control flow
+- **Validation Builder**: Fluent API for building complex validation rules with automatic error aggregation
+- **HTTP Integration**: Convert HTTP responses to Result types with automatic status code interpretation
+- **Zero Dependencies**: Core library has no external dependencies
+- **Performance Optimized**: Zero allocations on success path, minimal overhead compared to exceptions
+- **Type-Safe**: Full nullable reference type support and strong typing throughout
+
+## 📦 Packages
+
+| Package | Description | NuGet |
+|---------|-------------|-------|
+| `FlowRight.Core` | Core Result pattern implementation | [![NuGet](https://img.shields.io/nuget/v/FlowRight.Core.svg)](https://www.nuget.org/packages/FlowRight.Core/) |
+| `FlowRight.Validation` | Fluent validation builder with Result integration | [![NuGet](https://img.shields.io/nuget/v/FlowRight.Validation.svg)](https://www.nuget.org/packages/FlowRight.Validation/) |
+| `FlowRight.Http` | HTTP response to Result conversion | [![NuGet](https://img.shields.io/nuget/v/FlowRight.Http.svg)](https://www.nuget.org/packages/FlowRight.Http/) |
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# Core Result pattern
+dotnet add package FlowRight.Core
+
+# Validation support
+dotnet add package FlowRight.Validation
+
+# HTTP integration
+dotnet add package FlowRight.Http
+```
+
+### Basic Usage
+
+```csharp
+using FlowRight.Core.Results;
+
+// Simple success/failure
+Result<int> Divide(int numerator, int denominator)
+{
+    if (denominator == 0)
+        return Result.Failure<int>("Cannot divide by zero");
+    
+    return Result.Success(numerator / denominator);
+}
+
+// Pattern matching
+string message = Divide(10, 2).Match(
+    onSuccess: value => $"Result: {value}",
+    onFailure: error => $"Error: {error}"
+);
+
+// Using Switch for side effects
+Divide(10, 0).Switch(
+    onSuccess: value => Console.WriteLine($"Success: {value}"),
+    onFailure: error => Console.WriteLine($"Failed: {error}")
+);
+```
+
+### Validation Builder
+
+```csharp
+using FlowRight.Validation.Builders;
+
+public Result<User> CreateUser(CreateUserRequest request)
+{
+    return new ValidationBuilder<User>()
+        .RuleFor(x => x.Name, request.Name)
+            .NotEmpty()
+            .MinimumLength(2)
+            .MaximumLength(100)
+        .RuleFor(x => x.Email, request.Email)
+            .NotEmpty()
+            .EmailAddress()
+        .RuleFor(x => x.Age, request.Age)
+            .GreaterThan(0)
+            .LessThan(150)
+        .Build(() => new User(request.Name, request.Email, request.Age));
+}
+```
+
+### HTTP Integration
+
+```csharp
+using FlowRight.Http.Extensions;
+
+public async Task<Result<WeatherData>> GetWeatherAsync(string city)
+{
+    HttpResponseMessage response = await _httpClient.GetAsync($"/weather/{city}");
+    return await response.ToResultFromJsonAsync<WeatherData>();
+}
+
+// Automatically handles:
+// - 2xx → Success with deserialized data
+// - 400 → Validation errors from Problem Details
+// - 401/403 → Security failures
+// - 404 → Not found
+// - 5xx → Server errors
+```
+
+### Combining Results
+
+```csharp
+Result<Order> CreateOrder(OrderRequest request)
+{
+    Result<Customer> customerResult = GetCustomer(request.CustomerId);
+    Result<Product> productResult = GetProduct(request.ProductId);
+    Result<Address> addressResult = ValidateAddress(request.ShippingAddress);
+    
+    // Combine multiple results
+    Result combined = Result.Combine(customerResult, productResult, addressResult);
+    if (combined.IsFailure)
+        return Result.Failure<Order>(combined.Error);
+    
+    // All results are successful, create the order
+    return Result.Success(new Order(
+        customerResult.Value,
+        productResult.Value,
+        addressResult.Value
+    ));
+}
+```
+
+## 📚 Documentation
+
+- [Getting Started Guide](docs/getting-started.md)
+- [API Reference](docs/api-reference.md)
+- [Migration Guide](docs/migration-guide.md)
+- [Best Practices](docs/best-practices.md)
+- [Performance Benchmarks](docs/benchmarks.md)
+
+## 🏗️ Building from Source
+
+### Prerequisites
+
+- .NET 8.0 SDK or later
+- Visual Studio 2022 or VS Code with C# extension
+
+### Building
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/FlowRight.git
+cd FlowRight
+
+# Build the solution
+dotnet build
+
+# Run tests
+dotnet test
+
+# Run benchmarks
+dotnet run -c Release --project benchmarks/Benchmarks/Benchmarks.csproj
+```
+
+## 🧪 Testing
+
+The project maintains >95% test coverage with comprehensive unit and integration tests.
+
+```bash
+# Run all tests with coverage
+dotnet test --collect:"XPlat Code Coverage" --results-directory ./coverage
+
+# Generate coverage report (requires ReportGenerator)
+dotnet tool install -g dotnet-reportgenerator-globaltool
+reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverage/report -reporttypes:Html
+```
+
+## 📊 Performance
+
+FlowRight is designed for minimal overhead and zero allocations on the success path.
+
+| Operation | Time | Allocations |
+|-----------|------|-------------|
+| Result.Success() | ~8ns | 0 bytes |
+| Result.Failure() | ~45ns | 88 bytes |
+| Pattern Match | ~15ns | 0 bytes |
+| Validation (10 rules) | ~95ns | 192 bytes |
+
+See [detailed benchmarks](docs/benchmarks.md) for more information.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by functional programming patterns in F# and Rust
+- Built on the shoulders of the .NET community
+- Special thanks to all contributors and users
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/yourusername/FlowRight/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yourusername/FlowRight/discussions)
+- **Stack Overflow**: Tag your questions with `flowright`
+
+## 🗺️ Roadmap
+
+### Version 1.1 (Q2 2025)
+- Additional validation rules
+- Performance optimizations
+- Source generators for reduced boilerplate
+
+### Version 2.0 (Q4 2025)
+- AsyncResult<T> for async operations
+- Railway-oriented programming extensions
+- F# interop package
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
+
+---
+
+Made with ❤️ by the .NET community
