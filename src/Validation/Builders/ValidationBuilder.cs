@@ -1,5 +1,4 @@
 ﻿using FlowRight.Core.Results;
-using FlowRight.Validation.Rules;
 using FlowRight.Validation.Validators;
 using System.Linq.Expressions;
 using System.Numerics;
@@ -23,7 +22,7 @@ namespace FlowRight.Validation.Builders;
 ///         .LessThan(120)
 ///     .Build(() =&gt; new Character(request.Name, request.Age));
 /// </code>
-/// 
+///
 /// <para><strong>Result&lt;T&gt; Composition:</strong></para>
 /// <code>
 /// Result&lt;Character&gt; result = new ValidationBuilder&lt;Character&gt;()
@@ -31,7 +30,7 @@ namespace FlowRight.Validation.Builders;
 ///     .RuleFor(x =&gt; x.Edge, Edge.Create(startingEdge), out Edge? validatedEdge)
 ///     .Build(() =&gt; new Character(name, validatedAttributes!, validatedEdge!));
 /// </code>
-/// 
+///
 /// <para><strong>Conditional Validation:</strong></para>
 /// <code>
 /// ValidationBuilder&lt;DicePool&gt; builder = new();
@@ -63,7 +62,7 @@ public class ValidationBuilder<T>
     /// <example>
     /// <code>
     /// Result&lt;User&gt; result = builder.Build(() =&gt; new User(validatedName, validatedEmail));
-    /// 
+    ///
     /// return result.Match(
     ///     onSuccess: user =&gt; Ok(user),
     ///     onValidationException: errors =&gt; BadRequest(errors));
@@ -90,7 +89,7 @@ public class ValidationBuilder<T>
     /// ValidationBuilder&lt;User&gt; builder = new();
     /// builder.RuleFor(x =&gt; x.Name, "").NotEmpty();
     /// builder.RuleFor(x =&gt; x.Email, "invalid").EmailAddress();
-    /// 
+    ///
     /// Dictionary&lt;string, string[]&gt; errors = builder.GetErrors();
     /// // errors["Name"] contains ["Name is required"]
     /// // errors["Email"] contains ["Email address format is invalid"]
@@ -168,7 +167,7 @@ public class ValidationBuilder<T>
     ///     .RuleFor(x =&gt; x.Edge, Edge.Create(request.StartingEdge), out Edge? edge)
     ///     .RuleFor(x =&gt; x.Health, ConditionMonitor.Create(attributes), out ConditionMonitor? health)
     ///     .Build(() =&gt; new Character(request.Name, attributes!, edge!, health!));
-    /// 
+    ///
     /// // All validation failures are automatically aggregated
     /// // Success values are available through out parameters
     /// </code>
@@ -230,18 +229,53 @@ public class ValidationBuilder<T>
     public NumericPropertyValidator<T, int> RuleFor(Expression<Func<T, int>> propertySelector, int value, string? displayName = null) =>
         CreateNumericValidator(propertySelector, value, displayName);
 
+    /// <summary>
+    /// Creates validation rules for a long numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The long value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, long> RuleFor(Expression<Func<T, long>> propertySelector, long value, string? displayName = null) =>
         CreateNumericValidator(propertySelector, value, displayName);
 
+    /// <summary>
+    /// Creates validation rules for a decimal numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The decimal value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, decimal> RuleFor(Expression<Func<T, decimal>> propertySelector, decimal value, string? displayName = null) =>
         CreateNumericValidator(propertySelector, value, displayName);
 
+    /// <summary>
+    /// Creates validation rules for a double numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The double value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, double> RuleFor(Expression<Func<T, double>> propertySelector, double value, string? displayName = null) =>
         CreateNumericValidator(propertySelector, value, displayName);
 
+    /// <summary>
+    /// Creates validation rules for a float numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The float value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, float> RuleFor(Expression<Func<T, float>> propertySelector, float value, string? displayName = null) =>
         CreateNumericValidator(propertySelector, value, displayName);
 
+    /// <summary>
+    /// Creates validation rules for a short numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The short value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, short> RuleFor(Expression<Func<T, short>> propertySelector, short value, string? displayName = null) =>
         CreateNumericValidator(propertySelector, value, displayName);
 
@@ -268,7 +302,7 @@ public class ValidationBuilder<T>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new EnumerablePropertyValidator<T, TItem>(builder, display, val));
 
     /// <summary>
-    /// Creates validation rules for any property type using a fluent interface. This is the fallback validator for types 
+    /// Creates validation rules for any property type using a fluent interface. This is the fallback validator for types
     /// that don't have specialized validators (string, numeric, enumerable, guid).
     /// </summary>
     /// <typeparam name="TProp">The type of property being validated.</typeparam>

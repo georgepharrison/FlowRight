@@ -1,4 +1,5 @@
-﻿using FlowRight.Validation.Rules;
+﻿using FlowRight.Validation.Builders;
+using FlowRight.Validation.Rules;
 using System.Numerics;
 
 namespace FlowRight.Validation.Validators;
@@ -17,14 +18,14 @@ namespace FlowRight.Validation.Validators;
 ///     .GreaterThan(0)
 ///     .LessThanOrEqualTo(1000)
 ///     .WithMessage("Character age must be between 1 and 1000");
-/// 
+///
 /// // Decimal validation with precision
 /// builder.RuleFor(x =&gt; x.Price, request.Price)
 ///     .GreaterThanOrEqualTo(0.01m)
 ///     .LessThan(1000000m)
 ///     .PrecisionScale(10, 2)
 ///     .WithMessage("Price must be positive with up to 2 decimal places");
-/// 
+///
 /// // Range validation
 /// builder.RuleFor(x =&gt; x.DiceCount, dicePool.TotalDice)
 ///     .InclusiveBetween(1, 100)
@@ -62,7 +63,7 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// builder.RuleFor(x =&gt; x.Percentage, request.Percentage)
     ///     .ExclusiveBetween(0, 100)
     ///     .WithMessage("Percentage must be between 0 and 100 (exclusive)");
-    /// 
+    ///
     /// // Valid: 0.1, 50, 99.9
     /// // Invalid: 0, 100, -1, 101
     /// </code>
@@ -80,7 +81,7 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// builder.RuleFor(x =&gt; x.Price, request.Price)
     ///     .GreaterThan(0)
     ///     .WithMessage("Price must be positive");
-    /// 
+    ///
     /// builder.RuleFor(x =&gt; x.Rating, request.Rating)
     ///     .GreaterThan(0.0)
     ///     .WithMessage("Rating must be above zero");
@@ -99,7 +100,7 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// builder.RuleFor(x =&gt; x.MinimumAge, request.MinimumAge)
     ///     .GreaterThanOrEqualTo(18)
     ///     .WithMessage("Minimum age must be 18 or older");
-    /// 
+    ///
     /// builder.RuleFor(x =&gt; x.Balance, account.Balance)
     ///     .GreaterThanOrEqualTo(0.00m)
     ///     .WithMessage("Account balance cannot be negative");
@@ -119,7 +120,7 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// builder.RuleFor(x =&gt; x.DiceRoll, roll.Value)
     ///     .InclusiveBetween(1, 6)
     ///     .WithMessage("Dice roll must be between 1 and 6");
-    /// 
+    ///
     /// builder.RuleFor(x =&gt; x.Attribute, character.Strength)
     ///     .InclusiveBetween(1, 12)
     ///     .WithMessage("Shadowrun attributes range from 1 to 12");
@@ -138,7 +139,7 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// builder.RuleFor(x =&gt; x.MaxUsers, request.MaxUsers)
     ///     .LessThan(10000)
     ///     .WithMessage("Maximum users must be under 10,000");
-    /// 
+    ///
     /// builder.RuleFor(x =&gt; x.Discount, request.Discount)
     ///     .LessThan(1.0)
     ///     .WithMessage("Discount must be less than 100%");
@@ -157,7 +158,7 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// builder.RuleFor(x =&gt; x.MaxRetries, request.MaxRetries)
     ///     .LessThanOrEqualTo(5)
     ///     .WithMessage("Maximum retries cannot exceed 5");
-    /// 
+    ///
     /// builder.RuleFor(x =&gt; x.CompletionRate, task.CompletionRate)
     ///     .LessThanOrEqualTo(1.0)
     ///     .WithMessage("Completion rate cannot exceed 100%");
@@ -179,12 +180,12 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// builder.RuleFor(x =&gt; x.Price, request.Price)
     ///     .PrecisionScale(10, 2)
     ///     .WithMessage("Price must have at most 8 whole digits and 2 decimal places");
-    /// 
+    ///
     /// // Percentage with high precision: up to 5 digits total, 3 decimal places
     /// builder.RuleFor(x =&gt; x.InterestRate, request.InterestRate)
     ///     .PrecisionScale(5, 3)
     ///     .WithMessage("Interest rate precision is too high");
-    /// 
+    ///
     /// // Valid examples for PrecisionScale(10, 2):
     /// // 12345678.90, 0.01, 99999999.99
     /// // Invalid: 123456789.123 (too many decimal places), 12345678901 (too many total digits)

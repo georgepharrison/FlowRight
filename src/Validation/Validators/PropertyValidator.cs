@@ -1,5 +1,6 @@
-﻿using FlowRight.Validation.Rules;
-using FlowRight.Core.Results;
+﻿using FlowRight.Core.Results;
+using FlowRight.Validation.Builders;
+using FlowRight.Validation.Rules;
 using System.Linq.Expressions;
 
 namespace FlowRight.Validation.Validators;
@@ -81,6 +82,12 @@ public abstract class PropertyValidator<T, TProp, TRule>
         return (TRule)this;
     }
 
+    /// <summary>
+    /// Validates that the property value equals the specified comparison value.
+    /// </summary>
+    /// <param name="comparisonValue">The value to compare against.</param>
+    /// <param name="comparer">Optional equality comparer for comparison.</param>
+    /// <returns>The concrete validator type for method chaining.</returns>
     public TRule Equal(TProp comparisonValue, IEqualityComparer<TProp>? comparer = null)
     {
         _pendingRules.Add((new EqualRule<TProp>(comparisonValue, comparer), null, null));
@@ -106,87 +113,183 @@ public abstract class PropertyValidator<T, TProp, TRule>
         return (TRule)this;
     }
 
+    /// <summary>
+    /// Validates that the property value is not empty (handles strings, collections, GUIDs, etc.).
+    /// </summary>
+    /// <returns>The concrete validator type for method chaining.</returns>
     public TRule NotEmpty()
     {
         _pendingRules.Add((new NotEmptyRule<TProp>(), null, null));
         return (TRule)this;
     }
 
+    /// <summary>
+    /// Validates that the property value does not equal the specified comparison value.
+    /// </summary>
+    /// <param name="comparisonValue">The value to compare against.</param>
+    /// <param name="comparer">Optional equality comparer for comparison.</param>
+    /// <returns>The concrete validator type for method chaining.</returns>
     public TRule NotEqual(TProp comparisonValue, IEqualityComparer<TProp>? comparer = null)
     {
         _pendingRules.Add((new NotEqualRule<TProp>(comparisonValue, comparer), null, null));
         return (TRule)this;
     }
 
+    /// <summary>
+    /// Validates that the property value is not null.
+    /// </summary>
+    /// <returns>The concrete validator type for method chaining.</returns>
     public TRule Notnull()
     {
         _pendingRules.Add((new NotNullRule<TProp>(), null, null));
         return (TRule)this;
     }
 
+    /// <summary>
+    /// Validates that the property value is null.
+    /// </summary>
+    /// <returns>The concrete validator type for method chaining.</returns>
     public TRule Null()
     {
         _pendingRules.Add((new NullRule<TProp>(), null, null));
         return (TRule)this;
     }
 
+    /// <summary>
+    /// Creates validation rules for a different property using a Result composition pattern.
+    /// </summary>
+    /// <typeparam name="TDifferentProp">The type of the different property.</typeparam>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="result">The Result containing the property value or errors.</param>
+    /// <param name="value">Out parameter for the validated value if successful.</param>
+    /// <returns>The validation builder for method chaining.</returns>
     public ValidationBuilder<T> RuleFor<TDifferentProp>(Expression<Func<T, TDifferentProp>> propertySelector, Result<TDifferentProp> result, out TDifferentProp? value) =>
         _builder.RuleFor(propertySelector, result, out value);
 
+    /// <summary>
+    /// Creates validation rules for a string property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The string value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A string property validator for further rule configuration.</returns>
     public StringPropertyValidator<T> RuleFor(Expression<Func<T, string>> propertySelector, string value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for a GUID property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The GUID value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A GUID property validator for further rule configuration.</returns>
     public GuidPropertyValidator<T> RuleFor(Expression<Func<T, Guid?>> propertySelector, Guid? value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for an integer numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The integer value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, int> RuleFor(Expression<Func<T, int>> propertySelector, int value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for a long numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The long value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, long> RuleFor(Expression<Func<T, long>> propertySelector, long value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for a decimal numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The decimal value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, decimal> RuleFor(Expression<Func<T, decimal>> propertySelector, decimal value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for a double numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The double value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, double> RuleFor(Expression<Func<T, double>> propertySelector, double value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for a float numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The float value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, float> RuleFor(Expression<Func<T, float>> propertySelector, float value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for a short numeric property using a fluent interface.
+    /// </summary>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The short value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, short> RuleFor(Expression<Func<T, short>> propertySelector, short value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Creates validation rules for an enumerable/collection property using a fluent interface.
+    /// </summary>
+    /// <typeparam name="TItem">The type of items in the collection.</typeparam>
+    /// <param name="propertySelector">Expression selecting the property to validate.</param>
+    /// <param name="value">The collection value for the property.</param>
+    /// <param name="displayName">Optional display name for validation messages.</param>
+    /// <returns>An enumerable property validator for further rule configuration.</returns>
     public EnumerablePropertyValidator<T, TItem> RuleFor<TItem>(Expression<Func<T, IEnumerable<TItem>>> propertySelector, IEnumerable<TItem> value, string? displayName = null)
     {
         ApplyPendingRules();
         return _builder.RuleFor(propertySelector, value, displayName);
     }
 
+    /// <summary>
+    /// Applies a conditional check to the last validation rule, only executing it when the condition is false.
+    /// This is the inverse of When().
+    /// </summary>
+    /// <param name="condition">A function that determines when NOT to apply the previous validation rule.</param>
+    /// <returns>The concrete validator type for method chaining.</returns>
     public TRule Unless(Func<TProp, bool> condition) =>
         When(value => !condition(value));
 
@@ -231,6 +334,11 @@ public abstract class PropertyValidator<T, TProp, TRule>
 
     #region Protected Methods
 
+    /// <summary>
+    /// Adds a validation rule to the pending rules list.
+    /// </summary>
+    /// <param name="rule">The validation rule to add.</param>
+    /// <returns>The concrete validator type for method chaining.</returns>
     protected TRule AddRule(IRule<TProp>? rule)
     {
         ArgumentNullException.ThrowIfNull(rule);
@@ -240,6 +348,10 @@ public abstract class PropertyValidator<T, TProp, TRule>
         return (TRule)this;
     }
 
+    /// <summary>
+    /// Updates the condition function for the last added validation rule.
+    /// </summary>
+    /// <param name="condition">The condition function to apply to the last rule.</param>
     protected void UpdateLastRuleCondition(Func<TProp, bool>? condition)
     {
         if (_pendingRules.Count > 0)
@@ -249,6 +361,10 @@ public abstract class PropertyValidator<T, TProp, TRule>
         }
     }
 
+    /// <summary>
+    /// Updates the custom error message for the last added validation rule.
+    /// </summary>
+    /// <param name="customMessage">The custom error message to use.</param>
     protected void UpdateLastValidationMessage(string? customMessage)
     {
         if (_pendingRules.Count > 0)

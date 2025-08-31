@@ -8,10 +8,29 @@ using System.Text.Json.Serialization.Metadata;
 
 namespace FlowRight.Http.Extensions;
 
+/// <summary>
+/// Provides extension methods for converting HTTP response messages to Result types.
+/// </summary>
 public static class HttpResponseMessageExtensions
 {
     #region Public Methods
 
+    /// <summary>
+    /// Converts an HTTP response message to a Result, handling various HTTP status codes appropriately.
+    /// </summary>
+    /// <param name="responseMessage">The HTTP response message to convert.</param>
+    /// <param name="cancellationToken">Token to cancel the operation.</param>
+    /// <returns>A Result representing the success or failure of the HTTP operation.</returns>
+    /// <example>
+    /// <code>
+    /// HttpResponseMessage response = await client.GetAsync("/api/users");
+    /// Result result = await response.ToResultAsync();
+    /// if (result.IsSuccess)
+    /// {
+    ///     // Handle success
+    /// }
+    /// </code>
+    /// </example>
     public static async Task<Result> ToResultAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(responseMessage);
@@ -32,6 +51,24 @@ public static class HttpResponseMessageExtensions
         };
     }
 
+    /// <summary>
+    /// Converts an HTTP response message to a Result&lt;T&gt; by deserializing the JSON content.
+    /// </summary>
+    /// <typeparam name="T">The type to deserialize the JSON content to.</typeparam>
+    /// <param name="responseMessage">The HTTP response message to convert.</param>
+    /// <param name="options">Optional JSON serializer options.</param>
+    /// <param name="cancellationToken">Token to cancel the operation.</param>
+    /// <returns>A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.</returns>
+    /// <example>
+    /// <code>
+    /// HttpResponseMessage response = await client.GetAsync("/api/users/1");
+    /// Result&lt;User?&gt; userResult = await response.ToResultFromJsonAsync&lt;User&gt;();
+    /// if (userResult.IsSuccess)
+    /// {
+    ///     User? user = userResult.Value;
+    /// }
+    /// </code>
+    /// </example>
     public static async Task<Result<T?>> ToResultFromJsonAsync<T>(this HttpResponseMessage responseMessage, JsonSerializerOptions? options = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(responseMessage);
@@ -58,6 +95,24 @@ public static class HttpResponseMessageExtensions
         };
     }
 
+    /// <summary>
+    /// Converts an HTTP response message to a Result&lt;T&gt; by deserializing the JSON content using a JsonTypeInfo.
+    /// </summary>
+    /// <typeparam name="T">The type to deserialize the JSON content to.</typeparam>
+    /// <param name="responseMessage">The HTTP response message to convert.</param>
+    /// <param name="jsonTypeInfo">The JsonTypeInfo for source generation serialization.</param>
+    /// <param name="cancellationToken">Token to cancel the operation.</param>
+    /// <returns>A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.</returns>
+    /// <example>
+    /// <code>
+    /// HttpResponseMessage response = await client.GetAsync("/api/users/1");
+    /// Result&lt;User?&gt; userResult = await response.ToResultFromJsonAsync(UserJsonContext.Default.User);
+    /// if (userResult.IsSuccess)
+    /// {
+    ///     User? user = userResult.Value;
+    /// }
+    /// </code>
+    /// </example>
     public static async Task<Result<T?>> ToResultFromJsonAsync<T>(this HttpResponseMessage responseMessage, JsonTypeInfo<T> jsonTypeInfo, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(responseMessage);

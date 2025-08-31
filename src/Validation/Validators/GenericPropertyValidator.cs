@@ -1,4 +1,4 @@
-using FlowRight.Validation.Rules;
+using FlowRight.Validation.Builders;
 
 namespace FlowRight.Validation.Validators;
 

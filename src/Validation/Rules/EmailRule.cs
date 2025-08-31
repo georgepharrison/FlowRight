@@ -2,6 +2,9 @@
 
 namespace FlowRight.Validation.Rules;
 
+/// <summary>
+/// A validation rule that ensures a string value is a valid email address format.
+/// </summary>
 public partial class EmailRule : IRule<string>
 {
     #region Private Members
@@ -12,6 +15,12 @@ public partial class EmailRule : IRule<string>
 
     #region Public Methods
 
+    /// <summary>
+    /// Validates that the string value is a valid email address format.
+    /// </summary>
+    /// <param name="value">The string value to validate.</param>
+    /// <param name="displayName">The display name for the property being validated.</param>
+    /// <returns>An error message if the value is not a valid email format; otherwise, null.</returns>
     public string? Validate(string value, string displayName)
     {
         if (string.IsNullOrWhiteSpace(value))

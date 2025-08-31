@@ -108,7 +108,7 @@ public class IResultTests
         Type genericParameter = interfaceType.GetGenericArguments()[0];
         
         // Assert - The 'out' keyword makes it covariant
-        genericParameter.GenericParameterAttributes.ShouldHaveFlag(GenericParameterAttributes.Covariant);
+        (genericParameter.GenericParameterAttributes & GenericParameterAttributes.Covariant).ShouldBe(GenericParameterAttributes.Covariant);
     }
 
     [Fact]
@@ -182,7 +182,7 @@ public class IResultTests
         Type genericParameter = interfaceType.GetGenericArguments()[0];
         
         // Assert - The 'out' keyword makes it covariant
-        genericParameter.GenericParameterAttributes.ShouldHaveFlag(GenericParameterAttributes.Covariant);
+        (genericParameter.GenericParameterAttributes & GenericParameterAttributes.Covariant).ShouldBe(GenericParameterAttributes.Covariant);
     }
 
     [Fact]

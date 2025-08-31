@@ -1,5 +1,10 @@
 ﻿namespace FlowRight.Validation.Rules;
 
+/// <summary>
+/// A validation rule that ensures all items in a collection are unique.
+/// </summary>
+/// <typeparam name="TItem">The type of items in the collection.</typeparam>
+/// <param name="comparer">Optional equality comparer for determining uniqueness.</param>
 public sealed class UniqueRule<TItem>(IEqualityComparer<TItem>? comparer = null) : IRule<IEnumerable<TItem>>
 {
     #region Private Members
@@ -10,6 +15,12 @@ public sealed class UniqueRule<TItem>(IEqualityComparer<TItem>? comparer = null)
 
     #region Public Methods
 
+    /// <summary>
+    /// Validates that all items in the collection are unique.
+    /// </summary>
+    /// <param name="value">The collection to validate.</param>
+    /// <param name="displayName">The display name for the property being validated.</param>
+    /// <returns>An error message if duplicate items are found; otherwise, null.</returns>
     public string? Validate(IEnumerable<TItem> value, string displayName)
     {
         if (value is null)

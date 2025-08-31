@@ -1,4 +1,5 @@
-﻿using FlowRight.Validation.Rules;
+﻿using FlowRight.Validation.Builders;
+using FlowRight.Validation.Rules;
 using System.Text.RegularExpressions;
 
 namespace FlowRight.Validation.Validators;
@@ -16,7 +17,7 @@ namespace FlowRight.Validation.Validators;
 ///     .EmailAddress()
 ///     .MaximumLength(255)
 ///     .WithMessage("Please provide a valid email address");
-/// 
+///
 /// builder.RuleFor(x =&gt; x.Password, request.Password)
 ///     .NotEmpty()
 ///     .MinimumLength(8)
@@ -52,7 +53,7 @@ public sealed class StringPropertyValidator<T> : PropertyValidator<T, string, St
     /// builder.RuleFor(x =&gt; x.Email, request.Email)
     ///     .EmailAddress()
     ///     .WithMessage("Please enter a valid email address");
-    /// 
+    ///
     /// // Valid: "user@example.com", "test.email+tag@domain.co.uk"
     /// // Invalid: "invalid-email", "@domain.com", "user@"
     /// </code>
@@ -70,7 +71,7 @@ public sealed class StringPropertyValidator<T> : PropertyValidator<T, string, St
     /// builder.RuleFor(x =&gt; x.CountryCode, request.CountryCode)
     ///     .ExactLength(2)
     ///     .WithMessage("Country code must be exactly 2 characters");
-    /// 
+    ///
     /// // Valid: "US", "CA", "GB"
     /// // Invalid: "USA", "C", ""
     /// </code>
@@ -89,7 +90,7 @@ public sealed class StringPropertyValidator<T> : PropertyValidator<T, string, St
     /// builder.RuleFor(x =&gt; x.Username, request.Username)
     ///     .Length(3, 20)
     ///     .WithMessage("Username must be between 3 and 20 characters");
-    /// 
+    ///
     /// // Valid: "abc", "username123", "abcdefghijklmnopqrst"
     /// // Invalid: "ab", "verylongusernamethatexceedslimit"
     /// </code>
@@ -109,7 +110,7 @@ public sealed class StringPropertyValidator<T> : PropertyValidator<T, string, St
     /// builder.RuleFor(x =&gt; x.PhoneNumber, request.PhoneNumber)
     ///     .Matches(@"^\+?[1-9]\d{1,14}$")
     ///     .WithMessage("Please enter a valid phone number");
-    /// 
+    ///
     /// // Case-insensitive pattern matching
     /// builder.RuleFor(x =&gt; x.ProductCode, request.ProductCode)
     ///     .Matches(@"^[A-Z]{2}\d{4}$", RegexOptions.IgnoreCase)
@@ -129,7 +130,7 @@ public sealed class StringPropertyValidator<T> : PropertyValidator<T, string, St
     /// builder.RuleFor(x =&gt; x.Description, request.Description)
     ///     .MaximumLength(500)
     ///     .WithMessage("Description cannot exceed 500 characters");
-    /// 
+    ///
     /// // Database field length constraints
     /// builder.RuleFor(x =&gt; x.Title, request.Title)
     ///     .MaximumLength(100)
@@ -149,7 +150,7 @@ public sealed class StringPropertyValidator<T> : PropertyValidator<T, string, St
     /// builder.RuleFor(x =&gt; x.Password, request.Password)
     ///     .MinimumLength(8)
     ///     .WithMessage("Password must be at least 8 characters long");
-    /// 
+    ///
     /// // Security requirements
     /// builder.RuleFor(x =&gt; x.ApiKey, request.ApiKey)
     ///     .MinimumLength(32)
