@@ -1098,6 +1098,401 @@ public class ValidationBuilderTests
 
     #endregion Additional Numeric Property Validation Tests
 
+    #region InclusiveBetween Bug Fix Tests
+
+    /// <summary>
+    /// Comprehensive failing tests for InclusiveBetween bug fix in NumericPropertyValidator.
+    /// Current implementation has critical bugs:
+    /// 1. Uses int parameters instead of TNumeric generic parameters
+    /// 2. Unsafe casting of InclusiveBetweenRule(int, int) to IRule&lt;TNumeric&gt;
+    /// 3. Will fail at runtime for non-int numeric types
+    /// 
+    /// These tests will drive implementation of generic InclusiveBetweenRule&lt;TNumeric&gt; and
+    /// the correct InclusiveBetween method signature accepting TNumeric parameters.
+    /// </summary>
+    public class InclusiveBetweenBugFixTests
+    {
+        [Fact]
+        public void InclusiveBetween_IntType_WithIntParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, int> validator = builder.RuleFor(u => u.Age, 25);
+            validator.InclusiveBetween(18, 65);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_IntType_WithIntParameters_ShouldFailForValueBelowRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, int> validator = builder.RuleFor(u => u.Age, 17);
+            validator.InclusiveBetween(18, 65);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void InclusiveBetween_IntType_WithIntParameters_ShouldFailForValueAboveRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, int> validator = builder.RuleFor(u => u.Age, 66);
+            validator.InclusiveBetween(18, 65);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void InclusiveBetween_IntType_WithIntParameters_ShouldPassForLowerBoundary()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, int> validator = builder.RuleFor(u => u.Age, 18);
+            validator.InclusiveBetween(18, 65);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_IntType_WithIntParameters_ShouldPassForUpperBoundary()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, int> validator = builder.RuleFor(u => u.Age, 65);
+            validator.InclusiveBetween(18, 65);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_LongType_WithLongParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, long> validator = builder.RuleFor(u => u.Phone, 5551234567L);
+            validator.InclusiveBetween(1000000000L, 9999999999L);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_DecimalType_WithDecimalParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, decimal> validator = builder.RuleFor(u => u.Salary, 50000.50m);
+            validator.InclusiveBetween(30000.00m, 100000.00m);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_DoubleType_WithDoubleParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, double> validator = builder.RuleFor(u => u.Score, 85.5);
+            validator.InclusiveBetween(0.0, 100.0);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_FloatType_WithFloatParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, float> validator = builder.RuleFor(u => u.Rating, 4.2f);
+            validator.InclusiveBetween(1.0f, 5.0f);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_ShortType_WithShortParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, short> validator = builder.RuleFor(u => u.Priority, (short)5);
+            validator.InclusiveBetween((short)1, (short)10);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_ByteType_WithByteParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, byte> validator = builder.RuleFor(u => u.Status, (byte)128);
+            validator.InclusiveBetween((byte)100, (byte)200);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_SByteType_WithSByteParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, sbyte> validator = builder.RuleFor(u => u.Balance, (sbyte)0);
+            validator.InclusiveBetween((sbyte)-10, (sbyte)10);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_UIntType_WithUIntParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, uint> validator = builder.RuleFor(u => u.Points, 1500U);
+            validator.InclusiveBetween(1000U, 2000U);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_ULongType_WithULongParameters_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert
+            // Act
+            NumericPropertyValidator<User, ulong> validator = builder.RuleFor(u => u.Token, 5000000000UL);
+            validator.InclusiveBetween(1000000000UL, 9000000000UL);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_DecimalType_WithPreciseRange_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - This test will fail with current implementation
+            // Act
+            NumericPropertyValidator<User, decimal> validator = builder.RuleFor(u => u.Salary, 75000.50m);
+            validator.InclusiveBetween(30000.00m, 100000.00m);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_DoubleType_WithFloatingPointRange_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - This test will fail with current implementation
+            // Act
+            NumericPropertyValidator<User, double> validator = builder.RuleFor(u => u.Score, 85.5);
+            validator.InclusiveBetween(0.0, 100.0);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_LongType_WithLargeRange_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - This test will fail with current implementation
+            // Act
+            NumericPropertyValidator<User, long> validator = builder.RuleFor(u => u.Phone, 5551234567L);
+            validator.InclusiveBetween(1000000000L, 9999999999L);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_FloatType_WithBoundaryValues_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - This test will fail with current implementation
+            // Act
+            NumericPropertyValidator<User, float> validator = builder.RuleFor(u => u.Rating, 1.0f);
+            validator.InclusiveBetween(1.0f, 5.0f);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_ShortType_WithNegativeRange_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - This test will fail with current implementation
+            // Act
+            NumericPropertyValidator<User, short> validator = builder.RuleFor(u => u.Priority, (short)-5);
+            validator.InclusiveBetween((short)-10, (short)10);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_ByteType_WithMaxRange_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - This test will fail with current implementation
+            // Act
+            NumericPropertyValidator<User, byte> validator = builder.RuleFor(u => u.Status, (byte)255);
+            validator.InclusiveBetween((byte)200, (byte)255);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_UIntType_WithLargeUnsignedRange_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - This test will fail with current implementation
+            // Act
+            NumericPropertyValidator<User, uint> validator = builder.RuleFor(u => u.Points, 4000000000U);
+            validator.InclusiveBetween(3000000000U, 4294967295U);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InclusiveBetween_MultipleNumericTypes_WithRangeValidation_ShouldAggregateErrors()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act & Assert - All of these will fail with current implementation
+            // Act
+            builder.RuleFor(u => u.Age, 16).InclusiveBetween(18, 65);                    // int - should work
+            builder.RuleFor(u => u.Salary, 25000.00m).InclusiveBetween(30000.00m, 100000.00m); // decimal - will fail
+            builder.RuleFor(u => u.Score, 105.0).InclusiveBetween(0.0, 100.0);         // double - will fail
+            builder.RuleFor(u => u.Rating, 0.5f).InclusiveBetween(1.0f, 5.0f);         // float - will fail
+            builder.RuleFor(u => u.Phone, 123L).InclusiveBetween(1000000000L, 9999999999L); // long - will fail
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void InclusiveBetween_WithCustomErrorMessage_ShouldUseCustomMessage()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            string customMessage = "Age must be between 18 and 65 years old";
+
+            // Act
+            NumericPropertyValidator<User, int> validator = builder.RuleFor(u => u.Age, 16);
+            validator.InclusiveBetween(18, 65).WithMessage(customMessage);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors["Age"].ShouldContain(customMessage);
+        }
+
+        [Fact]
+        public void InclusiveBetween_WithCustomDisplayName_ShouldUseCustomName()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, int> validator = builder.RuleFor(u => u.Age, 16, "User Age");
+            validator.InclusiveBetween(18, 65);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors.ShouldContainKey("User Age");
+        }
+
+        [Fact]
+        public void InclusiveBetween_ChainedWithOtherNumericValidations_ShouldAggregateErrors()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act - This will expose multiple validation failures
+            // Act
+            NumericPropertyValidator<User, decimal> validator = builder.RuleFor(u => u.Salary, -5000.00m);
+            validator.GreaterThan(0m)
+            .InclusiveBetween(30000.00m, 100000.00m)  // This line will throw
+            .LessThan(200000.00m);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+    }
+
+    #endregion InclusiveBetween Bug Fix Tests
+
     #region Character Property Validation Tests
 
     /// <summary>
