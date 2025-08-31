@@ -4,6 +4,50 @@ using System.Text.Json.Serialization;
 
 namespace FlowRight.Core.Results;
 
+/// <summary>
+/// Provides a generic Result implementation that represents the outcome of operations
+/// that return a typed value, supporting both success and failure states with comprehensive error handling.
+/// </summary>
+/// <typeparam name="T">The type of the success value that this result can contain.</typeparam>
+/// <remarks>
+/// <para>
+/// This class implements the Result pattern for operations that return a specific value type.
+/// It provides the same comprehensive error tracking and categorization as the non-generic
+/// <see cref="Result"/> class, while also safely encapsulating the success value.
+/// </para>
+/// <para>
+/// The Result&lt;T&gt; class supports pattern matching through both functional (<see cref="Match{TResult}(Func{T, TResult}, Func{string, TResult})"/>)
+/// and imperative (<see cref="Switch(Action{T}, Action{string}, bool)"/>) APIs, enabling both
+/// functional programming and traditional procedural approaches.
+/// </para>
+/// <para>
+/// The class is designed to be immutable after construction and provides full JSON serialization
+/// support for both success values and error information.
+/// </para>
+/// </remarks>
+/// <example>
+/// <code>
+/// // Creating success results
+/// Result&lt;User&gt; userResult = Result.Success(user);
+/// Result&lt;int&gt; numberResult = Result.Success(42, ResultType.Information);
+/// 
+/// // Creating failure results  
+/// Result&lt;User&gt; failedResult = Result.Failure&lt;User&gt;("User not found");
+/// Result&lt;Order&gt; validationResult = Result.ValidationFailure&lt;Order&gt;(validationErrors);
+/// 
+/// // Pattern matching
+/// string message = userResult.Match(
+///     onSuccess: user => $"Welcome, {user.Name}!",
+///     onFailure: error => $"Login failed: {error}"
+/// );
+/// 
+/// // Imperative handling
+/// userResult.Switch(
+///     onSuccess: user => RedirectToHome(user),
+///     onFailure: error => ShowErrorMessage(error)
+/// );
+/// </code>
+/// </example>
 public partial class Result<T> : IResult<T>
 {
     #region Internal Constructors
