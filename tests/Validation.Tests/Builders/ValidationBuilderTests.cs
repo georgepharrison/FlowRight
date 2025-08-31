@@ -1589,4 +1589,462 @@ public class ValidationBuilderTests
     }
 
     #endregion Character Property Validation Tests
+
+    #region GUID Property Validation Tests
+
+    /// <summary>
+    /// Tests for GUID property validation using GuidPropertyValidator
+    /// </summary>
+    public class GuidPropertyValidation
+    {
+        [Fact]
+        public void RuleFor_GuidProperty_WithNotEmpty_ShouldFailForEmptyGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.NotEmpty();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNotEmpty_ShouldPassForNonEmptyGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.NewGuid();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.NotEmpty();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_NullableGuidProperty_WithNotEmpty_ShouldFailForNullGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, (Guid?)null);
+            validator.NotEmpty();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithEmpty_ShouldPassForEmptyGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.Empty();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithEmpty_ShouldFailForNonEmptyGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.NewGuid();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.Empty();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_NullableGuidProperty_WithNotNull_ShouldFailForNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, (Guid?)null);
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_NullableGuidProperty_WithNotNull_ShouldPassForNonNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.NewGuid();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithEqual_ShouldPassForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid targetGuid = Guid.Parse("12345678-1234-1234-1234-123456789012");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, targetGuid);
+            validator.Equal(targetGuid);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithEqual_ShouldFailForDifferentValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid firstGuid = Guid.Parse("12345678-1234-1234-1234-123456789012");
+            Guid differentGuid = Guid.Parse("87654321-4321-4321-4321-210987654321");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, firstGuid);
+            validator.Equal(differentGuid);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNotEqual_ShouldFailForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid targetGuid = Guid.Parse("12345678-1234-1234-1234-123456789012");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, targetGuid);
+            validator.NotEqual(targetGuid);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNotEqual_ShouldPassForDifferentValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid firstGuid = Guid.Parse("12345678-1234-1234-1234-123456789012");
+            Guid differentGuid = Guid.Parse("87654321-4321-4321-4321-210987654321");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, firstGuid);
+            validator.NotEqual(differentGuid);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNotEqualEmptyGuid_ShouldFailForEmptyGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.NotEqual(Guid.Empty);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithMustCondition_ShouldFailWhenConditionFails()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid testGuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, testGuid);
+            validator.Must(guid => guid == Guid.Empty, "GUID must be empty");
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithMustCondition_ShouldPassWhenConditionSucceeds()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid testGuid = Guid.NewGuid();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, testGuid);
+            validator.Must(guid => guid != Guid.Empty, "GUID must not be empty");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithCustomDisplayName_ShouldUseCustomName()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty, "Entity ID");
+            validator.NotEmpty();
+
+            // Assert
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors.ShouldContainKey("Entity ID");
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithChainedValidations_ShouldAggregateAllErrors()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid invalidGuid = Guid.Empty;
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, invalidGuid);
+            validator.NotEmpty().NotEqual(Guid.Empty);
+
+            // Assert
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors["Id"].Length.ShouldBeGreaterThan(0);
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithWhenCondition_ShouldOnlyValidateWhenConditionTrue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.NotEmpty().When(guid => guid != null);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithUnlessCondition_ShouldOnlyValidateWhenConditionFalse()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.NotEmpty().Unless(guid => guid == null);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithCustomMessage_ShouldUseCustomErrorMessage()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            string customMessage = "Entity ID cannot be empty - please provide a valid GUID";
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.NotEmpty().WithMessage(customMessage);
+
+            // Assert
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors["Id"].ShouldContain(customMessage);
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithSpecificGuidFormat_ShouldValidateCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.Parse("f47ac10b-58cc-4372-a567-0e02b2c3d479");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.Must(guid => guid?.ToString().Contains("f47ac10b") == true, "GUID must match expected format");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+
+        [Fact]
+        public void RuleFor_MultipleGuidProperties_WithValidationErrors_ShouldAggregateAllErrors()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            builder.RuleFor(u => u.Id, Guid.Empty, "Primary ID").NotEmpty();
+            builder.RuleFor(u => u.Id, Guid.Empty, "Secondary ID").NotEqual(Guid.Empty);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors.ShouldContainKey("Primary ID");
+            errors.ShouldContainKey("Secondary ID");
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNullValue_ShouldHandleNullCorrectly()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, (Guid?)null);
+            validator.Null();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNullValidation_ShouldFailForNonNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.NewGuid();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.Null();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithValidFormat_ShouldPassForValidGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.Parse("f47ac10b-58cc-4372-a567-0e02b2c3d479");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.ValidFormat();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithValidFormat_ShouldFailForNullGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, (Guid?)null);
+            validator.ValidFormat();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNotEmptyGuid_ShouldPassForValidGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.NewGuid();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.NotEmptyGuid();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNotEmptyGuid_ShouldFailForEmptyGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.NotEmptyGuid();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNonZeroTimestamp_ShouldPassForValidGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.NewGuid();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.NonZeroTimestamp();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithNonZeroTimestamp_ShouldFailForEmptyGuid()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, Guid.Empty);
+            validator.NonZeroTimestamp();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_GuidProperty_WithChainedGuidSpecificValidations_ShouldAggregateAllErrors()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            Guid validGuid = Guid.Parse("f47ac10b-58cc-4372-a567-0e02b2c3d479");
+
+            // Act
+            GuidPropertyValidator<User> validator = builder.RuleFor(u => u.Id, validGuid);
+            validator.NotEmpty().ValidFormat().NotEmptyGuid();
+
+            // Assert - All validations should pass for this valid GUID
+            builder.HasErrors.ShouldBeFalse();
+        }
+    }
+
+    #endregion GUID Property Validation Tests
 }

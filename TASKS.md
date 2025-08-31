@@ -70,8 +70,8 @@
 ### Property Validators
 - [x] **TASK-026**: Implement StringPropertyValidator with fluent API
 - [x] **TASK-027**: Create NumericPropertyValidator for all numeric types
-- [ ] **TASK-028**: Build EnumerablePropertyValidator for collections
-- [ ] **TASK-029**: Add GuidPropertyValidator for unique identifiers
+- [x] **TASK-028**: Build EnumerablePropertyValidator for collections
+- [x] **TASK-029**: Add GuidPropertyValidator for unique identifiers
 - [ ] **TASK-030**: Create GenericPropertyValidator for custom types
 
 ### Validation Rules
