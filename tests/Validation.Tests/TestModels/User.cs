@@ -20,8 +20,8 @@ public class User
     public double Score { get; }
     public float Rating { get; }
 
-    public User(string name, string email, int age, Guid? id, IEnumerable<string> roles, 
-                Profile? profile = null, decimal salary = 0m, long phone = 0L, 
+    public User(string name, string email, int age, Guid? id, IEnumerable<string> roles,
+                Profile? profile = null, decimal salary = 0m, long phone = 0L,
                 short priority = 0, double score = 0.0, float rating = 0.0f)
     {
         Name = name;

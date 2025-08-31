@@ -546,7 +546,7 @@ public partial class Result : IResult
     /// }
     /// </code>
     /// </example>
-    public static explicit operator bool(Result result) => 
+    public static explicit operator bool(Result result) =>
         result?.IsSuccess ?? false;
 
     #endregion Public Methods

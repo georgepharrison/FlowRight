@@ -31,8 +31,8 @@ public sealed class ExclusiveBetweenRule<T>(T from, T to) : IRule<T>
         }
 
         Comparer<T> comparer = Comparer<T>.Default;
-        return comparer.Compare(value, _from) <= 0 || comparer.Compare(value, _to) >= 0 
-            ? $"{displayName} must be between {_from} and {_to} (exclusive)" 
+        return comparer.Compare(value, _from) <= 0 || comparer.Compare(value, _to) >= 0
+            ? $"{displayName} must be between {_from} and {_to} (exclusive)"
             : null;
     }
 

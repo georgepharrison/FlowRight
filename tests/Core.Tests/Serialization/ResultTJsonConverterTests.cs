@@ -527,7 +527,7 @@ public sealed class ResultTJsonConverterTests
         Utf8JsonWriter writer = new(stream);
 
         // Act & Assert
-        Should.Throw<ArgumentNullException>(() => 
+        Should.Throw<ArgumentNullException>(() =>
             converter.Write(writer, null!, _options));
     }
 
@@ -539,7 +539,7 @@ public sealed class ResultTJsonConverterTests
         Result<string> result = Result.Success("test");
 
         // Act & Assert
-        Should.Throw<ArgumentNullException>(() => 
+        Should.Throw<ArgumentNullException>(() =>
             converter.Write(null!, result, _options));
     }
 

@@ -339,7 +339,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
         // Execute rule immediately and store result
         string? error = rule.Validate(_value, _displayName);
         bool hasError = error is not null;
-        
+
         if (hasError)
         {
             _builder.AddError(_displayName, error!);
@@ -360,7 +360,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
         if (_pendingRules.Count > 0)
         {
             (IRule<TProp>? rule, string? originalError, _, bool executed) = _pendingRules[^1];
-            
+
             // Re-evaluate the rule with the condition
             if (condition is not null && !condition(_value))
             {
@@ -370,7 +370,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
                     RemoveLastError(_displayName);
                 }
             }
-            
+
             _pendingRules[^1] = (rule, originalError, condition, executed);
         }
     }
@@ -384,13 +384,13 @@ public abstract class PropertyValidator<T, TProp, TRule>
         if (_pendingRules.Count > 0)
         {
             (IRule<TProp>? rule, string? originalError, Func<TProp, bool>? condition, bool executed) = _pendingRules[^1];
-            
+
             // Replace the error message if there was an error
             if (originalError is not null)
             {
                 ReplaceLastError(_displayName, customMessage ?? originalError);
             }
-            
+
             _pendingRules[^1] = (rule, originalError, condition, executed);
         }
     }
