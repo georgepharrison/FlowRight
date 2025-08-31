@@ -349,5 +349,58 @@ public partial class Result
     public static Result<T> Failure<T>(IDictionary<string, string[]> errors) =>
         new(errors ?? throw new ArgumentNullException(nameof(errors)));
 
+    /// <summary>
+    /// Creates a failed result with multiple validation errors (convenience method).
+    /// </summary>
+    /// <param name="errors">A dictionary containing field names as keys and arrays of error messages as values. Cannot be <see langword="null"/>.</param>
+    /// <returns>A failed <see cref="Result"/> instance with <see cref="ResultFailureType.Validation"/> containing all the validation errors.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="errors"/> is <see langword="null"/>.</exception>
+    /// <remarks>
+    /// <para>
+    /// This is a convenience method that is equivalent to calling <see cref="Failure(IDictionary{string, string[]})"/>.
+    /// It provides a more explicit name when creating validation-specific failures.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Dictionary&lt;string, string[]&gt; validationErrors = new()
+    /// {
+    ///     ["Email"] = ["Email is required", "Email format is invalid"],
+    ///     ["Password"] = ["Password must be at least 8 characters"]
+    /// };
+    /// 
+    /// Result validationResult = Result.ValidationFailure(validationErrors);
+    /// </code>
+    /// </example>
+    public static Result ValidationFailure(IDictionary<string, string[]> errors) =>
+        Failure(errors);
+
+    /// <summary>
+    /// Creates a failed result with multiple validation errors for a generic result type (convenience method).
+    /// </summary>
+    /// <typeparam name="T">The type parameter for the generic result.</typeparam>
+    /// <param name="errors">A dictionary containing field names as keys and arrays of error messages as values. Cannot be <see langword="null"/>.</param>
+    /// <returns>A failed <see cref="Result{T}"/> instance with <see cref="ResultFailureType.Validation"/> containing all the validation errors.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="errors"/> is <see langword="null"/>.</exception>
+    /// <remarks>
+    /// <para>
+    /// This is a convenience method that is equivalent to calling <see cref="Failure{T}(IDictionary{string, string[]})"/>.
+    /// It provides a more explicit name when creating validation-specific failures.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Dictionary&lt;string, string[]&gt; validationErrors = new()
+    /// {
+    ///     ["Name"] = ["Name is required"],
+    ///     ["Age"] = ["Age must be between 18 and 120"]
+    /// };
+    /// 
+    /// Result&lt;User&gt; validationResult = Result.ValidationFailure&lt;User&gt;(validationErrors);
+    /// </code>
+    /// </example>
+    public static Result<T> ValidationFailure<T>(IDictionary<string, string[]> errors) =>
+        Failure<T>(errors);
+
     #endregion Public Methods
 }
