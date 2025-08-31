@@ -492,7 +492,22 @@ public abstract class PropertyValidator<T, TProp, TRule>
             (IRule<TProp>? rule, string? originalError, _, bool executed) = _pendingRules[^1];
 
             // Re-evaluate the rule with the condition
-            if (condition is not null && !condition(_value))
+            bool shouldExecuteRule = true;
+            if (condition is not null)
+            {
+                try
+                {
+                    shouldExecuteRule = condition(_value);
+                }
+                catch
+                {
+                    // When condition throws an exception, treat it as false (skip validation)
+                    // This provides graceful handling of exceptions in condition functions
+                    shouldExecuteRule = false;
+                }
+            }
+
+            if (!shouldExecuteRule)
             {
                 // Condition prevents validation - remove any error that was added
                 if (originalError is not null)

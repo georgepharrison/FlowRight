@@ -78,7 +78,7 @@
 - [x] **TASK-031**: Implement string rules (Length, Email, Regex, etc.)
 - [x] **TASK-032**: Create numeric rules (Comparisons, Ranges, Precision)
 - [x] **TASK-033**: Build collection rules (Count, Unique, etc.)
-- [ ] **TASK-034**: Add general rules (Null, Empty, Must)
+- [x] **TASK-034**: Add general rules (Null, Empty, Must)
 - [ ] **TASK-035**: Implement conditional rules (When, Unless)
 
 ### Result Integration

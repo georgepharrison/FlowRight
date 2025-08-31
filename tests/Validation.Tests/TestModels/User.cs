@@ -31,13 +31,14 @@ public class User
     public ulong Token { get; }
     public char Grade { get; }
     public char? MiddleInitial { get; }
+    public int? OptionalAge { get; }
 
     public User(string name, string email, int age, Guid? id, IEnumerable<string> roles,
                 Profile? profile = null, decimal salary = 0m, long phone = 0L,
                 short priority = 0, double score = 0.0, float rating = 0.0f,
                 DateTime createdAt = default, DateTime? updatedAt = null, bool isActive = true,
                 bool? isVerified = null, byte status = 0, sbyte balance = 0,
-                uint points = 0, ulong token = 0, char grade = 'A', char? middleInitial = null)
+                uint points = 0, ulong token = 0, char grade = 'A', char? middleInitial = null, int? optionalAge = null)
     {
         Name = name;
         Email = email;
@@ -60,6 +61,7 @@ public class User
         Token = token;
         Grade = grade;
         MiddleInitial = middleInitial;
+        OptionalAge = optionalAge;
     }
 }
 
@@ -120,6 +122,7 @@ public class UserBuilder
     private ulong _token = 0;
     private char _grade = 'A';
     private char? _middleInitial;
+    private int? _optionalAge;
 
     public UserBuilder WithName(string name)
     {
@@ -189,5 +192,5 @@ public class UserBuilder
 
     public User Build() =>
         new(_name, _email, _age, _id, _roles, _profile, _salary, _phone, _priority, _score, _rating,
-            _createdAt, _updatedAt, _isActive, _isVerified, _status, _balance, _points, _token, _grade, _middleInitial);
+            _createdAt, _updatedAt, _isActive, _isVerified, _status, _balance, _points, _token, _grade, _middleInitial, _optionalAge);
 }
