@@ -248,4 +248,224 @@ public class ResultTests
     }
 
     #endregion Combine Method Tests
+
+    #region Match Method Tests
+
+    [Fact]
+    public void Match_WithNullOnSuccess_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        Result result = Result.Success();
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => result.Match<string>(null!, error => "failure"));
+    }
+
+    [Fact]
+    public void Match_WithNullOnFailure_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        Result result = Result.Success();
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => result.Match(() => "success", null!));
+    }
+
+    [Fact]
+    public void Match_WithSuccessResult_ShouldCallOnSuccess()
+    {
+        // Arrange
+        Result result = Result.Success();
+        const string expectedValue = "success result";
+
+        // Act
+        string actualValue = result.Match(
+            onSuccess: () => expectedValue,
+            onFailure: error => $"failure: {error}"
+        );
+
+        // Assert
+        actualValue.ShouldBe(expectedValue);
+    }
+
+    [Fact]
+    public void Match_WithFailureResult_ShouldCallOnFailure()
+    {
+        // Arrange
+        const string errorMessage = "Something went wrong";
+        Result result = Result.Failure(errorMessage);
+        const string successValue = "success result";
+
+        // Act
+        string actualValue = result.Match(
+            onSuccess: () => successValue,
+            onFailure: error => $"failure: {error}"
+        );
+
+        // Assert
+        actualValue.ShouldBe($"failure: {errorMessage}");
+    }
+
+    [Fact]
+    public void Match_WithResultTypePreservation_ShouldReturnCorrectValue()
+    {
+        // Arrange
+        Result informationResult = Result.Success(ResultType.Information);
+        Result warningResult = Result.Success(ResultType.Warning);
+
+        // Act
+        string infoMessage = informationResult.Match(
+            onSuccess: () => "info success",
+            onFailure: error => $"info failure: {error}"
+        );
+        
+        string warningMessage = warningResult.Match(
+            onSuccess: () => "warning success", 
+            onFailure: error => $"warning failure: {error}"
+        );
+
+        // Assert
+        infoMessage.ShouldBe("info success");
+        warningMessage.ShouldBe("warning success");
+    }
+
+    // Complex Match method tests
+
+    [Fact]
+    public void Match_ComplexWithNullHandlers_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        Result result = Result.Success();
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => result.Match<string>(
+            null!, 
+            error => "error", 
+            sec => "security", 
+            val => "validation", 
+            cancel => "canceled"
+        ));
+
+        Should.Throw<ArgumentNullException>(() => result.Match<string>(
+            () => "success", 
+            null!, 
+            sec => "security", 
+            val => "validation", 
+            cancel => "canceled"
+        ));
+
+        Should.Throw<ArgumentNullException>(() => result.Match<string>(
+            () => "success", 
+            error => "error", 
+            null!, 
+            val => "validation", 
+            cancel => "canceled"
+        ));
+
+        Should.Throw<ArgumentNullException>(() => result.Match<string>(
+            () => "success", 
+            error => "error", 
+            sec => "security", 
+            null!, 
+            cancel => "canceled"
+        ));
+
+        Should.Throw<ArgumentNullException>(() => result.Match<string>(
+            () => "success", 
+            error => "error", 
+            sec => "security", 
+            val => "validation", 
+            null!
+        ));
+    }
+
+    [Fact]
+    public void Match_ComplexWithSuccess_ShouldCallOnSuccess()
+    {
+        // Arrange
+        Result result = Result.Success();
+        const string expectedValue = "success result";
+
+        // Act
+        string actualValue = result.Match(
+            onSuccess: () => expectedValue,
+            onError: error => "error",
+            onSecurityException: error => "security",
+            onValidationException: errors => "validation",
+            onOperationCanceledException: error => "canceled"
+        );
+
+        // Assert
+        actualValue.ShouldBe(expectedValue);
+    }
+
+    [Theory]
+    [InlineData(ResultFailureType.Error)]
+    [InlineData(ResultFailureType.Security)]
+    [InlineData(ResultFailureType.OperationCanceled)]
+    public void Match_ComplexWithSpecificFailureTypes_ShouldRouteToCorrectHandler(ResultFailureType failureType)
+    {
+        // Arrange
+        Result result = CreateFailureByType(failureType);
+
+        // Act
+        string output = result.Match(
+            onSuccess: () => "success",
+            onError: error => "general error",
+            onSecurityException: error => "security error",
+            onValidationException: errors => "validation error",
+            onOperationCanceledException: error => "cancellation error"
+        );
+
+        // Assert
+        string expected = failureType switch
+        {
+            ResultFailureType.Error => "general error",
+            ResultFailureType.Security => "security error",
+            ResultFailureType.OperationCanceled => "cancellation error",
+            _ => throw new ArgumentException($"Unexpected failure type: {failureType}")
+        };
+        output.ShouldBe(expected);
+    }
+
+    [Fact]
+    public void Match_ComplexWithValidationFailure_ShouldCallOnValidationException()
+    {
+        // Arrange
+        Dictionary<string, string[]> validationErrors = new()
+        {
+            { "Email", ["Email is required"] },
+            { "Password", ["Password too short"] }
+        };
+        Result result = Result.Failure(validationErrors);
+
+        // Act
+        string output = result.Match(
+            onSuccess: () => "success",
+            onError: error => "error",
+            onSecurityException: error => "security",
+            onValidationException: errors => $"validation: {errors.Count} fields",
+            onOperationCanceledException: error => "canceled"
+        );
+
+        // Assert
+        output.ShouldBe("validation: 2 fields");
+    }
+
+    #endregion Match Method Tests
+
+    #region Helper Methods
+
+    private static Result CreateFailureByType(ResultFailureType failureType)
+    {
+        return failureType switch
+        {
+            ResultFailureType.Error => Result.Failure("General error"),
+            ResultFailureType.Security => Result.Failure(new SecurityException("Security error")),
+            ResultFailureType.OperationCanceled => Result.Failure(new OperationCanceledException("Operation canceled")),
+            _ => throw new ArgumentException($"Unsupported failure type: {failureType}")
+        };
+    }
+
+    #endregion Helper Methods
 }

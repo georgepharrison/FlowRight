@@ -280,6 +280,107 @@ public partial class Result : IResult
             : Success(firstSuccessValue!, firstSuccessResultType);
     }
 
+    /// <summary>
+    /// Transforms this result into a value of type <typeparamref name="TResult"/> using pattern matching.
+    /// </summary>
+    /// <typeparam name="TResult">The type of the result to return.</typeparam>
+    /// <param name="onSuccess">Function to execute if the result is successful. Returns the success value.</param>
+    /// <param name="onFailure">Function to execute if the result is a failure. Receives the error message.</param>
+    /// <returns>The value returned by either <paramref name="onSuccess"/> or <paramref name="onFailure"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="onSuccess"/> or <paramref name="onFailure"/> is <see langword="null"/>.</exception>
+    /// <remarks>
+    /// <para>
+    /// This is the primary pattern matching method for non-generic <see cref="Result"/>. It provides a functional
+    /// approach to handling both success and failure cases by requiring explicit handling of both scenarios.
+    /// </para>
+    /// <para>
+    /// This method treats all failure types (Error, Security, Validation, OperationCanceled) uniformly,
+    /// calling <paramref name="onFailure"/> with the error message. For more granular failure handling,
+    /// use the overload that provides separate handlers for each failure type.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result operationResult = PerformOperation();
+    /// 
+    /// string message = operationResult.Match(
+    ///     onSuccess: () => "Operation completed successfully!",
+    ///     onFailure: error => $"Operation failed: {error}"
+    /// );
+    /// 
+    /// Console.WriteLine(message);
+    /// </code>
+    /// </example>
+    public TResult Match<TResult>(Func<TResult> onSuccess, Func<string, TResult> onFailure)
+    {
+        ArgumentNullException.ThrowIfNull(onSuccess);
+        ArgumentNullException.ThrowIfNull(onFailure);
+
+        return IsSuccess
+            ? onSuccess()
+            : onFailure(Error);
+    }
+
+    /// <summary>
+    /// Transforms this result into a value of type <typeparamref name="TResult"/> using pattern matching with specific handlers for each failure type.
+    /// </summary>
+    /// <typeparam name="TResult">The type of the result to return.</typeparam>
+    /// <param name="onSuccess">Function to execute if the result is successful. Returns the success value.</param>
+    /// <param name="onError">Function to execute if the result is a general error. Receives the error message.</param>
+    /// <param name="onSecurityException">Function to execute if the result is a security failure. Receives the error message.</param>
+    /// <param name="onValidationException">Function to execute if the result is a validation failure. Receives the validation errors dictionary.</param>
+    /// <param name="onOperationCanceledException">Function to execute if the result is a cancellation failure. Receives the error message.</param>
+    /// <returns>The value returned by the appropriate handler function.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when any of the handler functions is <see langword="null"/>.</exception>
+    /// <remarks>
+    /// <para>
+    /// This overload of Match provides granular control over different failure types, allowing you to
+    /// implement specific logic for each category of failure. This is particularly useful when different
+    /// failure types require different handling strategies.
+    /// </para>
+    /// <para>
+    /// The method routes failures to the appropriate handler based on <see cref="FailureType"/>:
+    /// <list type="bullet">
+    /// <item><description><see cref="ResultFailureType.Error"/> → <paramref name="onError"/></description></item>
+    /// <item><description><see cref="ResultFailureType.Security"/> → <paramref name="onSecurityException"/></description></item>
+    /// <item><description><see cref="ResultFailureType.Validation"/> → <paramref name="onValidationException"/></description></item>
+    /// <item><description><see cref="ResultFailureType.OperationCanceled"/> → <paramref name="onOperationCanceledException"/></description></item>
+    /// </list>
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result operationResult = ProcessRequest();
+    /// 
+    /// string response = operationResult.Match(
+    ///     onSuccess: () => "Success!",
+    ///     onError: error => $"Error: {error}",
+    ///     onSecurityException: error => "Access denied",
+    ///     onValidationException: errors => $"Validation failed: {errors.Count} errors",
+    ///     onOperationCanceledException: error => "Operation was cancelled"
+    /// );
+    /// </code>
+    /// </example>
+    public TResult Match<TResult>(Func<TResult> onSuccess, Func<string, TResult> onError, Func<string, TResult> onSecurityException, Func<IDictionary<string, string[]>, TResult> onValidationException, Func<string, TResult> onOperationCanceledException)
+    {
+        ArgumentNullException.ThrowIfNull(onSuccess);
+        ArgumentNullException.ThrowIfNull(onError);
+        ArgumentNullException.ThrowIfNull(onSecurityException);
+        ArgumentNullException.ThrowIfNull(onValidationException);
+        ArgumentNullException.ThrowIfNull(onOperationCanceledException);
+
+        return IsSuccess
+            ? onSuccess()
+            : FailureType switch
+            {
+                ResultFailureType.Error => onError(Error),
+                ResultFailureType.Security => onSecurityException(Error),
+                ResultFailureType.Validation => onValidationException(Failures),
+                ResultFailureType.OperationCanceled => onOperationCanceledException(Error),
+                _ => throw new NotImplementedException()
+            };
+    }
+
     #endregion Public Methods
 
     #region Internal Methods
