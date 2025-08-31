@@ -47,7 +47,7 @@
 - [x] **TASK-012**: Implement Switch method for side effects
 - [x] **TASK-013**: Add implicit operators for seamless conversions
 - [x] **TASK-014**: Create TryGetValue pattern for Result<T>
-- [ ] **TASK-015**: Add async-friendly extension methods
+- [x] **TASK-015**: Add async-friendly extension methods
 
 ### Serialization Support
 - [ ] **TASK-016**: Add JsonConstructor and JsonInclude attributes
