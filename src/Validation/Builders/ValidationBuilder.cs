@@ -195,11 +195,13 @@ public class ValidationBuilder<T>
                 },
                 onValidationException: failures =>
                 {
+                    string propertyName = GetPropertyName(propertySelector);
                     foreach (KeyValuePair<string, string[]> item in failures)
                     {
-                        if (!_errors.TryGetValue(item.Key, out List<string>? errors))
+                        string prefixedKey = PrefixPropertyPath(propertyName, item.Key);
+                        if (!_errors.TryGetValue(prefixedKey, out List<string>? errors))
                         {
-                            _errors[item.Key] = errors ??= [];
+                            _errors[prefixedKey] = errors ??= [];
                         }
                         errors.AddRange(item.Value);
                     }
@@ -647,6 +649,64 @@ public class ValidationBuilder<T>
         propertySelector?.Body is MemberExpression member
             ? member.Member.Name
             : throw new ArgumentException("Expression must be a property selector");
+
+    /// <summary>
+    /// Prefixes a nested property path with the parent property name for automatic error extraction from nested Results.
+    /// </summary>
+    /// <param name="parentPropertyName">The parent property name to use as prefix.</param>
+    /// <param name="nestedPropertyPath">The nested property path from the Result validation errors.</param>
+    /// <returns>The prefixed property path for use in validation error aggregation.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method implements TASK-037 automatic error extraction from nested Results by ensuring that
+    /// validation errors from nested Results maintain their full property path context when aggregated
+    /// into the parent ValidationBuilder's error collection.
+    /// </para>
+    /// <para>
+    /// Property path prefixing rules:
+    /// <list type="bullet">
+    /// <item><description>Empty or null paths become the parent property name (root level errors)</description></item>
+    /// <item><description>Existing nested paths get prefixed with parent property name and dot notation</description></item>
+    /// <item><description>Collection indices are preserved and properly prefixed</description></item>
+    /// <item><description>Deep nesting hierarchies maintain full path structure</description></item>
+    /// </list>
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// // Root level error mapping
+    /// PrefixPropertyPath("Profile", "") → "Profile"
+    /// 
+    /// // Simple property prefixing
+    /// PrefixPropertyPath("Profile", "Bio") → "Profile.Bio"
+    /// 
+    /// // Deep nesting preservation
+    /// PrefixPropertyPath("Profile", "Settings.Theme.Colors.Primary") → "Profile.Settings.Theme.Colors.Primary"
+    /// 
+    /// // Collection index prefixing
+    /// PrefixPropertyPath("Roles", "[0].Name") → "Roles[0].Name"
+    /// 
+    /// // Complex nested collections
+    /// PrefixPropertyPath("Profile", "Items[1].Categories[0].Name") → "Profile.Items[1].Categories[0].Name"
+    /// </code>
+    /// </example>
+    private static string PrefixPropertyPath(string parentPropertyName, string nestedPropertyPath)
+    {
+        // Handle null or empty nested path - maps to parent property (root level error)
+        if (string.IsNullOrEmpty(nestedPropertyPath))
+        {
+            return parentPropertyName;
+        }
+
+        // Handle collection index notation at root level (e.g., "[0].Name")
+        if (nestedPropertyPath.StartsWith('['))
+        {
+            return $"{parentPropertyName}{nestedPropertyPath}";
+        }
+
+        // Standard property nesting with dot notation
+        return $"{parentPropertyName}.{nestedPropertyPath}";
+    }
 
     private NumericPropertyValidator<T, TProp> CreateNumericValidator<TProp>(Expression<Func<T, TProp>> propertySelector, TProp value, string? displayName) where TProp : struct, INumber<TProp> =>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new NumericPropertyValidator<T, TProp>(builder, display, val));
