@@ -59,10 +59,11 @@ public partial class Result<T> : IResult<T>
         FailureType = ResultFailureType.None;
     }
 
-    internal Result(string error, ResultType resultType)
+    internal Result(string error, ResultType resultType, ResultFailureType resultFailureType = ResultFailureType.Error)
     {
         Error = error;
         ResultType = resultType;
+        FailureType = resultFailureType;
     }
 
     internal Result(string key, string error)

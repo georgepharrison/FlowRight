@@ -192,12 +192,13 @@ public partial class Result
     /// <typeparam name="T">The type parameter for the generic result.</typeparam>
     /// <param name="error">The error message describing what went wrong. Cannot be <see langword="null"/>.</param>
     /// <param name="resultType">The general result type classification. Defaults to <see cref="ResultType.Error"/>.</param>
+    /// <param name="resultFailureType">The specific failure type classification. Defaults to <see cref="ResultFailureType.Error"/>.</param>
     /// <returns>A failed <see cref="Result{T}"/> instance containing the error information.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="error"/> is <see langword="null"/>.</exception>
     /// <remarks>
     /// <para>
     /// This is the primary method for creating general failure results that would have returned
-    /// a typed value. The failure type is automatically set to <see cref="ResultFailureType.Error"/>.
+    /// a typed value. It allows full control over both the result type and failure type classifications.
     /// </para>
     /// <para>
     /// Use this method when you need to create custom failure scenarios for operations
@@ -219,8 +220,8 @@ public partial class Result
     /// }
     /// </code>
     /// </example>
-    public static Result<T> Failure<T>(string error, ResultType resultType = ResultType.Error) =>
-        new(error ?? throw new ArgumentNullException(nameof(error)), resultType);
+    public static Result<T> Failure<T>(string error, ResultType resultType = ResultType.Error, ResultFailureType resultFailureType = ResultFailureType.Error) =>
+        new(error ?? throw new ArgumentNullException(nameof(error)), resultType, resultFailureType);
 
     /// <summary>
     /// Creates a failed result with a single field validation error for a generic result type.
