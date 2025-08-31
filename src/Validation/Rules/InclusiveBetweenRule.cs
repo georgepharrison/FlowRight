@@ -67,8 +67,8 @@ public sealed class InclusiveBetweenRule<TNumeric>(TNumeric from, TNumeric to) :
     /// </code>
     /// </example>
     public string? Validate(TNumeric value, string displayName) =>
-        value < _from || value > _to 
-            ? $"{displayName} must be between {_from} and {_to} (inclusive)" 
+        value < _from || value > _to
+            ? $"{displayName} must be between {_from} and {_to} (inclusive)"
             : null;
 
     #endregion Public Methods
