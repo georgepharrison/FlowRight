@@ -892,6 +892,284 @@ public class ResultTTests
 
     #endregion Generic Combine Method Tests
 
+    #region Implicit Operator Tests
+
+    [Fact]
+    public void ImplicitOperator_FromValueToResultT_WithValidValue_ShouldCreateSuccessResult()
+    {
+        // Arrange
+        const string testValue = "Hello World";
+
+        // Act
+        Result<string> result = testValue; // Implicit conversion
+
+        // Assert
+        result.IsSuccess.ShouldBeTrue();
+        result.IsFailure.ShouldBeFalse();
+        result.ResultType.ShouldBe(ResultType.Success);
+        result.FailureType.ShouldBe(ResultFailureType.None);
+        result.TryGetValue(out string? value).ShouldBeTrue();
+        value.ShouldBe(testValue);
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromValueToResultT_WithNullValue_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        string? nullValue = null;
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => { Result<string?> result = nullValue; });
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromValueToResultT_WithComplexType_ShouldCreateSuccessResult()
+    {
+        // Arrange
+        TestModel testModel = new() { Id = 42, Name = "Test Model" };
+
+        // Act
+        Result<TestModel> result = testModel; // Implicit conversion
+
+        // Assert
+        result.IsSuccess.ShouldBeTrue();
+        result.IsFailure.ShouldBeFalse();
+        result.ResultType.ShouldBe(ResultType.Success);
+        result.FailureType.ShouldBe(ResultFailureType.None);
+        result.TryGetValue(out TestModel? value).ShouldBeTrue();
+        value.ShouldNotBeNull();
+        value.Id.ShouldBe(42);
+        value.Name.ShouldBe("Test Model");
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithSuccessResult_ShouldPreserveSuccessState()
+    {
+        // Arrange
+        Result<string> originalResult = Result.Success("Test Value");
+
+        // Act
+        Result convertedResult = originalResult; // Implicit conversion
+
+        // Assert
+        convertedResult.IsSuccess.ShouldBeTrue();
+        convertedResult.IsFailure.ShouldBeFalse();
+        convertedResult.ResultType.ShouldBe(ResultType.Success);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.None);
+        convertedResult.Error.ShouldBeEmpty();
+        convertedResult.Failures.ShouldBeEmpty();
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithErrorResult_ShouldPreserveErrorState()
+    {
+        // Arrange
+        const string errorMessage = "Something went wrong";
+        Result<string> originalResult = Result.Failure<string>(errorMessage);
+
+        // Act
+        Result convertedResult = originalResult; // Implicit conversion
+
+        // Assert
+        convertedResult.IsFailure.ShouldBeTrue();
+        convertedResult.IsSuccess.ShouldBeFalse();
+        convertedResult.ResultType.ShouldBe(ResultType.Error);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.Error);
+        convertedResult.Error.ShouldBe(errorMessage);
+        convertedResult.Failures.ShouldBeEmpty(); // Basic errors don't populate Failures dictionary
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithSecurityResult_ShouldPreserveSecurityState()
+    {
+        // Arrange
+        const string securityMessage = "Access denied";
+        Result<string> originalResult = Result.Failure<string>(new SecurityException(securityMessage));
+
+        // Act
+        Result convertedResult = originalResult; // Implicit conversion
+
+        // Assert
+        convertedResult.IsFailure.ShouldBeTrue();
+        convertedResult.IsSuccess.ShouldBeFalse();
+        convertedResult.ResultType.ShouldBe(ResultType.Error);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.Security);
+        convertedResult.Error.ShouldBe(securityMessage);
+        convertedResult.Failures.ShouldBeEmpty(); // Basic security errors don't populate Failures dictionary
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithValidationResult_ShouldPreserveValidationState()
+    {
+        // Arrange
+        Dictionary<string, string[]> validationErrors = new()
+        {
+            { "Email", ["Email is required", "Invalid email format"] },
+            { "Password", ["Password is too short"] }
+        };
+        Result<string> originalResult = Result.Failure<string>(validationErrors);
+
+        // Act
+        Result convertedResult = originalResult; // Implicit conversion
+
+        // Assert
+        convertedResult.IsFailure.ShouldBeTrue();
+        convertedResult.IsSuccess.ShouldBeFalse();
+        convertedResult.ResultType.ShouldBe(ResultType.Error);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.Validation);
+        convertedResult.Failures.ShouldContainKey("Email");
+        convertedResult.Failures.ShouldContainKey("Password");
+        convertedResult.Failures["Email"].ShouldContain("Email is required");
+        convertedResult.Failures["Email"].ShouldContain("Invalid email format");
+        convertedResult.Failures["Password"].ShouldContain("Password is too short");
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithOperationCanceledResult_ShouldPreserveCancelationState()
+    {
+        // Arrange
+        const string cancelMessage = "Operation was cancelled";
+        Result<string> originalResult = Result.Failure<string>(new OperationCanceledException(cancelMessage));
+
+        // Act
+        Result convertedResult = originalResult; // Implicit conversion
+
+        // Assert
+        convertedResult.IsFailure.ShouldBeTrue();
+        convertedResult.IsSuccess.ShouldBeFalse();
+        convertedResult.ResultType.ShouldBe(ResultType.Warning);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.OperationCanceled);
+        convertedResult.Error.ShouldBe(cancelMessage);
+        convertedResult.Failures.ShouldBeEmpty(); // Basic operation canceled errors don't populate Failures dictionary
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithInformationResult_ShouldPreserveResultType()
+    {
+        // Arrange
+        Result<string> originalResult = Result.Success("Test", ResultType.Information);
+
+        // Act
+        Result convertedResult = originalResult; // Implicit conversion
+
+        // Assert
+        convertedResult.IsSuccess.ShouldBeTrue();
+        convertedResult.ResultType.ShouldBe(ResultType.Information);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.None);
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithWarningResult_ShouldPreserveResultType()
+    {
+        // Arrange
+        Result<string> originalResult = Result.Success("Test", ResultType.Warning);
+
+        // Act
+        Result convertedResult = originalResult; // Implicit conversion
+
+        // Assert
+        convertedResult.IsSuccess.ShouldBeTrue();
+        convertedResult.ResultType.ShouldBe(ResultType.Warning);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.None);
+    }
+
+    [Fact]
+    public void ImplicitOperator_FromResultTToResult_WithNullResult_ShouldCreateFailureResult()
+    {
+        // Arrange
+        Result<string>? nullResult = null;
+
+        // Act
+        Result convertedResult = nullResult!; // Implicit conversion
+
+        // Assert
+        convertedResult.IsFailure.ShouldBeTrue();
+        convertedResult.IsSuccess.ShouldBeFalse();
+        convertedResult.ResultType.ShouldBe(ResultType.Error);
+        convertedResult.FailureType.ShouldBe(ResultFailureType.Error);
+        convertedResult.Error.ShouldBe("Result is null");
+    }
+
+    #endregion Implicit Operator Tests
+
+    #region Explicit Operator Tests
+
+    [Fact]
+    public void ExplicitOperator_FromResultTToValue_WithSuccessResult_ShouldReturnValue()
+    {
+        // Arrange
+        const string expectedValue = "Hello World";
+        Result<string> result = Result.Success(expectedValue);
+
+        // Act
+        string actualValue = (string)result; // Explicit conversion
+
+        // Assert
+        actualValue.ShouldBe(expectedValue);
+    }
+
+    [Fact]
+    public void ExplicitOperator_FromResultTToValue_WithFailureResult_ShouldThrowInvalidOperationException()
+    {
+        // Arrange
+        Result<string> result = Result.Failure<string>("Something went wrong");
+
+        // Act & Assert
+        Should.Throw<InvalidOperationException>(() => { string value = (string)result; })
+            .Message.ShouldContain("Cannot extract value from a failed result");
+    }
+
+    [Fact]
+    public void ExplicitOperator_FromResultTToValue_WithNullResult_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        Result<string>? nullResult = null;
+
+        // Act & Assert
+        Should.Throw<ArgumentNullException>(() => { string value = (string)nullResult!; });
+    }
+
+    [Fact]
+    public void ExplicitOperator_FromResultTToBool_WithSuccessResult_ShouldReturnTrue()
+    {
+        // Arrange
+        Result<string> result = Result.Success("Test");
+
+        // Act
+        bool isSuccess = (bool)result; // Explicit conversion
+
+        // Assert
+        isSuccess.ShouldBeTrue();
+    }
+
+    [Fact]
+    public void ExplicitOperator_FromResultTToBool_WithFailureResult_ShouldReturnFalse()
+    {
+        // Arrange
+        Result<string> result = Result.Failure<string>("Error");
+
+        // Act
+        bool isSuccess = (bool)result; // Explicit conversion
+
+        // Assert
+        isSuccess.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void ExplicitOperator_FromResultTToBool_WithNullResult_ShouldReturnFalse()
+    {
+        // Arrange
+        Result<string>? nullResult = null;
+
+        // Act
+        bool isSuccess = (bool)nullResult!; // Explicit conversion
+
+        // Assert
+        isSuccess.ShouldBeFalse();
+    }
+
+    #endregion Explicit Operator Tests
+
     #region Helper Methods
 
     private static Result<T> CreateFailureByType<T>(ResultFailureType failureType)

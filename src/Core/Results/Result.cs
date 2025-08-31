@@ -525,6 +525,30 @@ public partial class Result : IResult
         }
     }
 
+    /// <summary>
+    /// Explicitly converts a <see cref="Result"/> to a boolean indicating success or failure.
+    /// </summary>
+    /// <param name="result">The result to convert.</param>
+    /// <returns><see langword="true"/> if the result represents success; otherwise, <see langword="false"/>.</returns>
+    /// <remarks>
+    /// <para>
+    /// This explicit conversion provides a convenient way to use results in boolean contexts
+    /// while making the conversion explicit to avoid accidental usage.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result result = PerformOperation();
+    /// 
+    /// if ((bool)result) // Explicit conversion
+    /// {
+    ///     Console.WriteLine("Operation succeeded!");
+    /// }
+    /// </code>
+    /// </example>
+    public static explicit operator bool(Result result) => 
+        result?.IsSuccess ?? false;
+
     #endregion Public Methods
 
     #region Internal Methods

@@ -178,6 +178,67 @@ public partial class Result<T> : IResult<T>
             : Result.Success(value);
 
     /// <summary>
+    /// Explicitly converts a <see cref="Result{T}"/> to its underlying value.
+    /// </summary>
+    /// <param name="result">The result to extract the value from.</param>
+    /// <returns>The underlying value of the successful result.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when the result represents a failure state.</exception>
+    /// <remarks>
+    /// <para>
+    /// This explicit conversion provides a way to extract the value from a successful result.
+    /// It will throw an exception if the result represents a failure, making it suitable for
+    /// scenarios where you are certain the result is successful.
+    /// </para>
+    /// <para>
+    /// For safer value extraction, consider using <see cref="TryGetValue(out T)"/> or
+    /// <see cref="Match{TResult}(Func{T, TResult}, Func{string, TResult})"/> instead.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result&lt;int&gt; result = GetNumber();
+    /// 
+    /// if (result.IsSuccess)
+    /// {
+    ///     int value = (int)result; // Explicit conversion
+    ///     Console.WriteLine($"The number is {value}");
+    /// }
+    /// </code>
+    /// </example>
+    public static explicit operator T(Result<T> result)
+    {
+        ArgumentNullException.ThrowIfNull(result);
+
+        return result.IsSuccess 
+            ? result.SuccessValue! 
+            : throw new InvalidOperationException($"Cannot extract value from a failed result. Error: {result.Error}");
+    }
+
+    /// <summary>
+    /// Explicitly converts a <see cref="Result{T}"/> to a boolean indicating success or failure.
+    /// </summary>
+    /// <param name="result">The result to convert.</param>
+    /// <returns><see langword="true"/> if the result represents success; otherwise, <see langword="false"/>.</returns>
+    /// <remarks>
+    /// <para>
+    /// This explicit conversion provides a convenient way to use results in boolean contexts
+    /// while making the conversion explicit to avoid accidental usage.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Result&lt;string&gt; result = GetMessage();
+    /// 
+    /// if ((bool)result) // Explicit conversion
+    /// {
+    ///     Console.WriteLine("Operation succeeded!");
+    /// }
+    /// </code>
+    /// </example>
+    public static explicit operator bool(Result<T> result) => 
+        result?.IsSuccess ?? false;
+
+    /// <summary>
     /// Transforms this result into a value of type <typeparamref name="TResult"/> using pattern matching.
     /// </summary>
     /// <typeparam name="TResult">The type of the result to return.</typeparam>
