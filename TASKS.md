@@ -44,7 +44,7 @@
 
 ### Pattern Matching
 - [x] **TASK-011**: Implement Match method with all overloads
-- [ ] **TASK-012**: Implement Switch method for side effects
+- [x] **TASK-012**: Implement Switch method for side effects
 - [ ] **TASK-013**: Add implicit operators for seamless conversions
 - [ ] **TASK-014**: Create TryGetValue pattern for Result<T>
 - [ ] **TASK-015**: Add async-friendly extension methods
