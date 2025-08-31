@@ -741,4 +741,47 @@ public class ResultTests
     }
 
     #endregion Switch Method Tests
+
+    #region Explicit Operator Tests
+
+    [Fact]
+    public void ExplicitOperator_FromResultToBool_WithSuccessResult_ShouldReturnTrue()
+    {
+        // Arrange
+        Result result = Result.Success();
+
+        // Act
+        bool isSuccess = (bool)result; // Explicit conversion
+
+        // Assert
+        isSuccess.ShouldBeTrue();
+    }
+
+    [Fact]
+    public void ExplicitOperator_FromResultToBool_WithFailureResult_ShouldReturnFalse()
+    {
+        // Arrange
+        Result result = Result.Failure("Error occurred");
+
+        // Act
+        bool isSuccess = (bool)result; // Explicit conversion
+
+        // Assert
+        isSuccess.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void ExplicitOperator_FromResultToBool_WithNullResult_ShouldReturnFalse()
+    {
+        // Arrange
+        Result? nullResult = null;
+
+        // Act
+        bool isSuccess = (bool)nullResult!; // Explicit conversion
+
+        // Assert
+        isSuccess.ShouldBeFalse();
+    }
+
+    #endregion Explicit Operator Tests
 }
