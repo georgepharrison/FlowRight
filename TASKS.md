@@ -43,7 +43,7 @@
 - [x] **TASK-010**: Implement Combine method for result aggregation
 
 ### Pattern Matching
-- [ ] **TASK-011**: Implement Match method with all overloads
+- [x] **TASK-011**: Implement Match method with all overloads
 - [ ] **TASK-012**: Implement Switch method for side effects
 - [ ] **TASK-013**: Add implicit operators for seamless conversions
 - [ ] **TASK-014**: Create TryGetValue pattern for Result<T>
