@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>FlowRight.Core</AssemblyName>
+    <RootNamespace>FlowRight.Core</RootNamespace>
+    <PackageId>FlowRight.Core</PackageId>
+    <PackageDescription>Core Result pattern implementation for .NET that provides explicit error handling without exceptions.</PackageDescription>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

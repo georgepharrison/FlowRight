@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>FlowRight.Http</AssemblyName>
+    <RootNamespace>FlowRight.Http</RootNamespace>
+    <PackageId>FlowRight.Http</PackageId>
+    <PackageDescription>HTTP response to Result pattern conversion utilities for .NET applications.</PackageDescription>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

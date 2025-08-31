@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>FlowRight.Validation</AssemblyName>
+    <RootNamespace>FlowRight.Validation</RootNamespace>
+    <PackageId>FlowRight.Validation</PackageId>
+    <PackageDescription>Fluent validation builder with Result pattern integration for .NET applications.</PackageDescription>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
