@@ -819,10 +819,10 @@ public class ValidationBuilderTests
             // Assert
             builder.HasErrors.ShouldBeTrue();
             Dictionary<string, string[]> errors = builder.GetErrors();
-            errors.ShouldContainKey("Bio");
-            errors.ShouldContainKey("CreatedAt");
-            errors["Bio"].Length.ShouldBe(2);
-            errors["CreatedAt"].Length.ShouldBe(1);
+            errors.ShouldContainKey("Profile.Bio");
+            errors.ShouldContainKey("Profile.CreatedAt");
+            errors["Profile.Bio"].Length.ShouldBe(2);
+            errors["Profile.CreatedAt"].Length.ShouldBe(1);
             validatedProfile.ShouldBeNull();
         }
 
@@ -888,6 +888,323 @@ public class ValidationBuilderTests
             errors.Count.ShouldBeGreaterThan(1);
             validatedProfile.ShouldBeNull();
             validatedName.ShouldBeNull();
+        }
+
+        /// <summary>
+        /// Enhanced nested Result error extraction tests for TASK-037.
+        /// These tests define the expected behavior for automatic error extraction from nested Results
+        /// with property path preservation, deep nesting support, and collection scenarios.
+        /// Current implementation gaps: property path prefixing, deep nesting, collection indexing.
+        /// </summary>
+        public class NestedResultErrorExtraction
+        {
+            [Fact]
+            public void RuleFor_WithNestedResultValidationErrors_ShouldPreserveAndPrefixPropertyPaths()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                Dictionary<string, string[]> nestedValidationErrors = new()
+                {
+                    { "Bio", new[] { "Bio is required", "Bio must be at least 10 characters" } },
+                    { "CreatedAt", new[] { "CreatedAt cannot be in the future" } },
+                    { "Tags", new[] { "Tags must contain at least one item" } }
+                };
+                Result<Profile?> nestedResult = Result.Failure<Profile?>(nestedValidationErrors);
+
+                // Act
+                builder.RuleFor(u => u.Profile, nestedResult, out Profile? validatedProfile);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // Property paths should be prefixed with parent property name
+                errors.ShouldContainKey("Profile.Bio");
+                errors.ShouldContainKey("Profile.CreatedAt");
+                errors.ShouldContainKey("Profile.Tags");
+                
+                // Original error messages should be preserved
+                errors["Profile.Bio"].ShouldContain("Bio is required");
+                errors["Profile.Bio"].ShouldContain("Bio must be at least 10 characters");
+                errors["Profile.CreatedAt"].ShouldContain("CreatedAt cannot be in the future");
+                errors["Profile.Tags"].ShouldContain("Tags must contain at least one item");
+                
+                validatedProfile.ShouldBeNull();
+            }
+
+            [Fact]
+            public void RuleFor_WithDeeplyNestedResultHierarchy_ShouldExtractAllLevelsWithFullPropertyPaths()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                
+                // Create deeply nested validation errors: User.Profile.Settings.Theme.Colors
+                Dictionary<string, string[]> deeplyNestedErrors = new()
+                {
+                    { "Settings.Theme.Colors.Primary", new[] { "Primary color is invalid" } },
+                    { "Settings.Theme.Colors.Secondary", new[] { "Secondary color must contrast with primary" } },
+                    { "Settings.Theme.Name", new[] { "Theme name is required" } },
+                    { "Settings.Language", new[] { "Language code must be valid ISO 639-1" } }
+                };
+                Result<Profile?> deeplyNestedResult = Result.Failure<Profile?>(deeplyNestedErrors);
+
+                // Act
+                builder.RuleFor(u => u.Profile, deeplyNestedResult, out Profile? validatedProfile);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // Full property paths should be preserved and prefixed
+                errors.ShouldContainKey("Profile.Settings.Theme.Colors.Primary");
+                errors.ShouldContainKey("Profile.Settings.Theme.Colors.Secondary");
+                errors.ShouldContainKey("Profile.Settings.Theme.Name");
+                errors.ShouldContainKey("Profile.Settings.Language");
+                
+                // Error messages should be preserved
+                errors["Profile.Settings.Theme.Colors.Primary"].ShouldContain("Primary color is invalid");
+                errors["Profile.Settings.Theme.Colors.Secondary"].ShouldContain("Secondary color must contrast with primary");
+                errors["Profile.Settings.Theme.Name"].ShouldContain("Theme name is required");
+                errors["Profile.Settings.Language"].ShouldContain("Language code must be valid ISO 639-1");
+                
+                validatedProfile.ShouldBeNull();
+            }
+
+            [Fact]
+            public void RuleFor_WithNestedResultContainingMixedErrorTypes_ShouldExtractAndClassifyAllErrors()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                
+                // Mix of prefixed and non-prefixed errors from nested Results
+                Dictionary<string, string[]> mixedNestedErrors = new()
+                {
+                    { "Email", new[] { "Email format is invalid" } }, // Direct property
+                    { "Address.Street", new[] { "Street address is required" } }, // Nested property
+                    { "Address.City", new[] { "City is required", "City must be valid" } }, // Multiple nested errors
+                    { "Preferences.Notifications.Email", new[] { "Email notifications setting is invalid" } } // Deep nested
+                };
+                Result<Profile?> mixedResult = Result.Failure<Profile?>(mixedNestedErrors);
+
+                // Act
+                builder.RuleFor(u => u.Profile, mixedResult, out Profile? validatedProfile);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // All property paths should be prefixed with "Profile."
+                errors.ShouldContainKey("Profile.Email");
+                errors.ShouldContainKey("Profile.Address.Street");
+                errors.ShouldContainKey("Profile.Address.City");
+                errors.ShouldContainKey("Profile.Preferences.Notifications.Email");
+                
+                // Multiple errors for same property should be preserved
+                errors["Profile.Address.City"].Length.ShouldBe(2);
+                errors["Profile.Address.City"].ShouldContain("City is required");
+                errors["Profile.Address.City"].ShouldContain("City must be valid");
+                
+                validatedProfile.ShouldBeNull();
+            }
+
+            [Fact]
+            public void RuleFor_WithCollectionOfNestedResults_ShouldIndexAndPrefixAllErrors()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                
+                // Collection of Results with validation errors at different indices
+                Dictionary<string, string[]> collectionErrors = new()
+                {
+                    { "[0].Name", new[] { "Name is required at index 0" } },
+                    { "[0].Email", new[] { "Email format invalid at index 0" } },
+                    { "[1].Name", new[] { "Name too long at index 1" } },
+                    { "[2].Email", new[] { "Email already exists at index 2" } },
+                    { "[2].Phone", new[] { "Phone format invalid at index 2" } }
+                };
+                Result<IEnumerable<string>> collectionResult = Result.Failure<IEnumerable<string>>(collectionErrors);
+
+                // Act
+                builder.RuleFor(u => u.Roles, collectionResult, out IEnumerable<string>? validatedRoles);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // Collection errors should be indexed and prefixed with property name
+                errors.ShouldContainKey("Roles[0].Name");
+                errors.ShouldContainKey("Roles[0].Email");
+                errors.ShouldContainKey("Roles[1].Name");
+                errors.ShouldContainKey("Roles[2].Email");
+                errors.ShouldContainKey("Roles[2].Phone");
+                
+                // Error messages should be preserved
+                errors["Roles[0].Name"].ShouldContain("Name is required at index 0");
+                errors["Roles[1].Name"].ShouldContain("Name too long at index 1");
+                errors["Roles[2].Email"].ShouldContain("Email already exists at index 2");
+                
+                validatedRoles.ShouldBeNull();
+            }
+
+            [Fact]
+            public void RuleFor_WithNestedCollectionAndDeepPropertyPaths_ShouldHandleComplexNesting()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                
+                // Complex nested structure with collections and deep property paths
+                Dictionary<string, string[]> complexNestedErrors = new()
+                {
+                    { "Items[0].Product.Name", new[] { "Product name required at item 0" } },
+                    { "Items[0].Product.Price.Amount", new[] { "Price amount invalid at item 0" } },
+                    { "Items[0].Product.Price.Currency", new[] { "Currency code invalid at item 0" } },
+                    { "Items[1].Product.Categories[0].Name", new[] { "Category name required at item 1, category 0" } },
+                    { "Items[1].Product.Categories[1].Description", new[] { "Category description too long at item 1, category 1" } },
+                    { "ShippingAddress.Country.Code", new[] { "Country code is required" } },
+                    { "ShippingAddress.Country.TaxRules[0].Rate", new[] { "Tax rate invalid for rule 0" } }
+                };
+                Result<Profile?> complexResult = Result.Failure<Profile?>(complexNestedErrors);
+
+                // Act
+                builder.RuleFor(u => u.Profile, complexResult, out Profile? validatedProfile);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // All complex nested paths should be prefixed with "Profile."
+                errors.ShouldContainKey("Profile.Items[0].Product.Name");
+                errors.ShouldContainKey("Profile.Items[0].Product.Price.Amount");
+                errors.ShouldContainKey("Profile.Items[0].Product.Price.Currency");
+                errors.ShouldContainKey("Profile.Items[1].Product.Categories[0].Name");
+                errors.ShouldContainKey("Profile.Items[1].Product.Categories[1].Description");
+                errors.ShouldContainKey("Profile.ShippingAddress.Country.Code");
+                errors.ShouldContainKey("Profile.ShippingAddress.Country.TaxRules[0].Rate");
+                
+                // Verify specific error messages are preserved
+                errors["Profile.Items[1].Product.Categories[0].Name"].ShouldContain("Category name required at item 1, category 0");
+                errors["Profile.ShippingAddress.Country.TaxRules[0].Rate"].ShouldContain("Tax rate invalid for rule 0");
+                
+                validatedProfile.ShouldBeNull();
+            }
+
+            [Fact]
+            public void RuleFor_WithMultipleNestedResultsAtSameLevel_ShouldPreserveAllPathsIndependently()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                
+                // Multiple properties with nested Results at same level
+                Dictionary<string, string[]> profileErrors = new()
+                {
+                    { "Bio", new[] { "Profile bio is required" } },
+                    { "Settings.Theme", new[] { "Theme selection invalid" } }
+                };
+                Dictionary<string, string[]> rolesErrors = new()
+                {
+                    { "[0]", new[] { "Role at index 0 is invalid" } },
+                    { "[1]", new[] { "Role at index 1 already assigned" } }
+                };
+                
+                Result<Profile?> profileResult = Result.Failure<Profile?>(profileErrors);
+                Result<IEnumerable<string>> rolesResult = Result.Failure<IEnumerable<string>>(rolesErrors);
+
+                // Act
+                builder.RuleFor(u => u.Profile, profileResult, out Profile? validatedProfile);
+                builder.RuleFor(u => u.Roles, rolesResult, out IEnumerable<string>? validatedRoles);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // Profile errors should be prefixed with "Profile."
+                errors.ShouldContainKey("Profile.Bio");
+                errors.ShouldContainKey("Profile.Settings.Theme");
+                
+                // Roles errors should be prefixed with "Roles"
+                errors.ShouldContainKey("Roles[0]");
+                errors.ShouldContainKey("Roles[1]");
+                
+                // Error messages should be preserved independently
+                errors["Profile.Bio"].ShouldContain("Profile bio is required");
+                errors["Profile.Settings.Theme"].ShouldContain("Theme selection invalid");
+                errors["Roles[0]"].ShouldContain("Role at index 0 is invalid");
+                errors["Roles[1]"].ShouldContain("Role at index 1 already assigned");
+                
+                validatedProfile.ShouldBeNull();
+                validatedRoles.ShouldBeNull();
+            }
+
+            [Fact]
+            public void RuleFor_WithEmptyPropertyPathInNestedErrors_ShouldHandleRootLevelErrors()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                Dictionary<string, string[]> rootAndNestedErrors = new()
+                {
+                    { "", new[] { "Root level validation failed" } }, // Root level error
+                    { "Name", new[] { "Name is required" } }, // Property level error
+                    { "Contact.Email", new[] { "Email format invalid" } } // Nested property error
+                };
+                Result<Profile?> mixedResult = Result.Failure<Profile?>(rootAndNestedErrors);
+
+                // Act
+                builder.RuleFor(u => u.Profile, mixedResult, out Profile? validatedProfile);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // Root level error should be mapped to the property itself
+                errors.ShouldContainKey("Profile");
+                errors["Profile"].ShouldContain("Root level validation failed");
+                
+                // Other errors should be prefixed normally
+                errors.ShouldContainKey("Profile.Name");
+                errors.ShouldContainKey("Profile.Contact.Email");
+                errors["Profile.Name"].ShouldContain("Name is required");
+                errors["Profile.Contact.Email"].ShouldContain("Email format invalid");
+                
+                validatedProfile.ShouldBeNull();
+            }
+
+            [Fact]
+            public void RuleFor_WithNestedResultSuccessAndFailure_ShouldOnlyExtractFailures()
+            {
+                // Arrange
+                ValidationBuilder<User> builder = new();
+                
+                // Mix success and failure Results
+                Profile validProfile = new("Valid bio", DateTime.UtcNow);
+                Result<Profile?> successResult = Result.Success<Profile?>(validProfile);
+                
+                Dictionary<string, string[]> failureErrors = new()
+                {
+                    { "Name", new[] { "Name validation failed" } },
+                    { "Email", new[] { "Email validation failed" } }
+                };
+                Result<string> failureResult = Result.Failure<string>(failureErrors);
+
+                // Act
+                builder.RuleFor(u => u.Profile, successResult, out Profile? validatedProfile);
+                builder.RuleFor(u => u.Name, failureResult, out string? validatedName);
+
+                // Assert
+                builder.HasErrors.ShouldBeTrue();
+                Dictionary<string, string[]> errors = builder.GetErrors();
+                
+                // Only failure errors should be present, with proper prefixing
+                errors.ShouldContainKey("Name.Name"); // This should be prefixed since it's from nested Result
+                errors.ShouldContainKey("Name.Email");
+                errors.ShouldNotContainKey("Profile"); // Success shouldn't add errors
+                
+                // Success value should be available
+                validatedProfile.ShouldNotBeNull();
+                validatedProfile!.Bio.ShouldBe("Valid bio");
+                
+                // Failure value should be null
+                validatedName.ShouldBeNull();
+            }
         }
     }
 
