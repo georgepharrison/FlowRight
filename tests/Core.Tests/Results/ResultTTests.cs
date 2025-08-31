@@ -695,7 +695,7 @@ public class ResultTTests
         const string firstValue = "first";
         const string secondValue = "second";
         const string thirdValue = "third";
-        
+
         Result<string>[] successResults = [
             Result.Success(firstValue),
             Result.Success(secondValue, ResultType.Information),
@@ -722,7 +722,7 @@ public class ResultTTests
         // Arrange
         const string errorMessage = "Operation failed";
         const string successValue = "success";
-        
+
         Result<string>[] results = [
             Result.Success(successValue),
             Result.Failure<string>(errorMessage),
@@ -750,7 +750,7 @@ public class ResultTTests
         const string error1 = "First error";
         const string error2 = "Second error";
         const string error3 = "Third error";
-        
+
         Result<int>[] results = [
             Result.Failure<int>(error1),
             Result.Success(42),
@@ -801,7 +801,7 @@ public class ResultTTests
         // Assert
         result.IsFailure.ShouldBeTrue();
         result.FailureType.ShouldBe(ResultFailureType.Validation);
-        
+
         // Check Email field has all errors from both validation results
         result.Failures.ShouldContainKey("Email");
         string[] emailErrors = result.Failures["Email"];
@@ -818,7 +818,7 @@ public class ResultTTests
         result.Failures.ShouldContainKey("Username");
         result.Failures["Username"].ShouldContain("Username is required");
         result.Failures["Username"].Length.ShouldBe(1);
-        
+
         result.TryGetValue(out TestModel? value).ShouldBeFalse();
         value.ShouldBeNull();
     }
@@ -849,20 +849,20 @@ public class ResultTTests
         // Assert
         result.IsFailure.ShouldBeTrue();
         result.FailureType.ShouldBe(ResultFailureType.Validation);
-        
+
         // Verify all error types are aggregated
         result.Failures.ShouldContainKey(ResultFailureType.Error.ToString());
         result.Failures[ResultFailureType.Error.ToString()].ShouldContain(generalError);
-        
+
         result.Failures.ShouldContainKey(ResultFailureType.Security.ToString());
         result.Failures[ResultFailureType.Security.ToString()].ShouldContain(securityError);
-        
+
         result.Failures.ShouldContainKey("Field1");
         result.Failures["Field1"].ShouldContain("Validation error");
-        
+
         result.Failures.ShouldContainKey(ResultFailureType.OperationCanceled.ToString());
         result.Failures[ResultFailureType.OperationCanceled.ToString()].ShouldContain(cancelError);
-        
+
         result.Failures.Count.ShouldBe(4);
         result.TryGetValue(out string? value).ShouldBeFalse();
         value.ShouldBeNull();
@@ -874,7 +874,7 @@ public class ResultTTests
         // Arrange
         const string value1 = "info value";
         const string value2 = "warning value";
-        
+
         Result<string>[] results = [
             Result.Success(value1, ResultType.Information),
             Result.Success(value2, ResultType.Warning)

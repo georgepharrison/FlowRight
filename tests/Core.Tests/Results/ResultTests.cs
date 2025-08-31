@@ -134,7 +134,7 @@ public class ResultTests
         // Assert
         result.IsFailure.ShouldBeTrue();
         result.FailureType.ShouldBe(ResultFailureType.Validation);
-        
+
         // Check Email field has all errors from both validation results
         result.Failures.ShouldContainKey("Email");
         string[] emailErrors = result.Failures["Email"];
@@ -230,20 +230,20 @@ public class ResultTests
         // Assert
         result.IsFailure.ShouldBeTrue();
         result.FailureType.ShouldBe(ResultFailureType.Validation);
-        
+
         // Verify all error types are aggregated
         result.Failures.ShouldContainKey(ResultFailureType.Error.ToString());
         result.Failures[ResultFailureType.Error.ToString()].ShouldContain(generalError);
-        
+
         result.Failures.ShouldContainKey(ResultFailureType.Security.ToString());
         result.Failures[ResultFailureType.Security.ToString()].ShouldContain(securityError);
-        
+
         result.Failures.ShouldContainKey("Field1");
         result.Failures["Field1"].ShouldContain("Validation error");
-        
+
         result.Failures.ShouldContainKey(ResultFailureType.OperationCanceled.ToString());
         result.Failures[ResultFailureType.OperationCanceled.ToString()].ShouldContain(cancelError);
-        
+
         result.Failures.Count.ShouldBe(4);
     }
 
@@ -318,9 +318,9 @@ public class ResultTests
             onSuccess: () => "info success",
             onFailure: error => $"info failure: {error}"
         );
-        
+
         string warningMessage = warningResult.Match(
-            onSuccess: () => "warning success", 
+            onSuccess: () => "warning success",
             onFailure: error => $"warning failure: {error}"
         );
 
@@ -339,42 +339,42 @@ public class ResultTests
 
         // Act & Assert
         Should.Throw<ArgumentNullException>(() => result.Match<string>(
-            null!, 
-            error => "error", 
-            sec => "security", 
-            val => "validation", 
+            null!,
+            error => "error",
+            sec => "security",
+            val => "validation",
             cancel => "canceled"
         ));
 
         Should.Throw<ArgumentNullException>(() => result.Match<string>(
-            () => "success", 
-            null!, 
-            sec => "security", 
-            val => "validation", 
+            () => "success",
+            null!,
+            sec => "security",
+            val => "validation",
             cancel => "canceled"
         ));
 
         Should.Throw<ArgumentNullException>(() => result.Match<string>(
-            () => "success", 
-            error => "error", 
-            null!, 
-            val => "validation", 
+            () => "success",
+            error => "error",
+            null!,
+            val => "validation",
             cancel => "canceled"
         ));
 
         Should.Throw<ArgumentNullException>(() => result.Match<string>(
-            () => "success", 
-            error => "error", 
-            sec => "security", 
-            null!, 
+            () => "success",
+            error => "error",
+            sec => "security",
+            null!,
             cancel => "canceled"
         ));
 
         Should.Throw<ArgumentNullException>(() => result.Match<string>(
-            () => "success", 
-            error => "error", 
-            sec => "security", 
-            val => "validation", 
+            () => "success",
+            error => "error",
+            sec => "security",
+            val => "validation",
             null!
         ));
     }
@@ -582,30 +582,30 @@ public class ResultTests
 
         // Act & Assert
         Should.Throw<ArgumentNullException>(() => result.Switch(
-            null!, 
-            error => { }, 
-            sec => { }, 
+            null!,
+            error => { },
+            sec => { },
             val => { }
         ));
 
         Should.Throw<ArgumentNullException>(() => result.Switch(
-            () => { }, 
-            null!, 
-            sec => { }, 
+            () => { },
+            null!,
+            sec => { },
             val => { }
         ));
 
         Should.Throw<ArgumentNullException>(() => result.Switch(
-            () => { }, 
-            error => { }, 
-            null!, 
+            () => { },
+            error => { },
+            null!,
             val => { }
         ));
 
         Should.Throw<ArgumentNullException>(() => result.Switch(
-            () => { }, 
-            error => { }, 
-            sec => { }, 
+            () => { },
+            error => { },
+            sec => { },
             null!
         ));
     }

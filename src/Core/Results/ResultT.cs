@@ -209,8 +209,8 @@ public partial class Result<T> : IResult<T>
     {
         ArgumentNullException.ThrowIfNull(result);
 
-        return result.IsSuccess 
-            ? result.SuccessValue! 
+        return result.IsSuccess
+            ? result.SuccessValue!
             : throw new InvalidOperationException($"Cannot extract value from a failed result. Error: {result.Error}");
     }
 
@@ -235,7 +235,7 @@ public partial class Result<T> : IResult<T>
     /// }
     /// </code>
     /// </example>
-    public static explicit operator bool(Result<T> result) => 
+    public static explicit operator bool(Result<T> result) =>
         result?.IsSuccess ?? false;
 
     /// <summary>

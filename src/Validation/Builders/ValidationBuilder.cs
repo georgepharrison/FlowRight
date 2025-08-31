@@ -348,6 +348,35 @@ public class ValidationBuilder<T>
         value.Add(error);
     }
 
+    /// <summary>
+    /// Removes the last error added for the specified property.
+    /// </summary>
+    /// <param name="propertyName">The name of the property to remove the last error from.</param>
+    internal void RemoveLastError(string propertyName)
+    {
+        if (_errors.TryGetValue(propertyName, out List<string>? errors) && errors.Count > 0)
+        {
+            errors.RemoveAt(errors.Count - 1);
+            if (errors.Count == 0)
+            {
+                _errors.Remove(propertyName);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Replaces the last error message for the specified property.
+    /// </summary>
+    /// <param name="propertyName">The name of the property to update the last error for.</param>
+    /// <param name="newMessage">The new error message.</param>
+    internal void ReplaceLastError(string propertyName, string newMessage)
+    {
+        if (_errors.TryGetValue(propertyName, out List<string>? errors) && errors.Count > 0)
+        {
+            errors[errors.Count - 1] = newMessage;
+        }
+    }
+
     #endregion Internal Methods
 
     #region Private Methods

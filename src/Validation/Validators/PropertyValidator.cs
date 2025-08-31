@@ -25,7 +25,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
 
     private readonly ValidationBuilder<T> _builder;
     private readonly string _displayName;
-    private readonly List<(IRule<TProp>? rule, string? customMessage, Func<TProp, bool>? condition)> _pendingRules = [];
+    private readonly List<(IRule<TProp>? rule, string? customMessage, Func<TProp, bool>? condition, bool executed)> _pendingRules = [];
     private readonly TProp _value;
 
     #endregion Private Members
@@ -78,8 +78,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// </remarks>
     public TRule Empty()
     {
-        _pendingRules.Add((new EmptyRule<TProp>(), null, null));
-        return (TRule)this;
+        return AddRule(new EmptyRule<TProp>());
     }
 
     /// <summary>
@@ -90,8 +89,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// <returns>The concrete validator type for method chaining.</returns>
     public TRule Equal(TProp comparisonValue, IEqualityComparer<TProp>? comparer = null)
     {
-        _pendingRules.Add((new EqualRule<TProp>(comparisonValue, comparer), null, null));
-        return (TRule)this;
+        return AddRule(new EqualRule<TProp>(comparisonValue, comparer));
     }
 
     /// <summary>
@@ -109,8 +107,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// </example>
     public TRule Must(Func<TProp, bool> condition, string errorMessage)
     {
-        _pendingRules.Add((new MustRule<TProp>(condition, errorMessage), null, null));
-        return (TRule)this;
+        return AddRule(new MustRule<TProp>(condition, errorMessage));
     }
 
     /// <summary>
@@ -119,8 +116,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// <returns>The concrete validator type for method chaining.</returns>
     public TRule NotEmpty()
     {
-        _pendingRules.Add((new NotEmptyRule<TProp>(), null, null));
-        return (TRule)this;
+        return AddRule(new NotEmptyRule<TProp>());
     }
 
     /// <summary>
@@ -131,8 +127,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// <returns>The concrete validator type for method chaining.</returns>
     public TRule NotEqual(TProp comparisonValue, IEqualityComparer<TProp>? comparer = null)
     {
-        _pendingRules.Add((new NotEqualRule<TProp>(comparisonValue, comparer), null, null));
-        return (TRule)this;
+        return AddRule(new NotEqualRule<TProp>(comparisonValue, comparer));
     }
 
     /// <summary>
@@ -141,8 +136,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// <returns>The concrete validator type for method chaining.</returns>
     public TRule Notnull()
     {
-        _pendingRules.Add((new NotNullRule<TProp>(), null, null));
-        return (TRule)this;
+        return AddRule(new NotNullRule<TProp>());
     }
 
     /// <summary>
@@ -151,8 +145,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     /// <returns>The concrete validator type for method chaining.</returns>
     public TRule Null()
     {
-        _pendingRules.Add((new NullRule<TProp>(), null, null));
-        return (TRule)this;
+        return AddRule(new NullRule<TProp>());
     }
 
     /// <summary>
@@ -335,7 +328,7 @@ public abstract class PropertyValidator<T, TProp, TRule>
     #region Protected Methods
 
     /// <summary>
-    /// Adds a validation rule to the pending rules list.
+    /// Adds a validation rule and executes it immediately.
     /// </summary>
     /// <param name="rule">The validation rule to add.</param>
     /// <returns>The concrete validator type for method chaining.</returns>
@@ -343,7 +336,17 @@ public abstract class PropertyValidator<T, TProp, TRule>
     {
         ArgumentNullException.ThrowIfNull(rule);
 
-        _pendingRules.Add((rule, null, null));
+        // Execute rule immediately and store result
+        string? error = rule.Validate(_value, _displayName);
+        bool hasError = error is not null;
+
+        if (hasError)
+        {
+            _builder.AddError(_displayName, error!);
+        }
+
+        // Store rule info for potential condition/message modifications
+        _pendingRules.Add((rule, error, null, true));
 
         return (TRule)this;
     }
@@ -356,8 +359,19 @@ public abstract class PropertyValidator<T, TProp, TRule>
     {
         if (_pendingRules.Count > 0)
         {
-            (IRule<TProp>? rule, string? message, _) = _pendingRules[^1];
-            _pendingRules[^1] = (rule, message, condition);
+            (IRule<TProp>? rule, string? originalError, _, bool executed) = _pendingRules[^1];
+
+            // Re-evaluate the rule with the condition
+            if (condition is not null && !condition(_value))
+            {
+                // Condition prevents validation - remove any error that was added
+                if (originalError is not null)
+                {
+                    RemoveLastError(_displayName);
+                }
+            }
+
+            _pendingRules[^1] = (rule, originalError, condition, executed);
         }
     }
 
@@ -369,8 +383,15 @@ public abstract class PropertyValidator<T, TProp, TRule>
     {
         if (_pendingRules.Count > 0)
         {
-            (IRule<TProp>? rule, _, Func<TProp, bool>? condition) = _pendingRules[^1];
-            _pendingRules[^1] = (rule, customMessage, condition);
+            (IRule<TProp>? rule, string? originalError, Func<TProp, bool>? condition, bool executed) = _pendingRules[^1];
+
+            // Replace the error message if there was an error
+            if (originalError is not null)
+            {
+                ReplaceLastError(_displayName, customMessage ?? originalError);
+            }
+
+            _pendingRules[^1] = (rule, originalError, condition, executed);
         }
     }
 
@@ -380,26 +401,19 @@ public abstract class PropertyValidator<T, TProp, TRule>
 
     private void ApplyPendingRules()
     {
-        foreach ((IRule<TProp>? rule, string? customMessage, Func<TProp, bool>? condition) in _pendingRules)
-        {
-            if (rule is not null)
-            {
-                if (condition is not null && !condition(_value))
-                {
-                    continue;
-                }
-
-                string? error = rule.Validate(_value, _displayName);
-
-                if (error is not null)
-                {
-                    string finalMessage = customMessage ?? error;
-
-                    _builder.AddError(_displayName, finalMessage);
-                }
-            }
-        }
+        // With immediate execution, this method now just clears the pending rules
+        // since they were already executed when added
         _pendingRules.Clear();
+    }
+
+    private void RemoveLastError(string propertyName)
+    {
+        _builder.RemoveLastError(propertyName);
+    }
+
+    private void ReplaceLastError(string propertyName, string newMessage)
+    {
+        _builder.ReplaceLastError(propertyName, newMessage);
     }
 
     #endregion Private Methods

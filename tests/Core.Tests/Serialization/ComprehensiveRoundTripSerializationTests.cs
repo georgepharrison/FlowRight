@@ -411,7 +411,7 @@ public sealed class ComprehensiveRoundTripSerializationTests
                 {
                     ComplexTestObject? expectedObj = expectedValue as ComplexTestObject;
                     ComplexTestObject? actualObj = actualValue as ComplexTestObject;
-                    
+
                     if (expectedObj is not null && actualObj is not null)
                     {
                         actualObj.Id.ShouldBe(expectedObj.Id);
@@ -420,7 +420,7 @@ public sealed class ComprehensiveRoundTripSerializationTests
                         actualObj.CreatedAt.ShouldBe(expectedObj.CreatedAt);
                         actualObj.Tags.ShouldBe(expectedObj.Tags);
                         actualObj.Metadata.Count.ShouldBe(expectedObj.Metadata.Count);
-                        
+
                         foreach (KeyValuePair<string, object?> kvp in expectedObj.Metadata)
                         {
                             actualObj.Metadata.ShouldContainKey(kvp.Key);

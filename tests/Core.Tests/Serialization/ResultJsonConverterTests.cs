@@ -359,7 +359,7 @@ public sealed class ResultJsonConverterTests
         deserializedResult.FailureType.ShouldBe(originalResult.FailureType);
         deserializedResult.Error.ShouldBe(originalResult.Error);
         deserializedResult.Failures.Count.ShouldBe(originalResult.Failures.Count);
-        
+
         foreach (KeyValuePair<string, string[]> failure in originalResult.Failures)
         {
             deserializedResult.Failures.ShouldContainKey(failure.Key);
@@ -467,7 +467,7 @@ public sealed class ResultJsonConverterTests
         Utf8JsonWriter writer = new(stream);
 
         // Act & Assert
-        Should.Throw<ArgumentNullException>(() => 
+        Should.Throw<ArgumentNullException>(() =>
             converter.Write(writer, null!, _options));
     }
 
@@ -479,7 +479,7 @@ public sealed class ResultJsonConverterTests
         Result result = Result.Success();
 
         // Act & Assert
-        Should.Throw<ArgumentNullException>(() => 
+        Should.Throw<ArgumentNullException>(() =>
             converter.Write(null!, result, _options));
     }
 

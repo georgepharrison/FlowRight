@@ -68,8 +68,8 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     /// // Invalid: 0, 100, -1, 101
     /// </code>
     /// </example>
-    public NumericPropertyValidator<T, TNumeric> ExclusiveBetween(int from, int to) =>
-        AddRule(new ExclusiveBetweenRule(from, to) as IRule<TNumeric>);
+    public NumericPropertyValidator<T, TNumeric> ExclusiveBetween(TNumeric from, TNumeric to) =>
+        AddRule(new ExclusiveBetweenRule<TNumeric>(from, to));
 
     /// <summary>
     /// Validates that the numeric value is greater than the specified comparison value.

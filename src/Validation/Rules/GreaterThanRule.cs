@@ -28,7 +28,7 @@ public sealed class GreaterThanRule<T>(T valueToCompare) : IRule<T>
             return null;
         }
 
-        return Comparer<T>.Default.Compare(_valueToCompare, value) > 0
+        return Comparer<T>.Default.Compare(value, _valueToCompare) > 0
             ? null
             : $"{displayName} must be greater than {_valueToCompare}";
     }

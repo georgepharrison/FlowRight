@@ -156,13 +156,13 @@ public sealed class ValidationProblemResponseTests
         response.ShouldNotBeNull();
         response.Errors.ShouldNotBeNull();
         response.Errors.Count.ShouldBe(3);
-        
+
         response.Errors.ShouldContainKey("Name");
         response.Errors["Name"].ShouldBe(["Name is required", "Name must be at least 2 characters"]);
-        
+
         response.Errors.ShouldContainKey("Email");
         response.Errors["Email"].ShouldBe(["Email is required", "Email format is invalid"]);
-        
+
         response.Errors.ShouldContainKey("Age");
         response.Errors["Age"].ShouldBe(["Age must be greater than 0"]);
     }
