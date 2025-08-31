@@ -839,4 +839,359 @@ public class ValidationBuilderTests
     }
 
     #endregion Edge Cases and Error Conditions Tests
+
+    #region DateTime Property Validation Tests
+
+    /// <summary>
+    /// Tests for DateTime property validation using GenericPropertyValidator
+    /// </summary>
+    public class DateTimePropertyValidation
+    {
+        [Fact]
+        public void RuleFor_DateTimeProperty_WithEqualValidation_ShouldPassForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            DateTime testDate = new(2024, 1, 1, 12, 0, 0);
+
+            // Act
+            GenericPropertyValidator<User, DateTime> validator = builder.RuleFor(u => u.CreatedAt, testDate);
+            validator.Equal(testDate);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_DateTimeProperty_WithNotEqualValidation_ShouldFailForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            DateTime testDate = new(2024, 1, 1);
+
+            // Act
+            GenericPropertyValidator<User, DateTime> validator = builder.RuleFor(u => u.CreatedAt, testDate);
+            validator.NotEqual(testDate);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_DateTimeProperty_WithMustCondition_ShouldValidateCustomLogic()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            DateTime futureDate = DateTime.Now.AddDays(1);
+
+            // Act
+            GenericPropertyValidator<User, DateTime> validator = builder.RuleFor(u => u.CreatedAt, futureDate);
+            validator.Must(date => date > DateTime.Now, "Date must be in the future");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_NullableDateTimeProperty_WithNotNull_ShouldFailForNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, DateTime?> validator = builder.RuleFor(u => u.UpdatedAt, (DateTime?)null);
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_NullableDateTimeProperty_WithNotNull_ShouldPassForNonNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            DateTime testDate = DateTime.Now;
+
+            // Act
+            GenericPropertyValidator<User, DateTime?> validator = builder.RuleFor(u => u.UpdatedAt, testDate);
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+    }
+
+    #endregion DateTime Property Validation Tests
+
+    #region Boolean Property Validation Tests
+
+    /// <summary>
+    /// Tests for boolean property validation using GenericPropertyValidator
+    /// </summary>
+    public class BooleanPropertyValidation
+    {
+        [Fact]
+        public void RuleFor_BooleanProperty_WithEqualTrue_ShouldPassForTrueValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, bool> validator = builder.RuleFor(u => u.IsActive, true);
+            validator.Equal(true);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_BooleanProperty_WithEqualTrue_ShouldFailForFalseValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, bool> validator = builder.RuleFor(u => u.IsActive, false);
+            validator.Equal(true);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_BooleanProperty_WithMustCondition_ShouldValidateCustomLogic()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, bool> validator = builder.RuleFor(u => u.IsActive, false);
+            validator.Must(isActive => !isActive, "User must be inactive for this operation");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_NullableBooleanProperty_WithNotNull_ShouldFailForNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, bool?> validator = builder.RuleFor(u => u.IsVerified, (bool?)null);
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_NullableBooleanProperty_WithNotNull_ShouldPassForNonNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, bool?> validator = builder.RuleFor(u => u.IsVerified, true);
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+    }
+
+    #endregion Boolean Property Validation Tests
+
+    #region Additional Numeric Property Validation Tests
+
+    /// <summary>
+    /// Tests for additional numeric property validation using NumericPropertyValidator
+    /// </summary>
+    public class AdditionalNumericPropertyValidation
+    {
+        [Fact]
+        public void RuleFor_ByteProperty_WithGreaterThan_ShouldFailForSmallerValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, byte> validator = builder.RuleFor(u => u.Status, (byte)0);
+            validator.GreaterThan((byte)0);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_ByteProperty_WithLessThanOrEqualTo_ShouldPassForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, byte> validator = builder.RuleFor(u => u.Status, (byte)255);
+            validator.LessThanOrEqualTo((byte)255);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_SByteProperty_WithInclusiveBetween_ShouldPassForValueInRange()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, sbyte> validator = builder.RuleFor(u => u.Balance, (sbyte)0);
+            validator.GreaterThanOrEqualTo((sbyte)-10).LessThanOrEqualTo((sbyte)10);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_UIntProperty_WithEqual_ShouldPassForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, uint> validator = builder.RuleFor(u => u.Points, 1000U);
+            validator.Equal(1000U);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_ULongProperty_WithNotEqual_ShouldFailForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, ulong> validator = builder.RuleFor(u => u.Token, 0UL);
+            validator.NotEqual(0UL);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_ULongProperty_WithGreaterThan_ShouldPassForLargerValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            NumericPropertyValidator<User, ulong> validator = builder.RuleFor(u => u.Token, 1000000UL);
+            validator.GreaterThan(999999UL);
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+    }
+
+    #endregion Additional Numeric Property Validation Tests
+
+    #region Character Property Validation Tests
+
+    /// <summary>
+    /// Tests for character property validation using GenericPropertyValidator
+    /// </summary>
+    public class CharacterPropertyValidation
+    {
+        [Fact]
+        public void RuleFor_CharProperty_WithEqualValidation_ShouldPassForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, char> validator = builder.RuleFor(u => u.Grade, 'A');
+            validator.Equal('A');
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_CharProperty_WithNotEqual_ShouldFailForEqualValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, char> validator = builder.RuleFor(u => u.Grade, 'F');
+            validator.NotEqual('F');
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_CharProperty_WithMustCondition_ShouldValidateCustomLogic()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, char> validator = builder.RuleFor(u => u.Grade, 'B');
+            validator.Must(grade => "ABCDF".Contains(grade), "Grade must be A, B, C, D, or F");
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_NullableCharProperty_WithNotNull_ShouldFailForNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, char?> validator = builder.RuleFor(u => u.MiddleInitial, (char?)null);
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RuleFor_NullableCharProperty_WithNotNull_ShouldPassForNonNullValue()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+
+            // Act
+            GenericPropertyValidator<User, char?> validator = builder.RuleFor(u => u.MiddleInitial, 'J');
+            validator.Notnull();
+
+            // Assert
+            builder.HasErrors.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void RuleFor_CharProperty_WithCustomMessage_ShouldUseCustomErrorMessage()
+        {
+            // Arrange
+            ValidationBuilder<User> builder = new();
+            string customMessage = "Invalid grade - must be a valid letter grade";
+
+            // Act
+            GenericPropertyValidator<User, char> validator = builder.RuleFor(u => u.Grade, 'X');
+            validator.Must(grade => "ABCDF".Contains(grade), "Grade must be valid").WithMessage(customMessage);
+
+            // Assert
+            builder.HasErrors.ShouldBeTrue();
+            Dictionary<string, string[]> errors = builder.GetErrors();
+            errors["Grade"].ShouldContain(customMessage);
+        }
+    }
+
+    #endregion Character Property Validation Tests
 }

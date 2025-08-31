@@ -63,7 +63,7 @@
 ### Validation Builder Core
 - [x] **TASK-021**: Create ValidationBuilder<T> class
 - [x] **TASK-022**: Implement PropertyValidator base class
-- [ ] **TASK-023**: Add RuleFor methods for all property types
+- [x] **TASK-023**: Add RuleFor methods for all property types
 - [ ] **TASK-024**: Implement error aggregation system
 - [ ] **TASK-025**: Add Build method with factory pattern
 
