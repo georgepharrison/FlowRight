@@ -79,10 +79,10 @@
 - [x] **TASK-032**: Create numeric rules (Comparisons, Ranges, Precision)
 - [x] **TASK-033**: Build collection rules (Count, Unique, etc.)
 - [x] **TASK-034**: Add general rules (Null, Empty, Must)
-- [ ] **TASK-035**: Implement conditional rules (When, Unless)
+- [x] **TASK-035**: Implement conditional rules (When, Unless)
 
 ### Result Integration
-- [ ] **TASK-036**: Add RuleFor overload for Result<T> composition
+- [x] **TASK-036**: Add RuleFor overload for Result<T> composition
 - [ ] **TASK-037**: Implement automatic error extraction from nested Results
 - [ ] **TASK-038**: Create out parameter support for value extraction
 - [ ] **TASK-039**: Add validation context for complex scenarios
