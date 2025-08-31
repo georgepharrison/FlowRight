@@ -27,7 +27,7 @@ public enum ResultFailureType
     /// is <see langword="true"/>. It serves as the default value for successful operations.
     /// </remarks>
     None,
-    
+
     /// <summary>
     /// Indicates a general error condition that doesn't fall into other specific categories.
     /// This represents system errors, unexpected exceptions, or business rule violations.
@@ -42,7 +42,7 @@ public enum ResultFailureType
     /// </list>
     /// </remarks>
     Error,
-    
+
     /// <summary>
     /// Indicates a security-related failure such as authentication failures,
     /// authorization violations, or security policy breaches.
@@ -57,7 +57,7 @@ public enum ResultFailureType
     /// </list>
     /// </remarks>
     Security,
-    
+
     /// <summary>
     /// Indicates that the operation failed due to validation errors in the input data,
     /// typically containing detailed field-level error information.
@@ -74,7 +74,7 @@ public enum ResultFailureType
     /// The detailed validation errors are typically available through <see cref="IResult.Failures"/>.
     /// </remarks>
     Validation,
-    
+
     /// <summary>
     /// Indicates that the operation was canceled before completion, typically due to
     /// cancellation tokens, timeouts, or explicit user cancellation requests.

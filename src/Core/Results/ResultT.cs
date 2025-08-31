@@ -59,10 +59,11 @@ public partial class Result<T> : IResult<T>
         FailureType = ResultFailureType.None;
     }
 
-    internal Result(string error, ResultType resultType)
+    internal Result(string error, ResultType resultType, ResultFailureType resultFailureType = ResultFailureType.Error)
     {
         Error = error;
         ResultType = resultType;
+        FailureType = resultFailureType;
     }
 
     internal Result(string key, string error)
@@ -523,7 +524,7 @@ public partial class Result<T> : IResult<T>
     /// </list>
     /// </remarks>
     [JsonInclude]
-    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", 
+    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords",
         Justification = "In a Result pattern library, 'Error' is the most intuitive property name for error information.")]
     public string Error { get; private set; } = string.Empty;
 

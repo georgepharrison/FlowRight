@@ -217,7 +217,7 @@ public partial class Result : IResult
     /// </list>
     /// </remarks>
     [JsonInclude]
-    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", 
+    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords",
         Justification = "In a Result pattern library, 'Error' is the most intuitive property name for error information.")]
     public string Error { get; private set; } = string.Empty;
 
