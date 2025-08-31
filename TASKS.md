@@ -53,7 +53,7 @@
 - [x] **TASK-016**: Add JsonConstructor and JsonInclude attributes
 - [x] **TASK-017**: Create custom JsonConverter for Result
 - [x] **TASK-018**: Create custom JsonConverter for Result<T>
-- [ ] **TASK-019**: Handle ValidationProblemResponse serialization
+- [x] **TASK-019**: Handle ValidationProblemResponse serialization
 - [ ] **TASK-020**: Test round-trip serialization for all scenarios
 
 ---
