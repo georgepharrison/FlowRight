@@ -19,7 +19,7 @@ public class User
     public short Priority { get; }
     public double Score { get; }
     public float Rating { get; }
-    
+
     // New properties for extended property type testing
     public DateTime CreatedAt { get; }
     public DateTime? UpdatedAt { get; }
@@ -108,7 +108,7 @@ public class UserBuilder
     private short _priority = 1;
     private double _score = 85.5;
     private float _rating = 4.2f;
-    
+
     // New properties for extended property type testing
     private DateTime _createdAt = DateTime.UtcNow;
     private DateTime? _updatedAt;

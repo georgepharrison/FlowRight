@@ -126,8 +126,8 @@ public sealed class NumericPropertyValidator<T, TNumeric> : PropertyValidator<T,
     ///     .WithMessage("Shadowrun attributes range from 1 to 12");
     /// </code>
     /// </example>
-    public NumericPropertyValidator<T, TNumeric> InclusiveBetween(int from, int to) =>
-        AddRule(new InclusiveBetweenRule(from, to) as IRule<TNumeric>);
+    public NumericPropertyValidator<T, TNumeric> InclusiveBetween(TNumeric from, TNumeric to) =>
+        AddRule(new InclusiveBetweenRule<TNumeric>(from, to));
 
     /// <summary>
     /// Validates that the numeric value is less than the specified comparison value.
