@@ -1,3 +1,10 @@
+# [1.0.0-alpha.4](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-09-01)
+
+
+### Features
+
+* implement TASK-047 RFC 7807 ValidationProblemDetails support ([#40](https://github.com/georgepharrison/FlowRight/issues/40)) ([d19b794](https://github.com/georgepharrison/FlowRight/commit/d19b794709e05f6b758caf8ec224ab144ba3b229))
+
 # [1.0.0-alpha.3](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-09-01)
 
 
