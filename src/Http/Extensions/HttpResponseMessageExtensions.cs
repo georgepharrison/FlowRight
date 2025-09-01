@@ -41,7 +41,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(responseMessage);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             return Result.Success();
         }
@@ -80,7 +80,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(responseMessage);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             // Validate content type for JSON variants
             ContentTypeInfo contentTypeInfo = responseMessage.GetContentTypeInfo();
@@ -152,7 +152,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(responseMessage);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             await using Stream stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken)
                 .ConfigureAwait(false);
@@ -204,7 +204,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(responseMessage);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             // Validate content type
             if (!responseMessage.IsXmlContentType())
@@ -275,7 +275,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(responseMessage);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             ContentTypeInfo contentTypeInfo = responseMessage.GetContentTypeInfo();
             
@@ -323,7 +323,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(responseMessage);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             ContentTypeInfo contentTypeInfo = responseMessage.GetContentTypeInfo();
             
@@ -371,7 +371,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(responseMessage);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             ContentTypeInfo contentTypeInfo = responseMessage.GetContentTypeInfo();
             
@@ -455,7 +455,7 @@ public static class HttpResponseMessageExtensions
         ArgumentNullException.ThrowIfNull(expectedContentType);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (responseMessage.IsSuccessStatusCode)
+        if (IsSuccessStatusCode2xx(responseMessage.StatusCode))
         {
             if (!responseMessage.IsContentType(expectedContentType))
             {
@@ -694,6 +694,59 @@ public static class HttpResponseMessageExtensions
 
     private static bool IsValidCharset(string charset) =>
         ValidCharsets.Contains(charset);
+
+    /// <summary>
+    /// Determines if the HTTP status code represents a successful 2xx response with explicit mapping.
+    /// </summary>
+    /// <param name="statusCode">The HTTP status code to check.</param>
+    /// <returns>True if the status code is in the 2xx range (200-299), otherwise false.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method provides explicit mapping for all standard HTTP 2xx status codes instead of relying
+    /// on the generic <see cref="HttpResponseMessage.IsSuccessStatusCode"/> property. This ensures
+    /// predictable behavior and supports custom 2xx status codes that may not be in the 
+    /// <see cref="HttpStatusCode"/> enumeration.
+    /// </para>
+    /// <para>
+    /// The following standard 2xx status codes are explicitly supported:
+    /// <list type="bullet">
+    /// <item><description>200 OK - Standard success response</description></item>
+    /// <item><description>201 Created - Resource successfully created</description></item>
+    /// <item><description>202 Accepted - Request accepted for processing</description></item>
+    /// <item><description>203 Non-Authoritative Information - Success with modified response</description></item>
+    /// <item><description>204 No Content - Success with no response body</description></item>
+    /// <item><description>205 Reset Content - Success requiring client reset</description></item>
+    /// <item><description>206 Partial Content - Partial resource delivered</description></item>
+    /// <item><description>207 Multi-Status - WebDAV multiple status responses</description></item>
+    /// <item><description>208 Already Reported - WebDAV resource already enumerated</description></item>
+    /// <item><description>226 IM Used - HTTP Delta encoding successful</description></item>
+    /// </list>
+    /// </para>
+    /// <para>
+    /// Additionally, any custom status codes in the 200-299 range are supported to handle
+    /// future HTTP standards or proprietary extensions.
+    /// </para>
+    /// </remarks>
+    private static bool IsSuccessStatusCode2xx(HttpStatusCode statusCode)
+    {
+        return statusCode switch
+        {
+            // Standard 2xx status codes
+            HttpStatusCode.OK => true,                              // 200
+            HttpStatusCode.Created => true,                         // 201
+            HttpStatusCode.Accepted => true,                        // 202
+            HttpStatusCode.NonAuthoritativeInformation => true,     // 203
+            HttpStatusCode.NoContent => true,                       // 204
+            HttpStatusCode.ResetContent => true,                    // 205
+            HttpStatusCode.PartialContent => true,                  // 206
+            HttpStatusCode.MultiStatus => true,                     // 207
+            HttpStatusCode.AlreadyReported => true,                 // 208
+            HttpStatusCode.IMUsed => true,                          // 226
+            
+            // Handle any other status codes in the 2xx range (custom or future standards)
+            _ => (int)statusCode >= 200 && (int)statusCode <= 299
+        };
+    }
 
 
     #endregion Private Methods
