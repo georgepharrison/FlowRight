@@ -221,14 +221,15 @@ public class IResultTests
     public void ResultFailureType_ShouldHaveExpectedValues()
     {
         // Arrange & Act & Assert
-        Enum.GetNames<ResultFailureType>().ShouldBe(new[] { "None", "Error", "Security", "Validation", "NotFound", "OperationCanceled" });
+        Enum.GetNames<ResultFailureType>().ShouldBe(new[] { "None", "Error", "Security", "Validation", "NotFound", "ServerError", "OperationCanceled" });
 
         ((int)ResultFailureType.None).ShouldBe(0);
         ((int)ResultFailureType.Error).ShouldBe(1);
         ((int)ResultFailureType.Security).ShouldBe(2);
         ((int)ResultFailureType.Validation).ShouldBe(3);
         ((int)ResultFailureType.NotFound).ShouldBe(4);
-        ((int)ResultFailureType.OperationCanceled).ShouldBe(5);
+        ((int)ResultFailureType.ServerError).ShouldBe(5);
+        ((int)ResultFailureType.OperationCanceled).ShouldBe(6);
     }
 
     #endregion

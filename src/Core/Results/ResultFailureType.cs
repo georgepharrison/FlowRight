@@ -95,6 +95,23 @@ public enum ResultFailureType
     NotFound,
 
     /// <summary>
+    /// Indicates that the operation failed due to a server-side error, typically
+    /// representing 5xx HTTP status codes or infrastructure-related failures.
+    /// </summary>
+    /// <remarks>
+    /// Server errors represent failures on the server side that are typically temporary
+    /// and may be resolved with retry mechanisms or service recovery:
+    /// <list type="bullet">
+    /// <item><description>Correspond to HTTP 5xx status codes (500-599)</description></item>
+    /// <item><description>Include internal server errors, service unavailable, bad gateway, etc.</description></item>
+    /// <item><description>May be candidates for retry logic with exponential backoff</description></item>
+    /// <item><description>Should be monitored and potentially trigger alerts</description></item>
+    /// <item><description>Distinguished from client errors to enable appropriate handling strategies</description></item>
+    /// </list>
+    /// </remarks>
+    ServerError,
+
+    /// <summary>
     /// Indicates that the operation was canceled before completion, typically due to
     /// cancellation tokens, timeouts, or explicit user cancellation requests.
     /// </summary>
