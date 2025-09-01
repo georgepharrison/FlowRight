@@ -1,3 +1,10 @@
+# [1.0.0-alpha.5](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-09-01)
+
+
+### Features
+
+* implement TASK-049 - convert HTTP 404 to NotFound result ([b53aa8b](https://github.com/georgepharrison/FlowRight/commit/b53aa8b358695ba7a0faf2961d120131b1138fba))
+
 # [1.0.0-alpha.4](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-09-01)
 
 
