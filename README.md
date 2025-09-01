@@ -1,9 +1,9 @@
 ﻿# FlowRight
 
-[![NuGet](https://img.shields.io/nuget/v/FlowRight.Core.svg)](https://www.nuget.org/packages/FlowRight.Core/)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/FlowRight/build.yml?branch=main)](https://github.com/yourusername/FlowRight/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/yourusername/FlowRight)](https://codecov.io/gh/yourusername/FlowRight)
-[![License](https://img.shields.io/github/license/yourusername/FlowRight)](https://github.com/yourusername/FlowRight/blob/main/LICENSE)
+[![Pre-release](https://img.shields.io/github/v/release/georgepharrison/FlowRight?include_prereleases&label=pre-release)](https://github.com/georgepharrison/FlowRight/releases)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/georgepharrison/FlowRight/build.yml?branch=dev)](https://github.com/georgepharrison/FlowRight/actions)
+[![Coverage](https://img.shields.io/badge/coverage-84.6%25-yellow)](https://github.com/georgepharrison/FlowRight)
+[![License](https://img.shields.io/github/license/georgepharrison/FlowRight)](https://github.com/georgepharrison/FlowRight/blob/main/LICENSE)
 
 A production-grade Result pattern implementation for .NET that eliminates exception-based control flow while providing comprehensive validation and HTTP integration capabilities.
 
@@ -20,26 +20,31 @@ A production-grade Result pattern implementation for .NET that eliminates except
 
 ## 📦 Packages
 
-| Package | Description | NuGet |
-|---------|-------------|-------|
-| `FlowRight.Core` | Core Result pattern implementation | [![NuGet](https://img.shields.io/nuget/v/FlowRight.Core.svg)](https://www.nuget.org/packages/FlowRight.Core/) |
-| `FlowRight.Validation` | Fluent validation builder with Result integration | [![NuGet](https://img.shields.io/nuget/v/FlowRight.Validation.svg)](https://www.nuget.org/packages/FlowRight.Validation/) |
-| `FlowRight.Http` | HTTP response to Result conversion | [![NuGet](https://img.shields.io/nuget/v/FlowRight.Http.svg)](https://www.nuget.org/packages/FlowRight.Http/) |
+| Package | Description | Status |
+|---------|-------------|--------|
+| `FlowRight.Core` | Core Result pattern implementation | ⚡ In Development |
+| `FlowRight.Validation` | Fluent validation builder with Result integration | ⚡ In Development |
+| `FlowRight.Http` | HTTP response to Result conversion | ⚡ In Development |
+
+> **Note**: Packages are currently in active development (alpha releases). Production release planned for Q2 2025.
 
 ## 🚀 Quick Start
 
 ### Installation
 
 ```bash
+# 🚧 Pre-release packages (active development)
 # Core Result pattern
-dotnet add package FlowRight.Core
+dotnet add package FlowRight.Core --prerelease
 
 # Validation support
-dotnet add package FlowRight.Validation
+dotnet add package FlowRight.Validation --prerelease
 
 # HTTP integration
-dotnet add package FlowRight.Http
+dotnet add package FlowRight.Http --prerelease
 ```
+
+> **⚠️ Development Status**: FlowRight is currently in active development. APIs may change before stable release.
 
 ### Basic Usage
 
@@ -134,11 +139,13 @@ Result<Order> CreateOrder(OrderRequest request)
 
 ## 📚 Documentation
 
-- [Getting Started Guide](docs/getting-started.md)
-- [API Reference](docs/api-reference.md)
-- [Migration Guide](docs/migration-guide.md)
-- [Best Practices](docs/best-practices.md)
-- [Performance Benchmarks](docs/benchmarks.md)
+- 📖 [CLAUDE.md](CLAUDE.md) - Development guidelines and coding standards
+- 📋 [TASKS.md](TASKS.md) - Development progress and task tracking
+- 🚧 Getting Started Guide *(planned)*
+- 🚧 API Reference *(planned)*  
+- 🚧 Migration Guide *(planned)*
+- 🚧 Best Practices *(planned)*
+- 🚧 Performance Benchmarks *(planned)*
 
 ## 🏗️ Building from Source
 
@@ -151,7 +158,7 @@ Result<Order> CreateOrder(OrderRequest request)
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/FlowRight.git
+git clone https://github.com/georgepharrison/FlowRight.git
 cd FlowRight
 
 # Build the solution
@@ -166,7 +173,7 @@ dotnet run -c Release --project benchmarks/Benchmarks/Benchmarks.csproj
 
 ## 🧪 Testing
 
-The project maintains >95% test coverage with comprehensive unit and integration tests.
+The project maintains 84.6% test coverage with comprehensive unit and integration tests, targeting >95% for production release.
 
 ```bash
 # Run all tests with coverage
@@ -206,14 +213,39 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/FlowRight/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/FlowRight/discussions)
+- **Issues**: [GitHub Issues](https://github.com/georgepharrison/FlowRight/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/georgepharrison/FlowRight/discussions)
 - **Stack Overflow**: Tag your questions with `flowright`
 
 ## 🗺️ Roadmap
 
-### Version 1.1 (Q2 2025)
-- Additional validation rules
+### Version 1.0 (Q2 2025) - Production Ready
+**Core Library:**
+- ✅ Core Result pattern implementation (90.7% coverage)
+- ✅ Pattern matching with Match/Switch methods  
+- ✅ JSON serialization support
+- ✅ Implicit operators and conversions
+
+**Validation Library:**
+- ✅ Fluent validation builder (81.8% coverage)
+- ✅ 35+ validation rules (string, numeric, collection, etc.)
+- ✅ Context-aware validation with async support
+- ✅ Automatic error aggregation
+
+**HTTP Integration:**
+- ✅ HTTP response to Result conversion (85% coverage)
+- ✅ Status code mapping (2xx, 400, 401/403, 404, 5xx)
+- ✅ Content type detection and parsing
+- ✅ ValidationProblemDetails support
+
+**Remaining for v1.0:**
+- 🚧 >95% test coverage (currently 84.6%)
+- 🚧 Performance benchmarking
+- 🚧 Complete XML documentation
+- 🚧 NuGet package publishing
+
+### Version 1.1 (Q3 2025)
+- Additional validation rules based on feedback
 - Performance optimizations
 - Source generators for reduced boilerplate
 
