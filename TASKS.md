@@ -94,7 +94,7 @@
 
 ### HTTP Extensions
 - [ ] **TASK-041**: Create HttpResponseMessageExtensions class
-- [ ] **TASK-042**: Implement ToResultAsync for non-generic Result
+- [x] **TASK-042**: Implement ToResultAsync for non-generic Result
 - [ ] **TASK-043**: Add ToResultFromJsonAsync for Result<T>
 - [ ] **TASK-044**: Support JsonTypeInfo for AOT scenarios
 - [ ] **TASK-045**: Handle different content types appropriately
