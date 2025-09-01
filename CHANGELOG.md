@@ -1,3 +1,10 @@
+# [1.0.0-alpha.8](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-09-01)
+
+
+### Features
+
+* implement TASK-052 - test Result<T> with various types ([2468b1d](https://github.com/georgepharrison/FlowRight/commit/2468b1d8b74d65d55eed5d3a09ac98dc2c43c582))
+
 # [1.0.0-alpha.7](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-09-01)
 
 
