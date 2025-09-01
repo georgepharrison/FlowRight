@@ -144,6 +144,8 @@ public partial class Result : IResult
             {
                 case ResultFailureType.Error:
                 case ResultFailureType.Security:
+                case ResultFailureType.NotFound:
+                case ResultFailureType.ServerError:
                 case ResultFailureType.OperationCanceled:
                     if (!failures.TryGetValue(result.FailureType.ToString(), out List<string>? errors))
                     {
@@ -250,6 +252,8 @@ public partial class Result : IResult
                 {
                     case ResultFailureType.Error:
                     case ResultFailureType.Security:
+                    case ResultFailureType.NotFound:
+                    case ResultFailureType.ServerError:
                     case ResultFailureType.OperationCanceled:
                         if (!failures.TryGetValue(result.FailureType.ToString(), out List<string>? errors))
                         {
@@ -377,6 +381,7 @@ public partial class Result : IResult
                 ResultFailureType.Security => onSecurityException(Error),
                 ResultFailureType.Validation => onValidationException(Failures),
                 ResultFailureType.NotFound => onError(Error),
+                ResultFailureType.ServerError => onError(Error),
                 ResultFailureType.OperationCanceled => onOperationCanceledException(Error),
                 _ => throw new NotImplementedException()
             };
@@ -518,6 +523,10 @@ public partial class Result : IResult
                 break;
 
             case ResultFailureType.NotFound:
+                onError(Error);
+                break;
+
+            case ResultFailureType.ServerError:
                 onError(Error);
                 break;
 

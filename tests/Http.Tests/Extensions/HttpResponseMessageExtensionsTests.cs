@@ -209,7 +209,8 @@ public sealed class HttpResponseMessageExtensionsTests
 
         // Assert
         result.IsSuccess.ShouldBeFalse();
-        result.Error.ShouldBe("Unexpected ServiceUnavailable: Service temporarily unavailable");
+        result.Error.ShouldBe("Service Unavailable: Service temporarily unavailable");
+        result.FailureType.ShouldBe(ResultFailureType.ServerError);
     }
 
     [Fact]
@@ -2059,10 +2060,10 @@ public sealed class HttpResponseMessageExtensionsTests
             Result badRequestResult = await badRequestResponse.ToResultAsync();
             badRequestResult.FailureType.ShouldBe(ResultFailureType.Error);
             
-            // InternalServerError should return Error type (default)
+            // InternalServerError should return ServerError type
             using HttpResponseMessage serverErrorResponse = new(HttpStatusCode.InternalServerError);
             Result serverErrorResult = await serverErrorResponse.ToResultAsync();
-            serverErrorResult.FailureType.ShouldBe(ResultFailureType.Error);
+            serverErrorResult.FailureType.ShouldBe(ResultFailureType.ServerError);
         }
 
         [Fact]

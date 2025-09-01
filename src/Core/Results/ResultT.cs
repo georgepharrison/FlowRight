@@ -335,6 +335,7 @@ public partial class Result<T> : IResult<T>
                 ResultFailureType.Security => onSecurityException(Error),
                 ResultFailureType.Validation => onValidationException(Failures),
                 ResultFailureType.NotFound => onError(Error),
+                ResultFailureType.ServerError => onError(Error),
                 ResultFailureType.OperationCanceled => onOperationCanceledException(Error),
                 _ => throw new NotImplementedException()
             };
@@ -396,6 +397,7 @@ public partial class Result<T> : IResult<T>
             case ResultFailureType.Security:
             case ResultFailureType.Validation:
             case ResultFailureType.NotFound:
+            case ResultFailureType.ServerError:
                 onFailure(Error);
                 break;
 
@@ -495,6 +497,10 @@ public partial class Result<T> : IResult<T>
                 onError(Error);
                 break;
 
+            case ResultFailureType.ServerError:
+                onError(Error);
+                break;
+
             case ResultFailureType.OperationCanceled:
                 if (onOperationCanceledException is not null)
                 {
@@ -566,6 +572,7 @@ public partial class Result<T> : IResult<T>
             ResultFailureType.Security => Result.Failure(new SecurityException(result.Error)),
             ResultFailureType.Validation => Result.Failure(result.Failures),
             ResultFailureType.NotFound => Result.NotFound(result.Error),
+            ResultFailureType.ServerError => Result.ServerError(result.Error),
             ResultFailureType.OperationCanceled => Result.Failure(new OperationCanceledException(result.Error)),
             _ => throw new NotImplementedException()
         };

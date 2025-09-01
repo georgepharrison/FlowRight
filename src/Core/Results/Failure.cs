@@ -425,6 +425,89 @@ public partial class Result
         new(CreateNotFoundMessage(resource), ResultType.Error, ResultFailureType.NotFound);
 
     /// <summary>
+    /// Creates a failed result indicating that a server error occurred.
+    /// </summary>
+    /// <param name="message">Optional custom error message. If not provided, defaults to "Server Error".</param>
+    /// <returns>A failed <see cref="Result"/> instance with <see cref="ResultFailureType.ServerError"/>.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method creates a server error failure result that corresponds to HTTP 5xx status codes
+    /// and similar scenarios where a server-side error has occurred. The resulting failure
+    /// will have a <see cref="FailureType"/> of <see cref="ResultFailureType.ServerError"/>.
+    /// </para>
+    /// <para>
+    /// Server errors represent temporary failures on the server side that may be resolved
+    /// with retry mechanisms, circuit breakers, or service recovery. They are distinct from
+    /// client errors and may be handled differently (e.g., with retry logic).
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// // Generic server error
+    /// Result result = Result.ServerError();
+    /// 
+    /// // Specific server error
+    /// Result dbResult = Result.ServerError("Database connection timeout");
+    /// 
+    /// // Usage in a service method
+    /// public Result ProcessRequest()
+    /// {
+    ///     try
+    ///     {
+    ///         // Process request
+    ///         return Result.Success();
+    ///     }
+    ///     catch (TimeoutException)
+    ///     {
+    ///         return Result.ServerError("Request timed out");
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
+    public static Result ServerError(string? message = null) =>
+        new(CreateServerErrorMessage(message), ResultType.Error, ResultFailureType.ServerError);
+
+    /// <summary>
+    /// Creates a failed result indicating that a server error occurred for a generic result type.
+    /// </summary>
+    /// <typeparam name="T">The type parameter for the generic result.</typeparam>
+    /// <param name="message">Optional custom error message. If not provided, defaults to "Server Error".</param>
+    /// <returns>A failed <see cref="Result{T}"/> instance with <see cref="ResultFailureType.ServerError"/>.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method creates a server error failure result for operations that would normally return
+    /// a typed value. The resulting failure will have a <see cref="FailureType"/> of 
+    /// <see cref="ResultFailureType.ServerError"/>, allowing consumers to distinguish between
+    /// server errors and client errors for appropriate retry strategies.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// // Generic server error
+    /// Result&lt;User&gt; result = Result.ServerError&lt;User&gt;();
+    /// 
+    /// // Specific server error
+    /// Result&lt;Data&gt; dataResult = Result.ServerError&lt;Data&gt;("Service unavailable");
+    /// 
+    /// // Usage in a service method
+    /// public Result&lt;User&gt; GetUser(int userId)
+    /// {
+    ///     try
+    ///     {
+    ///         User user = userService.GetById(userId);
+    ///         return Result.Success(user);
+    ///     }
+    ///     catch (ServiceUnavailableException ex)
+    ///     {
+    ///         return Result.ServerError&lt;User&gt;(ex.Message);
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
+    public static Result<T> ServerError<T>(string? message = null) =>
+        new(CreateServerErrorMessage(message), ResultType.Error, ResultFailureType.ServerError);
+
+    /// <summary>
     /// Creates a failed result with multiple validation errors (convenience method).
     /// </summary>
     /// <param name="errors">A dictionary containing field names as keys and arrays of error messages as values. Cannot be <see langword="null"/>.</param>
@@ -492,6 +575,19 @@ public partial class Result
             return "Not Found";
         
         return $"{resource.Trim()} not found";
+    }
+
+    /// <summary>
+    /// Creates an appropriate server error message based on the provided message parameter.
+    /// </summary>
+    /// <param name="message">The specific error message, or null for a generic message.</param>
+    /// <returns>A formatted error message for the server error scenario.</returns>
+    private static string CreateServerErrorMessage(string? message)
+    {
+        if (string.IsNullOrWhiteSpace(message))
+            return "Server Error";
+        
+        return message.Trim();
     }
 
     #endregion Private Methods

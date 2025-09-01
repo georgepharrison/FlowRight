@@ -46,13 +46,18 @@ public static class HttpResponseMessageExtensions
             return Result.Success();
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound(),
-            HttpStatusCode.InternalServerError => Result.Failure("Internal Server Error"),
             _ => Result.Failure(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -118,13 +123,18 @@ public static class HttpResponseMessageExtensions
             }
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError<T?>(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound<T?>(),
-            HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -171,13 +181,18 @@ public static class HttpResponseMessageExtensions
             }
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError<T?>(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound<T?>(),
-            HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -243,13 +258,18 @@ public static class HttpResponseMessageExtensions
             }
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError<T?>(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound<T?>(),
-            HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -291,13 +311,18 @@ public static class HttpResponseMessageExtensions
             return Result.Success<string?>(content);
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError<string?>(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<string?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<string?>(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound<string?>(),
-            HttpStatusCode.InternalServerError => Result.Failure<string?>("Internal Server Error"),
             _ => Result.Failure<string?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -339,13 +364,18 @@ public static class HttpResponseMessageExtensions
             return Result.Success<byte[]?>(content);
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError<byte[]?>(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<byte[]?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<byte[]?>(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound<byte[]?>(),
-            HttpStatusCode.InternalServerError => Result.Failure<byte[]?>("Internal Server Error"),
             _ => Result.Failure<byte[]?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -420,13 +450,18 @@ public static class HttpResponseMessageExtensions
             }
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError<Dictionary<string, string>?>(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<Dictionary<string, string>?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<Dictionary<string, string>?>(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound<Dictionary<string, string>?>(),
-            HttpStatusCode.InternalServerError => Result.Failure<Dictionary<string, string>?>("Internal Server Error"),
             _ => Result.Failure<Dictionary<string, string>?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -477,13 +512,18 @@ public static class HttpResponseMessageExtensions
             return Result.Failure<T?>(CreateUnsupportedContentTypeError(info.MediaType));
         }
 
+        // Handle 5xx server errors
+        if (IsServerError5xx(responseMessage.StatusCode))
+        {
+            return Result.ServerError<T?>(await GetServerErrorMessageAsync(responseMessage, cancellationToken).ConfigureAwait(false));
+        }
+
         return responseMessage.StatusCode switch
         {
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
             HttpStatusCode.NotFound => Result.NotFound<T?>(),
-            HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
     }
@@ -745,6 +785,112 @@ public static class HttpResponseMessageExtensions
             
             // Handle any other status codes in the 2xx range (custom or future standards)
             _ => (int)statusCode >= 200 && (int)statusCode <= 299
+        };
+    }
+
+    /// <summary>
+    /// Determines if the HTTP status code represents a server error 5xx response.
+    /// </summary>
+    /// <param name="statusCode">The HTTP status code to check.</param>
+    /// <returns>True if the status code is in the 5xx range (500-599), otherwise false.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method provides explicit mapping for all standard HTTP 5xx status codes and supports
+    /// custom 5xx status codes that may not be in the <see cref="HttpStatusCode"/> enumeration.
+    /// </para>
+    /// <para>
+    /// The following standard 5xx status codes are supported:
+    /// <list type="bullet">
+    /// <item><description>500 Internal Server Error - Generic server error</description></item>
+    /// <item><description>501 Not Implemented - Server doesn't support functionality</description></item>
+    /// <item><description>502 Bad Gateway - Invalid response from upstream server</description></item>
+    /// <item><description>503 Service Unavailable - Server temporarily unavailable</description></item>
+    /// <item><description>504 Gateway Timeout - Timeout from upstream server</description></item>
+    /// <item><description>505 HTTP Version Not Supported - Unsupported HTTP version</description></item>
+    /// <item><description>506 Variant Also Negotiates - Transparent content negotiation error</description></item>
+    /// <item><description>507 Insufficient Storage - Server unable to store representation</description></item>
+    /// <item><description>508 Loop Detected - Infinite loop detected</description></item>
+    /// <item><description>510 Not Extended - Further extensions required</description></item>
+    /// <item><description>511 Network Authentication Required - Network authentication required</description></item>
+    /// </list>
+    /// </para>
+    /// <para>
+    /// Additionally, any custom status codes in the 500-599 range are supported to handle
+    /// future HTTP standards or proprietary extensions.
+    /// </para>
+    /// </remarks>
+    private static bool IsServerError5xx(HttpStatusCode statusCode)
+    {
+        return statusCode switch
+        {
+            // Standard 5xx status codes
+            HttpStatusCode.InternalServerError => true,             // 500
+            HttpStatusCode.NotImplemented => true,                  // 501
+            HttpStatusCode.BadGateway => true,                      // 502
+            HttpStatusCode.ServiceUnavailable => true,             // 503
+            HttpStatusCode.GatewayTimeout => true,                 // 504
+            HttpStatusCode.HttpVersionNotSupported => true,        // 505
+            HttpStatusCode.VariantAlsoNegotiates => true,          // 506
+            HttpStatusCode.InsufficientStorage => true,            // 507
+            HttpStatusCode.LoopDetected => true,                   // 508
+            HttpStatusCode.NotExtended => true,                    // 510
+            HttpStatusCode.NetworkAuthenticationRequired => true,  // 511
+            
+            // Handle any other status codes in the 5xx range (custom or future standards)
+            _ => (int)statusCode >= 500 && (int)statusCode <= 599
+        };
+    }
+
+    /// <summary>
+    /// Gets an appropriate error message for server errors, including response body if available.
+    /// </summary>
+    /// <param name="responseMessage">The HTTP response message.</param>
+    /// <param name="cancellationToken">Token to cancel the operation.</param>
+    /// <returns>A formatted error message for the server error scenario.</returns>
+    private static async Task<string> GetServerErrorMessageAsync(HttpResponseMessage responseMessage, CancellationToken cancellationToken)
+    {
+        string statusDescription = GetStatusDescription(responseMessage.StatusCode);
+        
+        try
+        {
+            string body = await responseMessage.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+
+            if (string.IsNullOrWhiteSpace(body))
+            {
+                return statusDescription;
+            }
+
+            return $"{statusDescription}: {body.Trim()}";
+        }
+        catch
+        {
+            // If we can't read the response body, just return the status description
+            return statusDescription;
+        }
+    }
+
+    /// <summary>
+    /// Gets a human-readable description for HTTP status codes.
+    /// </summary>
+    /// <param name="statusCode">The HTTP status code.</param>
+    /// <returns>A descriptive string for the status code.</returns>
+    private static string GetStatusDescription(HttpStatusCode statusCode)
+    {
+        return statusCode switch
+        {
+            HttpStatusCode.InternalServerError => "Internal Server Error",
+            HttpStatusCode.NotImplemented => "Not Implemented",
+            HttpStatusCode.BadGateway => "Bad Gateway",
+            HttpStatusCode.ServiceUnavailable => "Service Unavailable",
+            HttpStatusCode.GatewayTimeout => "Gateway Timeout",
+            HttpStatusCode.HttpVersionNotSupported => "HTTP Version Not Supported",
+            HttpStatusCode.VariantAlsoNegotiates => "Variant Also Negotiates",
+            HttpStatusCode.InsufficientStorage => "Insufficient Storage",
+            HttpStatusCode.LoopDetected => "Loop Detected",
+            HttpStatusCode.NotExtended => "Not Extended",
+            HttpStatusCode.NetworkAuthenticationRequired => "Network Authentication Required",
+            _ => $"Server Error ({(int)statusCode})"
         };
     }
 
