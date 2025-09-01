@@ -1,3 +1,10 @@
+# [1.0.0-alpha.3](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-09-01)
+
+
+### Features
+
+* implement explicit 2xx HTTP status code mapping for TASK-046 ([#39](https://github.com/georgepharrison/FlowRight/issues/39)) ([f7397ab](https://github.com/georgepharrison/FlowRight/commit/f7397ab781b9394df335847f0a2bb35d6f67a100))
+
 # [1.0.0-alpha.2](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-09-01)
 
 
