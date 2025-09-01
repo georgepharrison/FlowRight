@@ -24,7 +24,7 @@ public sealed class MustRule<T>(Func<T, bool> condition, string errorMessage) : 
     /// <param name="displayName">The display name for the property being validated.</param>
     /// <returns>The error message if the condition fails; otherwise, null.</returns>
     public string? Validate(T value, string displayName) =>
-        _condition(value) ? null : _errorMessage;
+        _condition(value) ? null : string.Format(System.Globalization.CultureInfo.InvariantCulture, _errorMessage, value, displayName);
 
     #endregion Public Methods
 }
