@@ -6,16 +6,38 @@ This file provides guidance to Claude (Claude Code and Claude Chat) when working
 
 FlowRight is a production-grade Result pattern library for .NET that provides explicit error handling without exceptions, featuring comprehensive validation and HTTP integration capabilities.
 
+## Git Branching Strategy
+
+**This repository uses GitFlow with semantic versioning:**
+
+- **`main`** - Production releases (1.0.0, 1.1.0, 2.0.0)
+- **`dev`** - Alpha prereleases (1.1.0-alpha.1, 1.1.0-alpha.2)
+- **`feature/*`** - New features, merge to `dev` via PR
+- **`fix/*`** - Bug fixes, merge to `dev` via PR
+- **`chore/*`** - Maintenance tasks, merge to `dev` via PR
+
+**Branch Protection Rules:**
+- Direct commits to `main` and `dev` are prohibited
+- All changes must go through Pull Requests
+- PRs require passing CI checks (build, test, lint)
+
+**Release Process:**
+- Push to `dev` → triggers alpha prerelease
+- PR `dev` → `main` → triggers production release
+- Semantic versioning automatically determined from conventional commits
+
 ## Standard Development Workflow
 
 **All tasks must follow this structured approach:**
 
-1. **Analyze Repository**: Examine existing code structure, patterns, and organization
-2. **Write Tests First**: Create failing tests that define expected behavior (TDD)
-3. **Implement Code**: Write minimal code to make tests pass
-4. **Refactor**: Improve code quality while keeping tests green
-5. **Document**: Add XML documentation to all public members
-6. **Mark Complete**: Update `TASKS.md` with `[x]` when done
+1. **Create Feature Branch**: Branch from `dev` using `feature/*`, `fix/*`, or `chore/*` naming
+2. **Analyze Repository**: Examine existing code structure, patterns, and organization
+3. **Write Tests First**: Create failing tests that define expected behavior (TDD)
+4. **Implement Code**: Write minimal code to make tests pass
+5. **Refactor**: Improve code quality while keeping tests green
+6. **Document**: Add XML documentation to all public members
+7. **Create PR**: Open Pull Request to `dev` branch
+8. **Mark Complete**: Update `TASKS.md` with `[x]` when merged
 
 ### Repository Analysis Phase
 Before implementing any task, analyze:
