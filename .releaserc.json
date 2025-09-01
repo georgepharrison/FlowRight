@@ -1,0 +1,29 @@
+{
+  "branches": [
+    "main",
+    {
+      "name": "dev",
+      "prerelease": "alpha"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/exec",
+      {
+        "verifyReleaseCmd": "echo 'Version: ${nextRelease.version}'",
+        "publishCmd": "dotnet pack --configuration Release --no-build --output ./artifacts -p:PackageVersion=${nextRelease.version}"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["CHANGELOG.md"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}

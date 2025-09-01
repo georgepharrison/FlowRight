@@ -2,7 +2,9 @@ name: Release
 
 on:
   push:
-    tags: [ 'v*' ]
+    branches:
+      - main
+      - dev
 
 env:
   DOTNET_NOLOGO: true
@@ -11,39 +13,44 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Setup .NET 8.0
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
-
-    - name: Pack
-      run: dotnet pack --configuration Release --no-build --output ./artifacts
-
-    - name: Create Release
-      uses: softprops/action-gh-release@v2
-      with:
-        files: ./artifacts/*
-        generate_release_notes: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Push to NuGet
-      run: |
-        for pkg in ./artifacts/*.nupkg; do
-          dotnet nuget push "$pkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-        done
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Setup .NET 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      
+      - name: Install semantic-release
+        run: |
+          npm install -g semantic-release
+          npm install -g @semantic-release/changelog
+          npm install -g @semantic-release/git
+          npm install -g @semantic-release/exec
+      
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      
+      - name: Test
+        run: dotnet test --configuration Release --no-build --verbosity normal
+      
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: semantic-release
