@@ -157,6 +157,10 @@ coverage*.info
 *.coverage
 *.coveragexml
 
+# Test Results and Coverage Reports
+TestResults/
+CoverageReport/
+
 # NCrunch
 _NCrunch_*
 .*crunch*.local.xml
