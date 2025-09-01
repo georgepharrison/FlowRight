@@ -1,4 +1,5 @@
 ﻿using FlowRight.Core.Results;
+using FlowRight.Validation.Context;
 using FlowRight.Validation.Validators;
 using System.Linq.Expressions;
 using System.Numerics;
@@ -46,8 +47,51 @@ public class ValidationBuilder<T>
     #region Private Members
 
     private readonly Dictionary<string, List<string>> _errors = [];
+    private readonly IValidationContext? _validationContext;
 
     #endregion Private Members
+
+    #region Constructors
+
+    /// <summary>
+    /// Initializes a new instance of the ValidationBuilder class with default settings.
+    /// </summary>
+    /// <remarks>
+    /// This constructor creates a ValidationBuilder without validation context support.
+    /// For context-aware validation scenarios, use the constructor that accepts an IValidationContext.
+    /// </remarks>
+    public ValidationBuilder()
+    {
+        _validationContext = null;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the ValidationBuilder class with validation context support.
+    /// </summary>
+    /// <param name="validationContext">The validation context for complex validation scenarios.</param>
+    /// <remarks>
+    /// This constructor enables context-aware validation scenarios including cross-property validation,
+    /// service integration, custom data sharing, and hierarchical validation.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// User user = new UserBuilder().Build();
+    /// IValidationContext context = ValidationContext.Create(user, serviceProvider);
+    /// context.SetCustomData("ValidationMode", "Strict");
+    /// 
+    /// ValidationBuilder&lt;User&gt; builder = new(context);
+    /// Result&lt;User&gt; result = builder
+    ///     .RuleFor(x =&gt; x.Email, request.Email)
+    ///         .Must((email, ctx) =&gt; ValidateWithContext(email, ctx), "Invalid email")
+    ///     .Build(() =&gt; user);
+    /// </code>
+    /// </example>
+    public ValidationBuilder(IValidationContext validationContext)
+    {
+        _validationContext = validationContext;
+    }
+
+    #endregion Constructors
 
     #region Public Methods
 
