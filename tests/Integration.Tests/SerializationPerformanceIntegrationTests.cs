@@ -416,7 +416,7 @@ public class SerializationPerformanceIntegrationTests : IClassFixture<WebApplica
             
             // Assert
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
-            responseJson.Length.ShouldBeGreaterThan(json.Length * 0.8); // Should be similar size
+            responseJson.Length.ShouldBeGreaterThan((int)(json.Length * 0.8)); // Should be similar size
             stopwatch.Elapsed.TotalMilliseconds.ShouldBeLessThan(500);
         }
 

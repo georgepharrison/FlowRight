@@ -582,9 +582,13 @@ public class TestApiController : ControllerBase
     /// Returns a success Result&lt;Customer&gt; for testing complex object serialization.
     /// </summary>
     [HttpGet("success-customer")]
-    public IActionResult GetSuccessCustomer()
+    public IActionResult GetSuccessCustomer([FromQuery] int? id = null)
     {
-        Customer customer = new CustomerBuilder().Build();
+        Customer customer = new CustomerBuilder()
+            .WithFirstName(id.HasValue ? $"Customer{id}" : "John")
+            .WithLastName("Doe")
+            .WithEmail(id.HasValue ? $"customer{id}@example.com" : "john.doe@example.com")
+            .Build();
         Result<Customer> result = Result.Success(customer);
         return Ok(result);
     }
@@ -721,6 +725,39 @@ public class TestApiController : ControllerBase
         }
         
         Result<Category> result = Result.Success(currentCategory);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Naming policy and formatting test endpoints.
+    /// </summary>
+    [HttpGet("camel-case-result")]
+    public IActionResult GetCamelCaseResult()
+    {
+        Result<string> result = Result.Success("camelCaseValue");
+        return Ok(result);
+    }
+
+    [HttpGet("snake-case-result")]
+    public IActionResult GetSnakeCaseResult()
+    {
+        Result<string> result = Result.Success("snake_case_value");
+        return Ok(result);
+    }
+
+    [HttpGet("datetime-formatting")]
+    public IActionResult GetDateTimeFormatting()
+    {
+        DateTime dateTime = new(2023, 12, 25, 10, 30, 0, DateTimeKind.Utc);
+        Result<DateTime> result = Result.Success(dateTime);
+        return Ok(result);
+    }
+
+    [HttpGet("ignore-nulls")]
+    public IActionResult GetIgnoreNulls()
+    {
+        Customer customer = new CustomerBuilder().Build();
+        Result<Customer> result = Result.Success(customer);
         return Ok(result);
     }
 }

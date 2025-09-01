@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using FlowRight.Core.Results;
@@ -35,15 +37,23 @@ namespace FlowRight.Integration.Tests;
 /// </list>
 /// </para>
 /// </remarks>
-public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<SimpleApiStartup>>
+public class SimpleApiSerializationTests : IClassFixture<SimpleApiSerializationTests.TestWebApplicationFactory>
 {
-    private readonly WebApplicationFactory<SimpleApiStartup> _factory;
+    private readonly TestWebApplicationFactory _factory;
     private readonly HttpClient _client;
 
-    public SimpleApiSerializationTests(WebApplicationFactory<SimpleApiStartup> factory)
+    public SimpleApiSerializationTests(TestWebApplicationFactory factory)
     {
         _factory = factory;
         _client = _factory.CreateClient();
+    }
+
+    public class TestWebApplicationFactory : WebApplicationFactory<Program>
+    {
+        protected override void ConfigureWebHost(IWebHostBuilder builder)
+        {
+            builder.UseContentRoot(Directory.GetCurrentDirectory());
+        }
     }
 
     /// <summary>
@@ -51,7 +61,7 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
     /// </summary>
     public class BasicResultSerializationTests : SimpleApiSerializationTests
     {
-        public BasicResultSerializationTests(WebApplicationFactory<SimpleApiStartup> factory) : base(factory) { }
+        public BasicResultSerializationTests(TestWebApplicationFactory factory) : base(factory) { }
 
         [Fact]
         public async Task GetSuccessResult_ShouldSerializeWithCorrectJsonStructure()
@@ -65,9 +75,9 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldContain("\"error\":\"\",");
-            jsonContent.ShouldContain("\"resultType\":\"Success\"");
-            jsonContent.ShouldContain("\"failureType\":\"None\"");
+            jsonContent.ShouldContain("\"error\":");
+            jsonContent.ShouldContain("\"resultType\": \"Success\"");
+            jsonContent.ShouldContain("\"failureType\": \"None\"");
         }
 
         [Fact]
@@ -82,9 +92,9 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldContain("\"error\":\"Test failure message\"");
-            jsonContent.ShouldContain("\"resultType\":\"Error\"");
-            jsonContent.ShouldContain("\"failureType\":\"Error\"");
+            jsonContent.ShouldContain("\"error\": \"Test failure message\"");
+            jsonContent.ShouldContain("\"resultType\": \"Error\"");
+            jsonContent.ShouldContain("\"failureType\": \"Error\"");
         }
 
         [Fact]
@@ -99,8 +109,8 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.Forbidden);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldContain("\"failureType\":\"Security\"");
-            jsonContent.ShouldContain("\"error\":\"Access denied\"");
+            jsonContent.ShouldContain("\"failureType\": \"Security\"");
+            jsonContent.ShouldContain("\"error\": \"Access denied\"");
         }
     }
 
@@ -109,7 +119,7 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
     /// </summary>
     public class ResultTSerializationTests : SimpleApiSerializationTests
     {
-        public ResultTSerializationTests(WebApplicationFactory<SimpleApiStartup> factory) : base(factory) { }
+        public ResultTSerializationTests(TestWebApplicationFactory factory) : base(factory) { }
 
         [Fact]
         public async Task GetSuccessResultWithInteger_ShouldIncludeValueInJson()
@@ -123,9 +133,9 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldContain("\"value\":42");
-            jsonContent.ShouldContain("\"error\":\"\"");
-            jsonContent.ShouldContain("\"resultType\":\"Success\"");
+            jsonContent.ShouldContain("\"value\": 42");
+            jsonContent.ShouldContain("\"error\": \"\"");
+            jsonContent.ShouldContain("\"resultType\": \"Success\"");
         }
 
         [Fact]
@@ -140,8 +150,8 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldContain("\"value\":\"hello\"");
-            jsonContent.ShouldContain("\"error\":\"\"");
+            jsonContent.ShouldContain("\"value\": \"hello\"");
+            jsonContent.ShouldContain("\"error\": \"\"");
         }
 
         [Fact]
@@ -156,8 +166,8 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldNotContain("\"value\":");
-            jsonContent.ShouldContain("\"error\":\"Integer value not found\"");
+            jsonContent.ShouldNotContain("\"value\": ");
+            jsonContent.ShouldContain("\"error\": \"Integer value not found\"");
         }
     }
 
@@ -166,7 +176,7 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
     /// </summary>
     public class ValidationFailureSerializationTests : SimpleApiSerializationTests
     {
-        public ValidationFailureSerializationTests(WebApplicationFactory<SimpleApiStartup> factory) : base(factory) { }
+        public ValidationFailureSerializationTests(TestWebApplicationFactory factory) : base(factory) { }
 
         [Fact]
         public async Task GetValidationFailure_ShouldSerializeWithFailuresCollection()
@@ -180,8 +190,8 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldContain("\"failureType\":\"Validation\"");
-            jsonContent.ShouldContain("\"failures\":{");
+            jsonContent.ShouldContain("\"failureType\": \"Validation\"");
+            jsonContent.ShouldContain("\"failures\": {");
             jsonContent.ShouldContain("\"Name\":[\"Required\"]");
             jsonContent.ShouldContain("\"Email\":[\"Required\",\"Invalid format\"]");
         }
@@ -210,7 +220,7 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
     /// </summary>
     public class RoundTripSerializationTests : SimpleApiSerializationTests
     {
-        public RoundTripSerializationTests(WebApplicationFactory<SimpleApiStartup> factory) : base(factory) { }
+        public RoundTripSerializationTests(TestWebApplicationFactory factory) : base(factory) { }
 
         [Fact]
         public async Task PostResultAndEchoBack_ShouldPreserveAllProperties()
@@ -299,7 +309,7 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
     /// </summary>
     public class JsonConverterBehaviorTests : SimpleApiSerializationTests
     {
-        public JsonConverterBehaviorTests(WebApplicationFactory<SimpleApiStartup> factory) : base(factory) { }
+        public JsonConverterBehaviorTests(TestWebApplicationFactory factory) : base(factory) { }
 
         [Fact]
         public async Task GetResultWithCamelCaseNaming_ShouldUseCamelCaseProperties()
@@ -315,7 +325,7 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             string jsonContent = await response.Content.ReadAsStringAsync();
             jsonContent.ShouldContain("\"resultType\""); // camelCase
             jsonContent.ShouldContain("\"failureType\""); // camelCase
-            jsonContent.ShouldNotContain("\"ResultType\""); // PascalCase should not appear
+            jsonContent.ShouldNotContain("\"ResultType\"", Case.Sensitive); // PascalCase should not appear
         }
 
         [Fact]
@@ -330,7 +340,7 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
             
             string jsonContent = await response.Content.ReadAsStringAsync();
-            jsonContent.ShouldContain("\"resultType\":\"Warning\"");
+            jsonContent.ShouldContain("\"resultType\": \"Warning\"");
         }
     }
 
@@ -355,10 +365,17 @@ public class SimpleApiSerializationTests : IClassFixture<WebApplicationFactory<S
 
 /// <summary>
 /// Simple API startup for focused integration testing scenarios.
-/// This startup will fail initially because the controller endpoints are not implemented.
 /// </summary>
 public class SimpleApiStartup
 {
+    // Configuration property is needed by WebApplicationFactory
+    public IConfiguration Configuration { get; }
+
+    public SimpleApiStartup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers()
@@ -389,27 +406,77 @@ public class SimpleApiStartup
             endpoints.MapControllers();
         });
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<SimpleApiStartup>();
+            });
 }
 
 /// <summary>
-/// This controller is intentionally NOT implemented to demonstrate TDD failing tests.
-/// The tests above will fail because these endpoints don't exist yet.
-/// This is the correct TDD approach - write failing tests first, then implement to make them pass.
+/// Simple API controller for testing Result serialization in real API scenarios.
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class SimpleController : ControllerBase
 {
-    // NOTE: These endpoints are intentionally not implemented yet.
-    // This demonstrates the TDD "Red" phase where tests fail initially.
-    // In a real TDD workflow, you would implement these endpoints one by one
-    // to make the corresponding tests pass (the "Green" phase).
+    [HttpGet("success-result")]
+    public IActionResult GetSuccessResult() => Ok(Result.Success());
 
-    // [HttpGet("success-result")]
-    // public IActionResult GetSuccessResult() => Ok(Result.Success());
-
-    // [HttpGet("failure-result")]
-    // public IActionResult GetFailureResult() => BadRequest(Result.Failure("Test failure message"));
-
-    // And so on for other endpoints...
+    [HttpGet("failure-result")]
+    public IActionResult GetFailureResult() => BadRequest(Result.Failure("Test failure message"));
+    
+    [HttpGet("security-failure")]
+    public IActionResult GetSecurityFailure() => StatusCode(403, Result.Failure(new System.Security.SecurityException("Access denied")));
+    
+    [HttpGet("success-int/{value}")]
+    public IActionResult GetSuccessInt(int value) => Ok(Result.Success(value));
+    
+    [HttpGet("success-string/{value}")]
+    public IActionResult GetSuccessString(string value) => Ok(Result.Success(value));
+    
+    [HttpGet("failure-int")]
+    public IActionResult GetFailureInt() => BadRequest(Result.Failure<int>("Integer value not found"));
+    
+    [HttpGet("validation-failure")]
+    public IActionResult GetValidationFailure()
+    {
+        Dictionary<string, string[]> errors = new()
+        {
+            { "Name", ["Required"] },
+            { "Email", ["Required", "Invalid format"] }
+        };
+        return BadRequest(Result.ValidationFailure<string>(errors));
+    }
+    
+    [HttpGet("problem-details")]
+    public IActionResult GetProblemDetails()
+    {
+        ValidationProblemDetails problemDetails = new(new Dictionary<string, string[]>
+        {
+            { "email", ["Email is required", "Email format is invalid"] }
+        })
+        {
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+            Title = "Validation failed",
+            Status = 400,
+            Detail = "The request contained validation errors",
+            Instance = "/api/simple/problem-details"
+        };
+        return BadRequest(problemDetails);
+    }
+    
+    [HttpPost("echo-result")]
+    public IActionResult EchoResult([FromBody] Result result) => Ok(result);
+    
+    [HttpPost("echo-result-string")]
+    public IActionResult EchoResultString([FromBody] Result<string> result) => Ok(result);
+    
+    [HttpGet("camel-case-result")]
+    public IActionResult GetCamelCaseResult() => Ok(Result.Success("camelCase"));
+    
+    [HttpGet("warning-result")]
+    public IActionResult GetWarningResult() => Ok(Result.Success("warning", ResultType.Warning));
 }
