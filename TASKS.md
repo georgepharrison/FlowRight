@@ -93,7 +93,7 @@
 ## Phase 3: HTTP Library
 
 ### HTTP Extensions
-- [ ] **TASK-041**: Create HttpResponseMessageExtensions class
+- [x] **TASK-041**: Create HttpResponseMessageExtensions class
 - [ ] **TASK-042**: Implement ToResultAsync for non-generic Result
 - [ ] **TASK-043**: Add ToResultFromJsonAsync for Result<T>
 - [ ] **TASK-044**: Support JsonTypeInfo for AOT scenarios
