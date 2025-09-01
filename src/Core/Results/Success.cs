@@ -2,6 +2,25 @@
 
 public partial class Result
 {
+    #region Cached Static Instances for Performance
+    
+    /// <summary>
+    /// Cached static instance for the most common success case.
+    /// Eliminates allocation overhead for standard success results.
+    /// </summary>
+    private static readonly Result CachedSuccessResult = new(ResultType.Success);
+    
+    /// <summary>
+    /// Cached static instance for information-type success results.
+    /// </summary>
+    private static readonly Result CachedInformationResult = new(ResultType.Information);
+    
+    /// <summary>
+    /// Cached static instance for warning-type success results.
+    /// </summary>
+    private static readonly Result CachedWarningResult = new(ResultType.Warning);
+    
+    #endregion Cached Static Instances for Performance
     #region Public Methods
 
     /// <summary>
@@ -34,7 +53,13 @@ public partial class Result
     /// </code>
     /// </example>
     public static Result Success(ResultType resultType = ResultType.Success) =>
-        new(resultType);
+        resultType switch
+        {
+            ResultType.Success => CachedSuccessResult,
+            ResultType.Information => CachedInformationResult,
+            ResultType.Warning => CachedWarningResult,
+            _ => new(resultType)
+        };
 
     /// <summary>
     /// Creates a successful result containing the specified value.
