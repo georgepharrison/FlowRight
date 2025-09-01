@@ -1,3 +1,10 @@
+# [1.0.0-alpha.6](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-09-01)
+
+
+### Features
+
+* implement TASK-050 - handle 5xx HTTP server errors ([#45](https://github.com/georgepharrison/FlowRight/issues/45)) ([c392c2a](https://github.com/georgepharrison/FlowRight/commit/c392c2a81c493766eb53f4030e27845327f15fa5))
+
 # [1.0.0-alpha.5](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-09-01)
 
 
