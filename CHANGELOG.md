@@ -1,3 +1,10 @@
+# [1.0.0-alpha.2](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-09-01)
+
+
+### Features
+
+* complete TASK-045 comprehensive content type handling ([#38](https://github.com/georgepharrison/FlowRight/issues/38)) ([8202dc4](https://github.com/georgepharrison/FlowRight/commit/8202dc421011c7d2bb6e2dbf04d109cb8715ef53))
+
 # 1.0.0-alpha.1 (2025-09-01)
 
 
