@@ -97,7 +97,7 @@
 - [x] **TASK-042**: Implement ToResultAsync for non-generic Result
 - [x] **TASK-043**: Add ToResultFromJsonAsync for Result<T>
 - [x] **TASK-044**: Support JsonTypeInfo for AOT scenarios
-- [ ] **TASK-045**: Handle different content types appropriately
+- [x] **TASK-045**: Handle different content types appropriately
 
 ### Status Code Mapping
 - [ ] **TASK-046**: Map 2xx status codes to success
