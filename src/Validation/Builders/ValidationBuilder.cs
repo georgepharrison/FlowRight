@@ -893,9 +893,12 @@ public class ValidationBuilder<T>
     /// <returns>The name of the property (e.g., "Name").</returns>
     /// <exception cref="ArgumentException">Thrown when the expression is not a valid property selector.</exception>
     private static string GetPropertyName<TProp>(Expression<Func<T, TProp>> propertySelector) =>
-        propertySelector?.Body is MemberExpression member
-            ? member.Member.Name
-            : throw new ArgumentException("Expression must be a property selector");
+        propertySelector?.Body switch
+        {
+            MemberExpression member => member.Member.Name,
+            UnaryExpression { Operand: MemberExpression memberFromUnary } => memberFromUnary.Member.Name,
+            _ => throw new ArgumentException("Expression must be a property selector")
+        };
 
     /// <summary>
     /// Prefixes a nested property path with the parent property name for automatic error extraction from nested Results.
