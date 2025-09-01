@@ -1445,4 +1445,250 @@ public sealed class HttpResponseMessageExtensionsTests
     }
 
     #endregion TASK-046: Explicit 2xx Status Code Mapping Tests
+
+    #region TASK-047: Full RFC 7807 ValidationProblemDetails Support Tests
+
+    public class Rfc7807ValidationProblemDetailsTests
+    {
+        [Fact]
+        public async Task ToResultAsync_WithFullRFC7807ValidationProblem_ReturnsFailureResultWithAllErrors()
+        {
+            // Arrange
+            ValidationProblemResponse problemResponse = new()
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Title = "One or more validation errors occurred.",
+                Status = 400,
+                Detail = "The request failed validation. See errors for details.",
+                Instance = "/api/users/validation-error/12345",
+                Errors = new Dictionary<string, string[]>
+                {
+                    ["FirstName"] = ["First name is required", "First name must be at least 2 characters"],
+                    ["Email"] = ["Invalid email format", "Email is required"],
+                    ["Age"] = ["Age must be positive"]
+                }
+            };
+
+            string jsonContent = JsonSerializer.Serialize(problemResponse, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+            using HttpResponseMessage response = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.ProblemJson)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Failures.ShouldNotBeNull();
+            result.Failures.Count.ShouldBe(3);
+            result.Failures["FirstName"].ShouldBe(["First name is required", "First name must be at least 2 characters"]);
+            result.Failures["Email"].ShouldBe(["Invalid email format", "Email is required"]);
+            result.Failures["Age"].ShouldBe(["Age must be positive"]);
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithFullRFC7807ValidationProblem_ReturnsFailureResultWithAllErrors()
+        {
+            // Arrange
+            ValidationProblemResponse problemResponse = new()
+            {
+                Type = "https://example.com/problem/validation-error",
+                Title = "Validation Error",
+                Status = 422,
+                Detail = "Multiple fields failed validation",
+                Instance = "/api/entities/123/validation",
+                Errors = new Dictionary<string, string[]>
+                {
+                    ["Username"] = ["Username is already taken"],
+                    ["Password"] = ["Password is too weak", "Password must contain numbers"]
+                }
+            };
+
+            string jsonContent = JsonSerializer.Serialize(problemResponse, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+            using HttpResponseMessage response = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.ProblemJson)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Failures.ShouldNotBeNull();
+            result.Failures.Count.ShouldBe(2);
+            result.Failures["Username"].ShouldBe(["Username is already taken"]);
+            result.Failures["Password"].ShouldBe(["Password is too weak", "Password must contain numbers"]);
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithPartialRFC7807ValidationProblem_HandlesOptionalProperties()
+        {
+            // Arrange - Only include some RFC 7807 properties
+            ValidationProblemResponse problemResponse = new()
+            {
+                Title = "Validation failed",
+                Status = 400,
+                // Type, Detail, Instance are omitted
+                Errors = new Dictionary<string, string[]>
+                {
+                    ["Field"] = ["Field is invalid"]
+                }
+            };
+
+            string jsonContent = JsonSerializer.Serialize(problemResponse, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+            using HttpResponseMessage response = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.ProblemJson)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Failures.ShouldNotBeNull();
+            result.Failures.Count.ShouldBe(1);
+            result.Failures["Field"].ShouldBe(["Field is invalid"]);
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithMinimalValidationProblemResponse_MaintainsBackwardCompatibility()
+        {
+            // Arrange - Only errors property (legacy format)
+            ValidationProblemResponse problemResponse = new()
+            {
+                Errors = new Dictionary<string, string[]>
+                {
+                    ["LegacyField"] = ["Legacy error message"]
+                }
+            };
+
+            string jsonContent = JsonSerializer.Serialize(problemResponse, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+            using HttpResponseMessage response = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.ProblemJson)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Failures.ShouldNotBeNull();
+            result.Failures.Count.ShouldBe(1);
+            result.Failures["LegacyField"].ShouldBe(["Legacy error message"]);
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfo_HandlesFullRFC7807ValidationProblem()
+        {
+            // Arrange
+            ValidationProblemResponse problemResponse = new()
+            {
+                Type = "https://example.com/problem/validation-error",
+                Title = "Validation Error",
+                Status = 422,
+                Detail = "Multiple fields failed validation",
+                Instance = "/api/entities/123/validation",
+                Errors = new Dictionary<string, string[]>
+                {
+                    ["Model.Property"] = ["Property validation failed"]
+                }
+            };
+
+            string jsonContent = JsonSerializer.Serialize(problemResponse, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+            using HttpResponseMessage response = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.ProblemJson)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Failures.ShouldNotBeNull();
+            result.Failures.Count.ShouldBe(1);
+            result.Failures["Model.Property"].ShouldBe(["Property validation failed"]);
+        }
+
+        [Fact]
+        public async Task ToResultAsTextAsync_WithFullRFC7807ValidationProblem_ReturnsFailureWithAllErrors()
+        {
+            // Arrange
+            ValidationProblemResponse problemResponse = new()
+            {
+                Type = "https://example.com/problem/validation-error",
+                Title = "Validation Error",
+                Status = 400,
+                Detail = "Text endpoint validation failed",
+                Instance = "/api/text/validation",
+                Errors = new Dictionary<string, string[]>
+                {
+                    ["TextInput"] = ["Text input is required", "Text input is too long"]
+                }
+            };
+
+            string jsonContent = JsonSerializer.Serialize(problemResponse, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+            using HttpResponseMessage response = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.ProblemJson)
+            };
+
+            // Act
+            Result<string?> result = await response.ToResultAsTextAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Failures.ShouldNotBeNull();
+            result.Failures.Count.ShouldBe(1);
+            result.Failures["TextInput"].ShouldBe(["Text input is required", "Text input is too long"]);
+        }
+
+        [Theory]
+        [InlineData("https://tools.ietf.org/html/rfc7231#section-6.5.1")]
+        [InlineData("about:blank")]
+        [InlineData("")]
+        [InlineData(null)]
+        public async Task ToResultAsync_WithVariousTypeValues_HandlesAllCasesCorrectly(string? typeValue)
+        {
+            // Arrange
+            ValidationProblemResponse problemResponse = new()
+            {
+                Type = typeValue,
+                Title = "Test Error",
+                Status = 400,
+                Errors = new Dictionary<string, string[]>
+                {
+                    ["TestField"] = ["Test error message"]
+                }
+            };
+
+            string jsonContent = JsonSerializer.Serialize(problemResponse, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+            using HttpResponseMessage response = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.ProblemJson)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Failures.ShouldNotBeNull();
+            result.Failures.Count.ShouldBe(1);
+            result.Failures["TestField"].ShouldBe(["Test error message"]);
+        }
+    }
+
+    #endregion TASK-047: Full RFC 7807 ValidationProblemDetails Support Tests
 }
