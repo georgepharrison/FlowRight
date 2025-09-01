@@ -51,7 +51,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound(),
             HttpStatusCode.InternalServerError => Result.Failure("Internal Server Error"),
             _ => Result.Failure(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
@@ -123,7 +123,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure<T?>("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound<T?>(),
             HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
@@ -176,7 +176,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure<T?>("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound<T?>(),
             HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
@@ -248,7 +248,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure<T?>("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound<T?>(),
             HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
@@ -296,7 +296,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<string?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<string?>(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure<string?>("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound<string?>(),
             HttpStatusCode.InternalServerError => Result.Failure<string?>("Internal Server Error"),
             _ => Result.Failure<string?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
@@ -344,7 +344,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<byte[]?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<byte[]?>(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure<byte[]?>("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound<byte[]?>(),
             HttpStatusCode.InternalServerError => Result.Failure<byte[]?>("Internal Server Error"),
             _ => Result.Failure<byte[]?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
@@ -425,7 +425,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<Dictionary<string, string>?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<Dictionary<string, string>?>(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure<Dictionary<string, string>?>("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound<Dictionary<string, string>?>(),
             HttpStatusCode.InternalServerError => Result.Failure<Dictionary<string, string>?>("Internal Server Error"),
             _ => Result.Failure<Dictionary<string, string>?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };
@@ -482,7 +482,7 @@ public static class HttpResponseMessageExtensions
             HttpStatusCode.BadRequest => await responseMessage.HandleBadRequestAsync<T?>(cancellationToken).ConfigureAwait(false),
             HttpStatusCode.Unauthorized or
             HttpStatusCode.Forbidden => Result.Failure<T?>(new SecurityException("Unauthorized")),
-            HttpStatusCode.NotFound => Result.Failure<T?>("Not Found"),
+            HttpStatusCode.NotFound => Result.NotFound<T?>(),
             HttpStatusCode.InternalServerError => Result.Failure<T?>("Internal Server Error"),
             _ => Result.Failure<T?>(await GetUnexpectedStatusCodeFailureAsync(responseMessage, cancellationToken).ConfigureAwait(false))
         };

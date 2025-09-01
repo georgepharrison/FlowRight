@@ -376,6 +376,7 @@ public partial class Result : IResult
                 ResultFailureType.Error => onError(Error),
                 ResultFailureType.Security => onSecurityException(Error),
                 ResultFailureType.Validation => onValidationException(Failures),
+                ResultFailureType.NotFound => onError(Error),
                 ResultFailureType.OperationCanceled => onOperationCanceledException(Error),
                 _ => throw new NotImplementedException()
             };
@@ -514,6 +515,10 @@ public partial class Result : IResult
 
             case ResultFailureType.Validation:
                 onValidationException(Failures);
+                break;
+
+            case ResultFailureType.NotFound:
+                onError(Error);
                 break;
 
             case ResultFailureType.OperationCanceled:

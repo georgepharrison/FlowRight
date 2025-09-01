@@ -103,7 +103,7 @@
 - [x] **TASK-046**: Map 2xx status codes to success
 - [x] **TASK-047**: Handle 400 with ValidationProblemDetails
 - [x] **TASK-048**: Map 401/403 to SecurityException
-- [ ] **TASK-049**: Convert 404 to NotFound result
+- [x] **TASK-049**: Convert 404 to NotFound result
 - [ ] **TASK-050**: Handle 5xx as server errors
 
 ---

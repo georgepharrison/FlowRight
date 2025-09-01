@@ -177,6 +177,7 @@ public sealed class HttpResponseMessageExtensionsTests
 
         // Assert
         result.IsSuccess.ShouldBeFalse();
+        result.FailureType.ShouldBe(ResultFailureType.NotFound);
         result.Error.ShouldBe("Not Found");
     }
 
@@ -334,6 +335,7 @@ public sealed class HttpResponseMessageExtensionsTests
 
         // Assert
         result.IsSuccess.ShouldBeFalse();
+        result.FailureType.ShouldBe(ResultFailureType.NotFound);
         result.Error.ShouldBe("Not Found");
     }
 
@@ -1691,4 +1693,441 @@ public sealed class HttpResponseMessageExtensionsTests
     }
 
     #endregion TASK-047: Full RFC 7807 ValidationProblemDetails Support Tests
+
+    #region TASK-049: NotFound Factory Method HTTP Extension Tests
+
+    public class NotFoundHttpExtensionTests
+    {
+        [Fact]
+        public async Task ToResultAsync_WithNotFound_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound);
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.ResultType.ShouldBe(ResultType.Error);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithNotFoundAndContent_ShouldReturnFailureWithNotFoundTypeAndCustomMessage()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("User not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithNotFoundAndEmptyContent_ShouldReturnFailureWithGenericNotFoundMessage()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithNotFoundAndNullContent_ShouldReturnFailureWithGenericNotFoundMessage()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound);
+            response.Content = null;
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNotFound_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound);
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.ResultType.ShouldBe(ResultType.Error);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNotFoundAndContent_ShouldReturnFailureWithNotFoundTypeAndCustomMessage()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("Product not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNotFoundAndJsonContent_ShouldReturnFailureWithNotFoundTypeAndJsonMessage()
+        {
+            // Arrange
+            string jsonErrorMessage = "\"Customer with ID 123 not found\"";
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent(jsonErrorMessage, Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfoAndNotFound_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("Order not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfoAndNotFoundWithEmptyContent_ShouldReturnFailureWithGenericMessage()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsTextAsync_WithNotFound_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("Document not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<string?> result = await response.ToResultAsTextAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out string? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsBytesAsync_WithNotFound_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("File not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<byte[]?> result = await response.ToResultAsBytesAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out byte[]? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultFromXmlAsync_WithNotFound_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("XML resource not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromXmlAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsFormDataAsync_WithNotFound_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("Form data not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<Dictionary<string, string>?> result = await response.ToResultAsFormDataAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out Dictionary<string, string>? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithNotFoundAndCancellationToken_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound);
+            using CancellationTokenSource cts = new();
+
+            // Act
+            Result result = await response.ToResultAsync(cts.Token);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNotFoundAndCancellationToken_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound);
+            using CancellationTokenSource cts = new();
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>(cancellationToken: cts.Token);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNotFoundAndCustomJsonSerializerOptions_ShouldReturnFailureWithNotFoundType()
+        {
+            // Arrange
+            JsonSerializerOptions options = new()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("API resource not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>(options);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Theory]
+        [InlineData("User with ID 123 not found")]
+        [InlineData("Product SKU ABC-XYZ not found")]
+        [InlineData("Resource does not exist")]
+        [InlineData("The requested item could not be found")]
+        public async Task ToResultAsync_WithNotFoundAndVariousMessages_ShouldReturnFailureWithCorrectMessage(string errorMessage)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent(errorMessage, Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Theory]
+        [InlineData("Customer not found")]
+        [InlineData("Order not found")]
+        [InlineData("Invoice not found")]
+        [InlineData("Transaction not found")]
+        public async Task ToResultFromJsonAsync_WithNotFoundAndVariousMessages_ShouldReturnFailureWithCorrectMessage(string errorMessage)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent(errorMessage, Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithNotFoundShouldNotConflictWithOtherErrorTypes()
+        {
+            // Arrange & Act & Assert for different status codes to ensure NotFound is distinct
+            
+            // NotFound should return NotFound type
+            using HttpResponseMessage notFoundResponse = new(HttpStatusCode.NotFound);
+            Result notFoundResult = await notFoundResponse.ToResultAsync();
+            notFoundResult.FailureType.ShouldBe(ResultFailureType.NotFound);
+            
+            // Unauthorized should return Security type
+            using HttpResponseMessage unauthorizedResponse = new(HttpStatusCode.Unauthorized);
+            Result unauthorizedResult = await unauthorizedResponse.ToResultAsync();
+            unauthorizedResult.FailureType.ShouldBe(ResultFailureType.Security);
+            
+            // BadRequest should return Error type (default)
+            using HttpResponseMessage badRequestResponse = new(HttpStatusCode.BadRequest);
+            Result badRequestResult = await badRequestResponse.ToResultAsync();
+            badRequestResult.FailureType.ShouldBe(ResultFailureType.Error);
+            
+            // InternalServerError should return Error type (default)
+            using HttpResponseMessage serverErrorResponse = new(HttpStatusCode.InternalServerError);
+            Result serverErrorResult = await serverErrorResponse.ToResultAsync();
+            serverErrorResult.FailureType.ShouldBe(ResultFailureType.Error);
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNotFoundShouldNotConflictWithOtherErrorTypes()
+        {
+            // Arrange & Act & Assert for different status codes to ensure NotFound is distinct
+            
+            // NotFound should return NotFound type
+            using HttpResponseMessage notFoundResponse = new(HttpStatusCode.NotFound);
+            Result<TestModel?> notFoundResult = await notFoundResponse.ToResultFromJsonAsync<TestModel>();
+            notFoundResult.FailureType.ShouldBe(ResultFailureType.NotFound);
+            
+            // Unauthorized should return Security type
+            using HttpResponseMessage unauthorizedResponse = new(HttpStatusCode.Unauthorized);
+            Result<TestModel?> unauthorizedResult = await unauthorizedResponse.ToResultFromJsonAsync<TestModel>();
+            unauthorizedResult.FailureType.ShouldBe(ResultFailureType.Security);
+            
+            // BadRequest should return Error type (for non-validation content)
+            using HttpResponseMessage badRequestResponse = new(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent("Bad request", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+            Result<TestModel?> badRequestResult = await badRequestResponse.ToResultFromJsonAsync<TestModel>();
+            badRequestResult.FailureType.ShouldBe(ResultFailureType.Error);
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithNotFoundShouldHaveEmptyFailuresDictionary()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("Resource not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Failures.ShouldBeEmpty();
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNotFoundShouldHaveEmptyFailuresDictionary()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent("Entity not found", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Failures.ShouldBeEmpty();
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+    }
+
+    #endregion TASK-049: NotFound Factory Method HTTP Extension Tests
 }
