@@ -15,6 +15,15 @@ public static class Program
     /// Main entry point for benchmark execution.
     /// </summary>
     /// <param name="args">Command line arguments passed to BenchmarkDotNet.</param>
-    public static void Main(string[] args) =>
+    public static void Main(string[] args)
+    {
+        // If --simple-test is passed, run our simple performance test instead
+        if (args.Length > 0 && args[0] == "--simple-test")
+        {
+            SimplePerformanceTest.RunBasicPerformanceTest();
+            return;
+        }
+        
         BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+    }
 }

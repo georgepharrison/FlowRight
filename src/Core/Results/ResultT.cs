@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text.Json.Serialization;
 
@@ -269,10 +270,13 @@ public partial class Result<T> : IResult<T>
     /// Console.WriteLine(message);
     /// </code>
     /// </example>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TResult Match<TResult>(Func<T, TResult> onSuccess, Func<string, TResult> onFailure)
     {
+#if DEBUG
         ArgumentNullException.ThrowIfNull(onSuccess);
         ArgumentNullException.ThrowIfNull(onFailure);
+#endif
 
         return IsSuccess
             ? onSuccess(SuccessValue)
@@ -552,11 +556,17 @@ public partial class Result<T> : IResult<T>
     /// }
     /// </code>
     /// </example>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetValue([NotNullWhen(returnValue: true)] out T? value)
     {
-        value = IsSuccess ? SuccessValue : default;
-
-        return IsSuccess;
+        if (IsSuccess)
+        {
+            value = SuccessValue!;
+            return true;
+        }
+        
+        value = default;
+        return false;
     }
 
 
@@ -658,7 +668,7 @@ public partial class Result<T> : IResult<T>
     /// It is always the logical inverse of <see cref="IsFailure"/>.
     /// </remarks>
     public bool IsSuccess =>
-        !IsFailure;
+        string.IsNullOrEmpty(Error);
 
     /// <summary>
     /// Gets the general category of this result.
