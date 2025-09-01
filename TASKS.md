@@ -100,7 +100,7 @@
 - [x] **TASK-045**: Handle different content types appropriately
 
 ### Status Code Mapping
-- [ ] **TASK-046**: Map 2xx status codes to success
+- [x] **TASK-046**: Map 2xx status codes to success
 - [ ] **TASK-047**: Handle 400 with ValidationProblemDetails
 - [ ] **TASK-048**: Map 401/403 to SecurityException
 - [ ] **TASK-049**: Convert 404 to NotFound result
