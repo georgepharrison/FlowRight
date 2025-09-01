@@ -1,0 +1,317 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.InclusiveBetweenRule
+  commentId: T:FlowRight.Validation.Rules.InclusiveBetweenRule
+  id: InclusiveBetweenRule
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.InclusiveBetweenRule.#ctor(System.Int32,System.Int32)
+  - FlowRight.Validation.Rules.InclusiveBetweenRule.Validate(System.Int32,System.String)
+  langs:
+  - csharp
+  - vb
+  name: InclusiveBetweenRule
+  nameWithType: InclusiveBetweenRule
+  fullName: FlowRight.Validation.Rules.InclusiveBetweenRule
+  type: Class
+  source:
+    id: InclusiveBetweenRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/InclusiveBetweenRule.cs
+    startLine: 9
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures an integer value is between two bounds (inclusive).
+  example: []
+  syntax:
+    content: 'public sealed class InclusiveBetweenRule : IRule<int>'
+    content.vb: Public NotInheritable Class InclusiveBetweenRule Implements IRule(Of Integer)
+  inheritance:
+  - System.Object
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.Int32}
+- uid: FlowRight.Validation.Rules.InclusiveBetweenRule.#ctor(System.Int32,System.Int32)
+  commentId: M:FlowRight.Validation.Rules.InclusiveBetweenRule.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: FlowRight.Validation.Rules.InclusiveBetweenRule
+  langs:
+  - csharp
+  - vb
+  name: InclusiveBetweenRule(int, int)
+  nameWithType: InclusiveBetweenRule.InclusiveBetweenRule(int, int)
+  fullName: FlowRight.Validation.Rules.InclusiveBetweenRule.InclusiveBetweenRule(int, int)
+  type: Constructor
+  source:
+    id: .ctor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/InclusiveBetweenRule.cs
+    startLine: 9
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures an integer value is between two bounds (inclusive).
+  example: []
+  syntax:
+    content: public InclusiveBetweenRule(int from, int to)
+    parameters:
+    - id: from
+      type: System.Int32
+      description: The lower bound (inclusive).
+    - id: to
+      type: System.Int32
+      description: The upper bound (inclusive).
+    content.vb: Public Sub New(from As Integer, [to] As Integer)
+  overload: FlowRight.Validation.Rules.InclusiveBetweenRule.#ctor*
+  nameWithType.vb: InclusiveBetweenRule.New(Integer, Integer)
+  fullName.vb: FlowRight.Validation.Rules.InclusiveBetweenRule.New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: FlowRight.Validation.Rules.InclusiveBetweenRule.Validate(System.Int32,System.String)
+  commentId: M:FlowRight.Validation.Rules.InclusiveBetweenRule.Validate(System.Int32,System.String)
+  id: Validate(System.Int32,System.String)
+  parent: FlowRight.Validation.Rules.InclusiveBetweenRule
+  langs:
+  - csharp
+  - vb
+  name: Validate(int, string)
+  nameWithType: InclusiveBetweenRule.Validate(int, string)
+  fullName: FlowRight.Validation.Rules.InclusiveBetweenRule.Validate(int, string)
+  type: Method
+  source:
+    id: Validate
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/InclusiveBetweenRule.cs
+    startLine: 26
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Validates that the integer value is between the bounds (inclusive).
+  example: []
+  syntax:
+    content: public string? Validate(int value, string displayName)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: The integer value to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated.
+    return:
+      type: System.String
+      description: An error message if the value is not between the bounds; otherwise, null.
+    content.vb: Public Function Validate(value As Integer, displayName As String) As String
+  overload: FlowRight.Validation.Rules.InclusiveBetweenRule.Validate*
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.Int32}.Validate(System.Int32,System.String)
+  nameWithType.vb: InclusiveBetweenRule.Validate(Integer, String)
+  fullName.vb: FlowRight.Validation.Rules.InclusiveBetweenRule.Validate(Integer, String)
+  name.vb: Validate(Integer, String)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FlowRight.Validation.Rules.IRule{System.Int32}
+  commentId: T:FlowRight.Validation.Rules.IRule{System.Int32}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<int>
+  nameWithType: IRule<int>
+  fullName: FlowRight.Validation.Rules.IRule<int>
+  nameWithType.vb: IRule(Of Integer)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of Integer)
+  name.vb: IRule(Of Integer)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.InclusiveBetweenRule.#ctor*
+  commentId: Overload:FlowRight.Validation.Rules.InclusiveBetweenRule.#ctor
+  href: FlowRight.Validation.Rules.InclusiveBetweenRule.html#FlowRight_Validation_Rules_InclusiveBetweenRule__ctor_System_Int32_System_Int32_
+  name: InclusiveBetweenRule
+  nameWithType: InclusiveBetweenRule.InclusiveBetweenRule
+  fullName: FlowRight.Validation.Rules.InclusiveBetweenRule.InclusiveBetweenRule
+  nameWithType.vb: InclusiveBetweenRule.New
+  fullName.vb: FlowRight.Validation.Rules.InclusiveBetweenRule.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FlowRight.Validation.Rules.InclusiveBetweenRule.Validate*
+  commentId: Overload:FlowRight.Validation.Rules.InclusiveBetweenRule.Validate
+  href: FlowRight.Validation.Rules.InclusiveBetweenRule.html#FlowRight_Validation_Rules_InclusiveBetweenRule_Validate_System_Int32_System_String_
+  name: Validate
+  nameWithType: InclusiveBetweenRule.Validate
+  fullName: FlowRight.Validation.Rules.InclusiveBetweenRule.Validate
+- uid: FlowRight.Validation.Rules.IRule{System.Int32}.Validate(System.Int32,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule{System.Int32}.Validate(System.Int32,System.String)
+  parent: FlowRight.Validation.Rules.IRule{System.Int32}
+  definition: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(int, string)
+  nameWithType: IRule<int>.Validate(int, string)
+  fullName: FlowRight.Validation.Rules.IRule<int>.Validate(int, string)
+  nameWithType.vb: IRule(Of Integer).Validate(Integer, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of Integer).Validate(Integer, String)
+  name.vb: Validate(Integer, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule{System.Int32}.Validate(System.Int32,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule{System.Int32}.Validate(System.Int32,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )

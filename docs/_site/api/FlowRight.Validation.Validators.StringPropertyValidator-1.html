@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class StringPropertyValidator&lt;T&gt; | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class StringPropertyValidator&lt;T&gt; | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides fluent validation rules specifically designed for string properties, offering comprehensive string-specific validation capabilities including length checks, pattern matching, and email validation.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1">
+
+
+
+  <h1 id="FlowRight_Validation_Validators_StringPropertyValidator_1" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1" class="text-break">
+Class StringPropertyValidator&lt;T&gt;  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Validation.html">Validation</a>.<a class="xref" href="FlowRight.Validation.Validators.html">Validators</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Validation.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides fluent validation rules specifically designed for string properties, offering comprehensive
+string-specific validation capabilities including length checks, pattern matching, and email validation.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class StringPropertyValidator&lt;T&gt; : PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of object being validated.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html">PropertyValidator</a>&lt;T, <span class="xref">string</span>, <a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;&gt;</div>
+      <div><span class="xref">StringPropertyValidator&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Build_System_Func__0__">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.Build(Func&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Empty">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.Empty()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Equal__1_System_Collections_Generic_IEqualityComparer__1__">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.Equal(string, IEqualityComparer&lt;string&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Must_System_Func__1_System_Boolean__System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.Must(Func&lt;string, bool&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEmpty">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.NotEmpty()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEqual__1_System_Collections_Generic_IEqualityComparer__1__">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.NotEqual(string, IEqualityComparer&lt;string&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotNull">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.NotNull()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Null">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.Null()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0___FlowRight_Core_Results_Result___0____0__">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor&lt;TDifferentProp&gt;(Expression&lt;Func&lt;T, TDifferentProp&gt;&gt;, Result&lt;TDifferentProp&gt;, out TDifferentProp)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, string&gt;&gt;, string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Guid____System_Nullable_System_Guid__System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, Guid?&gt;&gt;, Guid?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, int&gt;&gt;, int, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int64___System_Int64_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, long&gt;&gt;, long, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Decimal___System_Decimal_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, decimal&gt;&gt;, decimal, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Double___System_Double_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, double&gt;&gt;, double, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Single___System_Single_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, float&gt;&gt;, float, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int16___System_Int16_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, short&gt;&gt;, short, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_IEnumerable___0____System_Collections_Generic_IEnumerable___0__System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor&lt;TItem&gt;(Expression&lt;Func&lt;T, IEnumerable&lt;TItem&gt;&gt;&gt;, IEnumerable&lt;TItem&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_DateTime_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, DateTime&gt;&gt;, DateTime, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_DateTime____System_Nullable_System_DateTime__System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, DateTime?&gt;&gt;, DateTime?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Boolean____System_Nullable_System_Boolean__System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, bool?&gt;&gt;, bool?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Byte___System_Byte_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, byte&gt;&gt;, byte, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_SByte___System_SByte_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, sbyte&gt;&gt;, sbyte, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt32___System_UInt32_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, uint&gt;&gt;, uint, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt64___System_UInt64_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, ulong&gt;&gt;, ulong, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Char___System_Char_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, char&gt;&gt;, char, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Char____System_Nullable_System_Char__System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, char?&gt;&gt;, char?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Unless_System_Func__1_System_Boolean__">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.Unless(Func&lt;string, bool&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_When_System_Func__1_System_Boolean__">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.When(Func&lt;string, bool&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_WithMessage_System_String_">PropertyValidator&lt;T, string, StringPropertyValidator&lt;T&gt;&gt;.WithMessage(string)</a>
+    </div>
+  </dd></dl>
+
+
+
+  <h2 id="FlowRight_Validation_Validators_StringPropertyValidator_1_examples">Examples</h2>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;User&gt; builder = new();
+builder.RuleFor(x =&gt; x.Email, request.Email)
+    .NotEmpty()
+    .EmailAddress()
+    .MaximumLength(255)
+    .WithMessage("Please provide a valid email address");
+
+builder.RuleFor(x =&gt; x.Password, request.Password)
+    .NotEmpty()
+    .MinimumLength(8)
+    .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$")
+    .WithMessage("Password must contain at least one lowercase, uppercase, and digit");</code></pre>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_Alpha_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Alpha*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_Alpha" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Alpha">
+  Alpha()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string contains only alphabetic characters (letters).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; Alpha()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_Alpha_examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.FirstName, request.FirstName)
+    .Alpha()
+    .WithMessage("First name must contain only letters");
+
+// Valid: "John", "María", "José"
+// Invalid: "John123", "John-Doe", "John Smith"</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_AlphaNumeric_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.AlphaNumeric*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_AlphaNumeric" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.AlphaNumeric">
+  AlphaNumeric()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string contains only alphanumeric characters (letters and digits).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; AlphaNumeric()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_AlphaNumeric_examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Username, request.Username)
+    .AlphaNumeric()
+    .WithMessage("Username must contain only letters and numbers");
+
+// Valid: "User123", "JohnDoe", "admin"
+// Invalid: "user-123", "john_doe", "admin@"</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_Contains_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Contains*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_Contains_System_String_System_StringComparison_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Contains(System.String,System.StringComparison)">
+  Contains(string, StringComparison)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string contains the specified substring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; Contains(string substring, StringComparison comparison = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>substring</code> <span class="xref">string</span></dt>
+    <dd><p>The substring that must be contained in the value.</p>
+</dd>
+    <dt><code>comparison</code> <span class="xref">StringComparison</span></dt>
+    <dd><p>The string comparison type to use.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_Contains_System_String_System_StringComparison__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Description, request.Description)
+    .Contains("important")
+    .WithMessage("Description must contain the word 'important'");
+
+// Case-insensitive search
+builder.RuleFor(x =&gt; x.Title, request.Title)
+    .Contains("urgent", StringComparison.OrdinalIgnoreCase)
+    .WithMessage("Title must contain 'urgent' (case insensitive)");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_EmailAddress_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.EmailAddress*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_EmailAddress" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.EmailAddress">
+  EmailAddress()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string is a properly formatted email address according to standard email format rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; EmailAddress()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_EmailAddress_examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Email, request.Email)
+    .EmailAddress()
+    .WithMessage("Please enter a valid email address");
+
+// Valid: "user@example.com", "test.email+tag@domain.co.uk"
+// Invalid: "invalid-email", "@domain.com", "user@"</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_EndsWith_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.EndsWith*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_EndsWith_System_String_System_StringComparison_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.EndsWith(System.String,System.StringComparison)">
+  EndsWith(string, StringComparison)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string ends with the specified suffix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; EndsWith(string suffix, StringComparison comparison = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>suffix</code> <span class="xref">string</span></dt>
+    <dd><p>The suffix that the value must end with.</p>
+</dd>
+    <dt><code>comparison</code> <span class="xref">StringComparison</span></dt>
+    <dd><p>The string comparison type to use.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_EndsWith_System_String_System_StringComparison__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.FileName, request.FileName)
+    .EndsWith(".txt")
+    .WithMessage("File must be a text file (.txt)");
+
+// Case-insensitive suffix check
+builder.RuleFor(x =&gt; x.ImagePath, request.ImagePath)
+    .EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
+    .WithMessage("Image must be a JPEG file");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_ExactLength_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.ExactLength*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_ExactLength_System_Int32_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.ExactLength(System.Int32)">
+  ExactLength(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string has exactly the specified length.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; ExactLength(int length)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>length</code> <span class="xref">int</span></dt>
+    <dd><p>The exact length the string must have.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_ExactLength_System_Int32__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.CountryCode, request.CountryCode)
+    .ExactLength(2)
+    .WithMessage("Country code must be exactly 2 characters");
+
+// Valid: "US", "CA", "GB"
+// Invalid: "USA", "C", ""</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_Length_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Length*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_Length_System_Int32_System_Int32_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Length(System.Int32,System.Int32)">
+  Length(int, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string length is between the specified minimum and maximum values (inclusive).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; Length(int minLength, int maxLength)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>minLength</code> <span class="xref">int</span></dt>
+    <dd><p>The minimum allowed length (inclusive).</p>
+</dd>
+    <dt><code>maxLength</code> <span class="xref">int</span></dt>
+    <dd><p>The maximum allowed length (inclusive).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_Length_System_Int32_System_Int32__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Username, request.Username)
+    .Length(3, 20)
+    .WithMessage("Username must be between 3 and 20 characters");
+
+// Valid: "abc", "username123", "abcdefghijklmnopqrst"
+// Invalid: "ab", "verylongusernamethatexceedslimit"</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_LowerCase_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.LowerCase*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_LowerCase" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.LowerCase">
+  LowerCase()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string is in lowercase.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; LowerCase()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_LowerCase_examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Username, request.Username)
+    .LowerCase()
+    .WithMessage("Username must be in lowercase");
+
+// Valid: "user", "admin", "john.doe"
+// Invalid: "User", "ADMIN", "John.Doe"</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_Matches_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Matches*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_Matches_System_String_System_Text_RegularExpressions_RegexOptions_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Matches(System.String,System.Text.RegularExpressions.RegexOptions)">
+  Matches(string, RegexOptions)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string matches the specified regular expression pattern.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; Matches(string pattern, RegexOptions options = RegexOptions.None)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pattern</code> <span class="xref">string</span></dt>
+    <dd><p>The regular expression pattern to match against.</p>
+</dd>
+    <dt><code>options</code> <span class="xref">RegexOptions</span></dt>
+    <dd><p>Optional regex options to modify pattern matching behavior.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_Matches_System_String_System_Text_RegularExpressions_RegexOptions__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Phone number validation
+builder.RuleFor(x =&gt; x.PhoneNumber, request.PhoneNumber)
+    .Matches(@"^\+?[1-9]\d{1,14}$")
+    .WithMessage("Please enter a valid phone number");
+
+// Case-insensitive pattern matching
+builder.RuleFor(x =&gt; x.ProductCode, request.ProductCode)
+    .Matches(@"^[A-Z]{2}\d{4}$", RegexOptions.IgnoreCase)
+    .WithMessage("Product code must be 2 letters followed by 4 digits");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_MaximumLength_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.MaximumLength*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_MaximumLength_System_Int32_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.MaximumLength(System.Int32)">
+  MaximumLength(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string length does not exceed the specified maximum.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; MaximumLength(int max)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>max</code> <span class="xref">int</span></dt>
+    <dd><p>The maximum allowed length (inclusive).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_MaximumLength_System_Int32__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Description, request.Description)
+    .MaximumLength(500)
+    .WithMessage("Description cannot exceed 500 characters");
+
+// Database field length constraints
+builder.RuleFor(x =&gt; x.Title, request.Title)
+    .MaximumLength(100)
+    .WithMessage("Title is too long for database storage");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_MinimumLength_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.MinimumLength*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_MinimumLength_System_Int32_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.MinimumLength(System.Int32)">
+  MinimumLength(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string length meets or exceeds the specified minimum.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; MinimumLength(int min)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>min</code> <span class="xref">int</span></dt>
+    <dd><p>The minimum required length (inclusive).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_MinimumLength_System_Int32__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Password, request.Password)
+    .MinimumLength(8)
+    .WithMessage("Password must be at least 8 characters long");
+
+// Security requirements
+builder.RuleFor(x =&gt; x.ApiKey, request.ApiKey)
+    .MinimumLength(32)
+    .WithMessage("API key is too short to be secure");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_StartsWith_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.StartsWith*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_StartsWith_System_String_System_StringComparison_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.StartsWith(System.String,System.StringComparison)">
+  StartsWith(string, StringComparison)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string starts with the specified prefix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; StartsWith(string prefix, StringComparison comparison = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>prefix</code> <span class="xref">string</span></dt>
+    <dd><p>The prefix that the value must start with.</p>
+</dd>
+    <dt><code>comparison</code> <span class="xref">StringComparison</span></dt>
+    <dd><p>The string comparison type to use.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_StartsWith_System_String_System_StringComparison__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.ProductCode, request.ProductCode)
+    .StartsWith("PRD-")
+    .WithMessage("Product code must start with 'PRD-'");
+
+// Case-insensitive prefix check
+builder.RuleFor(x =&gt; x.Command, request.Command)
+    .StartsWith("exec", StringComparison.OrdinalIgnoreCase)
+    .WithMessage("Command must start with 'exec'");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_UpperCase_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.UpperCase*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_UpperCase" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.UpperCase">
+  UpperCase()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string is in uppercase.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; UpperCase()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_UpperCase_examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.CountryCode, request.CountryCode)
+    .UpperCase()
+    .WithMessage("Country code must be in uppercase");
+
+// Valid: "US", "CANADA", "UNITED KINGDOM"
+// Invalid: "us", "canada", "United Kingdom"</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_StringPropertyValidator_1_Url_" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Url*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_StringPropertyValidator_1_Url" data-uid="FlowRight.Validation.Validators.StringPropertyValidator`1.Url">
+  Url()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the string is a properly formatted URL according to standard URL format rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; Url()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>The StringPropertyValidator&lt;T&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_StringPropertyValidator_1_Url_examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Website, request.Website)
+    .Url()
+    .WithMessage("Please enter a valid URL");
+
+// Valid: "https://example.com", "http://www.test.org/path?query=1"
+// Invalid: "not-a-url", "ftp://example.com", "example.com"</code></pre>
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

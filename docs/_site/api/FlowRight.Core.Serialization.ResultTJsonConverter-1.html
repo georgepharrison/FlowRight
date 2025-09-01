@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ResultTJsonConverter&lt;T&gt; | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ResultTJsonConverter&lt;T&gt; | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides custom JSON serialization and deserialization for  instances.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1">
+
+
+
+  <h1 id="FlowRight_Core_Serialization_ResultTJsonConverter_1" data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1" class="text-break">
+Class ResultTJsonConverter&lt;T&gt;  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Core.html">Core</a>.<a class="xref" href="FlowRight.Core.Serialization.html">Serialization</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides custom JSON serialization and deserialization for <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instances.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ResultTJsonConverter&lt;T&gt; : JsonConverter&lt;Result&lt;T&gt;&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value that the result can contain.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><span class="xref">JsonConverter</span></div>
+      <div><span class="xref">JsonConverter</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;</div>
+      <div><span class="xref">ResultTJsonConverter&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+  <h2 id="FlowRight_Core_Serialization_ResultTJsonConverter_1_examples">Examples</h2>
+  <pre><code class="lang-csharp">// Register the converter globally
+JsonSerializerOptions options = new()
+{
+    Converters = { new ResultTJsonConverter&lt;User&gt;() }
+};
+
+Result&lt;User&gt; result = Result.Success(user);
+string json = JsonSerializer.Serialize(result, options);
+Result&lt;User&gt; deserialized = JsonSerializer.Deserialize&lt;Result&lt;User&gt;&gt;(json, options);</code></pre>
+
+
+  <h2 id="FlowRight_Core_Serialization_ResultTJsonConverter_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+This converter ensures proper serialization of Result&lt;T&gt; objects while maintaining immutability
+and supporting all failure types including validation failures, security exceptions, and
+operation cancellations. The converter handles both serialization and deserialization
+in a way that preserves the exact state of Result&lt;T&gt; objects including their success values.
+</p>
+<p>
+The converter serializes Result&lt;T&gt; objects as JSON objects with the following structure:
+<pre><code class="lang-csharp">{
+  "value": T,
+  "error": "string",
+  "failures": { "field": ["error1", "error2"] },
+  "failureType": "None|Error|Security|Validation|OperationCanceled",
+  "resultType": "Success|Information|Warning|Error"
+}</code></pre>
+
+<p>
+For successful results, the "value" property contains the success value. For failed results,
+the "value" property is omitted from the JSON output.
+</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Core_Serialization_ResultTJsonConverter_1_CanConvert_" data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1.CanConvert*"></a>
+
+  <h3 id="FlowRight_Core_Serialization_ResultTJsonConverter_1_CanConvert_System_Type_" data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1.CanConvert(System.Type)">
+  CanConvert(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether this converter can convert the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanConvert(Type typeToConvert)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>typeToConvert</code> <span class="xref">Type</span></dt>
+    <dd><p>The type to check for conversion capability.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the type is <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> of the matching generic type; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Serialization_ResultTJsonConverter_1_CanConvert_System_Type__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This converter only handles Result&lt;T&gt; where T matches the generic type parameter
+specified when the converter was instantiated. Each generic Result type requires
+its own converter instance.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Serialization_ResultTJsonConverter_1_Read_" data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1.Read*"></a>
+
+  <h3 id="FlowRight_Core_Serialization_ResultTJsonConverter_1_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_" data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+  Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Deserializes a JSON object into a <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Result&lt;T&gt; Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reader</code> <span class="xref">Utf8JsonReader</span></dt>
+    <dd><p>The JSON reader positioned at the start of the Result&lt;T&gt; object.</p>
+</dd>
+    <dt><code>typeToConvert</code> <span class="xref">Type</span></dt>
+    <dd><p>The type to convert (should be <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a>).</p>
+</dd>
+    <dt><code>options</code> <span class="xref">JsonSerializerOptions</span></dt>
+    <dd><p>The JSON serializer options.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance representing the deserialized JSON data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Serialization_ResultTJsonConverter_1_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method reconstructs Result&lt;T&gt; objects from JSON by reading the serialized properties
+and using the appropriate static factory methods to create immutable Result&lt;T&gt; instances.
+The method preserves the exact failure type, error information, and success value from the original object.
+</p>
+<p>
+The deserialization process handles all Result&lt;T&gt; states:
+<ul><li>Success states with typed values and appropriate ResultType</li><li>General error failures</li><li>Security failures</li><li>Validation failures with field-specific errors</li><li>Operation cancellation failures</li></ul>
+
+<p>
+When deserializing successful results, the "value" property is deserialized according to
+the type T. For failed results, the value is ignored even if present in the JSON.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">JsonException</span></dt>
+    <dd><p>Thrown when the JSON structure is invalid or contains unexpected data.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Serialization_ResultTJsonConverter_1_Write_" data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1.Write*"></a>
+
+  <h3 id="FlowRight_Core_Serialization_ResultTJsonConverter_1_Write_System_Text_Json_Utf8JsonWriter_FlowRight_Core_Results_Result__0__System_Text_Json_JsonSerializerOptions_" data-uid="FlowRight.Core.Serialization.ResultTJsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,FlowRight.Core.Results.Result{`0},System.Text.Json.JsonSerializerOptions)">
+  Write(Utf8JsonWriter, Result&lt;T&gt;, JsonSerializerOptions)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Serializes a <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance to JSON.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(Utf8JsonWriter writer, Result&lt;T&gt; value, JsonSerializerOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>writer</code> <span class="xref">Utf8JsonWriter</span></dt>
+    <dd><p>The JSON writer to write the serialized data to.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance to serialize.</p>
+</dd>
+    <dt><code>options</code> <span class="xref">JsonSerializerOptions</span></dt>
+    <dd><p>The JSON serializer options.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Serialization_ResultTJsonConverter_1_Write_System_Text_Json_Utf8JsonWriter_FlowRight_Core_Results_Result__0__System_Text_Json_JsonSerializerOptions__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method serializes Result&lt;T&gt; objects to JSON by writing their properties as a JSON object.
+The serialization preserves all error information, failure types, result states, and success values
+to enable complete round-trip serialization.
+</p>
+<p>
+The method writes the following JSON structure:
+<ul><li><code>value</code>: The success value of type T (only for successful results)</li><li><code>error</code>: The error message string</li><li><code>failures</code>: Dictionary of field-specific validation errors</li><li><code>failureType</code>: The specific failure type enumeration</li><li><code>resultType</code>: The general result type enumeration</li></ul>
+
+<p>
+For successful results, the "value" property is included with the success value serialized
+according to type T. For failed results, the "value" property is omitted entirely.
+</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

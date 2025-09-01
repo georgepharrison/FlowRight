@@ -1,0 +1,1435 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  commentId: T:FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  id: HttpResponseMessageExtensions
+  parent: FlowRight.Http.Extensions
+  children:
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo(System.Net.Http.HttpResponseMessage)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType(System.Net.Http.HttpResponseMessage)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType(System.Net.Http.HttpResponseMessage,System.String)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType(System.Net.Http.HttpResponseMessage)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType(System.Net.Http.HttpResponseMessage)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType(System.Net.Http.HttpResponseMessage)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync``1(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType(System.Net.Http.HttpResponseMessage,System.String[])
+  langs:
+  - csharp
+  - vb
+  name: HttpResponseMessageExtensions
+  nameWithType: HttpResponseMessageExtensions
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  type: Class
+  source:
+    id: HttpResponseMessageExtensions
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Provides extension methods for converting HTTP response messages to Result types.
+  example: []
+  syntax:
+    content: public static class HttpResponseMessageExtensions
+    content.vb: Public Module HttpResponseMessageExtensions
+  inheritance:
+  - System.Object
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  id: ToResultAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultAsync(HttpResponseMessage, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultAsync(HttpResponseMessage, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync(System.Net.Http.HttpResponseMessage, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 38
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result, handling various HTTP status codes appropriately.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users");
+
+    Result result = await response.ToResultAsync();
+
+    if (result.IsSuccess)
+
+    {
+        // Handle success
+    }</code></pre>
+  syntax:
+    content: public static Task<Result> ToResultAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+      description: A Result representing the success or failure of the HTTP operation.
+    content.vb: Public Shared Function ToResultAsync(responseMessage As HttpResponseMessage, cancellationToken As CancellationToken = Nothing) As Task(Of Result)
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
+  id: ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultFromJsonAsync<T>(HttpResponseMessage, JsonSerializerOptions?, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultFromJsonAsync<T>(HttpResponseMessage, JsonSerializerOptions?, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync<T>(System.Net.Http.HttpResponseMessage, System.Text.Json.JsonSerializerOptions?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultFromJsonAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 82
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result&lt;T&gt; by deserializing the JSON content.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+
+    Result&lt;User?&gt; userResult = await response.ToResultFromJsonAsync&lt;User&gt;();
+
+    if (userResult.IsSuccess)
+
+    {
+        User? user = userResult.Value;
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<T?>> ToResultFromJsonAsync<T>(this HttpResponseMessage responseMessage, JsonSerializerOptions? options = null, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: Optional JSON serializer options.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    typeParameters:
+    - id: T
+      description: The type to deserialize the JSON content to.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+      description: A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.
+    content.vb: Public Shared Function ToResultFromJsonAsync(Of T)(responseMessage As HttpResponseMessage, options As JsonSerializerOptions = Nothing, cancellationToken As CancellationToken = Nothing) As Task(Of Result(Of T))
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync*
+  nameWithType.vb: HttpResponseMessageExtensions.ToResultFromJsonAsync(Of T)(HttpResponseMessage, JsonSerializerOptions, CancellationToken)
+  fullName.vb: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync(Of T)(System.Net.Http.HttpResponseMessage, System.Text.Json.JsonSerializerOptions, System.Threading.CancellationToken)
+  name.vb: ToResultFromJsonAsync(Of T)(HttpResponseMessage, JsonSerializerOptions, CancellationToken)
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)
+  id: ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultFromJsonAsync<T>(HttpResponseMessage, JsonTypeInfo<T>, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultFromJsonAsync<T>(HttpResponseMessage, JsonTypeInfo<T>, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync<T>(System.Net.Http.HttpResponseMessage, System.Text.Json.Serialization.Metadata.JsonTypeInfo<T>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultFromJsonAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 159
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result&lt;T&gt; by deserializing the JSON content using a JsonTypeInfo.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+
+    Result&lt;User?&gt; userResult = await response.ToResultFromJsonAsync(UserJsonContext.Default.User);
+
+    if (userResult.IsSuccess)
+
+    {
+        User? user = userResult.Value;
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<T?>> ToResultFromJsonAsync<T>(this HttpResponseMessage responseMessage, JsonTypeInfo<T> jsonTypeInfo, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: jsonTypeInfo
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo{{T}}
+      description: The JsonTypeInfo for source generation serialization.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    typeParameters:
+    - id: T
+      description: The type to deserialize the JSON content to.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+      description: A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.
+    content.vb: Public Shared Function ToResultFromJsonAsync(Of T)(responseMessage As HttpResponseMessage, jsonTypeInfo As JsonTypeInfo(Of T), cancellationToken As CancellationToken = Nothing) As Task(Of Result(Of T))
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync*
+  nameWithType.vb: HttpResponseMessageExtensions.ToResultFromJsonAsync(Of T)(HttpResponseMessage, JsonTypeInfo(Of T), CancellationToken)
+  fullName.vb: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync(Of T)(System.Net.Http.HttpResponseMessage, System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of T), System.Threading.CancellationToken)
+  name.vb: ToResultFromJsonAsync(Of T)(HttpResponseMessage, JsonTypeInfo(Of T), CancellationToken)
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync``1(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync``1(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  id: ToResultFromXmlAsync``1(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultFromXmlAsync<T>(HttpResponseMessage, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultFromXmlAsync<T>(HttpResponseMessage, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync<T>(System.Net.Http.HttpResponseMessage, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultFromXmlAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 216
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result&lt;T&gt; by deserializing the XML content.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+
+    Result&lt;User?&gt; userResult = await response.ToResultFromXmlAsync&lt;User&gt;();
+
+    if (userResult.IsSuccess)
+
+    {
+        User? user = userResult.Value;
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<T?>> ToResultFromXmlAsync<T>(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    typeParameters:
+    - id: T
+      description: The type to deserialize the XML content to.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+      description: A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.
+    content.vb: Public Shared Function ToResultFromXmlAsync(Of T)(responseMessage As HttpResponseMessage, cancellationToken As CancellationToken = Nothing) As Task(Of Result(Of T))
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync*
+  nameWithType.vb: HttpResponseMessageExtensions.ToResultFromXmlAsync(Of T)(HttpResponseMessage, CancellationToken)
+  fullName.vb: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync(Of T)(System.Net.Http.HttpResponseMessage, System.Threading.CancellationToken)
+  name.vb: ToResultFromXmlAsync(Of T)(HttpResponseMessage, CancellationToken)
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  id: ToResultAsTextAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultAsTextAsync(HttpResponseMessage, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultAsTextAsync(HttpResponseMessage, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync(System.Net.Http.HttpResponseMessage, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultAsTextAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 292
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result&lt;string&gt; by reading the content as text.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/text");
+
+    Result&lt;string?&gt; textResult = await response.ToResultAsTextAsync();
+
+    if (textResult.IsSuccess)
+
+    {
+        string? text = textResult.Value;
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<string?>> ToResultAsTextAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.String}}
+      description: A Result&lt;string&gt; containing the text content on success, or failure information on error.
+    content.vb: Public Shared Function ToResultAsTextAsync(responseMessage As HttpResponseMessage, cancellationToken As CancellationToken = Nothing) As Task(Of Result(Of String))
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  id: ToResultAsBytesAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultAsBytesAsync(HttpResponseMessage, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultAsBytesAsync(HttpResponseMessage, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync(System.Net.Http.HttpResponseMessage, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultAsBytesAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 345
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result&lt;byte[]&gt; by reading the content as bytes.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/file");
+
+    Result&lt;byte[]?&gt; bytesResult = await response.ToResultAsBytesAsync();
+
+    if (bytesResult.IsSuccess)
+
+    {
+        byte[]? bytes = bytesResult.Value;
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<byte[]?>> ToResultAsBytesAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.Byte[]}}
+      description: A Result&lt;byte[]&gt; containing the byte content on success, or failure information on error.
+    content.vb: Public Shared Function ToResultAsBytesAsync(responseMessage As HttpResponseMessage, cancellationToken As CancellationToken = Nothing) As Task(Of Result(Of Byte()))
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  id: ToResultAsFormDataAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultAsFormDataAsync(HttpResponseMessage, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultAsFormDataAsync(HttpResponseMessage, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync(System.Net.Http.HttpResponseMessage, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultAsFormDataAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 398
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result&lt;Dictionary&lt;string, string&gt;&gt; by parsing form data content.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.PostAsync("/api/form", formContent);
+
+    Result&lt;Dictionary&lt;string, string&gt;?&gt; formResult = await response.ToResultAsFormDataAsync();
+
+    if (formResult.IsSuccess)
+
+    {
+        Dictionary&lt;string, string&gt;? formData = formResult.Value;
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<Dictionary<string, string>?>> ToResultAsFormDataAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.Collections.Generic.Dictionary{System.String,System.String}}}
+      description: A Result&lt;Dictionary&lt;string, string&gt;&gt; containing the parsed form data on success, or failure information on error.
+    content.vb: Public Shared Function ToResultAsFormDataAsync(responseMessage As HttpResponseMessage, cancellationToken As CancellationToken = Nothing) As Task(Of Result(Of Dictionary(Of String, String)))
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
+  id: ToResultWithContentTypeValidation``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToResultWithContentTypeValidation<T>(HttpResponseMessage, string, CancellationToken)
+  nameWithType: HttpResponseMessageExtensions.ToResultWithContentTypeValidation<T>(HttpResponseMessage, string, CancellationToken)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation<T>(System.Net.Http.HttpResponseMessage, string, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: ToResultWithContentTypeValidation
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 486
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Converts an HTTP response message to a Result&lt;T&gt; with content type validation.
+  example:
+  - >-
+    <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+
+    Result&lt;User?&gt; userResult = await response.ToResultWithContentTypeValidation&lt;User&gt;("application/json");
+
+    if (userResult.IsSuccess)
+
+    {
+        User? user = userResult.Value;
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<T?>> ToResultWithContentTypeValidation<T>(this HttpResponseMessage responseMessage, string expectedContentType, CancellationToken cancellationToken = default)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message to convert.
+    - id: expectedContentType
+      type: System.String
+      description: The expected content type.
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: Token to cancel the operation.
+    typeParameters:
+    - id: T
+      description: The type to deserialize the content to.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+      description: A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.
+    content.vb: Public Shared Function ToResultWithContentTypeValidation(Of T)(responseMessage As HttpResponseMessage, expectedContentType As String, cancellationToken As CancellationToken = Nothing) As Task(Of Result(Of T))
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation*
+  nameWithType.vb: HttpResponseMessageExtensions.ToResultWithContentTypeValidation(Of T)(HttpResponseMessage, String, CancellationToken)
+  fullName.vb: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation(Of T)(System.Net.Http.HttpResponseMessage, String, System.Threading.CancellationToken)
+  name.vb: ToResultWithContentTypeValidation(Of T)(HttpResponseMessage, String, CancellationToken)
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo(System.Net.Http.HttpResponseMessage)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo(System.Net.Http.HttpResponseMessage)
+  id: GetContentTypeInfo(System.Net.Http.HttpResponseMessage)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetContentTypeInfo(HttpResponseMessage)
+  nameWithType: HttpResponseMessageExtensions.GetContentTypeInfo(HttpResponseMessage)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo(System.Net.Http.HttpResponseMessage)
+  type: Method
+  source:
+    id: GetContentTypeInfo
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 535
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Gets detailed content type information from the HTTP response message.
+  example: []
+  syntax:
+    content: public static ContentTypeInfo GetContentTypeInfo(this HttpResponseMessage responseMessage)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message.
+    return:
+      type: FlowRight.Http.Models.ContentTypeInfo
+      description: A ContentTypeInfo object containing parsed content type details.
+    content.vb: Public Shared Function GetContentTypeInfo(responseMessage As HttpResponseMessage) As ContentTypeInfo
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType(System.Net.Http.HttpResponseMessage,System.String)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType(System.Net.Http.HttpResponseMessage,System.String)
+  id: IsContentType(System.Net.Http.HttpResponseMessage,System.String)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsContentType(HttpResponseMessage, string)
+  nameWithType: HttpResponseMessageExtensions.IsContentType(HttpResponseMessage, string)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType(System.Net.Http.HttpResponseMessage, string)
+  type: Method
+  source:
+    id: IsContentType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 577
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Determines if the response content type matches the specified media type.
+  example: []
+  syntax:
+    content: public static bool IsContentType(this HttpResponseMessage responseMessage, string expectedMediaType)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message.
+    - id: expectedMediaType
+      type: System.String
+      description: The expected media type to match.
+    return:
+      type: System.Boolean
+      description: True if the content types match (ignoring parameters like charset).
+    content.vb: Public Shared Function IsContentType(responseMessage As HttpResponseMessage, expectedMediaType As String) As Boolean
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType*
+  nameWithType.vb: HttpResponseMessageExtensions.IsContentType(HttpResponseMessage, String)
+  fullName.vb: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType(System.Net.Http.HttpResponseMessage, String)
+  name.vb: IsContentType(HttpResponseMessage, String)
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType(System.Net.Http.HttpResponseMessage)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType(System.Net.Http.HttpResponseMessage)
+  id: IsJsonContentType(System.Net.Http.HttpResponseMessage)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsJsonContentType(HttpResponseMessage)
+  nameWithType: HttpResponseMessageExtensions.IsJsonContentType(HttpResponseMessage)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType(System.Net.Http.HttpResponseMessage)
+  type: Method
+  source:
+    id: IsJsonContentType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 591
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Determines if the response content type is a JSON variant.
+  example: []
+  syntax:
+    content: public static bool IsJsonContentType(this HttpResponseMessage responseMessage)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message.
+    return:
+      type: System.Boolean
+      description: True if the content type represents JSON content.
+    content.vb: Public Shared Function IsJsonContentType(responseMessage As HttpResponseMessage) As Boolean
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType(System.Net.Http.HttpResponseMessage)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType(System.Net.Http.HttpResponseMessage)
+  id: IsXmlContentType(System.Net.Http.HttpResponseMessage)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsXmlContentType(HttpResponseMessage)
+  nameWithType: HttpResponseMessageExtensions.IsXmlContentType(HttpResponseMessage)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType(System.Net.Http.HttpResponseMessage)
+  type: Method
+  source:
+    id: IsXmlContentType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 602
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Determines if the response content type is an XML variant.
+  example: []
+  syntax:
+    content: public static bool IsXmlContentType(this HttpResponseMessage responseMessage)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message.
+    return:
+      type: System.Boolean
+      description: True if the content type represents XML content.
+    content.vb: Public Shared Function IsXmlContentType(responseMessage As HttpResponseMessage) As Boolean
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType(System.Net.Http.HttpResponseMessage)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType(System.Net.Http.HttpResponseMessage)
+  id: IsTextContentType(System.Net.Http.HttpResponseMessage)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsTextContentType(HttpResponseMessage)
+  nameWithType: HttpResponseMessageExtensions.IsTextContentType(HttpResponseMessage)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType(System.Net.Http.HttpResponseMessage)
+  type: Method
+  source:
+    id: IsTextContentType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 613
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Determines if the response content type represents text content.
+  example: []
+  syntax:
+    content: public static bool IsTextContentType(this HttpResponseMessage responseMessage)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message.
+    return:
+      type: System.Boolean
+      description: True if the content type represents text content.
+    content.vb: Public Shared Function IsTextContentType(responseMessage As HttpResponseMessage) As Boolean
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType(System.Net.Http.HttpResponseMessage)
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType(System.Net.Http.HttpResponseMessage)
+  id: IsBinaryContentType(System.Net.Http.HttpResponseMessage)
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsBinaryContentType(HttpResponseMessage)
+  nameWithType: HttpResponseMessageExtensions.IsBinaryContentType(HttpResponseMessage)
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType(System.Net.Http.HttpResponseMessage)
+  type: Method
+  source:
+    id: IsBinaryContentType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 624
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Determines if the response content type represents binary content.
+  example: []
+  syntax:
+    content: public static bool IsBinaryContentType(this HttpResponseMessage responseMessage)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message.
+    return:
+      type: System.Boolean
+      description: True if the content type represents binary content.
+    content.vb: Public Shared Function IsBinaryContentType(responseMessage As HttpResponseMessage) As Boolean
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType*
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType(System.Net.Http.HttpResponseMessage,System.String[])
+  commentId: M:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType(System.Net.Http.HttpResponseMessage,System.String[])
+  id: ValidateContentType(System.Net.Http.HttpResponseMessage,System.String[])
+  isExtensionMethod: true
+  parent: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: ValidateContentType(HttpResponseMessage, string[])
+  nameWithType: HttpResponseMessageExtensions.ValidateContentType(HttpResponseMessage, string[])
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType(System.Net.Http.HttpResponseMessage, string[])
+  type: Method
+  source:
+    id: ValidateContentType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Extensions/HttpResponseMessageExtensions.cs
+    startLine: 636
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Extensions
+  summary: Validates that the response content type is one of the supported types.
+  example: []
+  syntax:
+    content: public static Result ValidateContentType(this HttpResponseMessage responseMessage, string[] supportedTypes)
+    parameters:
+    - id: responseMessage
+      type: System.Net.Http.HttpResponseMessage
+      description: The HTTP response message.
+    - id: supportedTypes
+      type: System.String[]
+      description: Array of supported content types.
+    return:
+      type: FlowRight.Core.Results.Result
+      description: A Result indicating whether the content type is supported.
+    content.vb: Public Shared Function ValidateContentType(responseMessage As HttpResponseMessage, supportedTypes As String()) As Result
+  overload: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType*
+  nameWithType.vb: HttpResponseMessageExtensions.ValidateContentType(HttpResponseMessage, String())
+  fullName.vb: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType(System.Net.Http.HttpResponseMessage, String())
+  name.vb: ValidateContentType(HttpResponseMessage, String())
+references:
+- uid: FlowRight.Http.Extensions
+  commentId: N:FlowRight.Http.Extensions
+  href: FlowRight.html
+  name: FlowRight.Http.Extensions
+  nameWithType: FlowRight.Http.Extensions
+  fullName: FlowRight.Http.Extensions
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Extensions
+    name: Extensions
+    href: FlowRight.Http.Extensions.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Extensions
+    name: Extensions
+    href: FlowRight.Http.Extensions.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_
+  name: ToResultAsync
+  nameWithType: HttpResponseMessageExtensions.ToResultAsync
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync
+- uid: System.Net.Http.HttpResponseMessage
+  commentId: T:System.Net.Http.HttpResponseMessage
+  parent: System.Net.Http
+  isExternal: true
+  name: HttpResponseMessage
+  nameWithType: HttpResponseMessage
+  fullName: System.Net.Http.HttpResponseMessage
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result.html
+  name: Task<Result>
+  nameWithType: Task<Result>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result>
+  nameWithType.vb: Task(Of Result)
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result)
+  name.vb: Task(Of Result)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: )
+- uid: System.Net.Http
+  commentId: N:System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net.Http
+  nameWithType: System.Net.Http
+  fullName: System.Net.Http
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromJsonAsync__1_System_Net_Http_HttpResponseMessage_System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_
+  name: ToResultFromJsonAsync
+  nameWithType: HttpResponseMessageExtensions.ToResultFromJsonAsync
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync
+- uid: System.Text.Json.JsonSerializerOptions
+  commentId: T:System.Text.Json.JsonSerializerOptions
+  parent: System.Text.Json
+  isExternal: true
+  name: JsonSerializerOptions
+  nameWithType: JsonSerializerOptions
+  fullName: System.Text.Json.JsonSerializerOptions
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<T>>
+  nameWithType: Task<Result<T>>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<T>>
+  nameWithType.vb: Task(Of Result(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of T))
+  name.vb: Task(Of Result(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Text.Json
+  commentId: N:System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json
+  nameWithType: System.Text.Json
+  fullName: System.Text.Json
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo{{T}}
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0}
+  parent: System.Text.Json.Serialization.Metadata
+  definition: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  name: JsonTypeInfo<T>
+  nameWithType: JsonTypeInfo<T>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<T>
+  nameWithType.vb: JsonTypeInfo(Of T)
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of T)
+  name.vb: JsonTypeInfo(Of T)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  isExternal: true
+  name: JsonTypeInfo<T>
+  nameWithType: JsonTypeInfo<T>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<T>
+  nameWithType.vb: JsonTypeInfo(Of T)
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of T)
+  name.vb: JsonTypeInfo(Of T)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Text.Json.Serialization.Metadata
+  commentId: N:System.Text.Json.Serialization.Metadata
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json.Serialization.Metadata
+  nameWithType: System.Text.Json.Serialization.Metadata
+  fullName: System.Text.Json.Serialization.Metadata
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+  - name: .
+  - uid: System.Text.Json.Serialization.Metadata
+    name: Metadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+  - name: .
+  - uid: System.Text.Json.Serialization.Metadata
+    name: Metadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromXmlAsync__1_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_
+  name: ToResultFromXmlAsync
+  nameWithType: HttpResponseMessageExtensions.ToResultFromXmlAsync
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsTextAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_
+  name: ToResultAsTextAsync
+  nameWithType: HttpResponseMessageExtensions.ToResultAsTextAsync
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.String}}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.String}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<string>>
+  nameWithType: Task<Result<string>>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<string>>
+  nameWithType.vb: Task(Of Result(Of String))
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of String))
+  name.vb: Task(Of Result(Of String))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+  - name: )
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsBytesAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_
+  name: ToResultAsBytesAsync
+  nameWithType: HttpResponseMessageExtensions.ToResultAsBytesAsync
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.Byte[]}}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.Byte[]}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<byte[]>>
+  nameWithType: Task<Result<byte[]>>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<byte[]>>
+  nameWithType.vb: Task(Of Result(Of Byte()))
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of Byte()))
+  name.vb: Task(Of Result(Of Byte()))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+  - name: )
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsFormDataAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_
+  name: ToResultAsFormDataAsync
+  nameWithType: HttpResponseMessageExtensions.ToResultAsFormDataAsync
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.Collections.Generic.Dictionary{System.String,System.String}}}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result{System.Collections.Generic.Dictionary{System.String,System.String}}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<Dictionary<string, string>>>
+  nameWithType: Task<Result<Dictionary<string, string>>>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<System.Collections.Generic.Dictionary<string, string>>>
+  nameWithType.vb: Task(Of Result(Of Dictionary(Of String, String)))
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of System.Collections.Generic.Dictionary(Of String, String)))
+  name.vb: Task(Of Result(Of Dictionary(Of String, String)))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+  - name: )
+  - name: )
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultWithContentTypeValidation__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_
+  name: ToResultWithContentTypeValidation
+  nameWithType: HttpResponseMessageExtensions.ToResultWithContentTypeValidation
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_GetContentTypeInfo_System_Net_Http_HttpResponseMessage_
+  name: GetContentTypeInfo
+  nameWithType: HttpResponseMessageExtensions.GetContentTypeInfo
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo
+- uid: FlowRight.Http.Models.ContentTypeInfo
+  commentId: T:FlowRight.Http.Models.ContentTypeInfo
+  parent: FlowRight.Http.Models
+  href: FlowRight.Http.Models.ContentTypeInfo.html
+  name: ContentTypeInfo
+  nameWithType: ContentTypeInfo
+  fullName: FlowRight.Http.Models.ContentTypeInfo
+- uid: FlowRight.Http.Models
+  commentId: N:FlowRight.Http.Models
+  href: FlowRight.html
+  name: FlowRight.Http.Models
+  nameWithType: FlowRight.Http.Models
+  fullName: FlowRight.Http.Models
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsContentType_System_Net_Http_HttpResponseMessage_System_String_
+  name: IsContentType
+  nameWithType: HttpResponseMessageExtensions.IsContentType
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsJsonContentType_System_Net_Http_HttpResponseMessage_
+  name: IsJsonContentType
+  nameWithType: HttpResponseMessageExtensions.IsJsonContentType
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsXmlContentType_System_Net_Http_HttpResponseMessage_
+  name: IsXmlContentType
+  nameWithType: HttpResponseMessageExtensions.IsXmlContentType
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsTextContentType_System_Net_Http_HttpResponseMessage_
+  name: IsTextContentType
+  nameWithType: HttpResponseMessageExtensions.IsTextContentType
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsBinaryContentType_System_Net_Http_HttpResponseMessage_
+  name: IsBinaryContentType
+  nameWithType: HttpResponseMessageExtensions.IsBinaryContentType
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType*
+  commentId: Overload:FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html#FlowRight_Http_Extensions_HttpResponseMessageExtensions_ValidateContentType_System_Net_Http_HttpResponseMessage_System_String___
+  name: ValidateContentType
+  nameWithType: HttpResponseMessageExtensions.ValidateContentType
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType
+- uid: System.String[]
+  isExternal: true
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+- uid: FlowRight.Core.Results.Result
+  commentId: T:FlowRight.Core.Results.Result
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.Result.html
+  name: Result
+  nameWithType: Result
+  fullName: FlowRight.Core.Results.Result
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html

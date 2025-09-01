@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IValidationContext | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IValidationContext | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides validation context for complex validation scenarios, enabling access to parent objects, services, custom data storage, and hierarchical validation support.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Validation.Context.IValidationContext">
+
+
+
+  <h1 id="FlowRight_Validation_Context_IValidationContext" data-uid="FlowRight.Validation.Context.IValidationContext" class="text-break">
+Interface IValidationContext  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Validation.html">Validation</a>.<a class="xref" href="FlowRight.Validation.Context.html">Context</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Validation.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides validation context for complex validation scenarios, enabling access to parent objects,
+services, custom data storage, and hierarchical validation support.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IValidationContext</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <h2 id="FlowRight_Validation_Context_IValidationContext_examples">Examples</h2>
+  <pre><code class="lang-csharp">// Context-aware validation with service integration
+IValidationContext context = ValidationContext.Create(user, serviceProvider);
+context.SetCustomData("MaxRetryAttempts", 3);
+
+Result&lt;User&gt; result = new ValidationBuilder&lt;User&gt;(context)
+    .RuleFor(x =&gt; x.Email, request.Email)
+        .MustAsync(async (email, ctx) =&gt; 
+        {
+            IEmailService? emailService = ctx.GetService&lt;IEmailService&gt;();
+            return emailService != null &amp;&amp; await emailService.IsValidAsync(email);
+        }, "Email validation failed")
+    .RuleFor(x =&gt; x.Username, request.Username)
+        .Must((username, ctx) =&gt; 
+        {
+            User? rootUser = ctx.GetRootObject&lt;User&gt;();
+            return rootUser != null &amp;&amp; !string.Equals(username, rootUser.Email, StringComparison.OrdinalIgnoreCase);
+        }, "Username cannot be the same as email")
+    .Build(() =&gt; new User(request.Email, request.Username));</code></pre>
+
+
+  <h2 id="FlowRight_Validation_Context_IValidationContext_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+The ValidationContext enables sophisticated validation scenarios by providing:
+<ul><li>Access to root object being validated for cross-property validation</li><li>Service provider integration for external dependency validation</li><li>Custom data storage for sharing state between validation rules</li><li>Hierarchical validation support with parent-child context relationships</li><li>Rule execution tracking for conditional validation logic</li><li>Property path tracking for nested object validation</li></ul>
+
+<p>
+This interface is particularly useful for validation scenarios that require:
+<ul><li>Business rule validation that depends on multiple properties</li><li>External service integration (database lookups, API calls)</li><li>Conditional validation based on previous validation results</li><li>Complex nested object validation with context propagation</li><li>State sharing between validation rules within the same validation session</li></ul>
+
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_CustomData_" data-uid="FlowRight.Validation.Context.IValidationContext.CustomData*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_CustomData" data-uid="FlowRight.Validation.Context.IValidationContext.CustomData">
+  CustomData
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the custom data dictionary for storing validation state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IReadOnlyDictionary&lt;string, object&gt; CustomData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IReadOnlyDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</dt>
+    <dd><p>A read-only dictionary containing custom data set during validation.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_CustomData_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Custom data provides a mechanism for storing and sharing state between validation rules
+within the same validation session. This is useful for caching expensive calculations
+or sharing computed values across multiple validation rules.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_Parent_" data-uid="FlowRight.Validation.Context.IValidationContext.Parent*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_Parent" data-uid="FlowRight.Validation.Context.IValidationContext.Parent">
+  Parent
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the parent validation context, if this is a child context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IValidationContext? Parent { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Context.IValidationContext.html">IValidationContext</a></dt>
+    <dd><p>The parent validation context, or null if this is a root context.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_RootObject_" data-uid="FlowRight.Validation.Context.IValidationContext.RootObject*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_RootObject" data-uid="FlowRight.Validation.Context.IValidationContext.RootObject">
+  RootObject
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the root object being validated, if available.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object? RootObject { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">object</span></dt>
+    <dd><p>The root object being validated, or null if no root object was provided during context creation.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_RootObject_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The root object provides access to the entire object being validated, enabling cross-property
+validation scenarios where one property's validation depends on the values of other properties.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_ServiceProvider_" data-uid="FlowRight.Validation.Context.IValidationContext.ServiceProvider*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_ServiceProvider" data-uid="FlowRight.Validation.Context.IValidationContext.ServiceProvider">
+  ServiceProvider
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the service provider for dependency injection, if available.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IServiceProvider? ServiceProvider { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IServiceProvider</span></dt>
+    <dd><p>The service provider instance, or null if no service provider was provided during context creation.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_ServiceProvider_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The service provider enables validation rules to access external dependencies such as
+repositories, web services, or other business services required for validation logic.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_CreateChildContext_" data-uid="FlowRight.Validation.Context.IValidationContext.CreateChildContext*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_CreateChildContext_System_Object_System_String_" data-uid="FlowRight.Validation.Context.IValidationContext.CreateChildContext(System.Object,System.String)">
+  CreateChildContext(object, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a child validation context for nested object validation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IValidationContext CreateChildContext(object childObject, string? propertyName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>childObject</code> <span class="xref">object</span></dt>
+    <dd><p>The child object being validated.</p>
+</dd>
+    <dt><code>propertyName</code> <span class="xref">string</span></dt>
+    <dd><p>The name of the property containing the child object.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Context.IValidationContext.html">IValidationContext</a></dt>
+    <dd><p>A new validation context that inherits from the current context.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_CreateChildContext_System_Object_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">IValidationContext childContext = parentContext.CreateChildContext(user.Profile, "Profile");
+// Child context has access to parent's custom data and services</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_CreateChildContext_System_Object_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Child contexts inherit custom data and service providers from their parent context,
+enabling consistent validation behavior across nested object hierarchies.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_GetCurrentPropertyPath_" data-uid="FlowRight.Validation.Context.IValidationContext.GetCurrentPropertyPath*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_GetCurrentPropertyPath" data-uid="FlowRight.Validation.Context.IValidationContext.GetCurrentPropertyPath">
+  GetCurrentPropertyPath()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the current property path being validated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetCurrentPropertyPath()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">string</span></dt>
+    <dd><p>The full property path from the root object to the current property being validated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_GetCurrentPropertyPath_examples">Examples</h4>
+  <pre><code class="lang-csharp">string path = context.GetCurrentPropertyPath(); // Returns "User.Profile.Bio"</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_GetCurrentPropertyPath_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Property paths use dot notation for nested properties (e.g., &quot;User.Profile.Bio&quot;) and
+bracket notation for collection indices (e.g., &quot;User.Roles[0].Name&quot;).</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_GetCustomData_" data-uid="FlowRight.Validation.Context.IValidationContext.GetCustomData*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_GetCustomData__1_System_String_" data-uid="FlowRight.Validation.Context.IValidationContext.GetCustomData``1(System.String)">
+  GetCustomData&lt;T&gt;(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets custom data from the validation context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T? GetCustomData&lt;T&gt;(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">string</span></dt>
+    <dd><p>The key identifying the data.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The data value cast to type T, or the default value of T if the key is not found or cannot be cast.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of data to retrieve.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_GetCustomData__1_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">int maxAge = context.GetCustomData&lt;int&gt;("MaxAllowedAge");
+User? dbUser = context.GetCustomData&lt;User&gt;("DatabaseUser");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_GetExecutedRules_" data-uid="FlowRight.Validation.Context.IValidationContext.GetExecutedRules*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_GetExecutedRules" data-uid="FlowRight.Validation.Context.IValidationContext.GetExecutedRules">
+  GetExecutedRules()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a read-only list of validation rules that have been executed in this context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;string&gt; GetExecutedRules()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IReadOnlyList</span>&lt;<span class="xref">string</span>&gt;</dt>
+    <dd><p>A list of rule identifiers representing the validation rules that have been executed.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_GetExecutedRules_examples">Examples</h4>
+  <pre><code class="lang-csharp">IReadOnlyList&lt;string&gt; executedRules = context.GetExecutedRules();
+bool nameValidated = executedRules.Any(rule =&gt; rule.Contains("Name.NotEmpty"));</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_GetExecutedRules_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Rule execution tracking enables conditional validation logic where the execution of
+subsequent rules can depend on which previous rules have been executed and their results.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_GetRootObject_" data-uid="FlowRight.Validation.Context.IValidationContext.GetRootObject*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_GetRootObject__1" data-uid="FlowRight.Validation.Context.IValidationContext.GetRootObject``1">
+  GetRootObject&lt;T&gt;()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the root object being validated as the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T? GetRootObject&lt;T&gt;() where T : class</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The root object cast to type T, or null if the root object is null or not of type T.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to cast the root object to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_GetRootObject__1_examples">Examples</h4>
+  <pre><code class="lang-csharp">User? user = context.GetRootObject&lt;User&gt;();
+if (user != null)
+{
+    // Access user properties for validation logic
+    return someProperty != user.SomeOtherProperty;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_GetService_" data-uid="FlowRight.Validation.Context.IValidationContext.GetService*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_GetService__1" data-uid="FlowRight.Validation.Context.IValidationContext.GetService``1">
+  GetService&lt;T&gt;()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a service of the specified type from the service provider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T? GetService&lt;T&gt;() where T : class</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The service instance if found, or null if the service is not available or no service provider exists.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of service to retrieve.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_GetService__1_examples">Examples</h4>
+  <pre><code class="lang-csharp">IEmailValidationService? emailService = context.GetService&lt;IEmailValidationService&gt;();
+if (emailService != null)
+{
+    return await emailService.IsValidEmailAsync(email);
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_HasCustomData_" data-uid="FlowRight.Validation.Context.IValidationContext.HasCustomData*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_HasCustomData_System_String_" data-uid="FlowRight.Validation.Context.IValidationContext.HasCustomData(System.String)">
+  HasCustomData(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the validation context contains custom data with the specified key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool HasCustomData(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">string</span></dt>
+    <dd><p>The key to check for.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p>true if the context contains data with the specified key; otherwise, false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_RecordRuleExecution_" data-uid="FlowRight.Validation.Context.IValidationContext.RecordRuleExecution*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_RecordRuleExecution_System_String_System_String_System_Boolean_" data-uid="FlowRight.Validation.Context.IValidationContext.RecordRuleExecution(System.String,System.String,System.Boolean)">
+  RecordRuleExecution(string, string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Records that a validation rule has been executed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RecordRuleExecution(string ruleIdentifier, string propertyName, bool success)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ruleIdentifier</code> <span class="xref">string</span></dt>
+    <dd><p>A unique identifier for the validation rule.</p>
+</dd>
+    <dt><code>propertyName</code> <span class="xref">string</span></dt>
+    <dd><p>The name of the property being validated.</p>
+</dd>
+    <dt><code>success</code> <span class="xref">bool</span></dt>
+    <dd><p>Whether the validation rule passed or failed.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_RecordRuleExecution_System_String_System_String_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is typically called internally by the validation framework to track
+rule execution for conditional validation scenarios.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_RemoveCustomData_" data-uid="FlowRight.Validation.Context.IValidationContext.RemoveCustomData*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_RemoveCustomData_System_String_" data-uid="FlowRight.Validation.Context.IValidationContext.RemoveCustomData(System.String)">
+  RemoveCustomData(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes custom data from the validation context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveCustomData(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">string</span></dt>
+    <dd><p>The key identifying the data to remove.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p>true if the data was found and removed; otherwise, false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Context_IValidationContext_SetCustomData_" data-uid="FlowRight.Validation.Context.IValidationContext.SetCustomData*"></a>
+
+  <h3 id="FlowRight_Validation_Context_IValidationContext_SetCustomData_System_String_System_Object_" data-uid="FlowRight.Validation.Context.IValidationContext.SetCustomData(System.String,System.Object)">
+  SetCustomData(string, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets custom data in the validation context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetCustomData(string key, object value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">string</span></dt>
+    <dd><p>The key to identify the data.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">object</span></dt>
+    <dd><p>The value to store.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_SetCustomData_System_String_System_Object__examples">Examples</h4>
+  <pre><code class="lang-csharp">context.SetCustomData("DatabaseUser", currentUser);
+context.SetCustomData("MaxAllowedAge", 65);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Context_IValidationContext_SetCustomData_System_String_System_Object__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Custom data is stored for the lifetime of the validation context and can be accessed
+by any validation rule within the same validation session.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

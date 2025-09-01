@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>FlowRight API Reference | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="FlowRight API Reference | FlowRight - Result Pattern Library for .NET ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="flowright-api-reference">FlowRight API Reference</h1>
+
+<p>This section contains the complete API reference for all FlowRight libraries.</p>
+<h2 id="libraries">Libraries</h2>
+<h3 id="flowrightcore">FlowRight.Core</h3>
+<p>The foundational Result pattern implementation with core types, extensions, and serialization support.</p>
+<p><strong>Key Namespaces:</strong></p>
+<ul>
+<li><a href="FlowRight.Core.Results.html"><code>FlowRight.Core.Results</code></a> - Core Result types and patterns</li>
+<li><a href="FlowRight.Core.Extensions.html"><code>FlowRight.Core.Extensions</code></a> - Extension methods for Result composition</li>
+<li><a href="FlowRight.Core.Serialization.html"><code>FlowRight.Core.Serialization</code></a> - JSON serialization support</li>
+</ul>
+<p><strong>Primary Types:</strong></p>
+<ul>
+<li><a href="FlowRight.Core.Results.Result-1.html"><code>Result&lt;T&gt;</code></a> - Generic result type with value</li>
+<li><a href="FlowRight.Core.Results.Result.html"><code>Result</code></a> - Non-generic result type</li>
+<li><a href="FlowRight.Core.Results.IResult-1.html"><code>IResult&lt;T&gt;</code></a> - Generic result interface</li>
+<li><a href="FlowRight.Core.Results.IResult.html"><code>IResult</code></a> - Non-generic result interface</li>
+<li><a href="FlowRight.Core.Results.ResultFailureType.html"><code>ResultFailureType</code></a> - Enumeration of failure types</li>
+</ul>
+<h3 id="flowrightvalidation">FlowRight.Validation</h3>
+<p>Fluent validation builders that integrate seamlessly with the Result pattern.</p>
+<p><strong>Key Namespaces:</strong></p>
+<ul>
+<li><a href="FlowRight.Validation.Builders.html"><code>FlowRight.Validation.Builders</code></a> - Fluent validation builders</li>
+<li><a href="FlowRight.Validation.Rules.html"><code>FlowRight.Validation.Rules</code></a> - Comprehensive validation rules</li>
+<li><a href="FlowRight.Validation.Validators.html"><code>FlowRight.Validation.Validators</code></a> - Property-specific validators</li>
+<li><a href="FlowRight.Validation.Context.html"><code>FlowRight.Validation.Context</code></a> - Validation context and metadata</li>
+</ul>
+<p><strong>Primary Types:</strong></p>
+<ul>
+<li><a href="FlowRight.Validation.Builders.ValidationBuilder-1.html"><code>ValidationBuilder&lt;T&gt;</code></a> - Main fluent validation API</li>
+<li><a href="FlowRight.Validation.Rules.IRule-1.html"><code>IRule&lt;T&gt;</code></a> - Base validation rule interface</li>
+<li><a href="FlowRight.Validation.Context.IValidationContext.html"><code>IValidationContext</code></a> - Validation execution context</li>
+</ul>
+<h3 id="flowrighthttp">FlowRight.Http</h3>
+<p>HTTP response to Result pattern conversion utilities for web applications.</p>
+<p><strong>Key Namespaces:</strong></p>
+<ul>
+<li><a href="FlowRight.Http.Extensions.html"><code>FlowRight.Http.Extensions</code></a> - HTTP response extension methods</li>
+<li><a href="FlowRight.Http.Models.html"><code>FlowRight.Http.Models</code></a> - HTTP-specific models and utilities</li>
+</ul>
+<p><strong>Primary Types:</strong></p>
+<ul>
+<li><a href="FlowRight.Http.Extensions.HttpResponseMessageExtensions.html"><code>HttpResponseMessageExtensions</code></a> - Extension methods for HttpResponseMessage</li>
+<li><a href="FlowRight.Http.Models.ValidationProblemResponse.html"><code>ValidationProblemResponse</code></a> - Structured validation error responses</li>
+<li><a href="FlowRight.Http.Models.ContentTypeInfo.html"><code>ContentTypeInfo</code></a> - Content type detection utilities</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="basic-result-usage">Basic Result Usage</h3>
+<pre><code class="lang-csharp">using FlowRight.Core.Results;
+
+// Create success result
+Result&lt;string&gt; success = Result.Success(&quot;Hello World&quot;);
+
+// Create failure result  
+Result&lt;string&gt; failure = Result.Failure&lt;string&gt;(&quot;Something went wrong&quot;);
+
+// Handle results with pattern matching
+string output = result.Match(
+    success: value =&gt; $&quot;Success: {value}&quot;,
+    failure: error =&gt; $&quot;Error: {error}&quot;
+);
+</code></pre>
+<h3 id="validation-example">Validation Example</h3>
+<pre><code class="lang-csharp">using FlowRight.Validation.Builders;
+
+// Build fluent validation
+ValidationBuilder&lt;User&gt; validator = new ValidationBuilder&lt;User&gt;()
+    .RuleFor(x =&gt; x.Email, user.Email)
+        .NotEmpty()
+        .Email()
+    .RuleFor(x =&gt; x.Age, user.Age)
+        .GreaterThan(0)
+        .LessThan(150);
+
+// Validate and get result
+Result&lt;User&gt; result = validator.Build(() =&gt; user);
+</code></pre>
+<h3 id="http-integration">HTTP Integration</h3>
+<pre><code class="lang-csharp">using FlowRight.Http.Extensions;
+
+// Convert HTTP response to Result
+HttpResponseMessage response = await httpClient.GetAsync(&quot;/api/data&quot;);
+Result&lt;ApiData&gt; result = await response.ToResultFromJsonAsync&lt;ApiData&gt;();
+</code></pre>
+<h2 id="browse-by-category">Browse by Category</h2>
+<h3 id="core-functionality">Core Functionality</h3>
+<ul>
+<li><a href="FlowRight.Core.Results.html">Result Types and Interfaces</a></li>
+<li><a href="FlowRight.Core.Extensions.ResultAsyncExtensions.html">Async Extensions and Composition</a></li>
+<li><a href="FlowRight.Core.Serialization.html">JSON Serialization</a></li>
+</ul>
+<h3 id="validation-rules">Validation Rules</h3>
+<ul>
+<li><a href="FlowRight.Validation.Rules.html#string-rules">String Validation</a></li>
+<li><a href="FlowRight.Validation.Rules.html#numeric-rules">Numeric Validation</a></li>
+<li><a href="FlowRight.Validation.Rules.html#collection-rules">Collection Validation</a></li>
+<li><a href="FlowRight.Validation.Rules.html#custom-rules">Custom Validation</a></li>
+</ul>
+<h3 id="http-integration-1">HTTP Integration</h3>
+<ul>
+<li><a href="FlowRight.Http.Extensions.HttpResponseMessageExtensions.html">Response Conversion</a></li>
+<li><a href="FlowRight.Http.Models.html">Error Response Models</a></li>
+</ul>
+<hr>
+<p><em>Generated API reference for FlowRight v1.0.0-preview.1</em></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

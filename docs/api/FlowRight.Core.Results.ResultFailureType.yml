@@ -1,0 +1,348 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Results.ResultFailureType
+  commentId: T:FlowRight.Core.Results.ResultFailureType
+  id: ResultFailureType
+  parent: FlowRight.Core.Results
+  children:
+  - FlowRight.Core.Results.ResultFailureType.Error
+  - FlowRight.Core.Results.ResultFailureType.None
+  - FlowRight.Core.Results.ResultFailureType.NotFound
+  - FlowRight.Core.Results.ResultFailureType.OperationCanceled
+  - FlowRight.Core.Results.ResultFailureType.Security
+  - FlowRight.Core.Results.ResultFailureType.ServerError
+  - FlowRight.Core.Results.ResultFailureType.Validation
+  langs:
+  - csharp
+  - vb
+  name: ResultFailureType
+  nameWithType: ResultFailureType
+  fullName: FlowRight.Core.Results.ResultFailureType
+  type: Enum
+  source:
+    id: ResultFailureType
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Specifies the specific type of failure that occurred in a result operation,
+
+    providing detailed categorization for different error scenarios and enabling
+
+    appropriate error handling strategies.
+  remarks: >-
+    <p>
+
+    This enumeration allows consumers to distinguish between different categories
+
+    of failures and implement specific handling logic for each type. For example,
+
+    validation failures might be displayed to users differently than security failures.
+
+    </p>
+
+    <p>
+
+    The failure types are designed to align with common error scenarios in modern
+
+    applications, including validation, security, and operation lifecycle concerns.
+
+    </p>
+  example: []
+  syntax:
+    content: public enum ResultFailureType
+    content.vb: Public Enum ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.None
+  commentId: F:FlowRight.Core.Results.ResultFailureType.None
+  id: None
+  parent: FlowRight.Core.Results.ResultFailureType
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: ResultFailureType.None
+  fullName: FlowRight.Core.Results.ResultFailureType.None
+  type: Field
+  source:
+    id: None
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 28
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates no failure occurred. This value is used for successful results
+
+    and represents the absence of any error condition.
+  remarks: >-
+    This value should only be present in results where <xref href="FlowRight.Core.Results.IResult.IsSuccess" data-throw-if-not-resolved="false"></xref>
+
+    is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>. It serves as the default value for successful operations.
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.Error
+  commentId: F:FlowRight.Core.Results.ResultFailureType.Error
+  id: Error
+  parent: FlowRight.Core.Results.ResultFailureType
+  langs:
+  - csharp
+  - vb
+  name: Error
+  nameWithType: ResultFailureType.Error
+  fullName: FlowRight.Core.Results.ResultFailureType.Error
+  type: Field
+  source:
+    id: Error
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 43
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates a general error condition that doesn't fall into other specific categories.
+
+    This represents system errors, unexpected exceptions, or business rule violations.
+  remarks: >-
+    This is the default failure type for most error scenarios including:
+
+    <ul><li>System or infrastructure failures</li><li>Unexpected exceptions</li><li>Business logic violations</li><li>General application errors</li></ul>
+  example: []
+  syntax:
+    content: Error = 1
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.Security
+  commentId: F:FlowRight.Core.Results.ResultFailureType.Security
+  id: Security
+  parent: FlowRight.Core.Results.ResultFailureType
+  langs:
+  - csharp
+  - vb
+  name: Security
+  nameWithType: ResultFailureType.Security
+  fullName: FlowRight.Core.Results.ResultFailureType.Security
+  type: Field
+  source:
+    id: Security
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 58
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates a security-related failure such as authentication failures,
+
+    authorization violations, or security policy breaches.
+  remarks: >-
+    Security failures typically require special handling and may need to be:
+
+    <ul><li>Logged to security audit trails</li><li>Reported to security monitoring systems</li><li>Handled with specific error messages that don't reveal sensitive information</li><li>Subject to rate limiting or account lockout policies</li></ul>
+  example: []
+  syntax:
+    content: Security = 2
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.Validation
+  commentId: F:FlowRight.Core.Results.ResultFailureType.Validation
+  id: Validation
+  parent: FlowRight.Core.Results.ResultFailureType
+  langs:
+  - csharp
+  - vb
+  name: Validation
+  nameWithType: ResultFailureType.Validation
+  fullName: FlowRight.Core.Results.ResultFailureType.Validation
+  type: Field
+  source:
+    id: Validation
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 75
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the operation failed due to validation errors in the input data,
+
+    typically containing detailed field-level error information.
+  remarks: >-
+    Validation failures are commonly encountered in user-facing applications and APIs.
+
+    They typically:
+
+    <ul><li>Contain detailed field-specific error messages</li><li>Can be displayed directly to users</li><li>Should not be logged as system errors</li><li>May include multiple validation errors for different fields</li></ul>
+
+    The detailed validation errors are typically available through <xref href="FlowRight.Core.Results.IResult.Failures" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Validation = 3
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.NotFound
+  commentId: F:FlowRight.Core.Results.ResultFailureType.NotFound
+  id: NotFound
+  parent: FlowRight.Core.Results.ResultFailureType
+  langs:
+  - csharp
+  - vb
+  name: NotFound
+  nameWithType: ResultFailureType.NotFound
+  fullName: FlowRight.Core.Results.ResultFailureType.NotFound
+  type: Field
+  source:
+    id: NotFound
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 94
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the requested resource was not found or does not exist.
+
+    This represents a client error where the resource does not exist
+
+    or the client lacks permission to access it.
+  remarks: >-
+    Not found failures are common in REST APIs and data access scenarios.
+
+    They typically:
+
+    <ul><li>Correspond to HTTP 404 status codes</li><li>Indicate that a specific resource or entity does not exist</li><li>Can be handled differently from general errors</li><li>May trigger fallback or alternative data retrieval strategies</li></ul>
+
+    This failure type allows consumers to distinguish between actual errors
+
+    and legitimate "not found" scenarios that may be expected during normal operation.
+  example: []
+  syntax:
+    content: NotFound = 4
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.ServerError
+  commentId: F:FlowRight.Core.Results.ResultFailureType.ServerError
+  id: ServerError
+  parent: FlowRight.Core.Results.ResultFailureType
+  langs:
+  - csharp
+  - vb
+  name: ServerError
+  nameWithType: ResultFailureType.ServerError
+  fullName: FlowRight.Core.Results.ResultFailureType.ServerError
+  type: Field
+  source:
+    id: ServerError
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 111
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the operation failed due to a server-side error, typically
+
+    representing 5xx HTTP status codes or infrastructure-related failures.
+  remarks: >-
+    Server errors represent failures on the server side that are typically temporary
+
+    and may be resolved with retry mechanisms or service recovery:
+
+    <ul><li>Correspond to HTTP 5xx status codes (500-599)</li><li>Include internal server errors, service unavailable, bad gateway, etc.</li><li>May be candidates for retry logic with exponential backoff</li><li>Should be monitored and potentially trigger alerts</li><li>Distinguished from client errors to enable appropriate handling strategies</li></ul>
+  example: []
+  syntax:
+    content: ServerError = 5
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.OperationCanceled
+  commentId: F:FlowRight.Core.Results.ResultFailureType.OperationCanceled
+  id: OperationCanceled
+  parent: FlowRight.Core.Results.ResultFailureType
+  langs:
+  - csharp
+  - vb
+  name: OperationCanceled
+  nameWithType: ResultFailureType.OperationCanceled
+  fullName: FlowRight.Core.Results.ResultFailureType.OperationCanceled
+  type: Field
+  source:
+    id: OperationCanceled
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultFailureType.cs
+    startLine: 127
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the operation was canceled before completion, typically due to
+
+    cancellation tokens, timeouts, or explicit user cancellation requests.
+  remarks: >-
+    Operation canceled failures represent a normal part of application flow control
+
+    rather than actual errors. They may be handled differently from other failure types:
+
+    <ul><li>Often ignored in logging</li><li>May not be displayed to users as errors</li><li>Can be filtered out of error handling in some scenarios</li><li>Support graceful shutdown and timeout scenarios</li></ul>
+  example: []
+  syntax:
+    content: OperationCanceled = 6
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+references:
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+- uid: FlowRight.Core.Results.IResult.IsSuccess
+  commentId: P:FlowRight.Core.Results.IResult.IsSuccess
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsSuccess
+  name: IsSuccess
+  nameWithType: IResult.IsSuccess
+  fullName: FlowRight.Core.Results.IResult.IsSuccess
+- uid: FlowRight.Core.Results.ResultFailureType
+  commentId: T:FlowRight.Core.Results.ResultFailureType
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.ResultFailureType.html
+  name: ResultFailureType
+  nameWithType: ResultFailureType
+  fullName: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.IResult
+  commentId: T:FlowRight.Core.Results.IResult
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.IResult.html
+  name: IResult
+  nameWithType: IResult
+  fullName: FlowRight.Core.Results.IResult
+- uid: FlowRight.Core.Results.IResult.Failures
+  commentId: P:FlowRight.Core.Results.IResult.Failures
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_Failures
+  name: Failures
+  nameWithType: IResult.Failures
+  fullName: FlowRight.Core.Results.IResult.Failures
