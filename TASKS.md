@@ -136,7 +136,7 @@
 - [ ] **TASK-067**: Create Getting Started guide
 - [ ] **TASK-068**: Write Migration guide from exceptions
 - [ ] **TASK-069**: Document best practices and patterns
-- [ ] **TASK-070**: Create API reference with DocFX
+- [x] **TASK-070**: Create API reference with DocFX
 
 ---
 
