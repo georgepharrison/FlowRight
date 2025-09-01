@@ -985,7 +985,7 @@ public sealed class HttpResponseMessageExtensionsTests
         [InlineData("application/json", "application/json; charset=utf-8", true)]
         [InlineData("application/xml", "application/json", false)]
         [InlineData("text/plain", "application/json", false)]
-        public async Task IsContentType_WithVariousContentTypes_ShouldReturnCorrectMatch(string actualContentType, string expectedContentType, bool shouldMatch)
+        public Task IsContentType_WithVariousContentTypes_ShouldReturnCorrectMatch(string actualContentType, string expectedContentType, bool shouldMatch)
         {
             // Arrange
             using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, actualContentType);
@@ -995,6 +995,7 @@ public sealed class HttpResponseMessageExtensionsTests
 
             // Assert
             result.ShouldBe(shouldMatch);
+            return Task.CompletedTask;
         }
 
         [Theory]
@@ -1003,7 +1004,7 @@ public sealed class HttpResponseMessageExtensionsTests
         [InlineData("application/vnd.api+json", true)]
         [InlineData("application/xml", false)]
         [InlineData("text/plain", false)]
-        public async Task IsJsonContentType_WithVariousContentTypes_ShouldIdentifyJsonCorrectly(string contentType, bool isJson)
+        public Task IsJsonContentType_WithVariousContentTypes_ShouldIdentifyJsonCorrectly(string contentType, bool isJson)
         {
             // Arrange
             using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
@@ -1013,6 +1014,7 @@ public sealed class HttpResponseMessageExtensionsTests
 
             // Assert
             result.ShouldBe(isJson);
+            return Task.CompletedTask;
         }
 
         [Theory]
@@ -1021,7 +1023,7 @@ public sealed class HttpResponseMessageExtensionsTests
         [InlineData("application/soap+xml", true)]
         [InlineData("application/json", false)]
         [InlineData("text/plain", false)]
-        public async Task IsXmlContentType_WithVariousContentTypes_ShouldIdentifyXmlCorrectly(string contentType, bool isXml)
+        public Task IsXmlContentType_WithVariousContentTypes_ShouldIdentifyXmlCorrectly(string contentType, bool isXml)
         {
             // Arrange
             using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
@@ -1031,6 +1033,7 @@ public sealed class HttpResponseMessageExtensionsTests
 
             // Assert
             result.ShouldBe(isXml);
+            return Task.CompletedTask;
         }
 
         [Theory]
@@ -1041,7 +1044,7 @@ public sealed class HttpResponseMessageExtensionsTests
         [InlineData("application/json", false)]
         [InlineData("application/xml", false)]
         [InlineData("image/png", false)]
-        public async Task IsTextContentType_WithVariousContentTypes_ShouldIdentifyTextCorrectly(string contentType, bool isText)
+        public Task IsTextContentType_WithVariousContentTypes_ShouldIdentifyTextCorrectly(string contentType, bool isText)
         {
             // Arrange
             using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
@@ -1051,6 +1054,7 @@ public sealed class HttpResponseMessageExtensionsTests
 
             // Assert
             result.ShouldBe(isText);
+            return Task.CompletedTask;
         }
 
         [Theory]
@@ -1062,7 +1066,7 @@ public sealed class HttpResponseMessageExtensionsTests
         [InlineData("text/plain", false)]
         [InlineData("application/json", false)]
         [InlineData("application/xml", false)]
-        public async Task IsBinaryContentType_WithVariousContentTypes_ShouldIdentifyBinaryCorrectly(string contentType, bool isBinary)
+        public Task IsBinaryContentType_WithVariousContentTypes_ShouldIdentifyBinaryCorrectly(string contentType, bool isBinary)
         {
             // Arrange
             using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
@@ -1072,6 +1076,7 @@ public sealed class HttpResponseMessageExtensionsTests
 
             // Assert
             result.ShouldBe(isBinary);
+            return Task.CompletedTask;
         }
     }
 
@@ -1134,7 +1139,7 @@ public sealed class HttpResponseMessageExtensionsTests
         }
 
         [Fact]
-        public async Task GetContentTypeInfo_WithComplexContentType_ShouldParseCorrectly()
+        public Task GetContentTypeInfo_WithComplexContentType_ShouldParseCorrectly()
         {
             // Arrange
             using HttpResponseMessage response = new(HttpStatusCode.OK)
@@ -1154,6 +1159,7 @@ public sealed class HttpResponseMessageExtensionsTests
             contentTypeInfo.MediaType.ShouldBe("multipart/form-data");
             contentTypeInfo.Charset.ShouldBe("utf-8");
             contentTypeInfo.Parameters["boundary"].ShouldBe("something");
+            return Task.CompletedTask;
         }
 
         [Fact]
@@ -2131,4 +2137,644 @@ public sealed class HttpResponseMessageExtensionsTests
     }
 
     #endregion TASK-049: NotFound Factory Method HTTP Extension Tests
+
+    #region TASK-050: Server Error (5xx) Status Code Handling Tests
+
+    public class ServerErrorStatusCodeTests
+    {
+        [Theory]
+        [InlineData(HttpStatusCode.InternalServerError)]      // 500
+        [InlineData(HttpStatusCode.NotImplemented)]           // 501
+        [InlineData(HttpStatusCode.BadGateway)]               // 502
+        [InlineData(HttpStatusCode.ServiceUnavailable)]       // 503
+        [InlineData(HttpStatusCode.GatewayTimeout)]          // 504
+        [InlineData(HttpStatusCode.HttpVersionNotSupported)] // 505
+        [InlineData((HttpStatusCode)506)]                    // 506 Variant Also Negotiates
+        [InlineData((HttpStatusCode)507)]                    // 507 Insufficient Storage
+        [InlineData((HttpStatusCode)508)]                    // 508 Loop Detected
+        [InlineData((HttpStatusCode)510)]                    // 510 Not Extended
+        [InlineData((HttpStatusCode)511)]                    // 511 Network Authentication Required
+        public async Task ToResultAsync_With5xxStatusCode_ShouldReturnServerErrorResult(HttpStatusCode statusCode)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(statusCode);
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.ResultType.ShouldBe(ResultType.Error);
+            result.Error.ShouldNotBeNullOrEmpty();
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.InternalServerError)]      // 500
+        [InlineData(HttpStatusCode.NotImplemented)]           // 501
+        [InlineData(HttpStatusCode.BadGateway)]               // 502
+        [InlineData(HttpStatusCode.ServiceUnavailable)]       // 503
+        [InlineData(HttpStatusCode.GatewayTimeout)]          // 504
+        [InlineData(HttpStatusCode.HttpVersionNotSupported)] // 505
+        [InlineData((HttpStatusCode)506)]                    // 506 Variant Also Negotiates
+        [InlineData((HttpStatusCode)507)]                    // 507 Insufficient Storage
+        [InlineData((HttpStatusCode)508)]                    // 508 Loop Detected
+        [InlineData((HttpStatusCode)510)]                    // 510 Not Extended
+        [InlineData((HttpStatusCode)511)]                    // 511 Network Authentication Required
+        public async Task ToResultFromJsonAsync_With5xxStatusCode_ShouldReturnServerErrorResult(HttpStatusCode statusCode)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(statusCode);
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.ResultType.ShouldBe(ResultType.Error);
+            result.Error.ShouldNotBeNullOrEmpty();
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithInternalServerErrorAndDetailedMessage_ShouldIncludeMessageInError()
+        {
+            // Arrange
+            string serverErrorMessage = "Database connection failed: Connection timeout";
+            using HttpResponseMessage response = new(HttpStatusCode.InternalServerError)
+            {
+                Content = new StringContent(serverErrorMessage, Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Internal Server Error");
+            result.Error.ShouldContain(serverErrorMessage);
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithServiceUnavailableAndRetryAfter_ShouldIncludeMessageInError()
+        {
+            // Arrange
+            string serviceMessage = "Service temporarily unavailable. Please try again later.";
+            using HttpResponseMessage response = new(HttpStatusCode.ServiceUnavailable)
+            {
+                Content = new StringContent(serviceMessage, Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+            response.Headers.Add("Retry-After", "120");
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Service Unavailable");
+            result.Error.ShouldContain(serviceMessage);
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithBadGatewayAndJsonError_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            string errorJson = "{\"error\": \"Upstream service returned invalid response\"}";
+            using HttpResponseMessage response = new(HttpStatusCode.BadGateway)
+            {
+                Content = new StringContent(errorJson, Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Bad Gateway");
+            result.Error.ShouldContain(errorJson);
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithCustom5xxStatusCode_ShouldReturnServerErrorResult()
+        {
+            // Arrange - Using custom 5xx status code that's not in HttpStatusCode enum
+            HttpStatusCode customServerError = (HttpStatusCode)599; // Custom 5xx code
+            using HttpResponseMessage response = new(customServerError)
+            {
+                Content = new StringContent("Custom server error occurred", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Server Error (599)");
+            result.Error.ShouldContain("Custom server error occurred");
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithGatewayTimeoutAndEmptyResponse_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.GatewayTimeout);
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldBe("Gateway Timeout");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsTextAsync_With5xxStatusCode_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.InternalServerError)
+            {
+                Content = new StringContent("Server error details", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<string?> result = await response.ToResultAsTextAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Internal Server Error");
+            result.Error.ShouldContain("Server error details");
+            result.TryGetValue(out string? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsBytesAsync_With5xxStatusCode_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.ServiceUnavailable)
+            {
+                Content = new StringContent("Service unavailable", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<byte[]?> result = await response.ToResultAsBytesAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Service Unavailable");
+            result.Error.ShouldContain("Service unavailable");
+            result.TryGetValue(out byte[]? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultFromXmlAsync_With5xxStatusCode_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.BadGateway)
+            {
+                Content = new StringContent("<error>Gateway error</error>", Encoding.UTF8, MediaTypeNames.Application.Xml)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromXmlAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Bad Gateway");
+            result.Error.ShouldContain("<error>Gateway error</error>");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultAsFormDataAsync_With5xxStatusCode_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.InternalServerError)
+            {
+                Content = new StringContent("error=server_error&message=Internal+error+occurred", Encoding.UTF8, "application/x-www-form-urlencoded")
+            };
+
+            // Act
+            Result<Dictionary<string, string>?> result = await response.ToResultAsFormDataAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Internal Server Error");
+            result.Error.ShouldContain("error=server_error&message=Internal+error+occurred");
+            result.TryGetValue(out Dictionary<string, string>? _).ShouldBeFalse();
+        }
+
+        [Theory]
+        [InlineData(500, 599)] // Test all 5xx range
+        public async Task ToResultAsync_WithAll5xxStatusCodesInRange_ShouldReturnServerErrorResults(int startCode, int endCode)
+        {
+            // Act & Assert - Test all 5xx status codes from 500-599
+            for (int statusCode = startCode; statusCode <= endCode; statusCode++)
+            {
+                using HttpResponseMessage response = new((HttpStatusCode)statusCode)
+                {
+                    Content = new StringContent($"Server error {statusCode}", Encoding.UTF8, MediaTypeNames.Text.Plain)
+                };
+                
+                Result result = await response.ToResultAsync();
+                
+                result.IsSuccess.ShouldBeFalse($"Status code {statusCode} should return failure");
+                result.FailureType.ShouldBe(ResultFailureType.ServerError, $"Status code {statusCode} should return server error");
+                result.Error.ShouldNotBeNullOrEmpty($"Status code {statusCode} should have error message");
+            }
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithServerErrorAndUnreadableContent_ShouldHandleGracefully()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.InternalServerError);
+            // Simulate content that cannot be read
+            response.Content = new StreamContent(new MemoryStream());
+            response.Content.Headers.ContentType = new("application/octet-stream");
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldBe("Internal Server Error"); // Should fallback to status description
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfo_And5xxStatusCode_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.InternalServerError)
+            {
+                Content = new StringContent("Database connection failed", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Internal Server Error");
+            result.Error.ShouldContain("Database connection failed");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ToResultWithContentTypeValidation_With5xxStatusCode_ShouldReturnServerErrorResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.BadGateway)
+            {
+                Content = new StringContent("Gateway error", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultWithContentTypeValidation<TestModel>("application/json");
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.ServerError);
+            result.Error.ShouldContain("Bad Gateway");
+            result.Error.ShouldContain("Gateway error");
+            result.TryGetValue(out TestModel? _).ShouldBeFalse();
+        }
+    }
+
+    #endregion TASK-050: Server Error (5xx) Status Code Handling Tests
+
+    #region Additional Edge Case Tests
+
+    public class EdgeCaseTests
+    {
+        [Fact]
+        public async Task ToResultAsync_WithCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK);
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultAsync(cts.Token));
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("{\"id\": 1}", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultFromJsonAsync<TestModel>(cancellationToken: cts.Token));
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfo_AndCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("{\"id\": 1}", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel, cts.Token));
+        }
+
+        [Fact]
+        public async Task ToResultFromXmlAsync_WithCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("<test>data</test>", Encoding.UTF8, MediaTypeNames.Application.Xml)
+            };
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultFromXmlAsync<TestModel>(cts.Token));
+        }
+
+        [Fact]
+        public async Task ToResultAsTextAsync_WithCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("test content", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultAsTextAsync(cts.Token));
+        }
+
+        [Fact]
+        public async Task ToResultAsBytesAsync_WithCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("test content", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultAsBytesAsync(cts.Token));
+        }
+
+        [Fact]
+        public async Task ToResultAsFormDataAsync_WithCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("key=value", Encoding.UTF8, "application/x-www-form-urlencoded")
+            };
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultAsFormDataAsync(cts.Token));
+        }
+
+        [Fact]
+        public async Task ToResultWithContentTypeValidation_WithCanceledToken_ShouldThrowOperationCanceledException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("{\"id\": 1}", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+            using CancellationTokenSource cts = new();
+            cts.Cancel();
+
+            // Act & Assert
+            await Should.ThrowAsync<OperationCanceledException>(async () =>
+                await response.ToResultWithContentTypeValidation<TestModel>("application/json", cts.Token));
+        }
+
+        [Fact]
+        public void GetContentTypeInfo_WithNullResponse_ShouldThrowArgumentNullException()
+        {
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                ((HttpResponseMessage)null!).GetContentTypeInfo());
+        }
+
+        [Fact]
+        public void IsContentType_WithNullResponse_ShouldThrowArgumentNullException()
+        {
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                ((HttpResponseMessage)null!).IsContentType("application/json"));
+        }
+
+        [Fact]
+        public void IsContentType_WithNullContentType_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK);
+
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                response.IsContentType(null!));
+        }
+
+        [Fact]
+        public void IsJsonContentType_WithNullResponse_ShouldThrowArgumentNullException()
+        {
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                ((HttpResponseMessage)null!).IsJsonContentType());
+        }
+
+        [Fact]
+        public void IsXmlContentType_WithNullResponse_ShouldThrowArgumentNullException()
+        {
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                ((HttpResponseMessage)null!).IsXmlContentType());
+        }
+
+        [Fact]
+        public void IsTextContentType_WithNullResponse_ShouldThrowArgumentNullException()
+        {
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                ((HttpResponseMessage)null!).IsTextContentType());
+        }
+
+        [Fact]
+        public void IsBinaryContentType_WithNullResponse_ShouldThrowArgumentNullException()
+        {
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                ((HttpResponseMessage)null!).IsBinaryContentType());
+        }
+
+        [Fact]
+        public void ValidateContentType_WithNullResponse_ShouldThrowArgumentNullException()
+        {
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                ((HttpResponseMessage)null!).ValidateContentType(["application/json"]));
+        }
+
+        [Fact]
+        public void ValidateContentType_WithNullSupportedTypes_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK);
+
+            // Act & Assert
+            Should.Throw<ArgumentNullException>(() =>
+                response.ValidateContentType(null!));
+        }
+
+        [Fact]
+        public async Task ToResultWithContentTypeValidation_WithNullExpectedContentType_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK);
+
+            // Act & Assert
+            await Should.ThrowAsync<ArgumentNullException>(async () =>
+                await response.ToResultWithContentTypeValidation<TestModel>(null!));
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithInvalidJsonAndSuccessStatusCode_ShouldReturnSuccessWithNull()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("{invalid json", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull(); // Invalid JSON should return null for success status codes
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfo_AndInvalidJsonAndSuccessStatusCode_ShouldReturnSuccessWithNull()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("{malformed", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull(); // Invalid JSON should return null for success status codes
+        }
+
+        [Fact]
+        public async Task ToResultAsFormDataAsync_WithEmptyFormData_ShouldReturnEmptyDictionary()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("", Encoding.UTF8, "application/x-www-form-urlencoded")
+            };
+
+            // Act
+            Result<Dictionary<string, string>?> result = await response.ToResultAsFormDataAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out Dictionary<string, string>? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Count.ShouldBe(0);
+        }
+
+        [Fact]
+        public async Task ToResultFromXmlAsync_WithEmptyXmlContent_ShouldReturnNull()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("", Encoding.UTF8, MediaTypeNames.Application.Xml)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromXmlAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public Task GetContentTypeInfo_WithMalformedContentTypeHeader_ShouldReturnEmptyContentTypeInfo()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("test content", Encoding.UTF8, "text/plain")
+            };
+
+            // Manually corrupt the content type to test error handling
+            try
+            {
+                response.Content.Headers.ContentType = null;
+            }
+            catch
+            {
+                // If we can't set it to null, that's fine - the test is about handling malformed headers
+            }
+
+            // Act
+            FlowRight.Http.Models.ContentTypeInfo contentTypeInfo = response.GetContentTypeInfo();
+
+            // Assert
+            // Should not throw and return a valid (potentially empty) ContentTypeInfo
+            contentTypeInfo.ShouldNotBeNull();
+            return Task.CompletedTask;
+        }
+    }
+
+    #endregion Additional Edge Case Tests
 }
