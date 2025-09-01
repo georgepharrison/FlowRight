@@ -1,3 +1,10 @@
+# [1.0.0-alpha.7](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-09-01)
+
+
+### Features
+
+* implement TASK-051 - write comprehensive tests for Result class ([9f81675](https://github.com/georgepharrison/FlowRight/commit/9f81675aeddab07e875d1621d11a03072cb95e70))
+
 # [1.0.0-alpha.6](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-09-01)
 
 
