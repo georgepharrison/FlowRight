@@ -320,4 +320,224 @@ public sealed class ValidationProblemResponseTests
     }
 
     #endregion Edge Cases
+
+    #region TASK-047: RFC 7807 ProblemDetails Properties Tests
+
+    [Fact]
+    public void Serialize_FullRFC7807ValidationProblemResponse_ShouldProduceCompleteJson()
+    {
+        // Arrange
+        ValidationProblemResponse response = new()
+        {
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+            Title = "One or more validation errors occurred.",
+            Status = 400,
+            Detail = "The request failed validation. See errors for details.",
+            Instance = "/api/users/validation-error/12345",
+            Errors = new Dictionary<string, string[]>
+            {
+                ["Email"] = ["Email is required", "Email format is invalid"],
+                ["Name"] = ["Name is required"]
+            }
+        };
+
+        // Act
+        string json = JsonSerializer.Serialize(response, _options);
+
+        // Assert
+        json.ShouldContain(@"""type"": ""https://tools.ietf.org/html/rfc7231#section-6.5.1""");
+        json.ShouldContain(@"""title"": ""One or more validation errors occurred.""");
+        json.ShouldContain(@"""status"": 400");
+        json.ShouldContain(@"""detail"": ""The request failed validation. See errors for details.""");
+        json.ShouldContain(@"""instance"":");
+        json.ShouldContain(@"""errors"":");
+        json.ShouldContain(@"""Email"":");
+        json.ShouldContain(@"""Name"":");
+    }
+
+    [Fact]
+    public void Deserialize_FullRFC7807ValidationProblemResponse_ShouldProduceCorrectObject()
+    {
+        // Arrange
+        string json = @"{
+            ""type"": ""https://tools.ietf.org/html/rfc7231#section-6.5.1"",
+            ""title"": ""One or more validation errors occurred."",
+            ""status"": 400,
+            ""detail"": ""The request failed validation. See errors for details."",
+            ""instance"": ""/api/users/validation-error/12345"",
+            ""errors"": {
+                ""Email"": [""Email is required"", ""Email format is invalid""],
+                ""Name"": [""Name is required""]
+            }
+        }";
+
+        // Act
+        ValidationProblemResponse? response = JsonSerializer.Deserialize<ValidationProblemResponse>(json, _options);
+
+        // Assert
+        response.ShouldNotBeNull();
+        response.Type.ShouldBe("https://tools.ietf.org/html/rfc7231#section-6.5.1");
+        response.Title.ShouldBe("One or more validation errors occurred.");
+        response.Status.ShouldBe(400);
+        response.Detail.ShouldBe("The request failed validation. See errors for details.");
+        response.Instance.ShouldBe("/api/users/validation-error/12345");
+        response.Errors.ShouldNotBeNull();
+        response.Errors.Count.ShouldBe(2);
+        response.Errors["Email"].ShouldBe(new[] { "Email is required", "Email format is invalid" });
+        response.Errors["Name"].ShouldBe(new[] { "Name is required" });
+    }
+
+    [Fact]
+    public void Serialize_PartialRFC7807ValidationProblemResponse_ShouldOmitNullProperties()
+    {
+        // Arrange - Only populate some RFC 7807 properties
+        ValidationProblemResponse response = new()
+        {
+            Title = "Validation failed",
+            Status = 400,
+            // Type, Detail, Instance are null and should be omitted
+            Errors = new Dictionary<string, string[]>
+            {
+                ["Field"] = ["Field is invalid"]
+            }
+        };
+
+        // Act
+        string json = JsonSerializer.Serialize(response, _options);
+
+        // Assert
+        json.ShouldContain(@"""title"": ""Validation failed""");
+        json.ShouldContain(@"""status"": 400");
+        json.ShouldContain(@"""errors"":");
+        json.ShouldContain(@"""Field"":");
+        
+        // These should be omitted due to JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)
+        json.ShouldNotContain(@"""type"":");
+        json.ShouldNotContain(@"""detail"":");
+        json.ShouldNotContain(@"""instance"":");
+    }
+
+    [Fact]
+    public void Deserialize_MinimalValidationProblemResponse_ShouldHandleOptionalProperties()
+    {
+        // Arrange - JSON with only errors (backward compatibility)
+        string json = @"{
+            ""errors"": {
+                ""Field"": [""Field is required""]
+            }
+        }";
+
+        // Act
+        ValidationProblemResponse? response = JsonSerializer.Deserialize<ValidationProblemResponse>(json, _options);
+
+        // Assert
+        response.ShouldNotBeNull();
+        response.Type.ShouldBeNull();
+        response.Title.ShouldBeNull();
+        response.Status.ShouldBeNull();
+        response.Detail.ShouldBeNull();
+        response.Instance.ShouldBeNull();
+        response.Errors.ShouldNotBeNull();
+        response.Errors.Count.ShouldBe(1);
+        response.Errors["Field"].ShouldBe(new[] { "Field is required" });
+    }
+
+    [Fact]
+    public void RoundTrip_FullRFC7807ValidationProblemResponse_ShouldPreserveAllProperties()
+    {
+        // Arrange
+        ValidationProblemResponse original = new()
+        {
+            Type = "https://example.com/problem/validation-error",
+            Title = "Validation Error",
+            Status = 422,
+            Detail = "Multiple fields failed validation",
+            Instance = "/api/entities/123/validation",
+            Errors = new Dictionary<string, string[]>
+            {
+                ["FirstName"] = ["Required", "Too short"],
+                ["LastName"] = ["Required"],
+                ["Age"] = ["Must be positive"]
+            }
+        };
+
+        // Act
+        string json = JsonSerializer.Serialize(original, _options);
+        ValidationProblemResponse? deserialized = JsonSerializer.Deserialize<ValidationProblemResponse>(json, _options);
+
+        // Assert
+        deserialized.ShouldNotBeNull();
+        deserialized.Type.ShouldBe(original.Type);
+        deserialized.Title.ShouldBe(original.Title);
+        deserialized.Status.ShouldBe(original.Status);
+        deserialized.Detail.ShouldBe(original.Detail);
+        deserialized.Instance.ShouldBe(original.Instance);
+        deserialized.Errors.Count.ShouldBe(original.Errors.Count);
+        
+        foreach (KeyValuePair<string, string[]> kvp in original.Errors)
+        {
+            deserialized.Errors.ShouldContainKey(kvp.Key);
+            deserialized.Errors[kvp.Key].ShouldBe(kvp.Value);
+        }
+    }
+
+    [Fact]
+    public void RoundTrip_WithAOTContext_FullRFC7807ValidationProblemResponse_ShouldWork()
+    {
+        // Arrange
+        ValidationProblemResponse original = new()
+        {
+            Type = "https://example.com/problem/validation-error",
+            Title = "Validation Error",
+            Status = 422,
+            Detail = "Multiple fields failed validation",
+            Instance = "/api/entities/123/validation",
+            Errors = new Dictionary<string, string[]>
+            {
+                ["Email"] = ["Invalid format"],
+                ["Password"] = ["Too weak", "Too short"]
+            }
+        };
+
+        // Act
+        string json = JsonSerializer.Serialize(original, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+        ValidationProblemResponse? deserialized = JsonSerializer.Deserialize(json, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);
+
+        // Assert
+        deserialized.ShouldNotBeNull();
+        deserialized.Type.ShouldBe(original.Type);
+        deserialized.Title.ShouldBe(original.Title);
+        deserialized.Status.ShouldBe(original.Status);
+        deserialized.Detail.ShouldBe(original.Detail);
+        deserialized.Instance.ShouldBe(original.Instance);
+        deserialized.Errors.Count.ShouldBe(original.Errors.Count);
+        deserialized.Errors["Email"].ShouldBe(original.Errors["Email"]);
+        deserialized.Errors["Password"].ShouldBe(original.Errors["Password"]);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void ValidationProblemResponse_WithVariousTypeValues_ShouldSerializeCorrectly(string? typeValue)
+    {
+        // Arrange
+        ValidationProblemResponse response = new()
+        {
+            Type = typeValue,
+            Title = "Test",
+            Errors = new Dictionary<string, string[]> { ["Test"] = ["Error"] }
+        };
+
+        // Act
+        string json = JsonSerializer.Serialize(response, _options);
+        ValidationProblemResponse? deserialized = JsonSerializer.Deserialize<ValidationProblemResponse>(json, _options);
+
+        // Assert
+        deserialized.ShouldNotBeNull();
+        deserialized.Type.ShouldBe(typeValue);
+        deserialized.Title.ShouldBe("Test");
+    }
+
+    #endregion TASK-047: RFC 7807 ProblemDetails Properties Tests
 }
