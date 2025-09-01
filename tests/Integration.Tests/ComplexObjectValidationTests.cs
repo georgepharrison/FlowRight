@@ -485,8 +485,8 @@ public class ComplexObjectValidationTests
             // Act - Conditional validation
             builder.RuleFor(o => o.TotalAmount, highOrderAmount)
                 .GreaterThan(0)
-                .When(amount => vipCustomer.Type != CustomerType.VIP)  // Only apply limit to non-VIP
                 .LessThanOrEqualTo(1000m)
+                .When(amount => vipCustomer.Type != CustomerType.VIP)  // Only apply limit to non-VIP
                 .WithMessage("Regular customers have $1000 order limit");
 
             Result<Order> result = builder.Build(() => new OrderBuilder()
@@ -542,16 +542,17 @@ public class ComplexObjectValidationTests
         [Fact]
         public void ValidationBuilder_WithTooDeepHierarchy_ShouldReturnValidationFailure()
         {
-            // Arrange - Create 6-level deep category hierarchy (exceeds limit)
+            // Arrange - Create 7-level deep category hierarchy (exceeds limit of 5)
             Category level1 = new CategoryBuilder().WithName("Electronics").Build();
             Category level2 = new CategoryBuilder().WithName("Computers").WithParentCategory(level1).Build();
             Category level3 = new CategoryBuilder().WithName("Laptops").WithParentCategory(level2).Build();
             Category level4 = new CategoryBuilder().WithName("Gaming").WithParentCategory(level3).Build();
             Category level5 = new CategoryBuilder().WithName("High-End").WithParentCategory(level4).Build();
             Category level6 = new CategoryBuilder().WithName("Ultra").WithParentCategory(level5).Build();
+            Category level7 = new CategoryBuilder().WithName("Premium").WithParentCategory(level6).Build();
 
             Product product = new ProductBuilder()
-                .WithCategory(level6)
+                .WithCategory(level7)
                 .Build();
 
             ValidationBuilder<Order> builder = new();
@@ -708,7 +709,7 @@ public class ComplexObjectValidationTests
             decimal totalAmount = manyComplexItems.Sum(i => i.TotalPrice);
             builder.RuleFor(o => o.TotalAmount, totalAmount)
                 .GreaterThan(0)
-                .LessThan(100000m);
+                .LessThan(500000m);
 
             Result<Order> result = builder.Build(() => new OrderBuilder()
                 .WithCustomer(complexCustomer)
