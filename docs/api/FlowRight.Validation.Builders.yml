@@ -1,0 +1,73 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Builders
+  commentId: N:FlowRight.Validation.Builders
+  id: FlowRight.Validation.Builders
+  children:
+  - FlowRight.Validation.Builders.ValidationBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Validation.Builders
+  nameWithType: FlowRight.Validation.Builders
+  fullName: FlowRight.Validation.Builders
+  type: Namespace
+  assemblies:
+  - FlowRight.Validation
+references:
+- uid: FlowRight.Validation.Builders.ValidationBuilder`1
+  commentId: T:FlowRight.Validation.Builders.ValidationBuilder`1
+  parent: FlowRight.Validation.Builders
+  href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  name: ValidationBuilder<T>
+  nameWithType: ValidationBuilder<T>
+  fullName: FlowRight.Validation.Builders.ValidationBuilder<T>
+  nameWithType.vb: ValidationBuilder(Of T)
+  fullName.vb: FlowRight.Validation.Builders.ValidationBuilder(Of T)
+  name.vb: ValidationBuilder(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Builders.ValidationBuilder`1
+    name: ValidationBuilder
+    href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Builders.ValidationBuilder`1
+    name: ValidationBuilder
+    href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Builders
+  commentId: N:FlowRight.Validation.Builders
+  href: FlowRight.html
+  name: FlowRight.Validation.Builders
+  nameWithType: FlowRight.Validation.Builders
+  fullName: FlowRight.Validation.Builders
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Builders
+    name: Builders
+    href: FlowRight.Validation.Builders.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Builders
+    name: Builders
+    href: FlowRight.Validation.Builders.html

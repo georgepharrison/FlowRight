@@ -1,0 +1,234 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Results.ResultType
+  commentId: T:FlowRight.Core.Results.ResultType
+  id: ResultType
+  parent: FlowRight.Core.Results
+  children:
+  - FlowRight.Core.Results.ResultType.Error
+  - FlowRight.Core.Results.ResultType.Information
+  - FlowRight.Core.Results.ResultType.Success
+  - FlowRight.Core.Results.ResultType.Warning
+  langs:
+  - csharp
+  - vb
+  name: ResultType
+  nameWithType: ResultType
+  fullName: FlowRight.Core.Results.ResultType
+  type: Enum
+  source:
+    id: ResultType
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultType.cs
+    startLine: 17
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Specifies the general category or severity level of a result, providing high-level classification
+
+    for success states and various types of informational or error conditions.
+  remarks: >-
+    <p>
+
+    This enumeration provides a way to categorize results beyond simple success/failure,
+
+    allowing for more nuanced result handling in scenarios where different types of
+
+    non-failure outcomes need to be distinguished.
+
+    </p>
+
+    <p>
+
+    The values are ordered by severity, with <xref href="FlowRight.Core.Results.ResultType.Success" data-throw-if-not-resolved="false"></xref> representing the most
+
+    positive outcome and <xref href="FlowRight.Core.Results.ResultType.Error" data-throw-if-not-resolved="false"></xref> representing the most severe negative outcome.
+
+    </p>
+  example: []
+  syntax:
+    content: public enum ResultType
+    content.vb: Public Enum ResultType
+- uid: FlowRight.Core.Results.ResultType.Success
+  commentId: F:FlowRight.Core.Results.ResultType.Success
+  id: Success
+  parent: FlowRight.Core.Results.ResultType
+  langs:
+  - csharp
+  - vb
+  name: Success
+  nameWithType: ResultType.Success
+  fullName: FlowRight.Core.Results.ResultType.Success
+  type: Field
+  source:
+    id: Success
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultType.cs
+    startLine: 23
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the operation completed successfully without any issues.
+
+    This is the most positive result state and typically contains a success value.
+  example: []
+  syntax:
+    content: Success = 0
+    return:
+      type: FlowRight.Core.Results.ResultType
+- uid: FlowRight.Core.Results.ResultType.Information
+  commentId: F:FlowRight.Core.Results.ResultType.Information
+  id: Information
+  parent: FlowRight.Core.Results.ResultType
+  langs:
+  - csharp
+  - vb
+  name: Information
+  nameWithType: ResultType.Information
+  fullName: FlowRight.Core.Results.ResultType.Information
+  type: Field
+  source:
+    id: Information
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultType.cs
+    startLine: 34
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the operation completed successfully and provides additional
+
+    informational content that may be useful to the caller or end user.
+  remarks: >-
+    This result type is useful for operations that succeed but want to communicate
+
+    additional context, such as warnings about deprecated features, informational
+
+    messages about data transformations, or notifications about side effects.
+  example: []
+  syntax:
+    content: Information = 1
+    return:
+      type: FlowRight.Core.Results.ResultType
+- uid: FlowRight.Core.Results.ResultType.Warning
+  commentId: F:FlowRight.Core.Results.ResultType.Warning
+  id: Warning
+  parent: FlowRight.Core.Results.ResultType
+  langs:
+  - csharp
+  - vb
+  name: Warning
+  nameWithType: ResultType.Warning
+  fullName: FlowRight.Core.Results.ResultType.Warning
+  type: Field
+  source:
+    id: Warning
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultType.cs
+    startLine: 45
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the operation completed successfully but encountered conditions
+
+    that warrant attention or may lead to issues in the future.
+  remarks: >-
+    Warning results are successful but highlight potential problems, configuration
+
+    issues, or situations that should be addressed. For example, using deprecated
+
+    APIs, approaching resource limits, or data quality concerns.
+  example: []
+  syntax:
+    content: Warning = 2
+    return:
+      type: FlowRight.Core.Results.ResultType
+- uid: FlowRight.Core.Results.ResultType.Error
+  commentId: F:FlowRight.Core.Results.ResultType.Error
+  id: Error
+  parent: FlowRight.Core.Results.ResultType
+  langs:
+  - csharp
+  - vb
+  name: Error
+  nameWithType: ResultType.Error
+  fullName: FlowRight.Core.Results.ResultType.Error
+  type: Field
+  source:
+    id: Error
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/ResultType.cs
+    startLine: 56
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Indicates that the operation failed to complete successfully due to an error condition.
+
+    This represents a failure state and typically contains error information instead of a success value.
+  remarks: >-
+    Error results represent various types of failures including system errors, validation
+
+    failures, security violations, and business rule violations. The specific type of
+
+    error can be determined using <xref href="FlowRight.Core.Results.ResultFailureType" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Error = 3
+    return:
+      type: FlowRight.Core.Results.ResultType
+references:
+- uid: FlowRight.Core.Results.ResultType.Success
+  commentId: F:FlowRight.Core.Results.ResultType.Success
+  href: FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Success
+  name: Success
+  nameWithType: ResultType.Success
+  fullName: FlowRight.Core.Results.ResultType.Success
+- uid: FlowRight.Core.Results.ResultType.Error
+  commentId: F:FlowRight.Core.Results.ResultType.Error
+  href: FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Error
+  name: Error
+  nameWithType: ResultType.Error
+  fullName: FlowRight.Core.Results.ResultType.Error
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+- uid: FlowRight.Core.Results.ResultType
+  commentId: T:FlowRight.Core.Results.ResultType
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.ResultType.html
+  name: ResultType
+  nameWithType: ResultType
+  fullName: FlowRight.Core.Results.ResultType
+- uid: FlowRight.Core.Results.ResultFailureType
+  commentId: T:FlowRight.Core.Results.ResultFailureType
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.ResultFailureType.html
+  name: ResultFailureType
+  nameWithType: ResultFailureType
+  fullName: FlowRight.Core.Results.ResultFailureType

@@ -1,0 +1,356 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.IContextAwareRule`1
+  commentId: T:FlowRight.Validation.Rules.IContextAwareRule`1
+  id: IContextAwareRule`1
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.IContextAwareRule`1.Validate(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  langs:
+  - csharp
+  - vb
+  name: IContextAwareRule<T>
+  nameWithType: IContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.IContextAwareRule<T>
+  type: Interface
+  source:
+    id: IContextAwareRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/IContextAwareRule.cs
+    startLine: 42
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: >-
+    Defines a validation rule that can access validation context for complex validation scenarios.
+
+    This interface extends the basic IRule functionality to enable context-aware validation.
+  remarks: >-
+    <p>
+
+    Context-aware rules enable advanced validation scenarios that require:
+
+    <ul><li>Access to the root object being validated for cross-property validation</li><li>Integration with external services through dependency injection</li><li>Access to custom data shared between validation rules</li><li>Hierarchical validation with parent-child relationships</li><li>Conditional validation based on previously executed rules</li></ul>
+
+    </p>
+
+    <p>
+
+    Context-aware rules should be used when validation logic requires information beyond
+
+    the single property value being validated. For simple property-only validation,
+
+    the standard IRule&lt;T&gt; interface is more appropriate.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">public class EmailMustMatchUserNameRule : IContextAwareRule&lt;string&gt;
+
+    {
+        public string? Validate(string email, string displayName, IValidationContext context)
+        {
+            User? user = context.GetRootObject&lt;User&gt;();
+            if (user != null &amp;&amp; !email.StartsWith(user.UserName))
+            {
+                return "Email must start with username";
+            }
+            return null; // Validation passed
+        }
+    }</code></pre>
+  syntax:
+    content: 'public interface IContextAwareRule<in T> : IRule<T>'
+    typeParameters:
+    - id: T
+      description: The type of value this rule can validate.
+    content.vb: Public Interface IContextAwareRule(Of In T) Inherits IRule(Of T)
+  inheritedMembers:
+  - FlowRight.Validation.Rules.IRule{{T}}.Validate({T},System.String)
+  nameWithType.vb: IContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IContextAwareRule(Of T)
+  name.vb: IContextAwareRule(Of T)
+- uid: FlowRight.Validation.Rules.IContextAwareRule`1.Validate(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  commentId: M:FlowRight.Validation.Rules.IContextAwareRule`1.Validate(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  id: Validate(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  parent: FlowRight.Validation.Rules.IContextAwareRule`1
+  langs:
+  - csharp
+  - vb
+  name: Validate(T, string, IValidationContext)
+  nameWithType: IContextAwareRule<T>.Validate(T, string, IValidationContext)
+  fullName: FlowRight.Validation.Rules.IContextAwareRule<T>.Validate(T, string, FlowRight.Validation.Context.IValidationContext)
+  type: Method
+  source:
+    id: Validate
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/IContextAwareRule.cs
+    startLine: 74
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Validates the specified value with access to validation context and returns an error message if validation fails.
+  remarks: >-
+    This method provides full access to the validation context, enabling complex validation scenarios
+
+    that require information beyond the single property value. The context parameter should not be null
+
+    when called by the validation framework.
+  example:
+  - >-
+    <pre><code class="lang-csharp">public string? Validate(string value, string displayName, IValidationContext context)
+
+    {
+        // Access root object for cross-property validation
+        User? rootUser = context.GetRootObject&lt;User&gt;();
+
+        // Access services for external validation
+        IEmailService? emailService = context.GetService&lt;IEmailService&gt;();
+
+        // Access custom data for shared state
+        bool strictMode = context.GetCustomData&lt;bool&gt;("StrictValidation");
+
+        // Perform context-aware validation logic
+        return ValidateWithContext(value, rootUser, emailService, strictMode);
+    }</code></pre>
+  syntax:
+    content: string? Validate(T value, string displayName, IValidationContext context)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: The value to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated, used in error messages.
+    - id: context
+      type: FlowRight.Validation.Context.IValidationContext
+      description: The validation context providing access to root object, services, and custom data.
+    return:
+      type: System.String
+      description: An error message if validation fails; otherwise, null indicating validation passed.
+    content.vb: Function Validate(value As T, displayName As String, context As IValidationContext) As String
+  overload: FlowRight.Validation.Rules.IContextAwareRule`1.Validate*
+  nameWithType.vb: IContextAwareRule(Of T).Validate(T, String, IValidationContext)
+  fullName.vb: FlowRight.Validation.Rules.IContextAwareRule(Of T).Validate(T, String, FlowRight.Validation.Context.IValidationContext)
+  name.vb: Validate(T, String, IValidationContext)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: FlowRight.Validation.Rules.IRule{{T}}.Validate({T},System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule{`0}.Validate(`0,System.String)
+  parent: FlowRight.Validation.Rules.IRule{{T}}
+  definition: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule{`0}.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule{`0}.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: FlowRight.Validation.Rules.IRule{{T}}
+  commentId: T:FlowRight.Validation.Rules.IRule{`0}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.IContextAwareRule`1.Validate*
+  commentId: Overload:FlowRight.Validation.Rules.IContextAwareRule`1.Validate
+  href: FlowRight.Validation.Rules.IContextAwareRule-1.html#FlowRight_Validation_Rules_IContextAwareRule_1_Validate__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  name: Validate
+  nameWithType: IContextAwareRule<T>.Validate
+  fullName: FlowRight.Validation.Rules.IContextAwareRule<T>.Validate
+  nameWithType.vb: IContextAwareRule(Of T).Validate
+  fullName.vb: FlowRight.Validation.Rules.IContextAwareRule(Of T).Validate
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Validation.Context.IValidationContext
+  commentId: T:FlowRight.Validation.Context.IValidationContext
+  parent: FlowRight.Validation.Context
+  href: FlowRight.Validation.Context.IValidationContext.html
+  name: IValidationContext
+  nameWithType: IValidationContext
+  fullName: FlowRight.Validation.Context.IValidationContext
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Context
+  commentId: N:FlowRight.Validation.Context
+  href: FlowRight.html
+  name: FlowRight.Validation.Context
+  nameWithType: FlowRight.Validation.Context
+  fullName: FlowRight.Validation.Context
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Context
+    name: Context
+    href: FlowRight.Validation.Context.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Context
+    name: Context
+    href: FlowRight.Validation.Context.html

@@ -1,0 +1,426 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.CountRule`1
+  commentId: T:FlowRight.Validation.Rules.CountRule`1
+  id: CountRule`1
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.CountRule`1.#ctor(System.Int32)
+  - FlowRight.Validation.Rules.CountRule`1.Validate(System.Collections.Generic.IEnumerable{`0},System.String)
+  langs:
+  - csharp
+  - vb
+  name: CountRule<TItem>
+  nameWithType: CountRule<TItem>
+  fullName: FlowRight.Validation.Rules.CountRule<TItem>
+  type: Class
+  source:
+    id: CountRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/CountRule.cs
+    startLine: 7
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures a collection contains an exact number of items.
+  example: []
+  syntax:
+    content: 'public sealed class CountRule<TItem> : IRule<IEnumerable<TItem>>'
+    typeParameters:
+    - id: TItem
+      description: The type of items in the collection.
+    content.vb: Public NotInheritable Class CountRule(Of TItem) Implements IRule(Of IEnumerable(Of TItem))
+  inheritance:
+  - System.Object
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{{TItem}}}
+  nameWithType.vb: CountRule(Of TItem)
+  fullName.vb: FlowRight.Validation.Rules.CountRule(Of TItem)
+  name.vb: CountRule(Of TItem)
+- uid: FlowRight.Validation.Rules.CountRule`1.#ctor(System.Int32)
+  commentId: M:FlowRight.Validation.Rules.CountRule`1.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: FlowRight.Validation.Rules.CountRule`1
+  langs:
+  - csharp
+  - vb
+  name: CountRule(int)
+  nameWithType: CountRule<TItem>.CountRule(int)
+  fullName: FlowRight.Validation.Rules.CountRule<TItem>.CountRule(int)
+  type: Constructor
+  source:
+    id: .ctor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/CountRule.cs
+    startLine: 7
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures a collection contains an exact number of items.
+  example: []
+  syntax:
+    content: public CountRule(int expectedCount)
+    parameters:
+    - id: expectedCount
+      type: System.Int32
+      description: The exact number of items the collection must contain.
+    content.vb: Public Sub New(expectedCount As Integer)
+  overload: FlowRight.Validation.Rules.CountRule`1.#ctor*
+  nameWithType.vb: CountRule(Of TItem).New(Integer)
+  fullName.vb: FlowRight.Validation.Rules.CountRule(Of TItem).New(Integer)
+  name.vb: New(Integer)
+- uid: FlowRight.Validation.Rules.CountRule`1.Validate(System.Collections.Generic.IEnumerable{`0},System.String)
+  commentId: M:FlowRight.Validation.Rules.CountRule`1.Validate(System.Collections.Generic.IEnumerable{`0},System.String)
+  id: Validate(System.Collections.Generic.IEnumerable{`0},System.String)
+  parent: FlowRight.Validation.Rules.CountRule`1
+  langs:
+  - csharp
+  - vb
+  name: Validate(IEnumerable<TItem>, string)
+  nameWithType: CountRule<TItem>.Validate(IEnumerable<TItem>, string)
+  fullName: FlowRight.Validation.Rules.CountRule<TItem>.Validate(System.Collections.Generic.IEnumerable<TItem>, string)
+  type: Method
+  source:
+    id: Validate
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/CountRule.cs
+    startLine: 23
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Validates that the collection contains exactly the expected number of items.
+  example: []
+  syntax:
+    content: public string? Validate(IEnumerable<TItem> value, string displayName)
+    parameters:
+    - id: value
+      type: System.Collections.Generic.IEnumerable{{TItem}}
+      description: The collection to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated.
+    return:
+      type: System.String
+      description: An error message if the collection does not contain the expected count; otherwise, null.
+    content.vb: Public Function Validate(value As IEnumerable(Of TItem), displayName As String) As String
+  overload: FlowRight.Validation.Rules.CountRule`1.Validate*
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{{TItem}}}.Validate(System.Collections.Generic.IEnumerable{{TItem}},System.String)
+  nameWithType.vb: CountRule(Of TItem).Validate(IEnumerable(Of TItem), String)
+  fullName.vb: FlowRight.Validation.Rules.CountRule(Of TItem).Validate(System.Collections.Generic.IEnumerable(Of TItem), String)
+  name.vb: Validate(IEnumerable(Of TItem), String)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{{TItem}}}
+  commentId: T:FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{`0}}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<IEnumerable<TItem>>
+  nameWithType: IRule<IEnumerable<TItem>>
+  fullName: FlowRight.Validation.Rules.IRule<System.Collections.Generic.IEnumerable<TItem>>
+  nameWithType.vb: IRule(Of IEnumerable(Of TItem))
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of System.Collections.Generic.IEnumerable(Of TItem))
+  name.vb: IRule(Of IEnumerable(Of TItem))
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: <
+  - name: TItem
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.CountRule`1.#ctor*
+  commentId: Overload:FlowRight.Validation.Rules.CountRule`1.#ctor
+  href: FlowRight.Validation.Rules.CountRule-1.html#FlowRight_Validation_Rules_CountRule_1__ctor_System_Int32_
+  name: CountRule
+  nameWithType: CountRule<TItem>.CountRule
+  fullName: FlowRight.Validation.Rules.CountRule<TItem>.CountRule
+  nameWithType.vb: CountRule(Of TItem).New
+  fullName.vb: FlowRight.Validation.Rules.CountRule(Of TItem).New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FlowRight.Validation.Rules.CountRule`1.Validate*
+  commentId: Overload:FlowRight.Validation.Rules.CountRule`1.Validate
+  href: FlowRight.Validation.Rules.CountRule-1.html#FlowRight_Validation_Rules_CountRule_1_Validate_System_Collections_Generic_IEnumerable__0__System_String_
+  name: Validate
+  nameWithType: CountRule<TItem>.Validate
+  fullName: FlowRight.Validation.Rules.CountRule<TItem>.Validate
+  nameWithType.vb: CountRule(Of TItem).Validate
+  fullName.vb: FlowRight.Validation.Rules.CountRule(Of TItem).Validate
+- uid: FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{{TItem}}}.Validate(System.Collections.Generic.IEnumerable{{TItem}},System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{`0}}.Validate(System.Collections.Generic.IEnumerable{`0},System.String)
+  parent: FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{{TItem}}}
+  definition: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(IEnumerable<TItem>, string)
+  nameWithType: IRule<IEnumerable<TItem>>.Validate(IEnumerable<TItem>, string)
+  fullName: FlowRight.Validation.Rules.IRule<System.Collections.Generic.IEnumerable<TItem>>.Validate(System.Collections.Generic.IEnumerable<TItem>, string)
+  nameWithType.vb: IRule(Of IEnumerable(Of TItem)).Validate(IEnumerable(Of TItem), String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of System.Collections.Generic.IEnumerable(Of TItem)).Validate(System.Collections.Generic.IEnumerable(Of TItem), String)
+  name.vb: Validate(IEnumerable(Of TItem), String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{`0}}.Validate(System.Collections.Generic.IEnumerable{`0},System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: <
+  - name: TItem
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule{System.Collections.Generic.IEnumerable{`0}}.Validate(System.Collections.Generic.IEnumerable{`0},System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{{TItem}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<TItem>
+  nameWithType: IEnumerable<TItem>
+  fullName: System.Collections.Generic.IEnumerable<TItem>
+  nameWithType.vb: IEnumerable(Of TItem)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of TItem)
+  name.vb: IEnumerable(Of TItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

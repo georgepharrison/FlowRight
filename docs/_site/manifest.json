@@ -1,0 +1,1332 @@
+{
+  "source_base_path": "/home/ringo/source/FlowRight-documentation/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Extensions.ResultAsyncExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Extensions.ResultAsyncExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Extensions.ResultAsyncExtensions",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Extensions.ResultAsyncExtensions.yml\" sourcestartlinenumber=\"1\">Provides async-friendly extension methods for the Result and Result&lt;T&gt; types,\nenabling seamless composition of asynchronous operations with the Result pattern.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.IResult-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.IResult-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results.IResult<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Results.IResult-1.yml\" sourcestartlinenumber=\"1\">Represents a Result pattern implementation that can contain a typed success value,\nproviding pattern matching and functional programming capabilities.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.IResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.IResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results.IResult",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Results.IResult.yml\" sourcestartlinenumber=\"1\">Represents the basic contract for Result pattern implementations, providing access to success/failure state\nand error information without exposing the success value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.IResultError-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.IResultError-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results.IResultError<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Results.IResultError-1.yml\" sourcestartlinenumber=\"1\">Provides access to error messages from result operations, supporting covariant access to error information.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.Result-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.Result-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results.Result<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Results.Result-1.yml\" sourcestartlinenumber=\"1\">Provides a generic Result implementation that represents the outcome of operations\nthat return a typed value, supporting both success and failure states with comprehensive error handling.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.Result.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.Result.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results.Result",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Results.Result.yml\" sourcestartlinenumber=\"1\">Provides a non-generic Result implementation that represents the outcome of operations\nthat don't return a value, supporting both success and failure states with detailed error information.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.ResultFailureType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.ResultFailureType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results.ResultFailureType",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Results.ResultFailureType.yml\" sourcestartlinenumber=\"1\">Specifies the specific type of failure that occurred in a result operation,\nproviding detailed categorization for different error scenarios and enabling\nappropriate error handling strategies.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.ResultType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.ResultType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results.ResultType",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Results.ResultType.yml\" sourcestartlinenumber=\"1\">Specifies the general category or severity level of a result, providing high-level classification\nfor success states and various types of informational or error conditions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Results.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Results.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Results",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Serialization.ResultJsonConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Serialization.ResultJsonConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Serialization.ResultJsonConverter",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Serialization.ResultJsonConverter.yml\" sourcestartlinenumber=\"1\">Provides custom JSON serialization and deserialization for <xref href=\"FlowRight.Core.Results.Result\" data-throw-if-not-resolved=\"false\"></xref> instances.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Serialization.ResultTJsonConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Serialization.ResultTJsonConverter-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Serialization.ResultTJsonConverter<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Core.Serialization.ResultTJsonConverter-1.yml\" sourcestartlinenumber=\"1\">Provides custom JSON serialization and deserialization for <xref href=\"FlowRight.Core.Results.Result%601\" data-throw-if-not-resolved=\"false\"></xref> instances.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Core.Serialization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Core.Serialization.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Core.Serialization",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Http.Extensions.HttpResponseMessageExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Http.Extensions.HttpResponseMessageExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Http.Extensions.HttpResponseMessageExtensions",
+      "Summary": "<p sourcefile=\"api/FlowRight.Http.Extensions.HttpResponseMessageExtensions.yml\" sourcestartlinenumber=\"1\">Provides extension methods for converting HTTP response messages to Result types.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Http.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Http.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Http.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Http.Models.ContentTypeInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Http.Models.ContentTypeInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Http.Models.ContentTypeInfo",
+      "Summary": "<p sourcefile=\"api/FlowRight.Http.Models.ContentTypeInfo.yml\" sourcestartlinenumber=\"1\">Represents parsed content type information including media type, charset, and parameters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Http.Models.ValidationProblemJsonSerializerContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Http.Models.ValidationProblemJsonSerializerContext",
+      "Summary": "<p sourcefile=\"api/FlowRight.Http.Models.ValidationProblemJsonSerializerContext.yml\" sourcestartlinenumber=\"1\">Provides JSON serialization context for <xref href=\"FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse\" data-throw-if-not-resolved=\"false\"></xref> to enable AOT compilation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Http.Models.ValidationProblemResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Http.Models.ValidationProblemResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Http.Models.ValidationProblemResponse",
+      "Summary": "<p sourcefile=\"api/FlowRight.Http.Models.ValidationProblemResponse.yml\" sourcestartlinenumber=\"1\">Represents a validation problem response that follows RFC 7807 Problem Details specification\nand contains field-specific error messages.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Http.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Http.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Http.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Builders.ValidationBuilder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Builders.ValidationBuilder-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Builders.ValidationBuilder<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Builders.ValidationBuilder-1.yml\" sourcestartlinenumber=\"1\">A fluent validation builder that integrates with the Result&lt;T&gt; pattern to provide comprehensive validation capabilities\nwith automatic error aggregation and Result&lt;T&gt; composition support.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Builders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Builders.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Builders",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Context.IValidationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Context.IValidationContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Context.IValidationContext",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Context.IValidationContext.yml\" sourcestartlinenumber=\"1\">Provides validation context for complex validation scenarios, enabling access to parent objects,\nservices, custom data storage, and hierarchical validation support.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Context.ValidationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Context.ValidationContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Context.ValidationContext",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Context.ValidationContext.yml\" sourcestartlinenumber=\"1\">Concrete implementation of IValidationContext that provides comprehensive validation context\nfor complex validation scenarios with object access, service integration, custom data storage,\nand hierarchical validation support.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Context.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Context.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Context",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.AlphaNumericDashRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.AlphaNumericDashRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.AlphaNumericDashRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.AlphaNumericDashRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value contains only alphanumeric characters and dashes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.AlphaNumericRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.AlphaNumericRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.AlphaNumericRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.AlphaNumericRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value contains only alphanumeric characters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.AlphaNumericSpaceRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.AlphaNumericSpaceRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.AlphaNumericSpaceRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.AlphaNumericSpaceRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value contains only alphanumeric characters and spaces.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.AlphaRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.AlphaRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.AlphaRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.AlphaRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value contains only alphabetic characters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.BetweenRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.BetweenRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.BetweenRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.BetweenRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is between two bounds (inclusive).\nThis is an alias for InclusiveBetweenRule for backward compatibility and intuitive naming.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.ContainsItemRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.ContainsItemRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.ContainsItemRule<TItem>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.ContainsItemRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a collection contains a specific item.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.ContainsRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.ContainsRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.ContainsRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.ContainsRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value contains a specified substring.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.CountRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.CountRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.CountRule<TItem>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.CountRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a collection contains an exact number of items.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.CreditCardRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.CreditCardRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.CreditCardRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.CreditCardRule.yml\" sourcestartlinenumber=\"1\">A validation rule that validates credit card numbers using the Luhn algorithm.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.EachRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.EachRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.EachRule<TItem>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.EachRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that validates each item in a collection using a nested validation rule.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.EmailRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.EmailRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.EmailRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.EmailRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value is a valid email address format.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.EmptyRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.EmptyRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.EmptyRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.EmptyRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is empty or in its default state.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.EndsWithRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.EndsWithRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.EndsWithRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.EndsWithRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value ends with a specified suffix.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.EqualRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.EqualRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.EqualRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.EqualRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is equal to a specified comparison value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.EqualToRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.EqualToRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.EqualToRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.EqualToRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value is equal to a specific expected value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.ExactLengthRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.ExactLengthRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.ExactLengthRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.ExactLengthRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string has an exact specified length.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.ExclusiveBetweenRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.ExclusiveBetweenRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.ExclusiveBetweenRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.ExclusiveBetweenRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is between two bounds (exclusive).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.GreaterThanOrEqualToRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.GreaterThanOrEqualToRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.GreaterThanOrEqualToRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.GreaterThanOrEqualToRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is greater than or equal to a specified comparison value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.GreaterThanRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.GreaterThanRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.GreaterThanRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.GreaterThanRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is greater than a specified comparison value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.GuidNonZeroTimestampRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.GuidNonZeroTimestampRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.GuidNonZeroTimestampRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.GuidNonZeroTimestampRule.yml\" sourcestartlinenumber=\"1\">Validation rule that ensures a GUID has non-zero timestamp bits, indicating it was not created at epoch time.\nThis can help identify potentially invalid or placeholder GUIDs that may have been generated incorrectly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.GuidNotEmptyRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.GuidNotEmptyRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.GuidNotEmptyRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.GuidNotEmptyRule.yml\" sourcestartlinenumber=\"1\">Validation rule that ensures a GUID is not the empty GUID (00000000-0000-0000-0000-000000000000).\nThis provides a more semantic alternative to NotEqual(Guid.Empty) for GUID-specific validation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.GuidValidFormatRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.GuidValidFormatRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.GuidValidFormatRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.GuidValidFormatRule.yml\" sourcestartlinenumber=\"1\">Validation rule that ensures a GUID follows the standard hyphenated format (8-4-4-4-12 characters).\nThis validates the string representation of the GUID is properly formatted.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.IAsyncContextAwareRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.IAsyncContextAwareRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.IAsyncContextAwareRule-1.yml\" sourcestartlinenumber=\"1\">Defines an asynchronous validation rule that can access validation context for complex validation scenarios.\nThis interface enables context-aware validation with async operations such as database lookups or web service calls.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.IContextAwareRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.IContextAwareRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.IContextAwareRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.IContextAwareRule-1.yml\" sourcestartlinenumber=\"1\">Defines a validation rule that can access validation context for complex validation scenarios.\nThis interface extends the basic IRule functionality to enable context-aware validation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.IRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.IRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.IRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.IRule-1.yml\" sourcestartlinenumber=\"1\">Defines a validation rule that can be applied to values of type T, providing error messages when validation fails.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.InclusiveBetweenRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.InclusiveBetweenRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.InclusiveBetweenRule<TNumeric>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.InclusiveBetweenRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a numeric value is between two bounds (inclusive).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.InclusiveBetweenRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.InclusiveBetweenRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.InclusiveBetweenRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.InclusiveBetweenRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures an integer value is between two bounds (inclusive).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.LengthRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.LengthRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.LengthRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.LengthRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string length is within specified bounds.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.LessThanOrEqualToRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.LessThanOrEqualToRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.LessThanOrEqualToRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.LessThanOrEqualToRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is less than or equal to a specified comparison value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.LessThanRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.LessThanRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.LessThanRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.LessThanRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is less than a specified comparison value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.LowerCaseRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.LowerCaseRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.LowerCaseRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.LowerCaseRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value is in lowercase.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MatchesRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MatchesRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MatchesRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MatchesRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value matches a specified regular expression pattern.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MaxCountRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MaxCountRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MaxCountRule<TItem>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MaxCountRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a collection contains at most a specified number of items.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MaxLengthRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MaxLengthRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MaxLengthRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MaxLengthRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string does not exceed a specified maximum length.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MinCountRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MinCountRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MinCountRule<TItem>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MinCountRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a collection contains at least a specified number of items.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MinLengthRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MinLengthRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MinLengthRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MinLengthRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string meets a minimum length requirement.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MustAsyncContextAwareRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.yml\" sourcestartlinenumber=\"1\">An asynchronous context-aware validation rule that applies a custom condition function with access to validation context.\nThis rule enables complex validation scenarios that require async operations and access to root objects, services, or custom data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MustContextAwareRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MustContextAwareRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MustContextAwareRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MustContextAwareRule-1.yml\" sourcestartlinenumber=\"1\">A context-aware validation rule that applies a custom condition function with access to validation context.\nThis rule enables complex validation scenarios that require access to root objects, services, or custom data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.MustRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.MustRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.MustRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.MustRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that applies a custom condition function to validate values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.NegativeRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.NegativeRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.NegativeRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.NegativeRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a numeric value is negative (less than zero).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.NotEmptyRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.NotEmptyRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.NotEmptyRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.NotEmptyRule-1.yml\" sourcestartlinenumber=\"1\">Validation rule that ensures a value is not considered &quot;empty&quot; according to type-specific logic.\nHandles nulls, empty strings, default values, empty GUIDs, and empty collections.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.NotEqualRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.NotEqualRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.NotEqualRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.NotEqualRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is not equal to a specified comparison value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.NotNullRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.NotNullRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.NotNullRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.NotNullRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is not null.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.NullRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.NullRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.NullRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.NullRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a value is null.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.PhoneRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.PhoneRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.PhoneRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.PhoneRule.yml\" sourcestartlinenumber=\"1\">A validation rule that validates phone numbers in various common formats.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.PositiveRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.PositiveRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.PositiveRule<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.PositiveRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a numeric value is positive (greater than zero).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.PostalCodeRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.PostalCodeRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.PostalCodeRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.PostalCodeRule.yml\" sourcestartlinenumber=\"1\">A validation rule that validates postal codes for various countries (US ZIP, Canadian postal, UK postal codes).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.PrecisionScaleRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.PrecisionScaleRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.PrecisionScaleRule<TNumeric>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.PrecisionScaleRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a numeric value meets precision and scale requirements.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.SpecificGuidValueRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.SpecificGuidValueRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.SpecificGuidValueRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.SpecificGuidValueRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a GUID value matches a specific expected GUID.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.StartsWithRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.StartsWithRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.StartsWithRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.StartsWithRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value starts with a specified prefix.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.UniqueRule-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.UniqueRule-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.UniqueRule<TItem>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.UniqueRule-1.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures all items in a collection are unique.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.UpperCaseRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.UpperCaseRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.UpperCaseRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.UpperCaseRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value is in uppercase.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.UrlRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.UrlRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.UrlRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.UrlRule.yml\" sourcestartlinenumber=\"1\">A validation rule that ensures a string value is a valid URL format.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.ValidGuidFormatRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.ValidGuidFormatRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules.ValidGuidFormatRule",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Rules.ValidGuidFormatRule.yml\" sourcestartlinenumber=\"1\">A validation rule that validates a string is in a proper GUID format.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Rules.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Rules.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Rules",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Validators.EnumerablePropertyValidator-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Validators.EnumerablePropertyValidator<T, TItem>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Validators.EnumerablePropertyValidator-2.yml\" sourcestartlinenumber=\"1\">Provides validation rules for enumerable/collection properties with fluent configuration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Validators.GenericPropertyValidator-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Validators.GenericPropertyValidator-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Validators.GenericPropertyValidator<T, TProp>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Validators.GenericPropertyValidator-2.yml\" sourcestartlinenumber=\"1\">Property validator for generic types that provides basic validation operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Validators.GuidPropertyValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Validators.GuidPropertyValidator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Validators.GuidPropertyValidator<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Validators.GuidPropertyValidator-1.yml\" sourcestartlinenumber=\"1\">Provides fluent validation rules specifically designed for GUID properties, offering comprehensive\nGUID-specific validation capabilities including empty GUID checks, version validation, and format validation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Validators.NumericPropertyValidator-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Validators.NumericPropertyValidator-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Validators.NumericPropertyValidator<T, TNumeric>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Validators.NumericPropertyValidator-2.yml\" sourcestartlinenumber=\"1\">Provides fluent validation rules specifically designed for numeric properties, offering comprehensive\nnumeric comparison and range validation capabilities for any type implementing INumber&lt;T&gt;.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Validators.PropertyValidator-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Validators.PropertyValidator-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Validators.PropertyValidator-3.yml\" sourcestartlinenumber=\"1\">Abstract base class for all property validators, providing core validation functionality and fluent interface patterns\nfor building complex validation rules. This class enables type-safe validation chaining and integration with the\nValidationBuilder&lt;T&gt; framework.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Validators.StringPropertyValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Validators.StringPropertyValidator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Validators.StringPropertyValidator<T>",
+      "Summary": "<p sourcefile=\"api/FlowRight.Validation.Validators.StringPropertyValidator-1.yml\" sourcestartlinenumber=\"1\">Provides fluent validation rules specifically designed for string properties, offering comprehensive\nstring-specific validation capabilities including length checks, pattern matching, and email validation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FlowRight.Validation.Validators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FlowRight.Validation.Validators.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FlowRight.Validation.Validators",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/best-practices.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/best-practices.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/migration-guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/migration-guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "articles/toc.json"
+        },
+        ".html": {
+          "relative_path": "articles/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

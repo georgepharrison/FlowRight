@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>FlowRight Best Practices Guide | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="FlowRight Best Practices Guide | FlowRight - Result Pattern Library for .NET ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="flowright-best-practices-guide">FlowRight Best Practices Guide</h1>
+
+<p>A comprehensive guide to using FlowRight effectively in production applications, covering advanced patterns, performance considerations, and architectural guidance.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#core-result-pattern-best-practices">Core Result Pattern Best Practices</a></li>
+<li><a href="#validation-composition-patterns">Validation Composition Patterns</a></li>
+<li><a href="#error-handling-and-design-principles">Error Handling and Design Principles</a></li>
+<li><a href="#asyncawait-patterns">Async/Await Patterns</a></li>
+<li><a href="#http-integration-best-practices">HTTP Integration Best Practices</a></li>
+<li><a href="#testing-strategies">Testing Strategies</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#anti-patterns-and-common-pitfalls">Anti-Patterns and Common Pitfalls</a></li>
+<li><a href="#architectural-guidance">Architectural Guidance</a></li>
+<li><a href="#decision-trees">Decision Trees</a></li>
+</ol>
+<h2 id="core-result-pattern-best-practices">Core Result Pattern Best Practices</h2>
+<h3 id="when-to-use-results-vs-exceptions">When to Use Results vs Exceptions</h3>
+<h4 id="-use-results-for">✅ Use Results For:</h4>
+<ul>
+<li><strong>Business logic validation</strong> - Input validation, domain rule enforcement</li>
+<li><strong>Expected failure scenarios</strong> - User not found, invalid credentials</li>
+<li><strong>Recoverable errors</strong> - Network timeouts, temporary service unavailability</li>
+<li><strong>Composed operations</strong> - Multiple validation steps that need aggregation</li>
+<li><strong>API boundaries</strong> - Controller actions, service methods</li>
+<li><strong>Integration points</strong> - External service calls, database operations</li>
+</ul>
+<pre><code class="lang-csharp">// ✅ Good: Expected business scenario
+public Result&lt;User&gt; GetUser(int userId)
+{
+    User? user = _repository.FindById(userId);
+    return user is not null 
+        ? Result.Success(user)
+        : Result.NotFound($&quot;User with ID {userId} not found&quot;);
+}
+
+// ✅ Good: Domain validation
+public Result&lt;Order&gt; PlaceOrder(PlaceOrderRequest request)
+{
+    return new ValidationBuilder&lt;Order&gt;()
+        .RuleFor(x =&gt; x.CustomerId, request.CustomerId)
+            .NotEmpty()
+            .Must(CustomerExists, &quot;Customer must exist&quot;)
+        .RuleFor(x =&gt; x.Items, request.Items)
+            .NotEmpty(&quot;Order must contain at least one item&quot;)
+            .Must(AllItemsInStock, &quot;All items must be in stock&quot;)
+        .Build(() =&gt; new Order(request.CustomerId, request.Items));
+}
+</code></pre>
+<h4 id="-use-exceptions-for">❌ Use Exceptions For:</h4>
+<ul>
+<li><strong>Programming errors</strong> - Null reference exceptions, argument out of range</li>
+<li><strong>System-level failures</strong> - Out of memory, stack overflow</li>
+<li><strong>Unrecoverable errors</strong> - Database connection failure, configuration errors</li>
+<li><strong>Framework integration</strong> - ASP.NET Core model binding, dependency injection</li>
+</ul>
+<pre><code class="lang-csharp">// ❌ Bad: Programming error should use exception
+public Result&lt;string&gt; GetSubstring(string input, int start, int length)
+{
+    if (start &lt; 0) 
+        return Result.Failure&lt;string&gt;(&quot;Start cannot be negative&quot;);
+    // Should use ArgumentOutOfRangeException instead
+}
+
+// ✅ Good: Programming error uses exception
+public string GetSubstring(string input, int start, int length)
+{
+    ArgumentOutOfRangeException.ThrowIfNegative(start);
+    ArgumentOutOfRangeException.ThrowIfNegative(length);
+    
+    if (start + length &gt; input.Length)
+        return input[start..];
+    
+    return input.Substring(start, length);
+}
+</code></pre>
+<h3 id="result-composition-patterns">Result Composition Patterns</h3>
+<h4 id="sequential-validation-with-early-exit">Sequential Validation with Early Exit</h4>
+<pre><code class="lang-csharp">// ✅ Good: Early exit pattern
+public async Task&lt;Result&lt;ProcessedOrder&gt;&gt; ProcessOrderAsync(CreateOrderRequest request)
+{
+    Result&lt;Customer&gt; customerResult = await ValidateCustomerAsync(request.CustomerId);
+    if (customerResult.IsFailure) return customerResult.ToResult&lt;ProcessedOrder&gt;();
+    
+    Result&lt;Inventory&gt; inventoryResult = await ValidateInventoryAsync(request.Items);
+    if (inventoryResult.IsFailure) return inventoryResult.ToResult&lt;ProcessedOrder&gt;();
+    
+    Result&lt;Payment&gt; paymentResult = await ProcessPaymentAsync(request.Payment);
+    if (paymentResult.IsFailure) return paymentResult.ToResult&lt;ProcessedOrder&gt;();
+    
+    return Result.Success(new ProcessedOrder(customerResult.Value!, request.Items, paymentResult.Value!));
+}
+</code></pre>
+<h4 id="parallel-validation-with-error-aggregation">Parallel Validation with Error Aggregation</h4>
+<pre><code class="lang-csharp">// ✅ Good: Parallel validation with aggregation
+public async Task&lt;Result&lt;User&gt;&gt; CreateUserAsync(CreateUserRequest request)
+{
+    // Run validations in parallel
+    Task&lt;Result&gt; emailValidation = ValidateEmailAsync(request.Email);
+    Task&lt;Result&gt; usernameValidation = ValidateUsernameAsync(request.Username);
+    Task&lt;Result&gt; passwordValidation = ValidatePasswordAsync(request.Password);
+    
+    Result[] results = await Task.WhenAll(emailValidation, usernameValidation, passwordValidation);
+    
+    // Combine all results - will aggregate all failures
+    Result combinedResult = Result.Combine(results);
+    
+    return combinedResult.IsSuccess 
+        ? Result.Success(new User(request.Email, request.Username))
+        : Result.Failure&lt;User&gt;(combinedResult.Error, combinedResult.FailureType);
+}
+</code></pre>
+<h4 id="functional-composition-with-map-and-bind">Functional Composition with Map and Bind</h4>
+<pre><code class="lang-csharp">// ✅ Good: Functional composition
+public async Task&lt;Result&lt;string&gt;&gt; ProcessUserDataAsync(int userId)
+{
+    return await GetUserAsync(userId)
+        .MapAsync(async user =&gt; await EnrichUserDataAsync(user))
+        .ThenAsync(async enrichedUser =&gt; await FormatUserDisplayAsync(enrichedUser))
+        .ThenAsync(async displayData =&gt; await LocalizeDisplayAsync(displayData));
+}
+</code></pre>
+<h2 id="validation-composition-patterns">Validation Composition Patterns</h2>
+<h3 id="basic-validationbuilder-usage">Basic ValidationBuilder Usage</h3>
+<pre><code class="lang-csharp">// ✅ Good: Clear, readable validation
+public Result&lt;Product&gt; CreateProduct(CreateProductRequest request)
+{
+    return new ValidationBuilder&lt;Product&gt;()
+        .RuleFor(x =&gt; x.Name, request.Name)
+            .NotEmpty()
+            .MaximumLength(100)
+            .Must(BeUniqueProductName, &quot;Product name must be unique&quot;)
+        .RuleFor(x =&gt; x.Price, request.Price)
+            .GreaterThan(0)
+            .Precision(2, 2)
+        .RuleFor(x =&gt; x.Category, request.CategoryId)
+            .NotEmpty()
+            .Must(CategoryExists, &quot;Category must exist&quot;)
+        .Build(() =&gt; new Product(request.Name, request.Price, request.CategoryId));
+}
+</code></pre>
+<h3 id="complex-validation-with-result-composition">Complex Validation with Result Composition</h3>
+<pre><code class="lang-csharp">// ✅ Good: Compose validated sub-objects
+public Result&lt;Order&gt; CreateComplexOrder(CreateOrderRequest request)
+{
+    return new ValidationBuilder&lt;Order&gt;()
+        .RuleFor(x =&gt; x.Customer, Customer.Create(request.Customer), out Customer? validatedCustomer)
+        .RuleFor(x =&gt; x.ShippingAddress, Address.Create(request.ShippingAddress), out Address? validatedAddress)
+        .RuleFor(x =&gt; x.Items, OrderItems.Create(request.Items), out OrderItems? validatedItems)
+        .Build(() =&gt; new Order(validatedCustomer!, validatedAddress!, validatedItems!));
+}
+</code></pre>
+<h3 id="conditional-validation">Conditional Validation</h3>
+<pre><code class="lang-csharp">// ✅ Good: Context-aware conditional validation
+public Result&lt;UserProfile&gt; UpdateProfile(UpdateProfileRequest request, User currentUser)
+{
+    ValidationBuilder&lt;UserProfile&gt; builder = new();
+    
+    return builder
+        .RuleFor(x =&gt; x.Email, request.Email)
+            .NotEmpty()
+            .EmailAddress()
+            .When(value =&gt; value != currentUser.Email) // Only validate if changing
+            .Must(BeUniqueEmail, &quot;Email must be unique&quot;)
+        .RuleFor(x =&gt; x.Phone, request.Phone)
+            .NotEmpty()
+            .When(value =&gt; request.RequirePhoneVerification)
+            .Must(BeValidPhoneNumber, &quot;Phone number format is invalid&quot;)
+        .RuleFor(x =&gt; x.TwoFactorEnabled, request.EnableTwoFactor)
+            .Must(value =&gt; !value || !string.IsNullOrEmpty(request.Phone), 
+                  &quot;Phone number required when enabling two-factor authentication&quot;)
+        .Build(() =&gt; new UserProfile(request.Email, request.Phone, request.EnableTwoFactor));
+}
+</code></pre>
+<h3 id="custom-validation-rules">Custom Validation Rules</h3>
+<pre><code class="lang-csharp">// ✅ Good: Reusable custom validation
+public class BusinessRules
+{
+    public static IRule&lt;decimal&gt; ValidBusinessExpense(decimal yearlyBudget) =&gt;
+        new MustRule&lt;decimal&gt;(
+            value =&gt; value &gt; 0 &amp;&amp; value &lt;= yearlyBudget,
+            $&quot;Expense must be between 0 and {yearlyBudget:C}&quot;
+        );
+    
+    public static IRule&lt;DateTime&gt; ValidFutureDate() =&gt;
+        new MustRule&lt;DateTime&gt;(
+            value =&gt; value &gt; DateTime.UtcNow,
+            &quot;Date must be in the future&quot;
+        );
+    
+    public static IRule&lt;string&gt; ValidProjectCode() =&gt;
+        new MustRule&lt;string&gt;(
+            value =&gt; value?.Length == 6 &amp;&amp; value.All(char.IsLetterOrDigit),
+            &quot;Project code must be 6 alphanumeric characters&quot;
+        );
+}
+
+// Usage
+public Result&lt;Project&gt; CreateProject(CreateProjectRequest request)
+{
+    return new ValidationBuilder&lt;Project&gt;()
+        .RuleFor(x =&gt; x.Code, request.Code)
+            .Custom(BusinessRules.ValidProjectCode())
+        .RuleFor(x =&gt; x.Budget, request.Budget)
+            .Custom(BusinessRules.ValidBusinessExpense(request.YearlyBudget))
+        .RuleFor(x =&gt; x.StartDate, request.StartDate)
+            .Custom(BusinessRules.ValidFutureDate())
+        .Build(() =&gt; new Project(request.Code, request.Budget, request.StartDate));
+}
+</code></pre>
+<h2 id="error-handling-and-design-principles">Error Handling and Design Principles</h2>
+<h3 id="error-message-design-principles">Error Message Design Principles</h3>
+<h4 id="user-friendly-messages">User-Friendly Messages</h4>
+<pre><code class="lang-csharp">// ✅ Good: Clear, actionable error messages
+public Result&lt;Account&gt; CreateAccount(string email, string password)
+{
+    return new ValidationBuilder&lt;Account&gt;()
+        .RuleFor(x =&gt; x.Email, email)
+            .NotEmpty(&quot;Please enter your email address&quot;)
+            .EmailAddress(&quot;Please enter a valid email address&quot;)
+            .Must(BeUniqueEmail, &quot;An account with this email already exists. Please use a different email or try signing in.&quot;)
+        .RuleFor(x =&gt; x.Password, password)
+            .NotEmpty(&quot;Please create a password&quot;)
+            .MinimumLength(8, &quot;Password must be at least 8 characters long&quot;)
+            .Must(ContainSpecialCharacter, &quot;Password must contain at least one special character (!@#$%^&amp;*)&quot;)
+            .Must(ContainUppercase, &quot;Password must contain at least one uppercase letter&quot;)
+        .Build(() =&gt; new Account(email, password));
+}
+</code></pre>
+<h4 id="technical-vs-business-error-context">Technical vs Business Error Context</h4>
+<pre><code class="lang-csharp">// ✅ Good: Appropriate error context for audience
+public async Task&lt;Result&lt;PaymentResult&gt;&gt; ProcessPaymentAsync(PaymentRequest request)
+{
+    try 
+    {
+        PaymentResponse response = await _paymentGateway.ProcessAsync(request);
+        
+        return response.Status switch
+        {
+            PaymentStatus.Approved =&gt; Result.Success(new PaymentResult(response.TransactionId)),
+            PaymentStatus.Declined =&gt; Result.Failure(&quot;Payment was declined. Please check your card details and try again.&quot;),
+            PaymentStatus.InsufficientFunds =&gt; Result.Failure(&quot;Payment failed due to insufficient funds.&quot;),
+            PaymentStatus.ExpiredCard =&gt; Result.Failure(&quot;Payment failed because the card has expired.&quot;),
+            _ =&gt; Result.Failure(&quot;Payment could not be processed at this time. Please try again later.&quot;)
+        };
+    }
+    catch (PaymentGatewayException ex)
+    {
+        // Log technical details but return user-friendly message
+        _logger.LogError(ex, &quot;Payment gateway error for request {RequestId}&quot;, request.Id);
+        return Result.Failure(&quot;Payment service is temporarily unavailable. Please try again later.&quot;);
+    }
+}
+</code></pre>
+<h3 id="structured-error-handling">Structured Error Handling</h3>
+<h4 id="error-categorization-strategy">Error Categorization Strategy</h4>
+<pre><code class="lang-csharp">// ✅ Good: Consistent error categorization
+public class OrderService
+{
+    public async Task&lt;Result&lt;Order&gt;&gt; CreateOrderAsync(CreateOrderRequest request)
+    {
+        // Validation errors - user input issues
+        Result&lt;Order&gt; validationResult = ValidateOrderRequest(request);
+        if (validationResult.IsFailure) return validationResult;
+        
+        // Business rule errors - domain logic violations
+        Result businessRulesResult = await ValidateBusinessRulesAsync(request);
+        if (businessRulesResult.IsFailure) 
+            return Result.Failure&lt;Order&gt;(businessRulesResult.Error);
+        
+        // System errors - infrastructure issues
+        try 
+        {
+            Order order = await _repository.CreateAsync(request);
+            return Result.Success(order);
+        }
+        catch (DatabaseException ex)
+        {
+            _logger.LogError(ex, &quot;Database error creating order&quot;);
+            return Result.ServerError&lt;Order&gt;(&quot;Unable to create order due to system error&quot;);
+        }
+        catch (OperationCanceledException)
+        {
+            return Result.Failure&lt;Order&gt;(&quot;Order creation was cancelled&quot;, ResultFailureType.OperationCanceled);
+        }
+    }
+}
+</code></pre>
+<h3 id="error-recovery-strategies">Error Recovery Strategies</h3>
+<pre><code class="lang-csharp">// ✅ Good: Graceful degradation and retry logic
+public class UserService
+{
+    public async Task&lt;Result&lt;UserProfile&gt;&gt; GetEnrichedUserProfileAsync(int userId)
+    {
+        // Core user data is required
+        Result&lt;User&gt; userResult = await GetUserAsync(userId);
+        if (userResult.IsFailure) return userResult.ToResult&lt;UserProfile&gt;();
+        
+        User user = userResult.Value!;
+        
+        // Optional enrichment data - degrade gracefully
+        Result&lt;Preferences&gt; preferencesResult = await GetUserPreferencesAsync(userId);
+        Result&lt;Statistics&gt; statisticsResult = await GetUserStatisticsAsync(userId);
+        
+        UserProfile profile = new(
+            user,
+            preferencesResult.IsSuccess ? preferencesResult.Value : UserPreferences.Default,
+            statisticsResult.IsSuccess ? statisticsResult.Value : UserStatistics.Empty
+        );
+        
+        return Result.Success(profile);
+    }
+    
+    public async Task&lt;Result&lt;T&gt;&gt; WithRetryAsync&lt;T&gt;(Func&lt;Task&lt;Result&lt;T&gt;&gt;&gt; operation, int maxRetries = 3)
+    {
+        for (int attempt = 1; attempt &lt;= maxRetries; attempt++)
+        {
+            Result&lt;T&gt; result = await operation();
+            
+            if (result.IsSuccess || result.FailureType != ResultFailureType.ServerError)
+                return result;
+            
+            if (attempt &lt; maxRetries)
+                await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, attempt))); // Exponential backoff
+        }
+        
+        return Result.ServerError&lt;T&gt;(&quot;Operation failed after multiple retries&quot;);
+    }
+}
+</code></pre>
+<h2 id="asyncawait-patterns">Async/Await Patterns</h2>
+<h3 id="async-result-composition">Async Result Composition</h3>
+<pre><code class="lang-csharp">// ✅ Good: Clean async composition
+public async Task&lt;Result&lt;ProcessedDocument&gt;&gt; ProcessDocumentAsync(Document document)
+{
+    return await ValidateDocumentAsync(document)
+        .ThenAsync(async validDoc =&gt; await ExtractMetadataAsync(validDoc))
+        .ThenAsync(async docWithMeta =&gt; await ApplyTransformationsAsync(docWithMeta))
+        .ThenAsync(async transformedDoc =&gt; await SaveProcessedDocumentAsync(transformedDoc));
+}
+
+// Supporting extension method pattern
+public static class AsyncResultExtensions
+{
+    public static async Task&lt;Result&lt;TOut&gt;&gt; ThenAsync&lt;TIn, TOut&gt;(
+        this Task&lt;Result&lt;TIn&gt;&gt; resultTask,
+        Func&lt;TIn, Task&lt;Result&lt;TOut&gt;&gt;&gt; nextOperation)
+    {
+        Result&lt;TIn&gt; result = await resultTask.ConfigureAwait(false);
+        return result.IsSuccess 
+            ? await nextOperation(result.Value!).ConfigureAwait(false)
+            : Result.Failure&lt;TOut&gt;(result.Error, result.FailureType);
+    }
+}
+</code></pre>
+<h3 id="async-pattern-matching">Async Pattern Matching</h3>
+<pre><code class="lang-csharp">// ✅ Good: Async pattern matching with proper resource management
+public async Task&lt;IActionResult&gt; ProcessOrderAsync(CreateOrderRequest request)
+{
+    Result&lt;Order&gt; orderResult = await _orderService.CreateOrderAsync(request);
+    
+    return await orderResult.MatchAsync(
+        onSuccess: async order =&gt; {
+            await _eventPublisher.PublishAsync(new OrderCreatedEvent(order.Id));
+            await _emailService.SendOrderConfirmationAsync(order);
+            return Ok(new OrderResponse(order));
+        },
+        onFailure: async error =&gt; {
+            await _auditService.LogFailureAsync(&quot;OrderCreation&quot;, error, request);
+            return BadRequest(error);
+        }
+    );
+}
+</code></pre>
+<h3 id="cancellation-token-handling">Cancellation Token Handling</h3>
+<pre><code class="lang-csharp">// ✅ Good: Proper cancellation support throughout the chain
+public async Task&lt;Result&lt;Report&gt;&gt; GenerateReportAsync(
+    ReportRequest request, 
+    CancellationToken cancellationToken = default)
+{
+    try
+    {
+        Result&lt;ReportData&gt; dataResult = await GatherReportDataAsync(request, cancellationToken);
+        if (dataResult.IsFailure) return dataResult.ToResult&lt;Report&gt;();
+        
+        Result&lt;ProcessedData&gt; processedResult = await ProcessDataAsync(dataResult.Value!, cancellationToken);
+        if (processedResult.IsFailure) return processedResult.ToResult&lt;Report&gt;();
+        
+        Result&lt;Report&gt; reportResult = await FormatReportAsync(processedResult.Value!, cancellationToken);
+        return reportResult;
+    }
+    catch (OperationCanceledException)
+    {
+        return Result.Failure&lt;Report&gt;(&quot;Report generation was cancelled&quot;, ResultFailureType.OperationCanceled);
+    }
+}
+
+// Async validation with cancellation
+public async Task&lt;Result&lt;User&gt;&gt; ValidateAndCreateUserAsync(
+    CreateUserRequest request, 
+    CancellationToken cancellationToken = default)
+{
+    ValidationBuilder&lt;User&gt; builder = new();
+    
+    return await builder
+        .RuleForAsync(x =&gt; x.Email, request.Email)
+            .NotEmpty()
+            .EmailAddress()
+            .MustAsync(async (email, ct) =&gt; await IsUniqueEmailAsync(email, ct), 
+                      &quot;Email must be unique&quot;, cancellationToken)
+        .RuleForAsync(x =&gt; x.Username, request.Username)
+            .NotEmpty()
+            .MustAsync(async (username, ct) =&gt; await IsUniqueUsernameAsync(username, ct), 
+                      &quot;Username must be unique&quot;, cancellationToken)
+        .BuildAsync(() =&gt; new User(request.Email, request.Username), cancellationToken);
+}
+</code></pre>
+<h2 id="http-integration-best-practices">HTTP Integration Best Practices</h2>
+<h3 id="controller-action-patterns">Controller Action Patterns</h3>
+<pre><code class="lang-csharp">// ✅ Good: Consistent controller pattern
+[ApiController]
+[Route(&quot;api/[controller]&quot;)]
+public class UsersController : ControllerBase
+{
+    private readonly IUserService _userService;
+    
+    public UsersController(IUserService userService) =&gt; _userService = userService;
+    
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; CreateUserAsync(CreateUserRequest request)
+    {
+        Result&lt;User&gt; result = await _userService.CreateUserAsync(request);
+        
+        return result.Match(
+            onSuccess: user =&gt; CreatedAtAction(nameof(GetUser), new { id = user.Id }, new UserResponse(user)),
+            onError: error =&gt; Problem(detail: error, statusCode: 500),
+            onSecurityException: error =&gt; Problem(detail: &quot;Access denied&quot;, statusCode: 403),
+            onValidationException: errors =&gt; ValidationProblem(errors.ToDictionary(
+                kvp =&gt; kvp.Key, 
+                kvp =&gt; kvp.Value)),
+            onOperationCanceledException: error =&gt; Problem(detail: &quot;Request cancelled&quot;, statusCode: 408)
+        );
+    }
+    
+    [HttpGet(&quot;{id}&quot;)]
+    public async Task&lt;IActionResult&gt; GetUserAsync(int id)
+    {
+        Result&lt;User&gt; result = await _userService.GetUserAsync(id);
+        
+        return result.Match(
+            onSuccess: user =&gt; Ok(new UserResponse(user)),
+            onFailure: error =&gt; result.FailureType switch
+            {
+                ResultFailureType.NotFound =&gt; NotFound(error),
+                ResultFailureType.Security =&gt; Forbid(error),
+                _ =&gt; Problem(detail: error)
+            }
+        );
+    }
+}
+</code></pre>
+<h3 id="http-client-integration">HTTP Client Integration</h3>
+<pre><code class="lang-csharp">// ✅ Good: HTTP client with Result pattern
+public class ExternalApiClient
+{
+    private readonly HttpClient _httpClient;
+    private readonly ILogger&lt;ExternalApiClient&gt; _logger;
+    
+    public async Task&lt;Result&lt;ApiResponse&lt;T&gt;&gt;&gt; GetAsync&lt;T&gt;(string endpoint, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync(endpoint, cancellationToken);
+            return await response.ToResultFromJsonAsync&lt;ApiResponse&lt;T&gt;&gt;(cancellationToken: cancellationToken);
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogWarning(ex, &quot;HTTP request failed for endpoint {Endpoint}&quot;, endpoint);
+            return Result.Failure&lt;ApiResponse&lt;T&gt;&gt;($&quot;Failed to communicate with external service: {ex.Message}&quot;);
+        }
+        catch (TaskCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            return Result.Failure&lt;ApiResponse&lt;T&gt;&gt;(&quot;Request was cancelled&quot;, ResultFailureType.OperationCanceled);
+        }
+        catch (TaskCanceledException)
+        {
+            _logger.LogWarning(&quot;HTTP request timed out for endpoint {Endpoint}&quot;, endpoint);
+            return Result.Failure&lt;ApiResponse&lt;T&gt;&gt;(&quot;Request timed out&quot;, ResultFailureType.ServerError);
+        }
+    }
+    
+    public async Task&lt;Result&lt;T&gt;&gt; PostAsync&lt;T&gt;(string endpoint, object data, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            string json = JsonSerializer.Serialize(data);
+            StringContent content = new(json, Encoding.UTF8, &quot;application/json&quot;);
+            
+            HttpResponseMessage response = await _httpClient.PostAsync(endpoint, content, cancellationToken);
+            
+            return await response.MatchAsync(
+                onSuccess: async () =&gt; {
+                    T? result = await response.Content.ReadFromJsonAsync&lt;T&gt;(cancellationToken: cancellationToken);
+                    return result is not null 
+                        ? Result.Success(result) 
+                        : Result.Failure&lt;T&gt;(&quot;Empty response from server&quot;);
+                },
+                onFailure: async error =&gt; {
+                    string responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
+                    _logger.LogWarning(&quot;API request failed: {Error}. Response: {Response}&quot;, error, responseBody);
+                    return Result.Failure&lt;T&gt;(error);
+                }
+            );
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _logger.LogError(ex, &quot;Unexpected error during API request to {Endpoint}&quot;, endpoint);
+            return Result.Failure&lt;T&gt;($&quot;Unexpected error: {ex.Message}&quot;);
+        }
+    }
+}
+</code></pre>
+<h3 id="api-response-standardization">API Response Standardization</h3>
+<pre><code class="lang-csharp">// ✅ Good: Consistent API response structure
+public static class ApiResponseExtensions
+{
+    public static IActionResult ToApiResponse&lt;T&gt;(this Result&lt;T&gt; result) =&gt;
+        result.Match(
+            onSuccess: value =&gt; new OkObjectResult(new ApiResponse&lt;T&gt;
+            {
+                Success = true,
+                Data = value,
+                Message = &quot;Operation completed successfully&quot;
+            }),
+            onError: error =&gt; new ObjectResult(new ApiResponse&lt;T&gt;
+            {
+                Success = false,
+                Message = error,
+                Errors = null
+            }) { StatusCode = 500 },
+            onSecurityException: error =&gt; new ObjectResult(new ApiResponse&lt;T&gt;
+            {
+                Success = false,
+                Message = &quot;Access denied&quot;,
+                Errors = null
+            }) { StatusCode = 403 },
+            onValidationException: errors =&gt; new BadRequestObjectResult(new ApiResponse&lt;T&gt;
+            {
+                Success = false,
+                Message = &quot;Validation failed&quot;,
+                Errors = errors
+            }),
+            onOperationCanceledException: error =&gt; new ObjectResult(new ApiResponse&lt;T&gt;
+            {
+                Success = false,
+                Message = &quot;Operation was cancelled&quot;,
+                Errors = null
+            }) { StatusCode = 408 }
+        );
+    
+    public static IActionResult ToApiResponse(this Result result) =&gt;
+        result.Match(
+            onSuccess: () =&gt; new OkObjectResult(new ApiResponse
+            {
+                Success = true,
+                Message = &quot;Operation completed successfully&quot;
+            }),
+            onFailure: error =&gt; new ObjectResult(new ApiResponse
+            {
+                Success = false,
+                Message = error
+            }) { StatusCode = GetStatusCodeForFailureType(result.FailureType) }
+        );
+    
+    private static int GetStatusCodeForFailureType(ResultFailureType failureType) =&gt;
+        failureType switch
+        {
+            ResultFailureType.Validation =&gt; 400,
+            ResultFailureType.NotFound =&gt; 404,
+            ResultFailureType.Security =&gt; 403,
+            ResultFailureType.OperationCanceled =&gt; 408,
+            _ =&gt; 500
+        };
+}
+
+public class ApiResponse&lt;T&gt; : ApiResponse
+{
+    public T? Data { get; set; }
+}
+
+public class ApiResponse
+{
+    public bool Success { get; set; }
+    public string Message { get; set; } = string.Empty;
+    public IDictionary&lt;string, string[]&gt;? Errors { get; set; }
+}
+</code></pre>
+<h2 id="testing-strategies">Testing Strategies</h2>
+<h3 id="unit-testing-result-based-code">Unit Testing Result-Based Code</h3>
+<pre><code class="lang-csharp">// ✅ Good: Comprehensive Result testing patterns
+public class UserServiceTests
+{
+    private readonly Mock&lt;IUserRepository&gt; _mockRepository = new();
+    private readonly UserService _service;
+    
+    public UserServiceTests()
+    {
+        _service = new UserService(_mockRepository.Object);
+    }
+    
+    [Fact]
+    public async Task CreateUserAsync_WithValidData_ReturnsSuccessResult()
+    {
+        // Arrange
+        CreateUserRequest request = new(&quot;test@example.com&quot;, &quot;validpassword&quot;);
+        User expectedUser = new(request.Email, request.Password);
+        
+        _mockRepository.Setup(x =&gt; x.EmailExistsAsync(request.Email))
+                      .ReturnsAsync(false);
+        _mockRepository.Setup(x =&gt; x.CreateAsync(It.IsAny&lt;User&gt;()))
+                      .ReturnsAsync(expectedUser);
+        
+        // Act
+        Result&lt;User&gt; result = await _service.CreateUserAsync(request);
+        
+        // Assert
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ShouldNotBeNull();
+        result.Value.Email.ShouldBe(request.Email);
+    }
+    
+    [Fact]
+    public async Task CreateUserAsync_WithDuplicateEmail_ReturnsValidationFailure()
+    {
+        // Arrange
+        CreateUserRequest request = new(&quot;duplicate@example.com&quot;, &quot;validpassword&quot;);
+        
+        _mockRepository.Setup(x =&gt; x.EmailExistsAsync(request.Email))
+                      .ReturnsAsync(true);
+        
+        // Act
+        Result&lt;User&gt; result = await _service.CreateUserAsync(request);
+        
+        // Assert
+        result.IsFailure.ShouldBeTrue();
+        result.FailureType.ShouldBe(ResultFailureType.Validation);
+        result.Failures.ShouldContainKey(&quot;Email&quot;);
+        result.Failures[&quot;Email&quot;].ShouldContain(error =&gt; error.Contains(&quot;already exists&quot;));
+    }
+    
+    [Theory]
+    [InlineData(&quot;&quot;, &quot;Password required&quot;)]
+    [InlineData(&quot;short&quot;, &quot;Password must be at least 8 characters&quot;)]
+    [InlineData(&quot;nouppercase&quot;, &quot;Password must contain uppercase&quot;)]
+    public async Task CreateUserAsync_WithInvalidPassword_ReturnsValidationError(
+        string password, string expectedError)
+    {
+        // Arrange
+        CreateUserRequest request = new(&quot;test@example.com&quot;, password);
+        
+        _mockRepository.Setup(x =&gt; x.EmailExistsAsync(request.Email))
+                      .ReturnsAsync(false);
+        
+        // Act
+        Result&lt;User&gt; result = await _service.CreateUserAsync(request);
+        
+        // Assert
+        result.IsFailure.ShouldBeTrue();
+        result.FailureType.ShouldBe(ResultFailureType.Validation);
+        result.Error.ShouldContain(expectedError);
+    }
+}
+</code></pre>
+<h3 id="integration-testing-with-results">Integration Testing with Results</h3>
+<pre><code class="lang-csharp">// ✅ Good: Integration test patterns
+public class UserControllerIntegrationTests : IClassFixture&lt;WebApplicationFactory&lt;Program&gt;&gt;
+{
+    private readonly WebApplicationFactory&lt;Program&gt; _factory;
+    private readonly HttpClient _client;
+    
+    public UserControllerIntegrationTests(WebApplicationFactory&lt;Program&gt; factory)
+    {
+        _factory = factory;
+        _client = factory.CreateClient();
+    }
+    
+    [Fact]
+    public async Task CreateUser_WithValidData_ReturnsCreatedResult()
+    {
+        // Arrange
+        CreateUserRequest request = new(&quot;integration@example.com&quot;, &quot;ValidPassword123!&quot;);
+        StringContent content = new(
+            JsonSerializer.Serialize(request),
+            Encoding.UTF8,
+            &quot;application/json&quot;
+        );
+        
+        // Act
+        HttpResponseMessage response = await _client.PostAsync(&quot;/api/users&quot;, content);
+        
+        // Assert
+        response.StatusCode.ShouldBe(HttpStatusCode.Created);
+        
+        string responseContent = await response.Content.ReadAsStringAsync();
+        UserResponse? userResponse = JsonSerializer.Deserialize&lt;UserResponse&gt;(responseContent);
+        
+        userResponse.ShouldNotBeNull();
+        userResponse.Email.ShouldBe(request.Email);
+    }
+    
+    [Fact]
+    public async Task CreateUser_WithInvalidData_ReturnsValidationProblem()
+    {
+        // Arrange
+        CreateUserRequest request = new(&quot;invalid-email&quot;, &quot;&quot;);
+        StringContent content = new(
+            JsonSerializer.Serialize(request),
+            Encoding.UTF8,
+            &quot;application/json&quot;
+        );
+        
+        // Act
+        HttpResponseMessage response = await _client.PostAsync(&quot;/api/users&quot;, content);
+        
+        // Assert
+        response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
+        
+        string responseContent = await response.Content.ReadAsStringAsync();
+        ValidationProblemDetails? problem = JsonSerializer.Deserialize&lt;ValidationProblemDetails&gt;(responseContent);
+        
+        problem.ShouldNotBeNull();
+        problem.Errors.ShouldContainKey(&quot;Email&quot;);
+        problem.Errors.ShouldContainKey(&quot;Password&quot;);
+    }
+}
+</code></pre>
+<h3 id="testing-custom-validators">Testing Custom Validators</h3>
+<pre><code class="lang-csharp">// ✅ Good: Custom validator testing
+public class BusinessRuleValidatorTests
+{
+    [Fact]
+    public void ValidBusinessExpense_WithValidAmount_ReturnsNull()
+    {
+        // Arrange
+        decimal yearlyBudget = 100000m;
+        decimal expense = 5000m;
+        IRule&lt;decimal&gt; rule = BusinessRules.ValidBusinessExpense(yearlyBudget);
+        
+        // Act
+        string? error = rule.Validate(expense, &quot;Expense&quot;);
+        
+        // Assert
+        error.ShouldBeNull();
+    }
+    
+    [Theory]
+    [InlineData(0, &quot;Expense must be between 0 and&quot;)]
+    [InlineData(-100, &quot;Expense must be between 0 and&quot;)]
+    [InlineData(200000, &quot;Expense must be between 0 and&quot;)]
+    public void ValidBusinessExpense_WithInvalidAmount_ReturnsError(
+        decimal expense, string expectedErrorPart)
+    {
+        // Arrange
+        decimal yearlyBudget = 100000m;
+        IRule&lt;decimal&gt; rule = BusinessRules.ValidBusinessExpense(yearlyBudget);
+        
+        // Act
+        string? error = rule.Validate(expense, &quot;Expense&quot;);
+        
+        // Assert
+        error.ShouldNotBeNull();
+        error.ShouldContain(expectedErrorPart);
+    }
+}
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="memory-allocation-optimization">Memory Allocation Optimization</h3>
+<pre><code class="lang-csharp">// ✅ Good: Minimize allocations on success path
+public static class OptimizedResultFactories
+{
+    // Pre-allocated common success results
+    private static readonly Result SuccessResult = Result.Success();
+    private static readonly Result&lt;bool&gt; TrueResult = Result.Success(true);
+    private static readonly Result&lt;bool&gt; FalseResult = Result.Success(false);
+    
+    public static Result GetCachedSuccess() =&gt; SuccessResult;
+    public static Result&lt;bool&gt; GetCachedBoolResult(bool value) =&gt; value ? TrueResult : FalseResult;
+    
+    // String interning for common error messages
+    private static readonly string RequiredFieldError = string.Intern(&quot;This field is required&quot;);
+    private static readonly string InvalidFormatError = string.Intern(&quot;Invalid format&quot;);
+    
+    public static Result&lt;T&gt; RequiredFieldFailure&lt;T&gt;() =&gt;
+        Result.Failure&lt;T&gt;(RequiredFieldError, ResultFailureType.Validation);
+}
+
+// ✅ Good: Efficient validation with minimal allocations
+public class PerformantValidator&lt;T&gt;
+{
+    private readonly List&lt;string&gt; _reusableErrorList = new(8); // Pre-allocated
+    private readonly Dictionary&lt;string, string[]&gt; _reusableErrorDict = new(8);
+    
+    public Result&lt;T&gt; ValidateFast(T value, Func&lt;T, T&gt; factory)
+    {
+        _reusableErrorList.Clear();
+        _reusableErrorDict.Clear();
+        
+        // Perform validations, adding to reusable collections
+        ValidateRequired(value, _reusableErrorList);
+        ValidateFormat(value, _reusableErrorList);
+        
+        if (_reusableErrorList.Count &gt; 0)
+        {
+            _reusableErrorDict[&quot;Value&quot;] = _reusableErrorList.ToArray();
+            return Result.Failure&lt;T&gt;(_reusableErrorDict);
+        }
+        
+        return Result.Success(factory(value));
+    }
+}
+</code></pre>
+<h3 id="async-performance-patterns">Async Performance Patterns</h3>
+<pre><code class="lang-csharp">// ✅ Good: Efficient async patterns with Results
+public class PerformantAsyncService
+{
+    // Use ValueTask for potentially synchronous operations
+    public async ValueTask&lt;Result&lt;User&gt;&gt; GetUserFromCacheAsync(int userId)
+    {
+        if (_cache.TryGetValue(userId, out User? cachedUser))
+        {
+            return Result.Success(cachedUser); // Synchronous completion
+        }
+        
+        User user = await _database.GetUserAsync(userId);
+        _cache.Set(userId, user);
+        return Result.Success(user);
+    }
+    
+    // Batch operations for efficiency
+    public async Task&lt;Result&lt;IEnumerable&lt;ProcessedItem&gt;&gt;&gt; ProcessItemsBatchAsync(
+        IEnumerable&lt;Item&gt; items, 
+        int batchSize = 100)
+    {
+        List&lt;ProcessedItem&gt; results = new();
+        List&lt;string&gt; errors = new();
+        
+        await foreach (Item[] batch in items.Chunk(batchSize))
+        {
+            Task&lt;Result&lt;ProcessedItem&gt;&gt;[] tasks = batch
+                .Select(ProcessSingleItemAsync)
+                .ToArray();
+                
+            Result&lt;ProcessedItem&gt;[] batchResults = await Task.WhenAll(tasks);
+            
+            foreach (Result&lt;ProcessedItem&gt; result in batchResults)
+            {
+                if (result.IsSuccess)
+                {
+                    results.Add(result.Value!);
+                }
+                else
+                {
+                    errors.Add(result.Error);
+                }
+            }
+        }
+        
+        return errors.Count &gt; 0 
+            ? Result.Failure&lt;IEnumerable&lt;ProcessedItem&gt;&gt;(string.Join(&quot;; &quot;, errors))
+            : Result.Success&lt;IEnumerable&lt;ProcessedItem&gt;&gt;(results);
+    }
+    
+    // ConfigureAwait(false) for library code
+    public async Task&lt;Result&lt;Data&gt;&gt; GetDataAsync()
+    {
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync(&quot;/api/data&quot;).ConfigureAwait(false);
+            Result&lt;Data&gt; result = await response.ToResultFromJsonAsync&lt;Data&gt;().ConfigureAwait(false);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure&lt;Data&gt;($&quot;Failed to get data: {ex.Message}&quot;);
+        }
+    }
+}
+</code></pre>
+<h3 id="validation-performance-optimization">Validation Performance Optimization</h3>
+<pre><code class="lang-csharp">// ✅ Good: Optimized validation pipeline
+public class FastValidationBuilder&lt;T&gt;
+{
+    private readonly List&lt;Func&lt;T, ValidationResult&gt;&gt; _validators = new();
+    private readonly bool _shortCircuit;
+    
+    public FastValidationBuilder(bool shortCircuit = false)
+    {
+        _shortCircuit = shortCircuit;
+    }
+    
+    public FastValidationBuilder&lt;T&gt; AddValidator(Func&lt;T, ValidationResult&gt; validator)
+    {
+        _validators.Add(validator);
+        return this;
+    }
+    
+    public Result&lt;T&gt; Validate(T value)
+    {
+        if (_shortCircuit)
+        {
+            // Fast-fail on first error
+            foreach (Func&lt;T, ValidationResult&gt; validator in _validators)
+            {
+                ValidationResult result = validator(value);
+                if (!result.IsValid)
+                    return Result.Failure&lt;T&gt;(result.Error);
+            }
+        }
+        else
+        {
+            // Collect all errors (more allocations but complete feedback)
+            List&lt;string&gt;? errors = null;
+            
+            foreach (Func&lt;T, ValidationResult&gt; validator in _validators)
+            {
+                ValidationResult result = validator(value);
+                if (!result.IsValid)
+                {
+                    errors ??= new List&lt;string&gt;();
+                    errors.Add(result.Error);
+                }
+            }
+            
+            if (errors?.Count &gt; 0)
+                return Result.Failure&lt;T&gt;(string.Join(&quot;; &quot;, errors));
+        }
+        
+        return Result.Success(value);
+    }
+}
+</code></pre>
+<h2 id="anti-patterns-and-common-pitfalls">Anti-Patterns and Common Pitfalls</h2>
+<h3 id="-anti-pattern-result-exception-anti-pattern">❌ Anti-Pattern: Result Exception Anti-Pattern</h3>
+<pre><code class="lang-csharp">// ❌ Bad: Throwing exceptions from Results defeats the purpose
+public Result&lt;User&gt; GetUser(int id)
+{
+    if (id &lt;= 0)
+        throw new ArgumentException(&quot;ID must be positive&quot;); // Don't do this!
+    
+    User? user = _repository.Find(id);
+    return user is not null ? Result.Success(user) : Result.NotFound(&quot;User not found&quot;);
+}
+
+// ✅ Good: Keep it consistent with Result pattern
+public Result&lt;User&gt; GetUser(int id)
+{
+    if (id &lt;= 0)
+        return Result.Failure&lt;User&gt;(&quot;User ID must be a positive number&quot;);
+    
+    User? user = _repository.Find(id);
+    return user is not null ? Result.Success(user) : Result.NotFound(&quot;User not found&quot;);
+}
+</code></pre>
+<h3 id="-anti-pattern-ignored-result-values">❌ Anti-Pattern: Ignored Result Values</h3>
+<pre><code class="lang-csharp">// ❌ Bad: Ignoring Result values
+public async Task ProcessUserAsync(CreateUserRequest request)
+{
+    _userService.CreateUserAsync(request); // Result ignored!
+    // User might not have been created, but we don't know
+    
+    await SendWelcomeEmailAsync(request.Email); // This might fail
+}
+
+// ✅ Good: Always handle Results
+public async Task&lt;Result&gt; ProcessUserAsync(CreateUserRequest request)
+{
+    Result&lt;User&gt; userResult = await _userService.CreateUserAsync(request);
+    if (userResult.IsFailure) return userResult.ToResult();
+    
+    Result emailResult = await SendWelcomeEmailAsync(userResult.Value!.Email);
+    return emailResult;
+}
+</code></pre>
+<h3 id="-anti-pattern-swallowing-failures">❌ Anti-Pattern: Swallowing Failures</h3>
+<pre><code class="lang-csharp">// ❌ Bad: Converting failures to success
+public Result&lt;User&gt; GetUserOrDefault(int id)
+{
+    Result&lt;User&gt; result = GetUser(id);
+    return result.IsSuccess 
+        ? result 
+        : Result.Success(User.Default); // Lost failure information!
+}
+
+// ✅ Good: Explicit default handling with context
+public Result&lt;User&gt; GetUserOrDefault(int id, User defaultUser)
+{
+    Result&lt;User&gt; result = GetUser(id);
+    
+    // Only use default for NotFound, preserve other failures
+    return result.FailureType switch
+    {
+        ResultFailureType.NotFound =&gt; Result.Success(defaultUser),
+        _ =&gt; result
+    };
+}
+</code></pre>
+<h3 id="-anti-pattern-mixing-result-and-exception-patterns">❌ Anti-Pattern: Mixing Result and Exception Patterns</h3>
+<pre><code class="lang-csharp">// ❌ Bad: Inconsistent error handling patterns
+public class MixedPatternService
+{
+    public Result&lt;User&gt; GetUser(int id)
+    {
+        if (id &lt;= 0) return Result.Failure&lt;User&gt;(&quot;Invalid ID&quot;);
+        
+        try
+        {
+            return Result.Success(_repository.GetById(id));
+        }
+        catch (NotFoundException)
+        {
+            return Result.NotFound&lt;User&gt;(&quot;User not found&quot;);
+        }
+        catch (Exception ex)
+        {
+            throw; // Inconsistent - sometimes Result, sometimes Exception
+        }
+    }
+}
+
+// ✅ Good: Consistent Result pattern throughout
+public class ConsistentPatternService
+{
+    public Result&lt;User&gt; GetUser(int id)
+    {
+        if (id &lt;= 0) return Result.Failure&lt;User&gt;(&quot;Invalid ID&quot;);
+        
+        try
+        {
+            User user = _repository.GetById(id);
+            return Result.Success(user);
+        }
+        catch (NotFoundException)
+        {
+            return Result.NotFound&lt;User&gt;(&quot;User not found&quot;);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, &quot;Unexpected error getting user {UserId}&quot;, id);
+            return Result.ServerError&lt;User&gt;(&quot;Unable to retrieve user&quot;);
+        }
+    }
+}
+</code></pre>
+<h3 id="-anti-pattern-inefficient-result-chaining">❌ Anti-Pattern: Inefficient Result Chaining</h3>
+<pre><code class="lang-csharp">// ❌ Bad: Inefficient nested Result handling
+public async Task&lt;Result&lt;ProcessedOrder&gt;&gt; ProcessOrderAsync(Order order)
+{
+    Result&lt;ValidatedOrder&gt; validationResult = await ValidateOrderAsync(order);
+    if (validationResult.IsFailure) 
+    {
+        return Result.Failure&lt;ProcessedOrder&gt;(validationResult.Error); // Manual conversion
+    }
+    
+    Result&lt;EnrichedOrder&gt; enrichmentResult = await EnrichOrderAsync(validationResult.Value!);
+    if (enrichmentResult.IsFailure)
+    {
+        return Result.Failure&lt;ProcessedOrder&gt;(enrichmentResult.Error); // More manual conversion
+    }
+    
+    Result&lt;ProcessedOrder&gt; finalResult = await FinalizeOrderAsync(enrichmentResult.Value!);
+    return finalResult;
+}
+
+// ✅ Good: Efficient functional composition
+public async Task&lt;Result&lt;ProcessedOrder&gt;&gt; ProcessOrderAsync(Order order)
+{
+    return await ValidateOrderAsync(order)
+        .ThenAsync(validOrder =&gt; EnrichOrderAsync(validOrder))
+        .ThenAsync(enrichedOrder =&gt; FinalizeOrderAsync(enrichedOrder));
+}
+</code></pre>
+<h3 id="-anti-pattern-poor-error-context">❌ Anti-Pattern: Poor Error Context</h3>
+<pre><code class="lang-csharp">// ❌ Bad: Generic, unhelpful error messages
+public Result&lt;Account&gt; CreateAccount(CreateAccountRequest request)
+{
+    return new ValidationBuilder&lt;Account&gt;()
+        .RuleFor(x =&gt; x.Email, request.Email)
+            .NotEmpty(&quot;Required&quot;) // Too generic
+            .EmailAddress(&quot;Invalid&quot;) // No context
+        .RuleFor(x =&gt; x.Password, request.Password)
+            .MinimumLength(8, &quot;Too short&quot;) // Not actionable
+        .Build(() =&gt; new Account(request.Email, request.Password));
+}
+
+// ✅ Good: Clear, actionable error messages
+public Result&lt;Account&gt; CreateAccount(CreateAccountRequest request)
+{
+    return new ValidationBuilder&lt;Account&gt;()
+        .RuleFor(x =&gt; x.Email, request.Email)
+            .NotEmpty(&quot;Please enter your email address&quot;)
+            .EmailAddress(&quot;Please enter a valid email address (example: user@domain.com)&quot;)
+        .RuleFor(x =&gt; x.Password, request.Password)
+            .MinimumLength(8, &quot;Password must be at least 8 characters long&quot;)
+        .Build(() =&gt; new Account(request.Email, request.Password));
+}
+</code></pre>
+<h2 id="architectural-guidance">Architectural Guidance</h2>
+<h3 id="domain-layer-patterns">Domain Layer Patterns</h3>
+<pre><code class="lang-csharp">// ✅ Good: Domain services with Result pattern
+public class OrderDomainService
+{
+    public Result&lt;Order&gt; CreateOrder(Customer customer, IEnumerable&lt;OrderItem&gt; items, ShippingAddress address)
+    {
+        return new ValidationBuilder&lt;Order&gt;()
+            .RuleFor(x =&gt; x.Customer, customer)
+                .NotNull(&quot;Customer is required&quot;)
+                .Must(c =&gt; c.IsActive, &quot;Customer account must be active&quot;)
+            .RuleFor(x =&gt; x.Items, items)
+                .NotEmpty(&quot;Order must contain at least one item&quot;)
+                .Must(ValidateItemsInStock, &quot;All items must be in stock&quot;)
+                .Must(ValidateOrderLimits, &quot;Order exceeds customer limits&quot;)
+            .RuleFor(x =&gt; x.ShippingAddress, address)
+                .NotNull(&quot;Shipping address is required&quot;)
+                .Must(ValidateShippingRegion, &quot;We don't ship to this region&quot;)
+            .Build(() =&gt; Order.Create(customer, items, address));
+    }
+    
+    public Result ApplyDiscount(Order order, Discount discount)
+    {
+        return new ValidationBuilder&lt;Order&gt;()
+            .RuleFor(x =&gt; x.Discount, discount)
+                .Must(d =&gt; d.IsValid, &quot;Discount is not valid&quot;)
+                .Must(d =&gt; d.IsApplicableToOrder(order), &quot;Discount cannot be applied to this order&quot;)
+                .Must(d =&gt; !order.HasDiscount, &quot;Order already has a discount applied&quot;)
+            .Build(() =&gt; {
+                order.ApplyDiscount(discount);
+                return order;
+            })
+            .ToResult(); // Convert Result&lt;Order&gt; to Result since we're modifying existing order
+    }
+}
+</code></pre>
+<h3 id="application-layer-integration">Application Layer Integration</h3>
+<pre><code class="lang-csharp">// ✅ Good: Application service orchestration
+public class OrderApplicationService
+{
+    private readonly OrderDomainService _domainService;
+    private readonly IOrderRepository _repository;
+    private readonly IEventPublisher _eventPublisher;
+    
+    public async Task&lt;Result&lt;OrderCreatedResponse&gt;&gt; CreateOrderAsync(CreateOrderCommand command)
+    {
+        // Validate command
+        Result&lt;CreateOrderCommand&gt; validationResult = ValidateCommand(command);
+        if (validationResult.IsFailure) return validationResult.ToResult&lt;OrderCreatedResponse&gt;();
+        
+        // Get domain entities
+        Result&lt;Customer&gt; customerResult = await GetCustomerAsync(command.CustomerId);
+        if (customerResult.IsFailure) return customerResult.ToResult&lt;OrderCreatedResponse&gt;();
+        
+        Result&lt;IEnumerable&lt;OrderItem&gt;&gt; itemsResult = await BuildOrderItemsAsync(command.Items);
+        if (itemsResult.IsFailure) return itemsResult.ToResult&lt;OrderCreatedResponse&gt;();
+        
+        // Create domain object
+        Result&lt;Order&gt; orderResult = _domainService.CreateOrder(
+            customerResult.Value!, 
+            itemsResult.Value!, 
+            command.ShippingAddress);
+        if (orderResult.IsFailure) return orderResult.ToResult&lt;OrderCreatedResponse&gt;();
+        
+        // Persist and publish events
+        try
+        {
+            Order savedOrder = await _repository.SaveAsync(orderResult.Value!);
+            await _eventPublisher.PublishAsync(new OrderCreatedEvent(savedOrder));
+            
+            return Result.Success(new OrderCreatedResponse(savedOrder.Id, savedOrder.OrderNumber));
+        }
+        catch (Exception ex)
+        {
+            return Result.ServerError&lt;OrderCreatedResponse&gt;($&quot;Failed to save order: {ex.Message}&quot;);
+        }
+    }
+}
+</code></pre>
+<h3 id="infrastructure-layer-patterns">Infrastructure Layer Patterns</h3>
+<pre><code class="lang-csharp">// ✅ Good: Repository with Result pattern
+public class SqlOrderRepository : IOrderRepository
+{
+    private readonly DbContext _context;
+    private readonly ILogger&lt;SqlOrderRepository&gt; _logger;
+    
+    public async Task&lt;Result&lt;Order&gt;&gt; GetByIdAsync(int id)
+    {
+        try
+        {
+            Order? order = await _context.Orders
+                .Include(o =&gt; o.Items)
+                .Include(o =&gt; o.Customer)
+                .FirstOrDefaultAsync(o =&gt; o.Id == id);
+            
+            return order is not null
+                ? Result.Success(order)
+                : Result.NotFound&lt;Order&gt;($&quot;Order with ID {id} not found&quot;);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, &quot;Error retrieving order {OrderId}&quot;, id);
+            return Result.ServerError&lt;Order&gt;(&quot;Unable to retrieve order&quot;);
+        }
+    }
+    
+    public async Task&lt;Result&lt;Order&gt;&gt; SaveAsync(Order order)
+    {
+        using IDbContextTransaction transaction = await _context.Database.BeginTransactionAsync();
+        
+        try
+        {
+            if (order.Id == 0)
+            {
+                _context.Orders.Add(order);
+            }
+            else
+            {
+                _context.Orders.Update(order);
+            }
+            
+            await _context.SaveChangesAsync();
+            await transaction.CommitAsync();
+            
+            return Result.Success(order);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            await transaction.RollbackAsync();
+            return Result.Failure&lt;Order&gt;(&quot;Order has been modified by another user&quot;);
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            _logger.LogError(ex, &quot;Error saving order {OrderId}&quot;, order.Id);
+            return Result.ServerError&lt;Order&gt;(&quot;Unable to save order&quot;);
+        }
+    }
+}
+</code></pre>
+<h3 id="dependency-injection-integration">Dependency Injection Integration</h3>
+<pre><code class="lang-csharp">// ✅ Good: Service registration patterns
+public static class ServiceRegistration
+{
+    public static IServiceCollection AddOrderServices(this IServiceCollection services)
+    {
+        // Register domain services
+        services.AddScoped&lt;OrderDomainService&gt;();
+        services.AddScoped&lt;PricingDomainService&gt;();
+        
+        // Register application services  
+        services.AddScoped&lt;IOrderApplicationService, OrderApplicationService&gt;();
+        services.AddScoped&lt;IOrderQueryService, OrderQueryService&gt;();
+        
+        // Register repositories
+        services.AddScoped&lt;IOrderRepository, SqlOrderRepository&gt;();
+        services.AddScoped&lt;ICustomerRepository, SqlCustomerRepository&gt;();
+        
+        // Register validation services
+        services.AddScoped&lt;IValidator&lt;CreateOrderCommand&gt;, CreateOrderCommandValidator&gt;();
+        services.AddTransient&lt;ValidationContext&gt;();
+        
+        return services;
+    }
+}
+
+// Service implementation using DI
+public class OrderApplicationService : IOrderApplicationService
+{
+    private readonly OrderDomainService _domainService;
+    private readonly IOrderRepository _orderRepository;
+    private readonly ICustomerRepository _customerRepository;
+    private readonly IValidator&lt;CreateOrderCommand&gt; _validator;
+    
+    public OrderApplicationService(
+        OrderDomainService domainService,
+        IOrderRepository orderRepository, 
+        ICustomerRepository customerRepository,
+        IValidator&lt;CreateOrderCommand&gt; validator)
+    {
+        _domainService = domainService;
+        _orderRepository = orderRepository;
+        _customerRepository = customerRepository;
+        _validator = validator;
+    }
+    
+    public async Task&lt;Result&lt;OrderResponse&gt;&gt; CreateOrderAsync(CreateOrderCommand command)
+    {
+        // Use injected validator
+        Result&lt;CreateOrderCommand&gt; validationResult = await _validator.ValidateAsync(command);
+        if (validationResult.IsFailure) return validationResult.ToResult&lt;OrderResponse&gt;();
+        
+        // Implementation continues...
+    }
+}
+</code></pre>
+<h2 id="decision-trees">Decision Trees</h2>
+<h3 id="when-to-use-result-vs-exception">When to Use Result vs Exception</h3>
+<pre><code>Is this a programming error (null reference, index out of range)?
+├─ YES → Use Exception
+└─ NO → Is this an expected business scenario?
+    ├─ YES → Is this recoverable by the caller?
+    │   ├─ YES → Use Result
+    │   └─ NO → Is this critical system failure?
+    │       ├─ YES → Use Exception
+    │       └─ NO → Use Result with appropriate failure type
+    └─ NO → Is this a system-level failure?
+        ├─ YES → Use Exception (infrastructure issues)
+        └─ NO → Use Result (validation, business rules)
+</code></pre>
+<h3 id="result-type-selection">Result Type Selection</h3>
+<pre><code>What type of operation is this?
+├─ Returns a value → Use Result&lt;T&gt;
+├─ Performs action only → Use Result
+├─ Multiple possible failures → Use Result with specific ResultFailureType
+├─ Validation-heavy → Use ValidationBuilder&lt;T&gt;
+└─ HTTP integration → Use HttpResponseMessage extensions
+</code></pre>
+<h3 id="error-handling-strategy">Error Handling Strategy</h3>
+<pre><code>What's the failure context?
+├─ User input validation → ResultFailureType.Validation
+├─ Resource not found → ResultFailureType.NotFound  
+├─ Permission denied → ResultFailureType.Security
+├─ Operation cancelled → ResultFailureType.OperationCanceled
+├─ System unavailable → ResultFailureType.ServerError
+└─ General business rule → ResultFailureType.Error
+</code></pre>
+<h3 id="async-pattern-selection">Async Pattern Selection</h3>
+<pre><code>What's the async scenario?
+├─ Single async operation → Use Task&lt;Result&lt;T&gt;&gt;
+├─ Multiple sequential operations → Use ThenAsync chaining
+├─ Multiple parallel operations → Use Task.WhenAll + Result.Combine
+├─ Optional operations → Use graceful degradation pattern
+└─ Stream processing → Use async enumerable with Result&lt;T&gt;
+</code></pre>
+<hr>
+<h2 id="summary">Summary</h2>
+<p>This guide covers the essential patterns and practices for using FlowRight effectively:</p>
+<ul>
+<li><strong>Result Pattern Fundamentals</strong>: When and how to use Results vs exceptions</li>
+<li><strong>Validation Composition</strong>: Building complex validation logic with clear error messages</li>
+<li><strong>Error Handling</strong>: Designing user-friendly errors and proper categorization</li>
+<li><strong>Async Integration</strong>: Clean patterns for async/await with Results</li>
+<li><strong>HTTP Integration</strong>: Controller patterns and HTTP client integration</li>
+<li><strong>Testing</strong>: Comprehensive testing strategies for Result-based code</li>
+<li><strong>Performance</strong>: Optimization techniques for production usage</li>
+<li><strong>Anti-Patterns</strong>: Common mistakes and how to avoid them</li>
+<li><strong>Architecture</strong>: Integration patterns across application layers</li>
+</ul>
+<p>By following these practices, you'll build maintainable, resilient applications that handle errors gracefully and provide excellent developer experience.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class EnumerablePropertyValidator&lt;T, TItem&gt; | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class EnumerablePropertyValidator&lt;T, TItem&gt; | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides validation rules for enumerable/collection properties with fluent configuration.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2">
+
+
+
+  <h1 id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2" class="text-break">
+Class EnumerablePropertyValidator&lt;T, TItem&gt;  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Validation.html">Validation</a>.<a class="xref" href="FlowRight.Validation.Validators.html">Validators</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Validation.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides validation rules for enumerable/collection properties with fluent configuration.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class EnumerablePropertyValidator&lt;T, TItem&gt; : PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type containing the property being validated.</p>
+</dd>
+    <dt><code>TItem</code></dt>
+    <dd><p>The type of items in the collection.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html">PropertyValidator</a>&lt;T, <span class="xref">IEnumerable</span>&lt;TItem&gt;, <a class="xref" href="FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html">EnumerablePropertyValidator</a>&lt;T, TItem&gt;&gt;</div>
+      <div><span class="xref">EnumerablePropertyValidator&lt;T, TItem&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Build_System_Func__0__">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.Build(Func&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Empty">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.Empty()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Equal__1_System_Collections_Generic_IEqualityComparer__1__">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.Equal(IEnumerable&lt;TItem&gt;, IEqualityComparer&lt;IEnumerable&lt;TItem&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Must_System_Func__1_System_Boolean__System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.Must(Func&lt;IEnumerable&lt;TItem&gt;, bool&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEmpty">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.NotEmpty()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEqual__1_System_Collections_Generic_IEqualityComparer__1__">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.NotEqual(IEnumerable&lt;TItem&gt;, IEqualityComparer&lt;IEnumerable&lt;TItem&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotNull">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.NotNull()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Null">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.Null()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0___FlowRight_Core_Results_Result___0____0__">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor&lt;TDifferentProp&gt;(Expression&lt;Func&lt;T, TDifferentProp&gt;&gt;, Result&lt;TDifferentProp&gt;, out TDifferentProp)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, string&gt;&gt;, string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Guid____System_Nullable_System_Guid__System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, Guid?&gt;&gt;, Guid?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, int&gt;&gt;, int, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int64___System_Int64_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, long&gt;&gt;, long, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Decimal___System_Decimal_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, decimal&gt;&gt;, decimal, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Double___System_Double_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, double&gt;&gt;, double, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Single___System_Single_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, float&gt;&gt;, float, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int16___System_Int16_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, short&gt;&gt;, short, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_IEnumerable___0____System_Collections_Generic_IEnumerable___0__System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor&lt;TItem&gt;(Expression&lt;Func&lt;T, IEnumerable&lt;TItem&gt;&gt;&gt;, IEnumerable&lt;TItem&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_DateTime_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, DateTime&gt;&gt;, DateTime, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_DateTime____System_Nullable_System_DateTime__System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, DateTime?&gt;&gt;, DateTime?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Boolean____System_Nullable_System_Boolean__System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, bool?&gt;&gt;, bool?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Byte___System_Byte_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, byte&gt;&gt;, byte, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_SByte___System_SByte_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, sbyte&gt;&gt;, sbyte, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt32___System_UInt32_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, uint&gt;&gt;, uint, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt64___System_UInt64_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, ulong&gt;&gt;, ulong, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Char___System_Char_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, char&gt;&gt;, char, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Char____System_Nullable_System_Char__System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, char?&gt;&gt;, char?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Unless_System_Func__1_System_Boolean__">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.Unless(Func&lt;IEnumerable&lt;TItem&gt;, bool&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_When_System_Func__1_System_Boolean__">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.When(Func&lt;IEnumerable&lt;TItem&gt;, bool&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_WithMessage_System_String_">PropertyValidator&lt;T, IEnumerable&lt;TItem&gt;, EnumerablePropertyValidator&lt;T, TItem&gt;&gt;.WithMessage(string)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_Count_" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.Count*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_Count_System_Int32_" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.Count(System.Int32)">
+  Count(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the collection contains exactly the specified number of items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnumerablePropertyValidator&lt;T, TItem&gt; Count(int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>count</code> <span class="xref">int</span></dt>
+    <dd><p>The exact number of items required.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html">EnumerablePropertyValidator</a>&lt;T, TItem&gt;</dt>
+    <dd><p>This validator for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_MaxCount_" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.MaxCount*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_MaxCount_System_Int32_" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.MaxCount(System.Int32)">
+  MaxCount(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the collection contains at most the specified number of items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnumerablePropertyValidator&lt;T, TItem&gt; MaxCount(int max)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>max</code> <span class="xref">int</span></dt>
+    <dd><p>The maximum number of items allowed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html">EnumerablePropertyValidator</a>&lt;T, TItem&gt;</dt>
+    <dd><p>This validator for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_MinCount_" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.MinCount*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_MinCount_System_Int32_" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.MinCount(System.Int32)">
+  MinCount(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the collection contains at least the specified number of items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnumerablePropertyValidator&lt;T, TItem&gt; MinCount(int min)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>min</code> <span class="xref">int</span></dt>
+    <dd><p>The minimum number of items required.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html">EnumerablePropertyValidator</a>&lt;T, TItem&gt;</dt>
+    <dd><p>This validator for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_Unique_" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.Unique*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_EnumerablePropertyValidator_2_Unique_System_Collections_Generic_IEqualityComparer__1__" data-uid="FlowRight.Validation.Validators.EnumerablePropertyValidator`2.Unique(System.Collections.Generic.IEqualityComparer{`1})">
+  Unique(IEqualityComparer&lt;TItem&gt;?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that all items in the collection are unique.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnumerablePropertyValidator&lt;T, TItem&gt; Unique(IEqualityComparer&lt;TItem&gt;? comparer = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>comparer</code> <span class="xref">IEqualityComparer</span>&lt;TItem&gt;</dt>
+    <dd><p>Optional equality comparer for determining uniqueness.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html">EnumerablePropertyValidator</a>&lt;T, TItem&gt;</dt>
+    <dd><p>This validator for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

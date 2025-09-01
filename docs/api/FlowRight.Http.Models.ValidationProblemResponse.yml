@@ -1,0 +1,638 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Http.Models.ValidationProblemResponse
+  commentId: T:FlowRight.Http.Models.ValidationProblemResponse
+  id: ValidationProblemResponse
+  parent: FlowRight.Http.Models
+  children:
+  - FlowRight.Http.Models.ValidationProblemResponse.Detail
+  - FlowRight.Http.Models.ValidationProblemResponse.Errors
+  - FlowRight.Http.Models.ValidationProblemResponse.Instance
+  - FlowRight.Http.Models.ValidationProblemResponse.Status
+  - FlowRight.Http.Models.ValidationProblemResponse.Title
+  - FlowRight.Http.Models.ValidationProblemResponse.Type
+  langs:
+  - csharp
+  - vb
+  name: ValidationProblemResponse
+  nameWithType: ValidationProblemResponse
+  fullName: FlowRight.Http.Models.ValidationProblemResponse
+  type: Class
+  source:
+    id: ValidationProblemResponse
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ValidationProblemResponse.cs
+    startLine: 21
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: >-
+    Represents a validation problem response that follows RFC 7807 Problem Details specification
+
+    and contains field-specific error messages.
+  remarks: >-
+    <p>
+
+    This class is designed to be fully compatible with ASP.NET Core's ValidationProblemDetails
+
+    and provides serialization support for error responses from HTTP APIs following the
+
+    RFC 7807 standard for Problem Details for HTTP APIs.
+
+    </p>
+
+    <p>
+
+    The class includes all standard RFC 7807 properties (type, title, status, detail, instance)
+
+    plus the validation-specific errors dictionary. This ensures compatibility with both
+
+    minimal error responses containing only the errors property and full RFC 7807 compliant
+
+    responses from ASP.NET Core APIs.
+
+    </p>
+  example: []
+  syntax:
+    content: public sealed class ValidationProblemResponse
+    content.vb: Public NotInheritable Class ValidationProblemResponse
+  inheritance:
+  - System.Object
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Type
+  commentId: P:FlowRight.Http.Models.ValidationProblemResponse.Type
+  id: Type
+  parent: FlowRight.Http.Models.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: ValidationProblemResponse.Type
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Type
+  type: Property
+  source:
+    id: Type
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ValidationProblemResponse.cs
+    startLine: 36
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets or sets a URI reference that identifies the problem type.
+  example:
+  - <pre><code class="lang-csharp">Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"</code></pre>
+  syntax:
+    content: >-
+      [JsonPropertyName("type")]
+
+      [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
+      public string? Type { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: A URI that identifies the problem type. When absent, it defaults to "about:blank".
+    content.vb: >-
+      <JsonPropertyName("type")>
+
+      <JsonIgnore(Condition:=JsonIgnoreCondition.WhenWritingNull)>
+
+      Public Property Type As String
+  overload: FlowRight.Http.Models.ValidationProblemResponse.Type*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: type
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Condition
+      type: System.Text.Json.Serialization.JsonIgnoreCondition
+      value: 3
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Title
+  commentId: P:FlowRight.Http.Models.ValidationProblemResponse.Title
+  id: Title
+  parent: FlowRight.Http.Models.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: Title
+  nameWithType: ValidationProblemResponse.Title
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Title
+  type: Property
+  source:
+    id: Title
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ValidationProblemResponse.cs
+    startLine: 52
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets or sets a short, human-readable summary of the problem type.
+  example:
+  - <pre><code class="lang-csharp">Title = "One or more validation errors occurred."</code></pre>
+  syntax:
+    content: >-
+      [JsonPropertyName("title")]
+
+      [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
+      public string? Title { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: >-
+        A human-readable summary of the problem type. This should not change between
+
+        occurrences of the problem, except for purposes of localization.
+    content.vb: >-
+      <JsonPropertyName("title")>
+
+      <JsonIgnore(Condition:=JsonIgnoreCondition.WhenWritingNull)>
+
+      Public Property Title As String
+  overload: FlowRight.Http.Models.ValidationProblemResponse.Title*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: title
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Condition
+      type: System.Text.Json.Serialization.JsonIgnoreCondition
+      value: 3
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Status
+  commentId: P:FlowRight.Http.Models.ValidationProblemResponse.Status
+  id: Status
+  parent: FlowRight.Http.Models.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: Status
+  nameWithType: ValidationProblemResponse.Status
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Status
+  type: Property
+  source:
+    id: Status
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ValidationProblemResponse.cs
+    startLine: 68
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets or sets the HTTP status code generated by the origin server for this occurrence of the problem.
+  example:
+  - <pre><code class="lang-csharp">Status = 400</code></pre>
+  syntax:
+    content: >-
+      [JsonPropertyName("status")]
+
+      [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
+      public int? Status { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+      description: >-
+        The HTTP status code for this problem. When present, it should match the status code
+
+        used in the HTTP response.
+    content.vb: >-
+      <JsonPropertyName("status")>
+
+      <JsonIgnore(Condition:=JsonIgnoreCondition.WhenWritingNull)>
+
+      Public Property Status As Integer?
+  overload: FlowRight.Http.Models.ValidationProblemResponse.Status*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: status
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Condition
+      type: System.Text.Json.Serialization.JsonIgnoreCondition
+      value: 3
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Detail
+  commentId: P:FlowRight.Http.Models.ValidationProblemResponse.Detail
+  id: Detail
+  parent: FlowRight.Http.Models.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: Detail
+  nameWithType: ValidationProblemResponse.Detail
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Detail
+  type: Property
+  source:
+    id: Detail
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ValidationProblemResponse.cs
+    startLine: 84
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets or sets a human-readable explanation specific to this occurrence of the problem.
+  example:
+  - <pre><code class="lang-csharp">Detail = "The request failed validation. See errors for details."</code></pre>
+  syntax:
+    content: >-
+      [JsonPropertyName("detail")]
+
+      [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
+      public string? Detail { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: >-
+        A human-readable explanation specific to this occurrence of the problem.
+
+        This should focus on helping the client correct the problem.
+    content.vb: >-
+      <JsonPropertyName("detail")>
+
+      <JsonIgnore(Condition:=JsonIgnoreCondition.WhenWritingNull)>
+
+      Public Property Detail As String
+  overload: FlowRight.Http.Models.ValidationProblemResponse.Detail*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: detail
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Condition
+      type: System.Text.Json.Serialization.JsonIgnoreCondition
+      value: 3
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Instance
+  commentId: P:FlowRight.Http.Models.ValidationProblemResponse.Instance
+  id: Instance
+  parent: FlowRight.Http.Models.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: Instance
+  nameWithType: ValidationProblemResponse.Instance
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Instance
+  type: Property
+  source:
+    id: Instance
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ValidationProblemResponse.cs
+    startLine: 100
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets or sets a URI reference that identifies the specific occurrence of the problem.
+  example:
+  - <pre><code class="lang-csharp">Instance = "/api/users/validation-error/12345"</code></pre>
+  syntax:
+    content: >-
+      [JsonPropertyName("instance")]
+
+      [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
+      public string? Instance { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: >-
+        A URI that identifies the specific occurrence of the problem. This can be used
+
+        to provide a reference to a specific request or operation.
+    content.vb: >-
+      <JsonPropertyName("instance")>
+
+      <JsonIgnore(Condition:=JsonIgnoreCondition.WhenWritingNull)>
+
+      Public Property Instance As String
+  overload: FlowRight.Http.Models.ValidationProblemResponse.Instance*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: instance
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Condition
+      type: System.Text.Json.Serialization.JsonIgnoreCondition
+      value: 3
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Errors
+  commentId: P:FlowRight.Http.Models.ValidationProblemResponse.Errors
+  id: Errors
+  parent: FlowRight.Http.Models.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: Errors
+  nameWithType: ValidationProblemResponse.Errors
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Errors
+  type: Property
+  source:
+    id: Errors
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ValidationProblemResponse.cs
+    startLine: 126
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets or sets the dictionary of validation errors keyed by field name.
+  example:
+  - >-
+    <pre><code class="lang-csharp">ValidationProblemResponse response = new()
+
+    {
+        Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+        Title = "One or more validation errors occurred.",
+        Status = 400,
+        Errors = new Dictionary&lt;string, string[]&gt;
+        {
+            { "Email", ["Email is required", "Email format is invalid"] },
+            { "Name", ["Name is required"] }
+        }
+    };</code></pre>
+  syntax:
+    content: >-
+      [JsonPropertyName("errors")]
+
+      public Dictionary<string, string[]> Errors { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.String[]}
+      description: >-
+        A dictionary where keys are field names and values are arrays of error messages for that field.
+
+        This property is specific to validation problems and extends the base RFC 7807 structure.
+    content.vb: >-
+      <JsonPropertyName("errors")>
+
+      Public Property Errors As Dictionary(Of String, String())
+  overload: FlowRight.Http.Models.ValidationProblemResponse.Errors*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonPropertyNameAttribute
+    ctor: System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: errors
+references:
+- uid: FlowRight.Http.Models
+  commentId: N:FlowRight.Http.Models
+  href: FlowRight.html
+  name: FlowRight.Http.Models
+  nameWithType: FlowRight.Http.Models
+  fullName: FlowRight.Http.Models
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Type*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemResponse.Type
+  href: FlowRight.Http.Models.ValidationProblemResponse.html#FlowRight_Http_Models_ValidationProblemResponse_Type
+  name: Type
+  nameWithType: ValidationProblemResponse.Type
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Type
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Title*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemResponse.Title
+  href: FlowRight.Http.Models.ValidationProblemResponse.html#FlowRight_Http_Models_ValidationProblemResponse_Title
+  name: Title
+  nameWithType: ValidationProblemResponse.Title
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Title
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Status*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemResponse.Status
+  href: FlowRight.Http.Models.ValidationProblemResponse.html#FlowRight_Http_Models_ValidationProblemResponse_Status
+  name: Status
+  nameWithType: ValidationProblemResponse.Status
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Status
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Detail*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemResponse.Detail
+  href: FlowRight.Http.Models.ValidationProblemResponse.html#FlowRight_Http_Models_ValidationProblemResponse_Detail
+  name: Detail
+  nameWithType: ValidationProblemResponse.Detail
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Detail
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Instance*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemResponse.Instance
+  href: FlowRight.Http.Models.ValidationProblemResponse.html#FlowRight_Http_Models_ValidationProblemResponse_Instance
+  name: Instance
+  nameWithType: ValidationProblemResponse.Instance
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Instance
+- uid: FlowRight.Http.Models.ValidationProblemResponse.Errors*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemResponse.Errors
+  href: FlowRight.Http.Models.ValidationProblemResponse.html#FlowRight_Http_Models_ValidationProblemResponse_Errors
+  name: Errors
+  nameWithType: ValidationProblemResponse.Errors
+  fullName: FlowRight.Http.Models.ValidationProblemResponse.Errors
+- uid: System.Collections.Generic.Dictionary{System.String,System.String[]}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<string, string[]>
+  nameWithType: Dictionary<string, string[]>
+  fullName: System.Collections.Generic.Dictionary<string, string[]>
+  nameWithType.vb: Dictionary(Of String, String())
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, String())
+  name.vb: Dictionary(Of String, String())
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

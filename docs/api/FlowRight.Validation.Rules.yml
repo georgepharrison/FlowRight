@@ -1,0 +1,926 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  id: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.AlphaNumericDashRule
+  - FlowRight.Validation.Rules.AlphaNumericRule
+  - FlowRight.Validation.Rules.AlphaNumericSpaceRule
+  - FlowRight.Validation.Rules.AlphaRule
+  - FlowRight.Validation.Rules.BetweenRule`1
+  - FlowRight.Validation.Rules.ContainsItemRule`1
+  - FlowRight.Validation.Rules.ContainsRule
+  - FlowRight.Validation.Rules.CountRule`1
+  - FlowRight.Validation.Rules.CreditCardRule
+  - FlowRight.Validation.Rules.EachRule`1
+  - FlowRight.Validation.Rules.EmailRule
+  - FlowRight.Validation.Rules.EmptyRule`1
+  - FlowRight.Validation.Rules.EndsWithRule
+  - FlowRight.Validation.Rules.EqualRule`1
+  - FlowRight.Validation.Rules.EqualToRule
+  - FlowRight.Validation.Rules.ExactLengthRule
+  - FlowRight.Validation.Rules.ExclusiveBetweenRule`1
+  - FlowRight.Validation.Rules.GreaterThanOrEqualToRule`1
+  - FlowRight.Validation.Rules.GreaterThanRule`1
+  - FlowRight.Validation.Rules.GuidNonZeroTimestampRule
+  - FlowRight.Validation.Rules.GuidNotEmptyRule
+  - FlowRight.Validation.Rules.GuidValidFormatRule
+  - FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+  - FlowRight.Validation.Rules.IContextAwareRule`1
+  - FlowRight.Validation.Rules.IRule`1
+  - FlowRight.Validation.Rules.InclusiveBetweenRule
+  - FlowRight.Validation.Rules.InclusiveBetweenRule`1
+  - FlowRight.Validation.Rules.LengthRule
+  - FlowRight.Validation.Rules.LessThanOrEqualToRule`1
+  - FlowRight.Validation.Rules.LessThanRule`1
+  - FlowRight.Validation.Rules.LowerCaseRule
+  - FlowRight.Validation.Rules.MatchesRule
+  - FlowRight.Validation.Rules.MaxCountRule`1
+  - FlowRight.Validation.Rules.MaxLengthRule
+  - FlowRight.Validation.Rules.MinCountRule`1
+  - FlowRight.Validation.Rules.MinLengthRule
+  - FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+  - FlowRight.Validation.Rules.MustContextAwareRule`1
+  - FlowRight.Validation.Rules.MustRule`1
+  - FlowRight.Validation.Rules.NegativeRule`1
+  - FlowRight.Validation.Rules.NotEmptyRule`1
+  - FlowRight.Validation.Rules.NotEqualRule`1
+  - FlowRight.Validation.Rules.NotNullRule`1
+  - FlowRight.Validation.Rules.NullRule`1
+  - FlowRight.Validation.Rules.PhoneRule
+  - FlowRight.Validation.Rules.PositiveRule`1
+  - FlowRight.Validation.Rules.PostalCodeRule
+  - FlowRight.Validation.Rules.PrecisionScaleRule`1
+  - FlowRight.Validation.Rules.SpecificGuidValueRule
+  - FlowRight.Validation.Rules.StartsWithRule
+  - FlowRight.Validation.Rules.UniqueRule`1
+  - FlowRight.Validation.Rules.UpperCaseRule
+  - FlowRight.Validation.Rules.UrlRule
+  - FlowRight.Validation.Rules.ValidGuidFormatRule
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  type: Namespace
+  assemblies:
+  - FlowRight.Validation
+references:
+- uid: FlowRight.Validation.Rules.AlphaNumericDashRule
+  commentId: T:FlowRight.Validation.Rules.AlphaNumericDashRule
+  href: FlowRight.Validation.Rules.AlphaNumericDashRule.html
+  name: AlphaNumericDashRule
+  nameWithType: AlphaNumericDashRule
+  fullName: FlowRight.Validation.Rules.AlphaNumericDashRule
+- uid: FlowRight.Validation.Rules.AlphaNumericRule
+  commentId: T:FlowRight.Validation.Rules.AlphaNumericRule
+  href: FlowRight.Validation.Rules.AlphaNumericRule.html
+  name: AlphaNumericRule
+  nameWithType: AlphaNumericRule
+  fullName: FlowRight.Validation.Rules.AlphaNumericRule
+- uid: FlowRight.Validation.Rules.AlphaNumericSpaceRule
+  commentId: T:FlowRight.Validation.Rules.AlphaNumericSpaceRule
+  href: FlowRight.Validation.Rules.AlphaNumericSpaceRule.html
+  name: AlphaNumericSpaceRule
+  nameWithType: AlphaNumericSpaceRule
+  fullName: FlowRight.Validation.Rules.AlphaNumericSpaceRule
+- uid: FlowRight.Validation.Rules.AlphaRule
+  commentId: T:FlowRight.Validation.Rules.AlphaRule
+  href: FlowRight.Validation.Rules.AlphaRule.html
+  name: AlphaRule
+  nameWithType: AlphaRule
+  fullName: FlowRight.Validation.Rules.AlphaRule
+- uid: FlowRight.Validation.Rules.BetweenRule`1
+  commentId: T:FlowRight.Validation.Rules.BetweenRule`1
+  href: FlowRight.Validation.Rules.BetweenRule-1.html
+  name: BetweenRule<T>
+  nameWithType: BetweenRule<T>
+  fullName: FlowRight.Validation.Rules.BetweenRule<T>
+  nameWithType.vb: BetweenRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.BetweenRule(Of T)
+  name.vb: BetweenRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.BetweenRule`1
+    name: BetweenRule
+    href: FlowRight.Validation.Rules.BetweenRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.BetweenRule`1
+    name: BetweenRule
+    href: FlowRight.Validation.Rules.BetweenRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.ContainsItemRule`1
+  commentId: T:FlowRight.Validation.Rules.ContainsItemRule`1
+  href: FlowRight.Validation.Rules.ContainsItemRule-1.html
+  name: ContainsItemRule<TItem>
+  nameWithType: ContainsItemRule<TItem>
+  fullName: FlowRight.Validation.Rules.ContainsItemRule<TItem>
+  nameWithType.vb: ContainsItemRule(Of TItem)
+  fullName.vb: FlowRight.Validation.Rules.ContainsItemRule(Of TItem)
+  name.vb: ContainsItemRule(Of TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.ContainsItemRule`1
+    name: ContainsItemRule
+    href: FlowRight.Validation.Rules.ContainsItemRule-1.html
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.ContainsItemRule`1
+    name: ContainsItemRule
+    href: FlowRight.Validation.Rules.ContainsItemRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Rules.ContainsRule
+  commentId: T:FlowRight.Validation.Rules.ContainsRule
+  href: FlowRight.Validation.Rules.ContainsRule.html
+  name: ContainsRule
+  nameWithType: ContainsRule
+  fullName: FlowRight.Validation.Rules.ContainsRule
+- uid: FlowRight.Validation.Rules.CountRule`1
+  commentId: T:FlowRight.Validation.Rules.CountRule`1
+  href: FlowRight.Validation.Rules.CountRule-1.html
+  name: CountRule<TItem>
+  nameWithType: CountRule<TItem>
+  fullName: FlowRight.Validation.Rules.CountRule<TItem>
+  nameWithType.vb: CountRule(Of TItem)
+  fullName.vb: FlowRight.Validation.Rules.CountRule(Of TItem)
+  name.vb: CountRule(Of TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.CountRule`1
+    name: CountRule
+    href: FlowRight.Validation.Rules.CountRule-1.html
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.CountRule`1
+    name: CountRule
+    href: FlowRight.Validation.Rules.CountRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Rules.CreditCardRule
+  commentId: T:FlowRight.Validation.Rules.CreditCardRule
+  href: FlowRight.Validation.Rules.CreditCardRule.html
+  name: CreditCardRule
+  nameWithType: CreditCardRule
+  fullName: FlowRight.Validation.Rules.CreditCardRule
+- uid: FlowRight.Validation.Rules.EachRule`1
+  commentId: T:FlowRight.Validation.Rules.EachRule`1
+  href: FlowRight.Validation.Rules.EachRule-1.html
+  name: EachRule<TItem>
+  nameWithType: EachRule<TItem>
+  fullName: FlowRight.Validation.Rules.EachRule<TItem>
+  nameWithType.vb: EachRule(Of TItem)
+  fullName.vb: FlowRight.Validation.Rules.EachRule(Of TItem)
+  name.vb: EachRule(Of TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.EachRule`1
+    name: EachRule
+    href: FlowRight.Validation.Rules.EachRule-1.html
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.EachRule`1
+    name: EachRule
+    href: FlowRight.Validation.Rules.EachRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Rules.EmailRule
+  commentId: T:FlowRight.Validation.Rules.EmailRule
+  href: FlowRight.Validation.Rules.EmailRule.html
+  name: EmailRule
+  nameWithType: EmailRule
+  fullName: FlowRight.Validation.Rules.EmailRule
+- uid: FlowRight.Validation.Rules.EmptyRule`1
+  commentId: T:FlowRight.Validation.Rules.EmptyRule`1
+  href: FlowRight.Validation.Rules.EmptyRule-1.html
+  name: EmptyRule<T>
+  nameWithType: EmptyRule<T>
+  fullName: FlowRight.Validation.Rules.EmptyRule<T>
+  nameWithType.vb: EmptyRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.EmptyRule(Of T)
+  name.vb: EmptyRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.EmptyRule`1
+    name: EmptyRule
+    href: FlowRight.Validation.Rules.EmptyRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.EmptyRule`1
+    name: EmptyRule
+    href: FlowRight.Validation.Rules.EmptyRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.EndsWithRule
+  commentId: T:FlowRight.Validation.Rules.EndsWithRule
+  href: FlowRight.Validation.Rules.EndsWithRule.html
+  name: EndsWithRule
+  nameWithType: EndsWithRule
+  fullName: FlowRight.Validation.Rules.EndsWithRule
+- uid: FlowRight.Validation.Rules.EqualRule`1
+  commentId: T:FlowRight.Validation.Rules.EqualRule`1
+  href: FlowRight.Validation.Rules.EqualRule-1.html
+  name: EqualRule<T>
+  nameWithType: EqualRule<T>
+  fullName: FlowRight.Validation.Rules.EqualRule<T>
+  nameWithType.vb: EqualRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.EqualRule(Of T)
+  name.vb: EqualRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.EqualRule`1
+    name: EqualRule
+    href: FlowRight.Validation.Rules.EqualRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.EqualRule`1
+    name: EqualRule
+    href: FlowRight.Validation.Rules.EqualRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.EqualToRule
+  commentId: T:FlowRight.Validation.Rules.EqualToRule
+  href: FlowRight.Validation.Rules.EqualToRule.html
+  name: EqualToRule
+  nameWithType: EqualToRule
+  fullName: FlowRight.Validation.Rules.EqualToRule
+- uid: FlowRight.Validation.Rules.ExactLengthRule
+  commentId: T:FlowRight.Validation.Rules.ExactLengthRule
+  href: FlowRight.Validation.Rules.ExactLengthRule.html
+  name: ExactLengthRule
+  nameWithType: ExactLengthRule
+  fullName: FlowRight.Validation.Rules.ExactLengthRule
+- uid: FlowRight.Validation.Rules.ExclusiveBetweenRule`1
+  commentId: T:FlowRight.Validation.Rules.ExclusiveBetweenRule`1
+  href: FlowRight.Validation.Rules.ExclusiveBetweenRule-1.html
+  name: ExclusiveBetweenRule<T>
+  nameWithType: ExclusiveBetweenRule<T>
+  fullName: FlowRight.Validation.Rules.ExclusiveBetweenRule<T>
+  nameWithType.vb: ExclusiveBetweenRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.ExclusiveBetweenRule(Of T)
+  name.vb: ExclusiveBetweenRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.ExclusiveBetweenRule`1
+    name: ExclusiveBetweenRule
+    href: FlowRight.Validation.Rules.ExclusiveBetweenRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.ExclusiveBetweenRule`1
+    name: ExclusiveBetweenRule
+    href: FlowRight.Validation.Rules.ExclusiveBetweenRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.GreaterThanOrEqualToRule`1
+  commentId: T:FlowRight.Validation.Rules.GreaterThanOrEqualToRule`1
+  href: FlowRight.Validation.Rules.GreaterThanOrEqualToRule-1.html
+  name: GreaterThanOrEqualToRule<T>
+  nameWithType: GreaterThanOrEqualToRule<T>
+  fullName: FlowRight.Validation.Rules.GreaterThanOrEqualToRule<T>
+  nameWithType.vb: GreaterThanOrEqualToRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.GreaterThanOrEqualToRule(Of T)
+  name.vb: GreaterThanOrEqualToRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.GreaterThanOrEqualToRule`1
+    name: GreaterThanOrEqualToRule
+    href: FlowRight.Validation.Rules.GreaterThanOrEqualToRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.GreaterThanOrEqualToRule`1
+    name: GreaterThanOrEqualToRule
+    href: FlowRight.Validation.Rules.GreaterThanOrEqualToRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.GreaterThanRule`1
+  commentId: T:FlowRight.Validation.Rules.GreaterThanRule`1
+  href: FlowRight.Validation.Rules.GreaterThanRule-1.html
+  name: GreaterThanRule<T>
+  nameWithType: GreaterThanRule<T>
+  fullName: FlowRight.Validation.Rules.GreaterThanRule<T>
+  nameWithType.vb: GreaterThanRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.GreaterThanRule(Of T)
+  name.vb: GreaterThanRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.GreaterThanRule`1
+    name: GreaterThanRule
+    href: FlowRight.Validation.Rules.GreaterThanRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.GreaterThanRule`1
+    name: GreaterThanRule
+    href: FlowRight.Validation.Rules.GreaterThanRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.GuidNonZeroTimestampRule
+  commentId: T:FlowRight.Validation.Rules.GuidNonZeroTimestampRule
+  href: FlowRight.Validation.Rules.GuidNonZeroTimestampRule.html
+  name: GuidNonZeroTimestampRule
+  nameWithType: GuidNonZeroTimestampRule
+  fullName: FlowRight.Validation.Rules.GuidNonZeroTimestampRule
+- uid: FlowRight.Validation.Rules.GuidNotEmptyRule
+  commentId: T:FlowRight.Validation.Rules.GuidNotEmptyRule
+  href: FlowRight.Validation.Rules.GuidNotEmptyRule.html
+  name: GuidNotEmptyRule
+  nameWithType: GuidNotEmptyRule
+  fullName: FlowRight.Validation.Rules.GuidNotEmptyRule
+- uid: FlowRight.Validation.Rules.GuidValidFormatRule
+  commentId: T:FlowRight.Validation.Rules.GuidValidFormatRule
+  href: FlowRight.Validation.Rules.GuidValidFormatRule.html
+  name: GuidValidFormatRule
+  nameWithType: GuidValidFormatRule
+  fullName: FlowRight.Validation.Rules.GuidValidFormatRule
+- uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+  commentId: T:FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+  href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  name: IAsyncContextAwareRule<T>
+  nameWithType: IAsyncContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.IAsyncContextAwareRule<T>
+  nameWithType.vb: IAsyncContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IAsyncContextAwareRule(Of T)
+  name.vb: IAsyncContextAwareRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+    name: IAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+    name: IAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.IContextAwareRule`1
+  commentId: T:FlowRight.Validation.Rules.IContextAwareRule`1
+  href: FlowRight.Validation.Rules.IContextAwareRule-1.html
+  name: IContextAwareRule<T>
+  nameWithType: IContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.IContextAwareRule<T>
+  nameWithType.vb: IContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IContextAwareRule(Of T)
+  name.vb: IContextAwareRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IContextAwareRule`1
+    name: IContextAwareRule
+    href: FlowRight.Validation.Rules.IContextAwareRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IContextAwareRule`1
+    name: IContextAwareRule
+    href: FlowRight.Validation.Rules.IContextAwareRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.InclusiveBetweenRule
+  commentId: T:FlowRight.Validation.Rules.InclusiveBetweenRule
+  href: FlowRight.Validation.Rules.InclusiveBetweenRule.html
+  name: InclusiveBetweenRule
+  nameWithType: InclusiveBetweenRule
+  fullName: FlowRight.Validation.Rules.InclusiveBetweenRule
+- uid: FlowRight.Validation.Rules.InclusiveBetweenRule`1
+  commentId: T:FlowRight.Validation.Rules.InclusiveBetweenRule`1
+  href: FlowRight.Validation.Rules.InclusiveBetweenRule-1.html
+  name: InclusiveBetweenRule<TNumeric>
+  nameWithType: InclusiveBetweenRule<TNumeric>
+  fullName: FlowRight.Validation.Rules.InclusiveBetweenRule<TNumeric>
+  nameWithType.vb: InclusiveBetweenRule(Of TNumeric)
+  fullName.vb: FlowRight.Validation.Rules.InclusiveBetweenRule(Of TNumeric)
+  name.vb: InclusiveBetweenRule(Of TNumeric)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.InclusiveBetweenRule`1
+    name: InclusiveBetweenRule
+    href: FlowRight.Validation.Rules.InclusiveBetweenRule-1.html
+  - name: <
+  - name: TNumeric
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.InclusiveBetweenRule`1
+    name: InclusiveBetweenRule
+    href: FlowRight.Validation.Rules.InclusiveBetweenRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TNumeric
+  - name: )
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.LengthRule
+  commentId: T:FlowRight.Validation.Rules.LengthRule
+  href: FlowRight.Validation.Rules.LengthRule.html
+  name: LengthRule
+  nameWithType: LengthRule
+  fullName: FlowRight.Validation.Rules.LengthRule
+- uid: FlowRight.Validation.Rules.LessThanOrEqualToRule`1
+  commentId: T:FlowRight.Validation.Rules.LessThanOrEqualToRule`1
+  href: FlowRight.Validation.Rules.LessThanOrEqualToRule-1.html
+  name: LessThanOrEqualToRule<T>
+  nameWithType: LessThanOrEqualToRule<T>
+  fullName: FlowRight.Validation.Rules.LessThanOrEqualToRule<T>
+  nameWithType.vb: LessThanOrEqualToRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.LessThanOrEqualToRule(Of T)
+  name.vb: LessThanOrEqualToRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.LessThanOrEqualToRule`1
+    name: LessThanOrEqualToRule
+    href: FlowRight.Validation.Rules.LessThanOrEqualToRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.LessThanOrEqualToRule`1
+    name: LessThanOrEqualToRule
+    href: FlowRight.Validation.Rules.LessThanOrEqualToRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.LessThanRule`1
+  commentId: T:FlowRight.Validation.Rules.LessThanRule`1
+  href: FlowRight.Validation.Rules.LessThanRule-1.html
+  name: LessThanRule<T>
+  nameWithType: LessThanRule<T>
+  fullName: FlowRight.Validation.Rules.LessThanRule<T>
+  nameWithType.vb: LessThanRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.LessThanRule(Of T)
+  name.vb: LessThanRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.LessThanRule`1
+    name: LessThanRule
+    href: FlowRight.Validation.Rules.LessThanRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.LessThanRule`1
+    name: LessThanRule
+    href: FlowRight.Validation.Rules.LessThanRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.LowerCaseRule
+  commentId: T:FlowRight.Validation.Rules.LowerCaseRule
+  href: FlowRight.Validation.Rules.LowerCaseRule.html
+  name: LowerCaseRule
+  nameWithType: LowerCaseRule
+  fullName: FlowRight.Validation.Rules.LowerCaseRule
+- uid: FlowRight.Validation.Rules.MatchesRule
+  commentId: T:FlowRight.Validation.Rules.MatchesRule
+  href: FlowRight.Validation.Rules.MatchesRule.html
+  name: MatchesRule
+  nameWithType: MatchesRule
+  fullName: FlowRight.Validation.Rules.MatchesRule
+- uid: FlowRight.Validation.Rules.MaxCountRule`1
+  commentId: T:FlowRight.Validation.Rules.MaxCountRule`1
+  href: FlowRight.Validation.Rules.MaxCountRule-1.html
+  name: MaxCountRule<TItem>
+  nameWithType: MaxCountRule<TItem>
+  fullName: FlowRight.Validation.Rules.MaxCountRule<TItem>
+  nameWithType.vb: MaxCountRule(Of TItem)
+  fullName.vb: FlowRight.Validation.Rules.MaxCountRule(Of TItem)
+  name.vb: MaxCountRule(Of TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.MaxCountRule`1
+    name: MaxCountRule
+    href: FlowRight.Validation.Rules.MaxCountRule-1.html
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.MaxCountRule`1
+    name: MaxCountRule
+    href: FlowRight.Validation.Rules.MaxCountRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Rules.MaxLengthRule
+  commentId: T:FlowRight.Validation.Rules.MaxLengthRule
+  href: FlowRight.Validation.Rules.MaxLengthRule.html
+  name: MaxLengthRule
+  nameWithType: MaxLengthRule
+  fullName: FlowRight.Validation.Rules.MaxLengthRule
+- uid: FlowRight.Validation.Rules.MinCountRule`1
+  commentId: T:FlowRight.Validation.Rules.MinCountRule`1
+  href: FlowRight.Validation.Rules.MinCountRule-1.html
+  name: MinCountRule<TItem>
+  nameWithType: MinCountRule<TItem>
+  fullName: FlowRight.Validation.Rules.MinCountRule<TItem>
+  nameWithType.vb: MinCountRule(Of TItem)
+  fullName.vb: FlowRight.Validation.Rules.MinCountRule(Of TItem)
+  name.vb: MinCountRule(Of TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.MinCountRule`1
+    name: MinCountRule
+    href: FlowRight.Validation.Rules.MinCountRule-1.html
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.MinCountRule`1
+    name: MinCountRule
+    href: FlowRight.Validation.Rules.MinCountRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Rules.MinLengthRule
+  commentId: T:FlowRight.Validation.Rules.MinLengthRule
+  href: FlowRight.Validation.Rules.MinLengthRule.html
+  name: MinLengthRule
+  nameWithType: MinLengthRule
+  fullName: FlowRight.Validation.Rules.MinLengthRule
+- uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+  commentId: T:FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+  href: FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.html
+  name: MustAsyncContextAwareRule<T>
+  nameWithType: MustAsyncContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.MustAsyncContextAwareRule<T>
+  nameWithType.vb: MustAsyncContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.MustAsyncContextAwareRule(Of T)
+  name.vb: MustAsyncContextAwareRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+    name: MustAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+    name: MustAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.MustContextAwareRule`1
+  commentId: T:FlowRight.Validation.Rules.MustContextAwareRule`1
+  href: FlowRight.Validation.Rules.MustContextAwareRule-1.html
+  name: MustContextAwareRule<T>
+  nameWithType: MustContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.MustContextAwareRule<T>
+  nameWithType.vb: MustContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.MustContextAwareRule(Of T)
+  name.vb: MustContextAwareRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.MustContextAwareRule`1
+    name: MustContextAwareRule
+    href: FlowRight.Validation.Rules.MustContextAwareRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.MustContextAwareRule`1
+    name: MustContextAwareRule
+    href: FlowRight.Validation.Rules.MustContextAwareRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.MustRule`1
+  commentId: T:FlowRight.Validation.Rules.MustRule`1
+  href: FlowRight.Validation.Rules.MustRule-1.html
+  name: MustRule<T>
+  nameWithType: MustRule<T>
+  fullName: FlowRight.Validation.Rules.MustRule<T>
+  nameWithType.vb: MustRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.MustRule(Of T)
+  name.vb: MustRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.MustRule`1
+    name: MustRule
+    href: FlowRight.Validation.Rules.MustRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.MustRule`1
+    name: MustRule
+    href: FlowRight.Validation.Rules.MustRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.NegativeRule`1
+  commentId: T:FlowRight.Validation.Rules.NegativeRule`1
+  href: FlowRight.Validation.Rules.NegativeRule-1.html
+  name: NegativeRule<T>
+  nameWithType: NegativeRule<T>
+  fullName: FlowRight.Validation.Rules.NegativeRule<T>
+  nameWithType.vb: NegativeRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.NegativeRule(Of T)
+  name.vb: NegativeRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.NegativeRule`1
+    name: NegativeRule
+    href: FlowRight.Validation.Rules.NegativeRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.NegativeRule`1
+    name: NegativeRule
+    href: FlowRight.Validation.Rules.NegativeRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.NotEmptyRule`1
+  commentId: T:FlowRight.Validation.Rules.NotEmptyRule`1
+  href: FlowRight.Validation.Rules.NotEmptyRule-1.html
+  name: NotEmptyRule<T>
+  nameWithType: NotEmptyRule<T>
+  fullName: FlowRight.Validation.Rules.NotEmptyRule<T>
+  nameWithType.vb: NotEmptyRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.NotEmptyRule(Of T)
+  name.vb: NotEmptyRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.NotEmptyRule`1
+    name: NotEmptyRule
+    href: FlowRight.Validation.Rules.NotEmptyRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.NotEmptyRule`1
+    name: NotEmptyRule
+    href: FlowRight.Validation.Rules.NotEmptyRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.NotEqualRule`1
+  commentId: T:FlowRight.Validation.Rules.NotEqualRule`1
+  href: FlowRight.Validation.Rules.NotEqualRule-1.html
+  name: NotEqualRule<T>
+  nameWithType: NotEqualRule<T>
+  fullName: FlowRight.Validation.Rules.NotEqualRule<T>
+  nameWithType.vb: NotEqualRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.NotEqualRule(Of T)
+  name.vb: NotEqualRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.NotEqualRule`1
+    name: NotEqualRule
+    href: FlowRight.Validation.Rules.NotEqualRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.NotEqualRule`1
+    name: NotEqualRule
+    href: FlowRight.Validation.Rules.NotEqualRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.NotNullRule`1
+  commentId: T:FlowRight.Validation.Rules.NotNullRule`1
+  href: FlowRight.Validation.Rules.NotNullRule-1.html
+  name: NotNullRule<T>
+  nameWithType: NotNullRule<T>
+  fullName: FlowRight.Validation.Rules.NotNullRule<T>
+  nameWithType.vb: NotNullRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.NotNullRule(Of T)
+  name.vb: NotNullRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.NotNullRule`1
+    name: NotNullRule
+    href: FlowRight.Validation.Rules.NotNullRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.NotNullRule`1
+    name: NotNullRule
+    href: FlowRight.Validation.Rules.NotNullRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.NullRule`1
+  commentId: T:FlowRight.Validation.Rules.NullRule`1
+  href: FlowRight.Validation.Rules.NullRule-1.html
+  name: NullRule<T>
+  nameWithType: NullRule<T>
+  fullName: FlowRight.Validation.Rules.NullRule<T>
+  nameWithType.vb: NullRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.NullRule(Of T)
+  name.vb: NullRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.NullRule`1
+    name: NullRule
+    href: FlowRight.Validation.Rules.NullRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.NullRule`1
+    name: NullRule
+    href: FlowRight.Validation.Rules.NullRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.PhoneRule
+  commentId: T:FlowRight.Validation.Rules.PhoneRule
+  href: FlowRight.Validation.Rules.PhoneRule.html
+  name: PhoneRule
+  nameWithType: PhoneRule
+  fullName: FlowRight.Validation.Rules.PhoneRule
+- uid: FlowRight.Validation.Rules.PositiveRule`1
+  commentId: T:FlowRight.Validation.Rules.PositiveRule`1
+  href: FlowRight.Validation.Rules.PositiveRule-1.html
+  name: PositiveRule<T>
+  nameWithType: PositiveRule<T>
+  fullName: FlowRight.Validation.Rules.PositiveRule<T>
+  nameWithType.vb: PositiveRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.PositiveRule(Of T)
+  name.vb: PositiveRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.PositiveRule`1
+    name: PositiveRule
+    href: FlowRight.Validation.Rules.PositiveRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.PositiveRule`1
+    name: PositiveRule
+    href: FlowRight.Validation.Rules.PositiveRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.PostalCodeRule
+  commentId: T:FlowRight.Validation.Rules.PostalCodeRule
+  href: FlowRight.Validation.Rules.PostalCodeRule.html
+  name: PostalCodeRule
+  nameWithType: PostalCodeRule
+  fullName: FlowRight.Validation.Rules.PostalCodeRule
+- uid: FlowRight.Validation.Rules.PrecisionScaleRule`1
+  commentId: T:FlowRight.Validation.Rules.PrecisionScaleRule`1
+  href: FlowRight.Validation.Rules.PrecisionScaleRule-1.html
+  name: PrecisionScaleRule<TNumeric>
+  nameWithType: PrecisionScaleRule<TNumeric>
+  fullName: FlowRight.Validation.Rules.PrecisionScaleRule<TNumeric>
+  nameWithType.vb: PrecisionScaleRule(Of TNumeric)
+  fullName.vb: FlowRight.Validation.Rules.PrecisionScaleRule(Of TNumeric)
+  name.vb: PrecisionScaleRule(Of TNumeric)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.PrecisionScaleRule`1
+    name: PrecisionScaleRule
+    href: FlowRight.Validation.Rules.PrecisionScaleRule-1.html
+  - name: <
+  - name: TNumeric
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.PrecisionScaleRule`1
+    name: PrecisionScaleRule
+    href: FlowRight.Validation.Rules.PrecisionScaleRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TNumeric
+  - name: )
+- uid: FlowRight.Validation.Rules.SpecificGuidValueRule
+  commentId: T:FlowRight.Validation.Rules.SpecificGuidValueRule
+  href: FlowRight.Validation.Rules.SpecificGuidValueRule.html
+  name: SpecificGuidValueRule
+  nameWithType: SpecificGuidValueRule
+  fullName: FlowRight.Validation.Rules.SpecificGuidValueRule
+- uid: FlowRight.Validation.Rules.StartsWithRule
+  commentId: T:FlowRight.Validation.Rules.StartsWithRule
+  href: FlowRight.Validation.Rules.StartsWithRule.html
+  name: StartsWithRule
+  nameWithType: StartsWithRule
+  fullName: FlowRight.Validation.Rules.StartsWithRule
+- uid: FlowRight.Validation.Rules.UniqueRule`1
+  commentId: T:FlowRight.Validation.Rules.UniqueRule`1
+  href: FlowRight.Validation.Rules.UniqueRule-1.html
+  name: UniqueRule<TItem>
+  nameWithType: UniqueRule<TItem>
+  fullName: FlowRight.Validation.Rules.UniqueRule<TItem>
+  nameWithType.vb: UniqueRule(Of TItem)
+  fullName.vb: FlowRight.Validation.Rules.UniqueRule(Of TItem)
+  name.vb: UniqueRule(Of TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.UniqueRule`1
+    name: UniqueRule
+    href: FlowRight.Validation.Rules.UniqueRule-1.html
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.UniqueRule`1
+    name: UniqueRule
+    href: FlowRight.Validation.Rules.UniqueRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Rules.UpperCaseRule
+  commentId: T:FlowRight.Validation.Rules.UpperCaseRule
+  href: FlowRight.Validation.Rules.UpperCaseRule.html
+  name: UpperCaseRule
+  nameWithType: UpperCaseRule
+  fullName: FlowRight.Validation.Rules.UpperCaseRule
+- uid: FlowRight.Validation.Rules.UrlRule
+  commentId: T:FlowRight.Validation.Rules.UrlRule
+  href: FlowRight.Validation.Rules.UrlRule.html
+  name: UrlRule
+  nameWithType: UrlRule
+  fullName: FlowRight.Validation.Rules.UrlRule
+- uid: FlowRight.Validation.Rules.ValidGuidFormatRule
+  commentId: T:FlowRight.Validation.Rules.ValidGuidFormatRule
+  href: FlowRight.Validation.Rules.ValidGuidFormatRule.html
+  name: ValidGuidFormatRule
+  nameWithType: ValidGuidFormatRule
+  fullName: FlowRight.Validation.Rules.ValidGuidFormatRule

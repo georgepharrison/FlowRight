@@ -1,0 +1,812 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Results.IResult`1
+  commentId: T:FlowRight.Core.Results.IResult`1
+  id: IResult`1
+  parent: FlowRight.Core.Results
+  children:
+  - FlowRight.Core.Results.IResult`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+  - FlowRight.Core.Results.IResult`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0},System.Func{System.String,``0},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},``0},System.Func{System.String,``0})
+  - FlowRight.Core.Results.IResult`1.Switch(System.Action{`0},System.Action{System.String},System.Action{System.String},System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}},System.Action{System.String})
+  - FlowRight.Core.Results.IResult`1.Switch(System.Action{`0},System.Action{System.String},System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: IResult<T>
+  nameWithType: IResult<T>
+  fullName: FlowRight.Core.Results.IResult<T>
+  type: Interface
+  source:
+    id: IResult
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 104
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Represents a Result pattern implementation that can contain a typed success value,
+
+    providing pattern matching and functional programming capabilities.
+  remarks: >-
+    <p>
+
+    This interface extends <xref href="FlowRight.Core.Results.IResult" data-throw-if-not-resolved="false"></xref> to add typed success value handling
+
+    and provides pattern matching methods for functional-style result processing.
+
+    The interface is covariant, allowing assignment from more derived types to less derived types.
+
+    </p>
+
+    <p>
+
+    The interface provides two styles of result handling:
+
+    <ul><li><strong>Match methods</strong>: Functional style that transforms the result into another value</li><li><strong>Switch methods</strong>: Imperative style that executes side-effect actions</li></ul>
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">// Example of using IResult&lt;T&gt; with pattern matching
+
+    IResult&lt;User&gt; result = GetUser(userId);
+
+
+    string message = result.Match(
+        onSuccess: user =&gt; $"Welcome, {user.Name}!",
+        onFailure: error =&gt; $"Error: {error}"
+    );
+
+
+    // Example with detailed failure handling
+
+    result.Switch(
+        onSuccess: user =&gt; Console.WriteLine($"User loaded: {user.Name}"),
+        onError: error =&gt; LogError(error),
+        onSecurityException: error =&gt; LogSecurityViolation(error),
+        onValidationException: errors =&gt; LogValidationErrors(errors)
+    );</code></pre>
+  syntax:
+    content: 'public interface IResult<out T> : IResult, IResultError<string>'
+    typeParameters:
+    - id: T
+      description: The type of the success value that this result can contain.
+    content.vb: Public Interface IResult(Of Out T) Inherits IResult, IResultError(Of String)
+  inheritedMembers:
+  - FlowRight.Core.Results.IResult.Failures
+  - FlowRight.Core.Results.IResult.FailureType
+  - FlowRight.Core.Results.IResult.IsFailure
+  - FlowRight.Core.Results.IResult.IsSuccess
+  - FlowRight.Core.Results.IResult.ResultType
+  - FlowRight.Core.Results.IResultError{System.String}.Error
+  nameWithType.vb: IResult(Of T)
+  fullName.vb: FlowRight.Core.Results.IResult(Of T)
+  name.vb: IResult(Of T)
+- uid: FlowRight.Core.Results.IResult`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+  commentId: M:FlowRight.Core.Results.IResult`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+  id: Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+  parent: FlowRight.Core.Results.IResult`1
+  langs:
+  - csharp
+  - vb
+  name: Match<TResult>(Func<T, TResult>, Func<string, TResult>)
+  nameWithType: IResult<T>.Match<TResult>(Func<T, TResult>, Func<string, TResult>)
+  fullName: FlowRight.Core.Results.IResult<T>.Match<TResult>(System.Func<T, TResult>, System.Func<string, TResult>)
+  type: Method
+  source:
+    id: Match
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 131
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Provides pattern matching for the result, executing one of two functions based on success or failure state.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;int&gt; result = GetNumber();
+
+
+    string message = result.Match(
+        onSuccess: value =&gt; $"The number is {value}",
+        onFailure: error =&gt; $"Failed: {error}"
+    );</code></pre>
+  syntax:
+    content: TResult Match<TResult>(Func<out T, TResult> onSuccess, Func<string, TResult> onFailure)
+    parameters:
+    - id: onSuccess
+      type: System.Func{{T},{TResult}}
+      description: Function to execute if the result is successful, receiving the success value.
+    - id: onFailure
+      type: System.Func{System.String,{TResult}}
+      description: Function to execute if the result is a failure, receiving the error message.
+    typeParameters:
+    - id: TResult
+      description: The type of value returned by both success and failure handlers.
+    return:
+      type: '{TResult}'
+      description: >-
+        The value returned by either <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code>
+
+        depending on the result state.
+    content.vb: Function Match(Of TResult)(onSuccess As Func(Of Out T, TResult), onFailure As Func(Of String, TResult)) As TResult
+  overload: FlowRight.Core.Results.IResult`1.Match*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: IResult(Of T).Match(Of TResult)(Func(Of T, TResult), Func(Of String, TResult))
+  fullName.vb: FlowRight.Core.Results.IResult(Of T).Match(Of TResult)(System.Func(Of T, TResult), System.Func(Of String, TResult))
+  name.vb: Match(Of TResult)(Func(Of T, TResult), Func(Of String, TResult))
+- uid: FlowRight.Core.Results.IResult`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0},System.Func{System.String,``0},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},``0},System.Func{System.String,``0})
+  commentId: M:FlowRight.Core.Results.IResult`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0},System.Func{System.String,``0},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},``0},System.Func{System.String,``0})
+  id: Match``1(System.Func{`0,``0},System.Func{System.String,``0},System.Func{System.String,``0},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},``0},System.Func{System.String,``0})
+  parent: FlowRight.Core.Results.IResult`1
+  langs:
+  - csharp
+  - vb
+  name: Match<TResult>(Func<T, TResult>, Func<string, TResult>, Func<string, TResult>, Func<IDictionary<string, string[]>, TResult>, Func<string, TResult>)
+  nameWithType: IResult<T>.Match<TResult>(Func<T, TResult>, Func<string, TResult>, Func<string, TResult>, Func<IDictionary<string, string[]>, TResult>, Func<string, TResult>)
+  fullName: FlowRight.Core.Results.IResult<T>.Match<TResult>(System.Func<T, TResult>, System.Func<string, TResult>, System.Func<string, TResult>, System.Func<System.Collections.Generic.IDictionary<string, string[]>, TResult>, System.Func<string, TResult>)
+  type: Method
+  source:
+    id: Match
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 161
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Provides comprehensive pattern matching for the result with separate handlers for different failure types.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;User&gt; result = AuthenticateUser(credentials);
+
+
+    string response = result.Match(
+        onSuccess: user =&gt; $"Welcome {user.Name}",
+        onError: error =&gt; $"System error: {error}",
+        onSecurityException: error =&gt; "Access denied",
+        onValidationException: errors =&gt; $"Validation failed: {errors.Count} errors",
+        onOperationCanceledException: error =&gt; "Operation was cancelled"
+    );</code></pre>
+  syntax:
+    content: TResult Match<TResult>(Func<out T, TResult> onSuccess, Func<string, TResult> onError, Func<string, TResult> onSecurityException, Func<IDictionary<string, string[]>, TResult> onValidationException, Func<string, TResult> onOperationCanceledException)
+    parameters:
+    - id: onSuccess
+      type: System.Func{{T},{TResult}}
+      description: Function to execute for successful results, receiving the success value.
+    - id: onError
+      type: System.Func{System.String,{TResult}}
+      description: Function to execute for general error failures, receiving the error message.
+    - id: onSecurityException
+      type: System.Func{System.String,{TResult}}
+      description: Function to execute for security-related failures, receiving the error message.
+    - id: onValidationException
+      type: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},{TResult}}
+      description: Function to execute for validation failures, receiving the validation error dictionary.
+    - id: onOperationCanceledException
+      type: System.Func{System.String,{TResult}}
+      description: Function to execute for operation canceled failures, receiving the error message.
+    typeParameters:
+    - id: TResult
+      description: The type of value returned by all handlers.
+    return:
+      type: '{TResult}'
+      description: The value returned by the appropriate handler based on the result state and failure type.
+    content.vb: Function Match(Of TResult)(onSuccess As Func(Of Out T, TResult), onError As Func(Of String, TResult), onSecurityException As Func(Of String, TResult), onValidationException As Func(Of IDictionary(Of String, String()), TResult), onOperationCanceledException As Func(Of String, TResult)) As TResult
+  overload: FlowRight.Core.Results.IResult`1.Match*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when any of the required handler parameters is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: IResult(Of T).Match(Of TResult)(Func(Of T, TResult), Func(Of String, TResult), Func(Of String, TResult), Func(Of IDictionary(Of String, String()), TResult), Func(Of String, TResult))
+  fullName.vb: FlowRight.Core.Results.IResult(Of T).Match(Of TResult)(System.Func(Of T, TResult), System.Func(Of String, TResult), System.Func(Of String, TResult), System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), TResult), System.Func(Of String, TResult))
+  name.vb: Match(Of TResult)(Func(Of T, TResult), Func(Of String, TResult), Func(Of String, TResult), Func(Of IDictionary(Of String, String()), TResult), Func(Of String, TResult))
+- uid: FlowRight.Core.Results.IResult`1.Switch(System.Action{`0},System.Action{System.String},System.Boolean)
+  commentId: M:FlowRight.Core.Results.IResult`1.Switch(System.Action{`0},System.Action{System.String},System.Boolean)
+  id: Switch(System.Action{`0},System.Action{System.String},System.Boolean)
+  parent: FlowRight.Core.Results.IResult`1
+  langs:
+  - csharp
+  - vb
+  name: Switch(Action<T>, Action<string>, bool)
+  nameWithType: IResult<T>.Switch(Action<T>, Action<string>, bool)
+  fullName: FlowRight.Core.Results.IResult<T>.Switch(System.Action<T>, System.Action<string>, bool)
+  type: Method
+  source:
+    id: Switch
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 186
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Executes side-effect actions based on the result state, with simple success/failure handling.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;Data&gt; result = ProcessData();
+
+
+    result.Switch(
+        onSuccess: data =&gt; SaveToDatabase(data),
+        onFailure: error =&gt; LogError(error)
+    );</code></pre>
+  syntax:
+    content: void Switch(Action<out T> onSuccess, Action<string> onFailure, bool includeOperationCancelledFailures = false)
+    parameters:
+    - id: onSuccess
+      type: System.Action{{T}}
+      description: Action to execute if the result is successful, receiving the success value.
+    - id: onFailure
+      type: System.Action{System.String}
+      description: Action to execute if the result is a failure, receiving the error message.
+    - id: includeOperationCancelledFailures
+      type: System.Boolean
+      description: >-
+        <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to execute <code class="paramref">onFailure</code> for operation canceled failures;
+
+        <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> to ignore operation canceled failures.
+
+        Default is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Sub Switch(onSuccess As Action(Of Out T), onFailure As Action(Of String), includeOperationCancelledFailures As Boolean = False)
+  overload: FlowRight.Core.Results.IResult`1.Switch*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: IResult(Of T).Switch(Action(Of T), Action(Of String), Boolean)
+  fullName.vb: FlowRight.Core.Results.IResult(Of T).Switch(System.Action(Of T), System.Action(Of String), Boolean)
+  name.vb: Switch(Action(Of T), Action(Of String), Boolean)
+- uid: FlowRight.Core.Results.IResult`1.Switch(System.Action{`0},System.Action{System.String},System.Action{System.String},System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}},System.Action{System.String})
+  commentId: M:FlowRight.Core.Results.IResult`1.Switch(System.Action{`0},System.Action{System.String},System.Action{System.String},System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}},System.Action{System.String})
+  id: Switch(System.Action{`0},System.Action{System.String},System.Action{System.String},System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}},System.Action{System.String})
+  parent: FlowRight.Core.Results.IResult`1
+  langs:
+  - csharp
+  - vb
+  name: Switch(Action<T>, Action<string>, Action<string>, Action<IDictionary<string, string[]>>, Action<string>?)
+  nameWithType: IResult<T>.Switch(Action<T>, Action<string>, Action<string>, Action<IDictionary<string, string[]>>, Action<string>?)
+  fullName: FlowRight.Core.Results.IResult<T>.Switch(System.Action<T>, System.Action<string>, System.Action<string>, System.Action<System.Collections.Generic.IDictionary<string, string[]>>, System.Action<string>?)
+  type: Method
+  source:
+    id: Switch
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 215
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Executes side-effect actions based on the result state with separate handlers for different failure types.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;Order&gt; result = ProcessOrder(orderData);
+
+
+    result.Switch(
+        onSuccess: order =&gt; SendConfirmationEmail(order),
+        onError: error =&gt; LogSystemError(error),
+        onSecurityException: error =&gt; AlertSecurityTeam(error),
+        onValidationException: errors =&gt; ShowValidationErrors(errors),
+        onOperationCanceledException: error =&gt; NotifyUserOfCancellation(error)
+    );</code></pre>
+  syntax:
+    content: void Switch(Action<out T> onSuccess, Action<string> onError, Action<string> onSecurityException, Action<IDictionary<string, string[]>> onValidationException, Action<string>? onOperationCanceledException = null)
+    parameters:
+    - id: onSuccess
+      type: System.Action{{T}}
+      description: Action to execute for successful results, receiving the success value.
+    - id: onError
+      type: System.Action{System.String}
+      description: Action to execute for general error failures, receiving the error message.
+    - id: onSecurityException
+      type: System.Action{System.String}
+      description: Action to execute for security-related failures, receiving the error message.
+    - id: onValidationException
+      type: System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}}
+      description: Action to execute for validation failures, receiving the validation error dictionary.
+    - id: onOperationCanceledException
+      type: System.Action{System.String}
+      description: >-
+        Optional action to execute for operation canceled failures, receiving the error message.
+
+        If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, operation canceled failures are ignored.
+    content.vb: Sub Switch(onSuccess As Action(Of Out T), onError As Action(Of String), onSecurityException As Action(Of String), onValidationException As Action(Of IDictionary(Of String, String())), onOperationCanceledException As Action(Of String) = Nothing)
+  overload: FlowRight.Core.Results.IResult`1.Switch*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when any of the required action parameters is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: IResult(Of T).Switch(Action(Of T), Action(Of String), Action(Of String), Action(Of IDictionary(Of String, String())), Action(Of String))
+  fullName.vb: FlowRight.Core.Results.IResult(Of T).Switch(System.Action(Of T), System.Action(Of String), System.Action(Of String), System.Action(Of System.Collections.Generic.IDictionary(Of String, String())), System.Action(Of String))
+  name.vb: Switch(Action(Of T), Action(Of String), Action(Of String), Action(Of IDictionary(Of String, String())), Action(Of String))
+references:
+- uid: FlowRight.Core.Results.IResult
+  commentId: T:FlowRight.Core.Results.IResult
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.IResult.html
+  name: IResult
+  nameWithType: IResult
+  fullName: FlowRight.Core.Results.IResult
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+- uid: FlowRight.Core.Results.IResult.Failures
+  commentId: P:FlowRight.Core.Results.IResult.Failures
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_Failures
+  name: Failures
+  nameWithType: IResult.Failures
+  fullName: FlowRight.Core.Results.IResult.Failures
+- uid: FlowRight.Core.Results.IResult.FailureType
+  commentId: P:FlowRight.Core.Results.IResult.FailureType
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_FailureType
+  name: FailureType
+  nameWithType: IResult.FailureType
+  fullName: FlowRight.Core.Results.IResult.FailureType
+- uid: FlowRight.Core.Results.IResult.IsFailure
+  commentId: P:FlowRight.Core.Results.IResult.IsFailure
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsFailure
+  name: IsFailure
+  nameWithType: IResult.IsFailure
+  fullName: FlowRight.Core.Results.IResult.IsFailure
+- uid: FlowRight.Core.Results.IResult.IsSuccess
+  commentId: P:FlowRight.Core.Results.IResult.IsSuccess
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsSuccess
+  name: IsSuccess
+  nameWithType: IResult.IsSuccess
+  fullName: FlowRight.Core.Results.IResult.IsSuccess
+- uid: FlowRight.Core.Results.IResult.ResultType
+  commentId: P:FlowRight.Core.Results.IResult.ResultType
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_ResultType
+  name: ResultType
+  nameWithType: IResult.ResultType
+  fullName: FlowRight.Core.Results.IResult.ResultType
+- uid: FlowRight.Core.Results.IResultError{System.String}.Error
+  commentId: P:FlowRight.Core.Results.IResultError{System.String}.Error
+  parent: FlowRight.Core.Results.IResultError{System.String}
+  definition: FlowRight.Core.Results.IResultError`1.Error
+  href: FlowRight.Core.Results.IResultError-1.html#FlowRight_Core_Results_IResultError_1_Error
+  name: Error
+  nameWithType: IResultError<string>.Error
+  fullName: FlowRight.Core.Results.IResultError<string>.Error
+  nameWithType.vb: IResultError(Of String).Error
+  fullName.vb: FlowRight.Core.Results.IResultError(Of String).Error
+- uid: FlowRight.Core.Results.IResultError`1.Error
+  commentId: P:FlowRight.Core.Results.IResultError`1.Error
+  href: FlowRight.Core.Results.IResultError-1.html#FlowRight_Core_Results_IResultError_1_Error
+  name: Error
+  nameWithType: IResultError<T>.Error
+  fullName: FlowRight.Core.Results.IResultError<T>.Error
+  nameWithType.vb: IResultError(Of T).Error
+  fullName.vb: FlowRight.Core.Results.IResultError(Of T).Error
+- uid: FlowRight.Core.Results.IResultError{System.String}
+  commentId: T:FlowRight.Core.Results.IResultError{System.String}
+  parent: FlowRight.Core.Results
+  definition: FlowRight.Core.Results.IResultError`1
+  href: FlowRight.Core.Results.IResultError-1.html
+  name: IResultError<string>
+  nameWithType: IResultError<string>
+  fullName: FlowRight.Core.Results.IResultError<string>
+  nameWithType.vb: IResultError(Of String)
+  fullName.vb: FlowRight.Core.Results.IResultError(Of String)
+  name.vb: IResultError(Of String)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.IResultError`1
+    name: IResultError
+    href: FlowRight.Core.Results.IResultError-1.html
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.IResultError`1
+    name: IResultError
+    href: FlowRight.Core.Results.IResultError-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: FlowRight.Core.Results.IResultError`1
+  commentId: T:FlowRight.Core.Results.IResultError`1
+  href: FlowRight.Core.Results.IResultError-1.html
+  name: IResultError<T>
+  nameWithType: IResultError<T>
+  fullName: FlowRight.Core.Results.IResultError<T>
+  nameWithType.vb: IResultError(Of T)
+  fullName.vb: FlowRight.Core.Results.IResultError(Of T)
+  name.vb: IResultError(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.IResultError`1
+    name: IResultError
+    href: FlowRight.Core.Results.IResultError-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.IResultError`1
+    name: IResultError
+    href: FlowRight.Core.Results.IResultError-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: FlowRight.Core.Results.IResult`1.Match*
+  commentId: Overload:FlowRight.Core.Results.IResult`1.Match
+  href: FlowRight.Core.Results.IResult-1.html#FlowRight_Core_Results_IResult_1_Match__1_System_Func__0___0__System_Func_System_String___0__
+  name: Match
+  nameWithType: IResult<T>.Match
+  fullName: FlowRight.Core.Results.IResult<T>.Match
+  nameWithType.vb: IResult(Of T).Match
+  fullName.vb: FlowRight.Core.Results.IResult(Of T).Match
+- uid: System.Func{{T},{TResult}}
+  commentId: T:System.Func{`0,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Func{System.String,{TResult}}
+  commentId: T:System.Func{System.String,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<string, TResult>
+  nameWithType: Func<string, TResult>
+  fullName: System.Func<string, TResult>
+  nameWithType.vb: Func(Of String, TResult)
+  fullName.vb: System.Func(Of String, TResult)
+  name.vb: Func(Of String, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: '{TResult}'
+  commentId: '!:TResult'
+  definition: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},{TResult}}
+  commentId: T:System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<IDictionary<string, string[]>, TResult>
+  nameWithType: Func<IDictionary<string, string[]>, TResult>
+  fullName: System.Func<System.Collections.Generic.IDictionary<string, string[]>, TResult>
+  nameWithType.vb: Func(Of IDictionary(Of String, String()), TResult)
+  fullName.vb: System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), TResult)
+  name.vb: Func(Of IDictionary(Of String, String()), TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FlowRight.Core.Results.IResult`1.Switch*
+  commentId: Overload:FlowRight.Core.Results.IResult`1.Switch
+  href: FlowRight.Core.Results.IResult-1.html#FlowRight_Core_Results_IResult_1_Switch_System_Action__0__System_Action_System_String__System_Boolean_
+  name: Switch
+  nameWithType: IResult<T>.Switch
+  fullName: FlowRight.Core.Results.IResult<T>.Switch
+  nameWithType.vb: IResult(Of T).Switch
+  fullName.vb: FlowRight.Core.Results.IResult(Of T).Switch
+- uid: System.Action{{T}}
+  commentId: T:System.Action{`0}
+  parent: System
+  definition: System.Action`1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action{System.String}
+  commentId: T:System.Action{System.String}
+  parent: System
+  definition: System.Action`1
+  name: Action<string>
+  nameWithType: Action<string>
+  fullName: System.Action<string>
+  nameWithType.vb: Action(Of String)
+  fullName.vb: System.Action(Of String)
+  name.vb: Action(Of String)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}}
+  commentId: T:System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}}
+  parent: System
+  definition: System.Action`1
+  name: Action<IDictionary<string, string[]>>
+  nameWithType: Action<IDictionary<string, string[]>>
+  fullName: System.Action<System.Collections.Generic.IDictionary<string, string[]>>
+  nameWithType.vb: Action(Of IDictionary(Of String, String()))
+  fullName.vb: System.Action(Of System.Collections.Generic.IDictionary(Of String, String()))
+  name.vb: Action(Of IDictionary(Of String, String()))
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+  - name: )

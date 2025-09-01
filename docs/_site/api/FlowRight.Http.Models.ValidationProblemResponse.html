@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ValidationProblemResponse | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ValidationProblemResponse | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Represents a validation problem response that follows RFC 7807 Problem Details specification and contains field-specific error messages.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Http.Models.ValidationProblemResponse">
+
+
+
+  <h1 id="FlowRight_Http_Models_ValidationProblemResponse" data-uid="FlowRight.Http.Models.ValidationProblemResponse" class="text-break">
+Class ValidationProblemResponse  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Http.html">Http</a>.<a class="xref" href="FlowRight.Http.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Http.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a validation problem response that follows RFC 7807 Problem Details specification
+and contains field-specific error messages.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ValidationProblemResponse</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><span class="xref">ValidationProblemResponse</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+  <h2 id="FlowRight_Http_Models_ValidationProblemResponse_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+This class is designed to be fully compatible with ASP.NET Core's ValidationProblemDetails
+and provides serialization support for error responses from HTTP APIs following the
+RFC 7807 standard for Problem Details for HTTP APIs.
+</p>
+<p>
+The class includes all standard RFC 7807 properties (type, title, status, detail, instance)
+plus the validation-specific errors dictionary. This ensures compatibility with both
+minimal error responses containing only the errors property and full RFC 7807 compliant
+responses from ASP.NET Core APIs.
+</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FlowRight_Http_Models_ValidationProblemResponse_Detail_" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Detail*"></a>
+
+  <h3 id="FlowRight_Http_Models_ValidationProblemResponse_Detail" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Detail">
+  Detail
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a human-readable explanation specific to this occurrence of the problem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;detail&quot;)]
+[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+public string? Detail { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">string</span></dt>
+    <dd><p>A human-readable explanation specific to this occurrence of the problem.
+This should focus on helping the client correct the problem.</p>
+</dd>
+  </dl>
+
+
+
+  <h4 class="section" id="FlowRight_Http_Models_ValidationProblemResponse_Detail_examples">Examples</h4>
+  <pre><code class="lang-csharp">Detail = "The request failed validation. See errors for details."</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Models_ValidationProblemResponse_Errors_" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Errors*"></a>
+
+  <h3 id="FlowRight_Http_Models_ValidationProblemResponse_Errors" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Errors">
+  Errors
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the dictionary of validation errors keyed by field name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;errors&quot;)]
+public Dictionary&lt;string, string[]&gt; Errors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Dictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;</dt>
+    <dd><p>A dictionary where keys are field names and values are arrays of error messages for that field.
+This property is specific to validation problems and extends the base RFC 7807 structure.</p>
+</dd>
+  </dl>
+
+
+
+  <h4 class="section" id="FlowRight_Http_Models_ValidationProblemResponse_Errors_examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationProblemResponse response = new()
+{
+    Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+    Title = "One or more validation errors occurred.",
+    Status = 400,
+    Errors = new Dictionary&lt;string, string[]&gt;
+    {
+        { "Email", ["Email is required", "Email format is invalid"] },
+        { "Name", ["Name is required"] }
+    }
+};</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Models_ValidationProblemResponse_Instance_" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Instance*"></a>
+
+  <h3 id="FlowRight_Http_Models_ValidationProblemResponse_Instance" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Instance">
+  Instance
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a URI reference that identifies the specific occurrence of the problem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;instance&quot;)]
+[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+public string? Instance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">string</span></dt>
+    <dd><p>A URI that identifies the specific occurrence of the problem. This can be used
+to provide a reference to a specific request or operation.</p>
+</dd>
+  </dl>
+
+
+
+  <h4 class="section" id="FlowRight_Http_Models_ValidationProblemResponse_Instance_examples">Examples</h4>
+  <pre><code class="lang-csharp">Instance = "/api/users/validation-error/12345"</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Models_ValidationProblemResponse_Status_" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Status*"></a>
+
+  <h3 id="FlowRight_Http_Models_ValidationProblemResponse_Status" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Status">
+  Status
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the HTTP status code generated by the origin server for this occurrence of the problem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;status&quot;)]
+[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+public int? Status { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">int</span>?</dt>
+    <dd><p>The HTTP status code for this problem. When present, it should match the status code
+used in the HTTP response.</p>
+</dd>
+  </dl>
+
+
+
+  <h4 class="section" id="FlowRight_Http_Models_ValidationProblemResponse_Status_examples">Examples</h4>
+  <pre><code class="lang-csharp">Status = 400</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Models_ValidationProblemResponse_Title_" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Title*"></a>
+
+  <h3 id="FlowRight_Http_Models_ValidationProblemResponse_Title" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Title">
+  Title
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a short, human-readable summary of the problem type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;title&quot;)]
+[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+public string? Title { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">string</span></dt>
+    <dd><p>A human-readable summary of the problem type. This should not change between
+occurrences of the problem, except for purposes of localization.</p>
+</dd>
+  </dl>
+
+
+
+  <h4 class="section" id="FlowRight_Http_Models_ValidationProblemResponse_Title_examples">Examples</h4>
+  <pre><code class="lang-csharp">Title = "One or more validation errors occurred."</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Models_ValidationProblemResponse_Type_" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Type*"></a>
+
+  <h3 id="FlowRight_Http_Models_ValidationProblemResponse_Type" data-uid="FlowRight.Http.Models.ValidationProblemResponse.Type">
+  Type
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets a URI reference that identifies the problem type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;type&quot;)]
+[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+public string? Type { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">string</span></dt>
+    <dd><p>A URI that identifies the problem type. When absent, it defaults to &quot;about:blank&quot;.</p>
+</dd>
+  </dl>
+
+
+
+  <h4 class="section" id="FlowRight_Http_Models_ValidationProblemResponse_Type_examples">Examples</h4>
+  <pre><code class="lang-csharp">Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"</code></pre>
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

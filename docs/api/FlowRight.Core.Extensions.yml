@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Extensions
+  commentId: N:FlowRight.Core.Extensions
+  id: FlowRight.Core.Extensions
+  children:
+  - FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Core.Extensions
+  nameWithType: FlowRight.Core.Extensions
+  fullName: FlowRight.Core.Extensions
+  type: Namespace
+  assemblies:
+  - FlowRight.Core
+references:
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions
+  commentId: T:FlowRight.Core.Extensions.ResultAsyncExtensions
+  parent: FlowRight.Core.Extensions
+  href: FlowRight.Core.Extensions.ResultAsyncExtensions.html
+  name: ResultAsyncExtensions
+  nameWithType: ResultAsyncExtensions
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions
+- uid: FlowRight.Core.Extensions
+  commentId: N:FlowRight.Core.Extensions
+  href: FlowRight.html
+  name: FlowRight.Core.Extensions
+  nameWithType: FlowRight.Core.Extensions
+  fullName: FlowRight.Core.Extensions
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Extensions
+    name: Extensions
+    href: FlowRight.Core.Extensions.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Extensions
+    name: Extensions
+    href: FlowRight.Core.Extensions.html

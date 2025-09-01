@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Getting Started with FlowRight | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Getting Started with FlowRight | FlowRight - Result Pattern Library for .NET ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="getting-started-with-flowright">Getting Started with FlowRight</h1>
+
+<p>Welcome to <strong>FlowRight</strong>, a production-grade Result pattern library for .NET that provides explicit error handling without exceptions. This guide will help you get started with FlowRight and understand how to use its core features effectively.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#core-concepts">Core Concepts</a></li>
+<li><a href="#basic-result-usage">Basic Result Usage</a></li>
+<li><a href="#pattern-matching">Pattern Matching</a></li>
+<li><a href="#validation-with-flowright">Validation with FlowRight</a></li>
+<li><a href="#http-integration">HTTP Integration</a></li>
+<li><a href="#error-handling-best-practices">Error Handling Best Practices</a></li>
+<li><a href="#common-patterns">Common Patterns</a></li>
+<li><a href="#quick-reference">Quick Reference</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ol>
+<h2 id="installation">Installation</h2>
+<p>FlowRight is distributed as three NuGet packages. Install only what you need:</p>
+<pre><code class="lang-bash"># Core Result pattern (required)
+dotnet add package FlowRight.Core --prerelease
+
+# Validation support (optional)
+dotnet add package FlowRight.Validation --prerelease  
+
+# HTTP integration (optional)
+dotnet add package FlowRight.Http --prerelease
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: FlowRight is currently in pre-release (alpha). The API is stable but may change before the v1.0 production release.</p>
+</blockquote>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><strong>.NET 8.0</strong> or later</li>
+<li><strong>Nullable reference types</strong> enabled (recommended)</li>
+</ul>
+<h2 id="core-concepts">Core Concepts</h2>
+<h3 id="what-is-the-result-pattern">What is the Result Pattern?</h3>
+<p>The Result pattern is a functional programming concept that makes success and failure explicit. Instead of throwing exceptions for expected failures, methods return a <code>Result&lt;T&gt;</code> that represents either:</p>
+<ul>
+<li><strong>Success</strong>: Contains the expected value</li>
+<li><strong>Failure</strong>: Contains error information</li>
+</ul>
+<h3 id="why-use-the-result-pattern">Why Use the Result Pattern?</h3>
+<p>✅ <strong>Explicit Error Handling</strong>: Failures are part of the method signature<br>
+✅ <strong>Performance</strong>: No exception throwing overhead<br>
+✅ <strong>Composability</strong>: Results can be chained and combined<br>
+✅ <strong>Readability</strong>: Clear success/failure paths<br>
+✅ <strong>Type Safety</strong>: Compile-time error checking</p>
+<h2 id="basic-result-usage">Basic Result Usage</h2>
+<h3 id="creating-results">Creating Results</h3>
+<pre><code class="lang-csharp">using FlowRight.Core.Results;
+
+// Success results
+Result&lt;int&gt; successResult = Result.Success(42);
+Result operationResult = Result.Success();
+
+// Failure results  
+Result&lt;int&gt; failureResult = Result.Failure&lt;int&gt;(&quot;Something went wrong&quot;);
+Result operationFailure = Result.Failure(&quot;Operation failed&quot;);
+</code></pre>
+<h3 id="checking-result-status">Checking Result Status</h3>
+<pre><code class="lang-csharp">Result&lt;string&gt; result = GetUserName(userId);
+
+if (result.IsSuccess)
+{
+    string userName = result.Value; // Safe to access
+    Console.WriteLine($&quot;Hello, {userName}!&quot;);
+}
+else
+{
+    string error = result.Error; // Contains error message
+    Console.WriteLine($&quot;Error: {error}&quot;);
+}
+</code></pre>
+<h3 id="working-with-non-generic-results">Working with Non-Generic Results</h3>
+<p>For operations that don't return a value (like <code>void</code> methods):</p>
+<pre><code class="lang-csharp">public Result DeleteUser(int userId)
+{
+    try
+    {
+        // Perform deletion logic
+        _userRepository.Delete(userId);
+        return Result.Success();
+    }
+    catch (UserNotFoundException)
+    {
+        return Result.Failure(&quot;User not found&quot;);
+    }
+    catch (Exception ex)
+    {
+        return Result.Failure($&quot;Failed to delete user: {ex.Message}&quot;);
+    }
+}
+
+// Usage
+Result deleteResult = DeleteUser(123);
+if (deleteResult.IsFailure)
+{
+    Console.WriteLine($&quot;Delete failed: {deleteResult.Error}&quot;);
+}
+</code></pre>
+<h2 id="pattern-matching">Pattern Matching</h2>
+<p>FlowRight provides two approaches for handling Results: functional (<code>Match</code>) and imperative (<code>Switch</code>).</p>
+<h3 id="functional-approach-with-match">Functional Approach with Match</h3>
+<p>Use <code>Match</code> when you need to transform the result into another value:</p>
+<pre><code class="lang-csharp">Result&lt;User&gt; userResult = GetUser(userId);
+
+string message = userResult.Match(
+    onSuccess: user =&gt; $&quot;Welcome back, {user.Name}!&quot;,
+    onFailure: error =&gt; $&quot;Login failed: {error}&quot;
+);
+
+Console.WriteLine(message);
+</code></pre>
+<h3 id="imperative-approach-with-switch">Imperative Approach with Switch</h3>
+<p>Use <code>Switch</code> when you need to perform actions based on the result:</p>
+<pre><code class="lang-csharp">Result&lt;Order&gt; orderResult = CreateOrder(request);
+
+orderResult.Switch(
+    onSuccess: order =&gt; 
+    {
+        Console.WriteLine($&quot;Order {order.Id} created successfully&quot;);
+        SendConfirmationEmail(order);
+    },
+    onFailure: error =&gt; 
+    {
+        Console.WriteLine($&quot;Order creation failed: {error}&quot;);
+        LogError(error);
+    }
+);
+</code></pre>
+<h3 id="advanced-pattern-matching">Advanced Pattern Matching</h3>
+<p>Handle different result types:</p>
+<pre><code class="lang-csharp">Result&lt;Product&gt; productResult = GetProduct(productId);
+
+string response = productResult.Match(
+    onSuccess: product =&gt; $&quot;Product: {product.Name} - ${product.Price}&quot;,
+    onFailure: error =&gt; productResult.ResultType switch
+    {
+        ResultType.NotFound =&gt; &quot;Product not found&quot;,
+        ResultType.SecurityFailure =&gt; &quot;Access denied&quot;,
+        ResultType.ValidationFailure =&gt; $&quot;Invalid request: {error}&quot;,
+        _ =&gt; $&quot;Error: {error}&quot;
+    }
+);
+</code></pre>
+<h2 id="validation-with-flowright">Validation with FlowRight</h2>
+<p>FlowRight includes a powerful fluent validation API that integrates seamlessly with the Result pattern.</p>
+<h3 id="basic-validation">Basic Validation</h3>
+<pre><code class="lang-csharp">using FlowRight.Validation.Builders;
+
+public Result&lt;User&gt; CreateUser(string name, string email, int age)
+{
+    return new ValidationBuilder&lt;User&gt;()
+        .RuleFor(x =&gt; x.Name, name)
+            .NotEmpty()
+            .MinimumLength(2)
+            .MaximumLength(50)
+        .RuleFor(x =&gt; x.Email, email)
+            .NotEmpty()
+            .EmailAddress()
+        .RuleFor(x =&gt; x.Age, age)
+            .GreaterThan(0)
+            .LessThan(120)
+        .Build(() =&gt; new User(name, email, age));
+}
+</code></pre>
+<h3 id="handling-validation-results">Handling Validation Results</h3>
+<pre><code class="lang-csharp">Result&lt;User&gt; userResult = CreateUser(&quot;&quot;, &quot;invalid-email&quot;, -5);
+
+userResult.Switch(
+    onSuccess: user =&gt; Console.WriteLine($&quot;User created: {user.Email}&quot;),
+    onFailure: error =&gt; Console.WriteLine($&quot;Validation failed: {error}&quot;)
+);
+
+// Output: &quot;Validation failed: Name cannot be empty. Email must be a valid email address. Age must be greater than 0.&quot;
+</code></pre>
+<h3 id="complex-validation-scenarios">Complex Validation Scenarios</h3>
+<pre><code class="lang-csharp">public Result&lt;Order&gt; CreateOrder(OrderRequest request)
+{
+    return new ValidationBuilder&lt;Order&gt;()
+        .RuleFor(x =&gt; x.CustomerEmail, request.CustomerEmail)
+            .NotEmpty()
+            .EmailAddress()
+        .RuleFor(x =&gt; x.Items, request.Items)
+            .NotEmpty()
+            .Must(items =&gt; items.Count &lt;= 100)
+            .WithMessage(&quot;Orders cannot contain more than 100 items&quot;)
+        .RuleFor(x =&gt; x.TotalAmount, request.TotalAmount)
+            .GreaterThan(0)
+            .LessThan(10000)
+        .RuleFor(x =&gt; x.ShippingAddress, request.ShippingAddress)
+            .NotEmpty()
+            .When(request =&gt; request.RequiresShipping)
+        .Build(() =&gt; new Order(request));
+}
+</code></pre>
+<h3 id="available-validation-rules">Available Validation Rules</h3>
+<p>FlowRight includes 35+ built-in validation rules:</p>
+<pre><code class="lang-csharp">// String validation
+.NotEmpty()
+.MinimumLength(5)
+.MaximumLength(100)
+.Length(10, 20)
+.Matches(@&quot;^\d{3}-\d{2}-\d{4}$&quot;)
+.EmailAddress()
+.Url()
+.AlphaNumeric()
+
+// Numeric validation
+.GreaterThan(0)
+.GreaterThanOrEqualTo(1)
+.LessThan(100)
+.LessThanOrEqualTo(99)
+.Between(1, 100)
+.Positive()
+.NotZero()
+
+// Collection validation
+.NotEmpty()
+.MinCount(1)
+.MaxCount(10)
+.Unique()
+
+// Custom validation
+.Must(value =&gt; IsValidBusinessRule(value))
+.WithMessage(&quot;Custom validation failed&quot;)
+</code></pre>
+<h2 id="http-integration">HTTP Integration</h2>
+<p>FlowRight provides seamless integration with HTTP clients, automatically converting HTTP responses to Results.</p>
+<h3 id="basic-http-integration">Basic HTTP Integration</h3>
+<pre><code class="lang-csharp">using FlowRight.Http.Extensions;
+
+public class WeatherService
+{
+    private readonly HttpClient _httpClient;
+
+    public async Task&lt;Result&lt;WeatherData&gt;&gt; GetWeatherAsync(string city)
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($&quot;/weather/{city}&quot;);
+        return await response.ToResultFromJsonAsync&lt;WeatherData&gt;();
+    }
+}
+</code></pre>
+<h3 id="http-status-code-mapping">HTTP Status Code Mapping</h3>
+<p>FlowRight automatically maps HTTP status codes to appropriate Result types:</p>
+<pre><code class="lang-csharp">// 2xx Status Codes → Success
+Result&lt;WeatherData&gt; weather = await response.ToResultFromJsonAsync&lt;WeatherData&gt;();
+// Returns: Success with deserialized WeatherData
+
+// 400 Bad Request → ValidationFailure
+Result&lt;User&gt; user = await response.ToResultFromJsonAsync&lt;User&gt;();
+// Returns: ValidationFailure with parsed validation errors
+
+// 401/403 → SecurityFailure  
+Result&lt;SecretData&gt; secret = await response.ToResultFromJsonAsync&lt;SecretData&gt;();
+// Returns: SecurityFailure(&quot;Access denied&quot;)
+
+// 404 Not Found → NotFound
+Result&lt;Product&gt; product = await response.ToResultFromJsonAsync&lt;Product&gt;();
+// Returns: NotFound(&quot;Resource not found&quot;)
+
+// 5xx Server Error → Failure
+Result&lt;Data&gt; data = await response.ToResultFromJsonAsync&lt;Data&gt;();
+// Returns: Failure(&quot;Server error occurred&quot;)
+</code></pre>
+<h3 id="handling-different-response-types">Handling Different Response Types</h3>
+<pre><code class="lang-csharp">public async Task&lt;Result&lt;ApiResponse&lt;T&gt;&gt;&gt; CallApiAsync&lt;T&gt;(string endpoint)
+{
+    HttpResponseMessage response = await _httpClient.GetAsync(endpoint);
+    
+    return response.StatusCode switch
+    {
+        HttpStatusCode.OK =&gt; await response.ToResultFromJsonAsync&lt;ApiResponse&lt;T&gt;&gt;(),
+        HttpStatusCode.NotFound =&gt; Result.NotFound&lt;ApiResponse&lt;T&gt;&gt;(&quot;Resource not found&quot;),
+        HttpStatusCode.Unauthorized =&gt; Result.SecurityFailure&lt;ApiResponse&lt;T&gt;&gt;(&quot;Access denied&quot;),
+        _ =&gt; await response.ToResultAsync().ContinueWith&lt;ApiResponse&lt;T&gt;&gt;(
+            r =&gt; Result.Failure&lt;ApiResponse&lt;T&gt;&gt;(r.Result.Error))
+    };
+}
+</code></pre>
+<h3 id="working-with-problem-details">Working with Problem Details</h3>
+<p>FlowRight automatically handles ASP.NET Core Problem Details:</p>
+<pre><code class="lang-csharp">// Server returns: {&quot;type&quot;: &quot;validation&quot;, &quot;errors&quot;: {&quot;Name&quot;: [&quot;Required&quot;], &quot;Email&quot;: [&quot;Invalid format&quot;]}}
+Result&lt;User&gt; result = await response.ToResultFromJsonAsync&lt;User&gt;();
+
+if (result.IsFailure &amp;&amp; result.ResultType == ResultType.ValidationFailure)
+{
+    // Parsed validation errors are included in the error message
+    Console.WriteLine(result.Error);
+    // Output: &quot;Name is required. Email must be in a valid format.&quot;
+}
+</code></pre>
+<h2 id="error-handling-best-practices">Error Handling Best Practices</h2>
+<h3 id="1-use-appropriate-result-types">1. Use Appropriate Result Types</h3>
+<pre><code class="lang-csharp">// Good: Specific result types
+public Result&lt;User&gt; GetUser(int id) =&gt; 
+    _users.ContainsKey(id) 
+        ? Result.Success(_users[id])
+        : Result.NotFound&lt;User&gt;(&quot;User not found&quot;);
+
+public Result&lt;User&gt; ValidateUser(UserRequest request) =&gt;
+    string.IsNullOrEmpty(request.Name)
+        ? Result.ValidationFailure&lt;User&gt;(&quot;Name is required&quot;)
+        : Result.Success(new User(request.Name));
+
+// Avoid: Generic failures for specific scenarios
+public Result&lt;User&gt; GetUser(int id) =&gt; 
+    Result.Failure&lt;User&gt;(&quot;Something went wrong&quot;); // Too generic
+</code></pre>
+<h3 id="2-combine-multiple-results">2. Combine Multiple Results</h3>
+<pre><code class="lang-csharp">public Result&lt;Order&gt; CreateOrder(OrderRequest request)
+{
+    Result&lt;Customer&gt; customerResult = GetCustomer(request.CustomerId);
+    Result&lt;Product&gt; productResult = GetProduct(request.ProductId);
+    Result&lt;decimal&gt; priceResult = CalculatePrice(request.Items);
+
+    // Combine results - if any fail, return the first failure
+    Result combined = Result.Combine(customerResult, productResult, priceResult);
+    if (combined.IsFailure)
+        return Result.Failure&lt;Order&gt;(combined.Error);
+
+    // All successful - create the order
+    return Result.Success(new Order(
+        customerResult.Value, 
+        productResult.Value, 
+        priceResult.Value
+    ));
+}
+</code></pre>
+<h3 id="3-chain-operations">3. Chain Operations</h3>
+<pre><code class="lang-csharp">public Result&lt;string&gt; ProcessUserData(int userId)
+{
+    return GetUser(userId)
+        .Match(
+            onSuccess: user =&gt; ValidateUser(user)
+                .Match(
+                    onSuccess: validUser =&gt; FormatUserData(validUser),
+                    onFailure: error =&gt; Result.Failure&lt;string&gt;(error)
+                ),
+            onFailure: error =&gt; Result.Failure&lt;string&gt;(error)
+        );
+}
+</code></pre>
+<h3 id="4-handle-different-error-scenarios">4. Handle Different Error Scenarios</h3>
+<pre><code class="lang-csharp">public async Task&lt;IActionResult&gt; GetUserAsync(int id)
+{
+    Result&lt;User&gt; result = await _userService.GetUserAsync(id);
+
+    return result.ResultType switch
+    {
+        ResultType.Success =&gt; Ok(result.Value),
+        ResultType.NotFound =&gt; NotFound($&quot;User {id} not found&quot;),
+        ResultType.SecurityFailure =&gt; Forbid(),
+        ResultType.ValidationFailure =&gt; BadRequest(result.Error),
+        _ =&gt; StatusCode(500, &quot;An error occurred&quot;)
+    };
+}
+</code></pre>
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="repository-pattern-with-results">Repository Pattern with Results</h3>
+<pre><code class="lang-csharp">public interface IUserRepository
+{
+    Task&lt;Result&lt;User&gt;&gt; GetByIdAsync(int id);
+    Task&lt;Result&lt;User&gt;&gt; CreateAsync(User user);
+    Task&lt;Result&gt; UpdateAsync(User user);
+    Task&lt;Result&gt; DeleteAsync(int id);
+}
+
+public class UserRepository : IUserRepository
+{
+    public async Task&lt;Result&lt;User&gt;&gt; GetByIdAsync(int id)
+    {
+        User? user = await _dbContext.Users.FindAsync(id);
+        return user is not null 
+            ? Result.Success(user)
+            : Result.NotFound&lt;User&gt;($&quot;User with ID {id} not found&quot;);
+    }
+}
+</code></pre>
+<h3 id="service-layer-pattern">Service Layer Pattern</h3>
+<pre><code class="lang-csharp">public class UserService
+{
+    private readonly IUserRepository _repository;
+    private readonly IEmailService _emailService;
+
+    public async Task&lt;Result&lt;User&gt;&gt; CreateUserAsync(CreateUserRequest request)
+    {
+        // Validate input
+        Result&lt;User&gt; validationResult = ValidateCreateUserRequest(request);
+        if (validationResult.IsFailure)
+            return validationResult;
+
+        // Create user
+        Result&lt;User&gt; createResult = await _repository.CreateAsync(validationResult.Value);
+        if (createResult.IsFailure)
+            return createResult;
+
+        // Send welcome email (don't fail if this fails)
+        Result emailResult = await _emailService.SendWelcomeEmailAsync(createResult.Value);
+        if (emailResult.IsFailure)
+        {
+            // Log warning but continue
+            _logger.LogWarning(&quot;Failed to send welcome email: {Error}&quot;, emailResult.Error);
+        }
+
+        return createResult;
+    }
+}
+</code></pre>
+<h3 id="api-controller-pattern">API Controller Pattern</h3>
+<pre><code class="lang-csharp">[ApiController]
+[Route(&quot;api/[controller]&quot;)]
+public class UsersController : ControllerBase
+{
+    private readonly IUserService _userService;
+
+    [HttpGet(&quot;{id}&quot;)]
+    public async Task&lt;ActionResult&lt;User&gt;&gt; GetUser(int id)
+    {
+        Result&lt;User&gt; result = await _userService.GetUserAsync(id);
+        
+        return result.Match&lt;ActionResult&lt;User&gt;&gt;(
+            onSuccess: user =&gt; Ok(user),
+            onFailure: error =&gt; result.ResultType switch
+            {
+                ResultType.NotFound =&gt; NotFound(error),
+                ResultType.SecurityFailure =&gt; Forbid(),
+                _ =&gt; BadRequest(error)
+            }
+        );
+    }
+
+    [HttpPost]
+    public async Task&lt;ActionResult&lt;User&gt;&gt; CreateUser(CreateUserRequest request)
+    {
+        Result&lt;User&gt; result = await _userService.CreateUserAsync(request);
+        
+        return result.Match&lt;ActionResult&lt;User&gt;&gt;(
+            onSuccess: user =&gt; CreatedAtAction(nameof(GetUser), new { id = user.Id }, user),
+            onFailure: error =&gt; BadRequest(error)
+        );
+    }
+}
+</code></pre>
+<h2 id="quick-reference">Quick Reference</h2>
+<h3 id="essential-result-methods">Essential Result Methods</h3>
+<pre><code class="lang-csharp">// Creating Results
+Result.Success&lt;T&gt;(value)
+Result.Failure&lt;T&gt;(message)
+Result.NotFound&lt;T&gt;(message)
+Result.ValidationFailure&lt;T&gt;(message)
+Result.SecurityFailure&lt;T&gt;(message)
+
+// Checking Results  
+result.IsSuccess
+result.IsFailure
+result.Value      // Only safe when IsSuccess
+result.Error      // Only meaningful when IsFailure
+result.ResultType
+
+// Pattern Matching
+result.Match(onSuccess, onFailure)
+result.Switch(onSuccess, onFailure)
+
+// Combining Results
+Result.Combine(result1, result2, result3)
+</code></pre>
+<h3 id="essential-validation-rules">Essential Validation Rules</h3>
+<pre><code class="lang-csharp">// String Rules
+.NotEmpty()
+.MinimumLength(n)
+.MaximumLength(n)
+.EmailAddress()
+.Url()
+
+// Numeric Rules  
+.GreaterThan(n)
+.LessThan(n)
+.Between(min, max)
+.Positive()
+
+// Collection Rules
+.NotEmpty()
+.MinCount(n)
+.MaxCount(n)
+
+// Custom Rules
+.Must(predicate)
+.WithMessage(message)
+.When(condition)
+</code></pre>
+<h3 id="http-integration-1">HTTP Integration</h3>
+<pre><code class="lang-csharp">// Convert HTTP response to Result
+await response.ToResultAsync()
+await response.ToResultFromJsonAsync&lt;T&gt;()
+
+// Status code mappings
+// 2xx → Success
+// 400 → ValidationFailure  
+// 401/403 → SecurityFailure
+// 404 → NotFound
+// 5xx → Failure
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that you understand FlowRight basics, explore these advanced topics:</p>
+<ol>
+<li><strong><a href="MIGRATION-GUIDE.md">Migration Guide</a></strong> - Moving from exception-based code to Results</li>
+<li><strong><a href="BEST-PRACTICES.md">Best Practices</a></strong> - Advanced patterns and architectural guidance</li>
+<li><strong><a href="docs/api/README.md">API Reference</a></strong> - Complete API documentation</li>
+<li><strong><a href="docs/performance.md">Performance Guide</a></strong> - Optimization tips and benchmarks</li>
+</ol>
+<h3 id="sample-projects">Sample Projects</h3>
+<p>Check out these example projects that demonstrate FlowRight in action:</p>
+<ul>
+<li><strong>Web API</strong>: ASP.NET Core API using Results pattern</li>
+<li><strong>Blazor App</strong>: Frontend application with validation</li>
+<li><strong>Console App</strong>: Command-line tool with error handling</li>
+</ul>
+<h3 id="getting-help">Getting Help</h3>
+<ul>
+<li><strong>Issues</strong>: <a href="https://github.com/georgepharrison/FlowRight/issues">GitHub Issues</a></li>
+<li><strong>Discussions</strong>: <a href="https://github.com/georgepharrison/FlowRight/discussions">GitHub Discussions</a></li>
+<li><strong>Stack Overflow</strong>: Tag questions with <code>flowright</code></li>
+</ul>
+<hr>
+<p><strong>Happy coding with FlowRight!</strong> 🚀</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

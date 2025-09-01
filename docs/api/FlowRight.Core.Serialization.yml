@@ -1,0 +1,49 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Serialization
+  commentId: N:FlowRight.Core.Serialization
+  id: FlowRight.Core.Serialization
+  children:
+  - FlowRight.Core.Serialization.ResultJsonConverter
+  - FlowRight.Core.Serialization.ResultTJsonConverter`1
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Core.Serialization
+  nameWithType: FlowRight.Core.Serialization
+  fullName: FlowRight.Core.Serialization
+  type: Namespace
+  assemblies:
+  - FlowRight.Core
+references:
+- uid: FlowRight.Core.Serialization.ResultJsonConverter
+  commentId: T:FlowRight.Core.Serialization.ResultJsonConverter
+  href: FlowRight.Core.Serialization.ResultJsonConverter.html
+  name: ResultJsonConverter
+  nameWithType: ResultJsonConverter
+  fullName: FlowRight.Core.Serialization.ResultJsonConverter
+- uid: FlowRight.Core.Serialization.ResultTJsonConverter`1
+  commentId: T:FlowRight.Core.Serialization.ResultTJsonConverter`1
+  href: FlowRight.Core.Serialization.ResultTJsonConverter-1.html
+  name: ResultTJsonConverter<T>
+  nameWithType: ResultTJsonConverter<T>
+  fullName: FlowRight.Core.Serialization.ResultTJsonConverter<T>
+  nameWithType.vb: ResultTJsonConverter(Of T)
+  fullName.vb: FlowRight.Core.Serialization.ResultTJsonConverter(Of T)
+  name.vb: ResultTJsonConverter(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Serialization.ResultTJsonConverter`1
+    name: ResultTJsonConverter
+    href: FlowRight.Core.Serialization.ResultTJsonConverter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Serialization.ResultTJsonConverter`1
+    name: ResultTJsonConverter
+    href: FlowRight.Core.Serialization.ResultTJsonConverter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

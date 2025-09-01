@@ -1,0 +1,236 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Validators
+  commentId: N:FlowRight.Validation.Validators
+  id: FlowRight.Validation.Validators
+  children:
+  - FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+  - FlowRight.Validation.Validators.GenericPropertyValidator`2
+  - FlowRight.Validation.Validators.GuidPropertyValidator`1
+  - FlowRight.Validation.Validators.NumericPropertyValidator`2
+  - FlowRight.Validation.Validators.PropertyValidator`3
+  - FlowRight.Validation.Validators.StringPropertyValidator`1
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Validation.Validators
+  nameWithType: FlowRight.Validation.Validators
+  fullName: FlowRight.Validation.Validators
+  type: Namespace
+  assemblies:
+  - FlowRight.Validation
+references:
+- uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+  commentId: T:FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  name: EnumerablePropertyValidator<T, TItem>
+  nameWithType: EnumerablePropertyValidator<T, TItem>
+  fullName: FlowRight.Validation.Validators.EnumerablePropertyValidator<T, TItem>
+  nameWithType.vb: EnumerablePropertyValidator(Of T, TItem)
+  fullName.vb: FlowRight.Validation.Validators.EnumerablePropertyValidator(Of T, TItem)
+  name.vb: EnumerablePropertyValidator(Of T, TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+    name: EnumerablePropertyValidator
+    href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+    name: EnumerablePropertyValidator
+    href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, TProp>
+  nameWithType: GenericPropertyValidator<T, TProp>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, TProp>
+  nameWithType.vb: GenericPropertyValidator(Of T, TProp)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, TProp)
+  name.vb: GenericPropertyValidator(Of T, TProp)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProp
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProp
+  - name: )
+- uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+  commentId: T:FlowRight.Validation.Validators.GuidPropertyValidator`1
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  name: GuidPropertyValidator<T>
+  nameWithType: GuidPropertyValidator<T>
+  fullName: FlowRight.Validation.Validators.GuidPropertyValidator<T>
+  nameWithType.vb: GuidPropertyValidator(Of T)
+  fullName.vb: FlowRight.Validation.Validators.GuidPropertyValidator(Of T)
+  name.vb: GuidPropertyValidator(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+    name: GuidPropertyValidator
+    href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+    name: GuidPropertyValidator
+    href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator`2
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, TNumeric>
+  nameWithType: NumericPropertyValidator<T, TNumeric>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, TNumeric>
+  nameWithType.vb: NumericPropertyValidator(Of T, TNumeric)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, TNumeric)
+  name.vb: NumericPropertyValidator(Of T, TNumeric)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TNumeric
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TNumeric
+  - name: )
+- uid: FlowRight.Validation.Validators.PropertyValidator`3
+  commentId: T:FlowRight.Validation.Validators.PropertyValidator`3
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html
+  name: PropertyValidator<T, TProp, TRule>
+  nameWithType: PropertyValidator<T, TProp, TRule>
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule)
+  name.vb: PropertyValidator(Of T, TProp, TRule)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.PropertyValidator`3
+    name: PropertyValidator
+    href: FlowRight.Validation.Validators.PropertyValidator-3.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProp
+  - name: ','
+  - name: " "
+  - name: TRule
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.PropertyValidator`3
+    name: PropertyValidator
+    href: FlowRight.Validation.Validators.PropertyValidator-3.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProp
+  - name: ','
+  - name: " "
+  - name: TRule
+  - name: )
+- uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+  commentId: T:FlowRight.Validation.Validators.StringPropertyValidator`1
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  name: StringPropertyValidator<T>
+  nameWithType: StringPropertyValidator<T>
+  fullName: FlowRight.Validation.Validators.StringPropertyValidator<T>
+  nameWithType.vb: StringPropertyValidator(Of T)
+  fullName.vb: FlowRight.Validation.Validators.StringPropertyValidator(Of T)
+  name.vb: StringPropertyValidator(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+    name: StringPropertyValidator
+    href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+    name: StringPropertyValidator
+    href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Validators
+  commentId: N:FlowRight.Validation.Validators
+  href: FlowRight.html
+  name: FlowRight.Validation.Validators
+  nameWithType: FlowRight.Validation.Validators
+  fullName: FlowRight.Validation.Validators
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Validators
+    name: Validators
+    href: FlowRight.Validation.Validators.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Validators
+    name: Validators
+    href: FlowRight.Validation.Validators.html

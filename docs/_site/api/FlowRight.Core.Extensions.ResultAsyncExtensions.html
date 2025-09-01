@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ResultAsyncExtensions | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ResultAsyncExtensions | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides async-friendly extension methods for the Result and Result&amp;lt;T&amp;gt; types, enabling seamless composition of asynchronous operations with the Result pattern.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions">
+
+
+
+  <h1 id="FlowRight_Core_Extensions_ResultAsyncExtensions" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions" class="text-break">
+Class ResultAsyncExtensions  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Core.html">Core</a>.<a class="xref" href="FlowRight.Core.Extensions.html">Extensions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides async-friendly extension methods for the Result and Result&lt;T&gt; types,
+enabling seamless composition of asynchronous operations with the Result pattern.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ResultAsyncExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><span class="xref">ResultAsyncExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+  <h2 id="FlowRight_Core_Extensions_ResultAsyncExtensions_examples">Examples</h2>
+  <pre><code class="lang-csharp">// Async pattern matching
+Result result = await GetDataAsync();
+string response = await result.MatchAsync(
+    onSuccess: async () =&gt; await ProcessSuccessAsync(),
+    onFailure: async error =&gt; await HandleErrorAsync(error)
+);
+
+// Async operation chaining
+Result&lt;User&gt; userResult = await GetUserAsync()
+    .ThenAsync(async user =&gt; await ValidateUserAsync(user))
+    .ThenAsync(async validUser =&gt; await SaveUserAsync(validUser));
+
+// Async value transformation
+Result&lt;string&gt; processedResult = await userResult
+    .MapAsync(async user =&gt; await FormatUserDisplayNameAsync(user));</code></pre>
+
+
+  <h2 id="FlowRight_Core_Extensions_ResultAsyncExtensions_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+These extension methods bridge the gap between synchronous Result pattern operations
+and asynchronous workflows, allowing for clean and efficient async/await usage
+while maintaining the same error handling semantics as the synchronous counterparts.
+</p>
+<p>
+The async extensions preserve all error categorization, validation information,
+and Result type classifications from the original Result pattern implementation.
+</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync_System_Threading_Tasks_Task_FlowRight_Core_Results_Result____" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync(System.Threading.Tasks.Task{FlowRight.Core.Results.Result}[])">
+  CombineAsync(params Task&lt;Result&gt;[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Combines multiple async Result operations, waiting for all to complete and aggregating failure information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&gt; CombineAsync(params Task&lt;Result&gt;[] tasks)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tasks</code> <span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>&gt;[]</dt>
+    <dd><p>The array of async Result operations to combine.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> that is successful if all input operations are successful,
+or a failure result containing aggregated error information from all failed operations.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync_System_Threading_Tasks_Task_FlowRight_Core_Results_Result_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Task&lt;Result&gt;[] operations = [
+    ValidateUserAsync(user),
+    ValidatePermissionsAsync(user),
+    ValidateDataAsync(data)
+];
+
+Result combinedResult = await Result.CombineAsync(operations);
+
+if (combinedResult.IsFailure)
+{
+    // Handle all collected errors at once
+    LogErrors(combinedResult.Failures);
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync_System_Threading_Tasks_Task_FlowRight_Core_Results_Result_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method provides async aggregation of multiple Result operations, enabling parallel
+execution while collecting all errors rather than failing on the first error encountered.
+</p>
+<p>
+All tasks are awaited concurrently for optimal performance. The combining logic preserves
+error categorization just like the synchronous <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Combine_FlowRight_Core_Results_Result___">Combine(params Result[])</a> method.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">tasks</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync__1_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___0_____" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync``1(System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}[])">
+  CombineAsync&lt;T&gt;(params Task&lt;Result&lt;T&gt;&gt;[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Combines multiple async Result&lt;T&gt; operations, waiting for all to complete and aggregating failure information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;T&gt;&gt; CombineAsync&lt;T&gt;(params Task&lt;Result&lt;T&gt;&gt;[] tasks)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tasks</code> <span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;[]</dt>
+    <dd><p>The array of async Result&lt;T&gt; operations to combine.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> that is successful with the value from the first successful result if all input operations are successful,
+or a failure result containing aggregated error information from all failed operations.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success values in the results.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync__1_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___0______examples">Examples</h4>
+  <pre><code class="lang-csharp">Task&lt;Result&lt;User&gt;&gt;[] operations = [
+    ValidateUserAsync(user),
+    EnrichUserDataAsync(user),
+    CheckUserPermissionsAsync(user)
+];
+
+Result&lt;User&gt; combinedResult = await Result.CombineAsync(operations);
+
+if (combinedResult.IsFailure)
+{
+    // Handle all collected errors at once
+    LogErrors(combinedResult.Failures);
+}</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">tasks</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_MapAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_MapAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1___" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}})">
+  MapAsync&lt;T, TResult&gt;(Result&lt;T&gt;, Func&lt;T, Task&lt;TResult&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms the success value of this result using an async function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;TResult&gt;&gt; MapAsync&lt;T, TResult&gt;(this Result&lt;T&gt; result, Func&lt;T, Task&lt;TResult&gt;&gt; mapAsync)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The result to transform.</p>
+</dd>
+    <dt><code>mapAsync</code> <span class="xref">Func</span>&lt;T, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>The async function to transform the success value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;TResult&gt;&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> containing the transformed value if this result is successful,
+or the failure information from this result if it failed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value in the current result.</p>
+</dd>
+    <dt><code>TResult</code></dt>
+    <dd><p>The type of the transformed result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MapAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync();
+
+Result&lt;string&gt; displayNameResult = await userResult.MapAsync(async user =&gt;
+    await FormatUserDisplayNameAsync(user)
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MapAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method allows for async transformation of successful result values while preserving
+the Result pattern semantics. If the current result is a failure, the transformation is not
+executed and the failure is preserved.
+</p>
+<p>
+Unlike <a class="xref" href="FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___1____">ThenAsync&lt;T, TNext&gt;(Result&lt;T&gt;, Func&lt;T, Task&lt;Result&lt;TNext&gt;&gt;&gt;)</a>, this method wraps the transformation result in a success Result,
+making it suitable for pure value transformations rather than operations that can themselves fail.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code> or <code class="paramref">mapAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})">
+  MatchAsync&lt;TResult&gt;(Result, Func&lt;Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; MatchAsync&lt;TResult&gt;(this Result result, Func&lt;Task&lt;TResult&gt;&gt; onSuccess, Func&lt;string, Task&lt;TResult&gt;&gt; onFailure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>The result to perform pattern matching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;<span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is successful.</p>
+</dd>
+    <dt><code>onFailure</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a failure. Receives the error message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;TResult&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> containing the value returned by either <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResult</code></dt>
+    <dd><p>The type of the result to return.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result operationResult = await PerformOperationAsync();
+
+string response = await operationResult.MatchAsync(
+    onSuccess: async () =&gt; {
+        await LogSuccessAsync("Operation completed");
+        return "Success!";
+    },
+    onFailure: async error =&gt; {
+        await LogErrorAsync($"Operation failed: {error}");
+        return "Failed";
+    }
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the async equivalent of the <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__">Match&lt;TResult&gt;(Func&lt;TResult&gt;, Func&lt;string, TResult&gt;)</a> method.
+It enables pattern matching with async handlers, allowing for clean async/await usage within result handling.
+</p>
+<p>
+This method treats all failure types uniformly, calling <code class="paramref">onFailure</code> with the error message.
+For more granular async failure handling, use the overload that provides separate handlers for each failure type.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})">
+  MatchAsync&lt;TResult&gt;(Result, Func&lt;Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;, Func&lt;IDictionary&lt;string, string[]&gt;, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching with specific handlers for each failure type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; MatchAsync&lt;TResult&gt;(this Result result, Func&lt;Task&lt;TResult&gt;&gt; onSuccess, Func&lt;string, Task&lt;TResult&gt;&gt; onError, Func&lt;string, Task&lt;TResult&gt;&gt; onSecurityException, Func&lt;IDictionary&lt;string, string[]&gt;, Task&lt;TResult&gt;&gt; onValidationException, Func&lt;string, Task&lt;TResult&gt;&gt; onOperationCanceledException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>The result to perform pattern matching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;<span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is successful.</p>
+</dd>
+    <dt><code>onError</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a general error. Receives the error message.</p>
+</dd>
+    <dt><code>onSecurityException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a security failure. Receives the error message.</p>
+</dd>
+    <dt><code>onValidationException</code> <span class="xref">Func</span>&lt;<span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a validation failure. Receives the validation errors dictionary.</p>
+</dd>
+    <dt><code>onOperationCanceledException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a cancellation failure. Receives the error message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;TResult&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> containing the value returned by the appropriate handler function.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResult</code></dt>
+    <dd><p>The type of the result to return.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result operationResult = await ProcessRequestAsync();
+
+string response = await operationResult.MatchAsync(
+    onSuccess: async () =&gt; await SendSuccessNotificationAsync(),
+    onError: async error =&gt; await HandleSystemErrorAsync(error),
+    onSecurityException: async error =&gt; await ReportSecurityViolationAsync(error),
+    onValidationException: async errors =&gt; await DisplayValidationErrorsAsync(errors),
+    onOperationCanceledException: async error =&gt; await HandleCancellationAsync(error)
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This async overload provides granular control over different failure types with async handlers,
+allowing you to implement specific async logic for each category of failure. This is particularly useful
+when different failure types require different async handling strategies (async logging, async notifications, etc.).
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code> or any of the handler functions is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1___" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})">
+  MatchAsync&lt;T, TResult&gt;(Result&lt;T&gt;, Func&lt;T, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; MatchAsync&lt;T, TResult&gt;(this Result&lt;T&gt; result, Func&lt;T, Task&lt;TResult&gt;&gt; onSuccess, Func&lt;string, Task&lt;TResult&gt;&gt; onFailure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The result to perform pattern matching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;T, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is successful. Receives the success value.</p>
+</dd>
+    <dt><code>onFailure</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a failure. Receives the error message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;TResult&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> containing the value returned by either <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value in the result.</p>
+</dd>
+    <dt><code>TResult</code></dt>
+    <dd><p>The type of the result to return.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync(userId);
+
+string response = await userResult.MatchAsync(
+    onSuccess: async user =&gt; {
+        await AuditUserAccessAsync(user);
+        return $"Welcome, {user.Name}!";
+    },
+    onFailure: async error =&gt; {
+        await LogFailedLoginAsync(userId, error);
+        return "Login failed";
+    }
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the async equivalent of the <a class="xref" href="FlowRight.Core.Results.Result-1.html#FlowRight_Core_Results_Result_1_Match__1_System_Func__0___0__System_Func_System_String___0__">Match&lt;TResult&gt;(Func&lt;T, TResult&gt;, Func&lt;string, TResult&gt;)</a> method.
+It enables pattern matching with async handlers that can work with the success value.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1___System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1___" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})">
+  MatchAsync&lt;T, TResult&gt;(Result&lt;T&gt;, Func&lt;T, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;, Func&lt;IDictionary&lt;string, string[]&gt;, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching with specific handlers for each failure type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; MatchAsync&lt;T, TResult&gt;(this Result&lt;T&gt; result, Func&lt;T, Task&lt;TResult&gt;&gt; onSuccess, Func&lt;string, Task&lt;TResult&gt;&gt; onError, Func&lt;string, Task&lt;TResult&gt;&gt; onSecurityException, Func&lt;IDictionary&lt;string, string[]&gt;, Task&lt;TResult&gt;&gt; onValidationException, Func&lt;string, Task&lt;TResult&gt;&gt; onOperationCanceledException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The result to perform pattern matching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;T, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is successful. Receives the success value.</p>
+</dd>
+    <dt><code>onError</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a general error. Receives the error message.</p>
+</dd>
+    <dt><code>onSecurityException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a security failure. Receives the error message.</p>
+</dd>
+    <dt><code>onValidationException</code> <span class="xref">Func</span>&lt;<span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a validation failure. Receives the validation errors dictionary.</p>
+</dd>
+    <dt><code>onOperationCanceledException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&lt;TResult&gt;&gt;</dt>
+    <dd><p>Async function to execute if the result is a cancellation failure. Receives the error message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;TResult&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> containing the value returned by the appropriate handler function.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value in the result.</p>
+</dd>
+    <dt><code>TResult</code></dt>
+    <dd><p>The type of the result to return.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1___System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task___1___System_Func_System_String_System_Threading_Tasks_Task___1____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;Order&gt; orderResult = await ProcessOrderAsync(request);
+
+IActionResult response = await orderResult.MatchAsync(
+    onSuccess: async order =&gt; {
+        await SendOrderConfirmationAsync(order);
+        return Ok(order);
+    },
+    onError: async error =&gt; await LogAndReturnErrorAsync(error),
+    onSecurityException: async error =&gt; await HandleSecurityViolationAsync(error),
+    onValidationException: async errors =&gt; await ReturnValidationErrorsAsync(errors),
+    onOperationCanceledException: async error =&gt; await HandleTimeoutAsync(error)
+);</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code> or any of the handler functions is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Boolean_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)">
+  SwitchAsync(Result, Func&lt;Task&gt;, Func&lt;string, Task&gt;, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes async side-effect actions based on the result state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task SwitchAsync(this Result result, Func&lt;Task&gt; onSuccess, Func&lt;string, Task&gt; onFailure, bool includeOperationCancelledFailures = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>The result to perform switching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;<span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is successful.</p>
+</dd>
+    <dt><code>onFailure</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a failure. Receives the error message.</p>
+</dd>
+    <dt><code>includeOperationCancelledFailures</code> <span class="xref">bool</span></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, operation cancelled failures will call <code class="paramref">onFailure</code>. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default), they will be ignored.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task</span> representing the async operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Boolean__examples">Examples</h4>
+  <pre><code class="lang-csharp">Result result = await PerformOperationAsync();
+
+await result.SwitchAsync(
+    onSuccess: async () =&gt; {
+        await LogSuccessAsync("Operation completed");
+        await NotifySubscribersAsync();
+    },
+    onFailure: async error =&gt; {
+        await LogErrorAsync($"Operation failed: {error}");
+        await SendAlertAsync(error);
+    }
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the async equivalent of the imperative <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Boolean_">Switch(Action, Action&lt;string&gt;, bool)</a> method.
+It executes async actions with side effects rather than returning transformed values.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})">
+  SwitchAsync(Result, Func&lt;Task&gt;, Func&lt;string, Task&gt;, Func&lt;string, Task&gt;, Func&lt;IDictionary&lt;string, string[]&gt;, Task&gt;, Func&lt;string, Task&gt;?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes async side-effect actions based on the result state with separate handlers for different failure types.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task SwitchAsync(this Result result, Func&lt;Task&gt; onSuccess, Func&lt;string, Task&gt; onError, Func&lt;string, Task&gt; onSecurityException, Func&lt;IDictionary&lt;string, string[]&gt;, Task&gt; onValidationException, Func&lt;string, Task&gt;? onOperationCanceledException = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>The result to perform switching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;<span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is successful.</p>
+</dd>
+    <dt><code>onError</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a general error. Receives the error message.</p>
+</dd>
+    <dt><code>onSecurityException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a security failure. Receives the error message.</p>
+</dd>
+    <dt><code>onValidationException</code> <span class="xref">Func</span>&lt;<span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a validation failure. Receives the validation errors dictionary.</p>
+</dd>
+    <dt><code>onOperationCanceledException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Optional async action to execute if the result is a cancellation failure. Receives the error message. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, cancellation failures are ignored.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task</span> representing the async operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task___examples">Examples</h4>
+  <pre><code class="lang-csharp">Result result = await ProcessRequestAsync();
+
+await result.SwitchAsync(
+    onSuccess: async () =&gt; await SendSuccessNotificationAsync(),
+    onError: async error =&gt; await LogSystemErrorAsync(error),
+    onSecurityException: async error =&gt; await AlertSecurityTeamAsync(error),
+    onValidationException: async errors =&gt; await DisplayValidationErrorsAsync(errors),
+    onOperationCanceledException: async error =&gt; await CleanupResourcesAsync()
+);</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, <code class="paramref">onError</code>, <code class="paramref">onSecurityException</code>, or <code class="paramref">onValidationException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync__1_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Boolean_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)">
+  SwitchAsync&lt;T&gt;(Result&lt;T&gt;, Func&lt;T, Task&gt;, Func&lt;string, Task&gt;, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes async side-effect actions based on the result state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task SwitchAsync&lt;T&gt;(this Result&lt;T&gt; result, Func&lt;T, Task&gt; onSuccess, Func&lt;string, Task&gt; onFailure, bool includeOperationCancelledFailures = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The result to perform switching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;T, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is successful. Receives the success value.</p>
+</dd>
+    <dt><code>onFailure</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a failure. Receives the error message.</p>
+</dd>
+    <dt><code>includeOperationCancelledFailures</code> <span class="xref">bool</span></dt>
+    <dd><p>Whether to execute <code class="paramref">onFailure</code> for <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_OperationCanceled">OperationCanceled</a> failures. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task</span> representing the async operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value in the result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync__1_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Boolean__examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync(userId);
+
+await userResult.SwitchAsync(
+    onSuccess: async user =&gt; {
+        await LogUserAccessAsync(user);
+        await UpdateLastLoginAsync(user);
+    },
+    onFailure: async error =&gt; {
+        await LogFailedLoginAsync(userId, error);
+        await IncrementFailedLoginCountAsync(userId);
+    }
+);</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync__1_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})">
+  SwitchAsync&lt;T&gt;(Result&lt;T&gt;, Func&lt;T, Task&gt;, Func&lt;string, Task&gt;, Func&lt;string, Task&gt;, Func&lt;IDictionary&lt;string, string[]&gt;, Task&gt;, Func&lt;string, Task&gt;?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes async side-effect actions based on the result state with separate handlers for different failure types.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task SwitchAsync&lt;T&gt;(this Result&lt;T&gt; result, Func&lt;T, Task&gt; onSuccess, Func&lt;string, Task&gt; onError, Func&lt;string, Task&gt; onSecurityException, Func&lt;IDictionary&lt;string, string[]&gt;, Task&gt; onValidationException, Func&lt;string, Task&gt;? onOperationCanceledException = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The result to perform switching on.</p>
+</dd>
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;T, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is successful. Receives the success value.</p>
+</dd>
+    <dt><code>onError</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a general error. Receives the error message.</p>
+</dd>
+    <dt><code>onSecurityException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a security failure. Receives the error message.</p>
+</dd>
+    <dt><code>onValidationException</code> <span class="xref">Func</span>&lt;<span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Async action to execute if the result is a validation failure. Receives the validation errors dictionary.</p>
+</dd>
+    <dt><code>onOperationCanceledException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, <span class="xref">Task</span>&gt;</dt>
+    <dd><p>Optional async action to execute if the result is a cancellation failure. Receives the error message. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, cancellation failures are ignored.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task</span> representing the async operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value in the result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, <code class="paramref">onError</code>, <code class="paramref">onSecurityException</code>, or <code class="paramref">onValidationException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})">
+  ThenAsync(Result, Func&lt;Task&lt;Result&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Chains an async operation that returns a Result to be executed only if this result is successful.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&gt; ThenAsync(this Result result, Func&lt;Task&lt;Result&gt;&gt; nextAsync)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>The result to chain from.</p>
+</dd>
+    <dt><code>nextAsync</code> <span class="xref">Func</span>&lt;<span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>&gt;&gt;</dt>
+    <dd><p>The async function to execute if this result is successful.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+or the failure information from this result if it failed.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result result = await ValidateInputAsync();
+
+Result finalResult = await result.ThenAsync(async () =&gt;
+    await ProcessValidatedInputAsync()
+);</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___0____" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}})">
+  ThenAsync&lt;T&gt;(Result, Func&lt;Task&lt;Result&lt;T&gt;&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Chains an async operation that returns a Result&lt;T&gt; to be executed only if this result is successful.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;T&gt;&gt; ThenAsync&lt;T&gt;(this Result result, Func&lt;Task&lt;Result&lt;T&gt;&gt;&gt; nextAsync)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>The result to chain from.</p>
+</dd>
+    <dt><code>nextAsync</code> <span class="xref">Func</span>&lt;<span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;&gt;</dt>
+    <dd><p>The async function to execute if this result is successful.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+or the failure information from this result if it failed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the result returned by the next operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___0_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result result = await ValidateInputAsync();
+
+Result&lt;User&gt; userResult = await result.ThenAsync(async () =&gt;
+    await CreateUserAsync(validatedInput)
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___0_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method enables async operation chaining while preserving the Result pattern semantics.
+If the current result is a failure, the next operation is not executed and the failure is propagated.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__1_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})">
+  ThenAsync&lt;T&gt;(Result&lt;T&gt;, Func&lt;T, Task&lt;Result&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Chains an async operation that returns a Result to be executed only if this result is successful.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&gt; ThenAsync&lt;T&gt;(this Result&lt;T&gt; result, Func&lt;T, Task&lt;Result&gt;&gt; nextAsync)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The result to chain from.</p>
+</dd>
+    <dt><code>nextAsync</code> <span class="xref">Func</span>&lt;T, <span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>&gt;&gt;</dt>
+    <dd><p>The async function to execute if this result is successful. Receives the success value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+or the failure information from this result if it failed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value in the current result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__1_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync();
+
+Result finalResult = await userResult.ThenAsync(async user =&gt;
+    await ValidateAndSaveUserAsync(user)
+);</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync_" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*"></a>
+
+  <h3 id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___1____" data-uid="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})">
+  ThenAsync&lt;T, TNext&gt;(Result&lt;T&gt;, Func&lt;T, Task&lt;Result&lt;TNext&gt;&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Chains an async operation that returns a Result&lt;TNext&gt; to be executed only if this result is successful.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;TNext&gt;&gt; ThenAsync&lt;T, TNext&gt;(this Result&lt;T&gt; result, Func&lt;T, Task&lt;Result&lt;TNext&gt;&gt;&gt; nextAsync)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>The result to chain from.</p>
+</dd>
+    <dt><code>nextAsync</code> <span class="xref">Func</span>&lt;T, <span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;TNext&gt;&gt;&gt;</dt>
+    <dd><p>The async function to execute if this result is successful. Receives the success value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;TNext&gt;&gt;</dt>
+    <dd><p>A <span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+or the failure information from this result if it failed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value in the current result.</p>
+</dd>
+    <dt><code>TNext</code></dt>
+    <dd><p>The type of the result returned by the next operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___1_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync();
+
+Result&lt;Order&gt; orderResult = await userResult.ThenAsync(async user =&gt;
+    await CreateOrderForUserAsync(user)
+);</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
