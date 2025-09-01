@@ -84,7 +84,7 @@
 ### Result Integration
 - [x] **TASK-036**: Add RuleFor overload for Result<T> composition
 - [x] **TASK-037**: Implement automatic error extraction from nested Results
-- [ ] **TASK-038**: Create out parameter support for value extraction
+- [x] **TASK-038**: Create out parameter support for value extraction
 - [ ] **TASK-039**: Add validation context for complex scenarios
 - [ ] **TASK-040**: Build custom message support with WithMessage
 

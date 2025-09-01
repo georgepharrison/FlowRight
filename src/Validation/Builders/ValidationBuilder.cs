@@ -117,6 +117,32 @@ public class ValidationBuilder<T>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GuidPropertyValidator<T>(builder, display, val));
 
     /// <summary>
+    /// Creates validation rules for a Guid? property with out parameter support for value extraction.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate.</param>
+    /// <param name="value">The actual Guid? value to be validated.</param>
+    /// <param name="validatedValue">Output parameter that receives the validated value if validation succeeds, or null if validation fails.</param>
+    /// <param name="displayName">Optional custom display name for error messages.</param>
+    /// <returns>The ValidationBuilder&lt;T&gt; for continued chaining.</returns>
+    public ValidationBuilder<T> RuleFor(Expression<Func<T, Guid?>> propertySelector, Guid? value, out Guid? validatedValue, string? displayName = null)
+    {
+        string propertyName = displayName ?? GetPropertyName(propertySelector);
+        
+        // Perform basic validation for Guid (not null and not empty)
+        if (value is null || value == Guid.Empty)
+        {
+            validatedValue = null;
+            AddError(propertyName, $"{propertyName} must be a valid GUID");
+        }
+        else
+        {
+            validatedValue = value;
+        }
+        
+        return this;
+    }
+
+    /// <summary>
     /// Creates validation rules for a string property using a fluent interface.
     /// </summary>
     /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.Name).</param>
@@ -136,6 +162,48 @@ public class ValidationBuilder<T>
     /// </example>
     public StringPropertyValidator<T> RuleFor(Expression<Func<T, string>> propertySelector, string value, string? displayName = null) =>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new StringPropertyValidator<T>(builder, display, val));
+
+    /// <summary>
+    /// Creates validation rules for a string property with out parameter support for value extraction.
+    /// This overload performs basic validation immediately and provides the validated value through the out parameter.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.Name).</param>
+    /// <param name="value">The actual string value to be validated.</param>
+    /// <param name="validatedValue">Output parameter that receives the validated value if validation succeeds, or null if validation fails.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>The ValidationBuilder&lt;T&gt; for continued chaining of other property validations.</returns>
+    /// <remarks>
+    /// This overload enables extraction of validated values for use in object construction patterns.
+    /// The out parameter will contain the input value if it passes basic validation (not null/empty for strings),
+    /// or null if the basic validation fails.
+    /// For more complex validation rules, use the standard RuleFor overload that returns a property validator.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;User&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.Name, request.Name, out string? validatedName);
+    /// builder.RuleFor(x =&gt; x.Age, request.Age, out int? validatedAge);
+    ///     
+    /// Result&lt;User&gt; result = builder.Build(() =&gt; new User(validatedName!, validatedAge!.Value, "email"));
+    /// </code>
+    /// </example>
+    public ValidationBuilder<T> RuleFor(Expression<Func<T, string>> propertySelector, string value, out string? validatedValue, string? displayName = null)
+    {
+        string propertyName = displayName ?? GetPropertyName(propertySelector);
+        
+        // Perform basic validation for strings (not null or empty)
+        if (string.IsNullOrEmpty(value))
+        {
+            validatedValue = null;
+            AddError(propertyName, $"{propertyName} is required");
+        }
+        else
+        {
+            validatedValue = value;
+        }
+        
+        return this;
+    }
 
     /// <summary>
     /// Integrates Result&lt;T&gt; validation into the validation builder, automatically extracting failures and providing access to successful values.
@@ -232,6 +300,47 @@ public class ValidationBuilder<T>
         CreateNumericValidator(propertySelector, value, displayName);
 
     /// <summary>
+    /// Creates validation rules for an integer property with out parameter support for value extraction.
+    /// This overload performs basic validation immediately and provides the validated value through the out parameter.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.Age).</param>
+    /// <param name="value">The actual integer value to be validated.</param>
+    /// <param name="validatedValue">Output parameter that receives the validated value if validation succeeds, or null if validation fails.</param>
+    /// <param name="displayName">Optional custom display name for error messages. If null, uses the property name from the expression.</param>
+    /// <returns>The ValidationBuilder&lt;T&gt; for continued chaining of other property validations.</returns>
+    /// <remarks>
+    /// This overload enables extraction of validated values for use in object construction patterns.
+    /// The out parameter will contain the input value if it passes basic validation (greater than or equal to 0),
+    /// or null if the basic validation fails.
+    /// For more complex validation rules, use the standard RuleFor overload that returns a property validator.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// ValidationBuilder&lt;User&gt; builder = new();
+    /// builder.RuleFor(x =&gt; x.Age, request.Age, out int? validatedAge);
+    ///     
+    /// Result&lt;User&gt; result = builder.Build(() =&gt; new User("name", "email", validatedAge!.Value));
+    /// </code>
+    /// </example>
+    public ValidationBuilder<T> RuleFor(Expression<Func<T, int>> propertySelector, int value, out int? validatedValue, string? displayName = null)
+    {
+        string propertyName = displayName ?? GetPropertyName(propertySelector);
+        
+        // Perform basic validation for integers (greater than or equal to 0)
+        if (value < 0)
+        {
+            validatedValue = null;
+            AddError(propertyName, $"{propertyName} must be greater than or equal to 0");
+        }
+        else
+        {
+            validatedValue = value;
+        }
+        
+        return this;
+    }
+
+    /// <summary>
     /// Creates validation rules for a long numeric property using a fluent interface.
     /// </summary>
     /// <param name="propertySelector">Expression selecting the property to validate.</param>
@@ -250,6 +359,32 @@ public class ValidationBuilder<T>
     /// <returns>A numeric property validator for further rule configuration.</returns>
     public NumericPropertyValidator<T, decimal> RuleFor(Expression<Func<T, decimal>> propertySelector, decimal value, string? displayName = null) =>
         CreateNumericValidator(propertySelector, value, displayName);
+
+    /// <summary>
+    /// Creates validation rules for a decimal property with out parameter support for value extraction.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate.</param>
+    /// <param name="value">The actual decimal value to be validated.</param>
+    /// <param name="validatedValue">Output parameter that receives the validated value if validation succeeds, or null if validation fails.</param>
+    /// <param name="displayName">Optional custom display name for error messages.</param>
+    /// <returns>The ValidationBuilder&lt;T&gt; for continued chaining.</returns>
+    public ValidationBuilder<T> RuleFor(Expression<Func<T, decimal>> propertySelector, decimal value, out decimal? validatedValue, string? displayName = null)
+    {
+        string propertyName = displayName ?? GetPropertyName(propertySelector);
+        
+        // Perform basic validation for decimals (greater than or equal to 0)
+        if (value < 0)
+        {
+            validatedValue = null;
+            AddError(propertyName, $"{propertyName} must be greater than or equal to 0");
+        }
+        else
+        {
+            validatedValue = value;
+        }
+        
+        return this;
+    }
 
     /// <summary>
     /// Creates validation rules for a double numeric property using a fluent interface.
@@ -304,6 +439,33 @@ public class ValidationBuilder<T>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new EnumerablePropertyValidator<T, TItem>(builder, display, val));
 
     /// <summary>
+    /// Creates validation rules for an enumerable property with out parameter support for value extraction.
+    /// </summary>
+    /// <typeparam name="TItem">The type of items in the enumerable.</typeparam>
+    /// <param name="propertySelector">An expression selecting the property to validate.</param>
+    /// <param name="value">The actual enumerable value to be validated.</param>
+    /// <param name="validatedValue">Output parameter that receives the validated value if validation succeeds, or null if validation fails.</param>
+    /// <param name="displayName">Optional custom display name for error messages.</param>
+    /// <returns>The ValidationBuilder&lt;T&gt; for continued chaining.</returns>
+    public ValidationBuilder<T> RuleFor<TItem>(Expression<Func<T, IEnumerable<TItem>>> propertySelector, IEnumerable<TItem> value, out IEnumerable<TItem>? validatedValue, string? displayName = null)
+    {
+        string propertyName = displayName ?? GetPropertyName(propertySelector);
+        
+        // Perform basic validation for enumerables (not null)
+        if (value is null)
+        {
+            validatedValue = null;
+            AddError(propertyName, $"{propertyName} cannot be null");
+        }
+        else
+        {
+            validatedValue = value;
+        }
+        
+        return this;
+    }
+
+    /// <summary>
     /// Creates validation rules for any property type using a fluent interface. This is the fallback validator for types
     /// that don't have specialized validators (string, numeric, enumerable, guid).
     /// </summary>
@@ -344,6 +506,32 @@ public class ValidationBuilder<T>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, DateTime>(builder, display, val));
 
     /// <summary>
+    /// Creates validation rules for a DateTime property with out parameter support for value extraction.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate.</param>
+    /// <param name="value">The actual DateTime value to be validated.</param>
+    /// <param name="validatedValue">Output parameter that receives the validated value if validation succeeds, or null if validation fails.</param>
+    /// <param name="displayName">Optional custom display name for error messages.</param>
+    /// <returns>The ValidationBuilder&lt;T&gt; for continued chaining.</returns>
+    public ValidationBuilder<T> RuleFor(Expression<Func<T, DateTime>> propertySelector, DateTime value, out DateTime? validatedValue, string? displayName = null)
+    {
+        string propertyName = displayName ?? GetPropertyName(propertySelector);
+        
+        // Perform basic validation for DateTime (not default)
+        if (value == default)
+        {
+            validatedValue = null;
+            AddError(propertyName, $"{propertyName} must be a valid date");
+        }
+        else
+        {
+            validatedValue = value;
+        }
+        
+        return this;
+    }
+
+    /// <summary>
     /// Creates validation rules for a nullable DateTime property using a fluent interface.
     /// </summary>
     /// <param name="propertySelector">An expression selecting the property to validate (e.g., x =&gt; x.UpdatedAt).</param>
@@ -379,6 +567,21 @@ public class ValidationBuilder<T>
     /// </example>
     public GenericPropertyValidator<T, bool> RuleFor(Expression<Func<T, bool>> propertySelector, bool value, string? displayName = null) =>
         CreateValidator(propertySelector, value, displayName, (builder, display, val) => new GenericPropertyValidator<T, bool>(builder, display, val));
+
+    /// <summary>
+    /// Creates validation rules for a boolean property with out parameter support for value extraction.
+    /// </summary>
+    /// <param name="propertySelector">An expression selecting the property to validate.</param>
+    /// <param name="value">The actual boolean value to be validated.</param>
+    /// <param name="validatedValue">Output parameter that receives the validated value.</param>
+    /// <param name="displayName">Optional custom display name for error messages.</param>
+    /// <returns>The ValidationBuilder&lt;T&gt; for continued chaining.</returns>
+    public ValidationBuilder<T> RuleFor(Expression<Func<T, bool>> propertySelector, bool value, out bool? validatedValue, string? displayName = null)
+    {
+        // Boolean values are always valid
+        validatedValue = value;
+        return this;
+    }
 
     /// <summary>
     /// Creates validation rules for a nullable boolean property using a fluent interface.
