@@ -784,4 +784,198 @@ public class ResultTests
     }
 
     #endregion Explicit Operator Tests
+
+    #region TASK-043: SuccessOrNull Factory Method Tests
+
+    public class SuccessOrNullMethodTests
+    {
+        [Fact]
+        public void SuccessOrNull_WithNonNullValue_ShouldReturnSuccessResult()
+        {
+            // Arrange
+            string expectedValue = "test value";
+
+            // Act
+            Result<string?> result = Result.SuccessOrNull(expectedValue);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? actualValue).ShouldBeTrue();
+            actualValue.ShouldBe(expectedValue);
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithNullValue_ShouldReturnSuccessResultWithNull()
+        {
+            // Arrange
+            string? nullValue = null;
+
+            // Act
+            Result<string?> result = Result.SuccessOrNull(nullValue);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? actualValue).ShouldBeTrue();
+            actualValue.ShouldBeNull();
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithNullReferenceType_ShouldReturnSuccessResultWithNull()
+        {
+            // Arrange
+            TestModel? nullModel = null;
+
+            // Act
+            Result<TestModel?> result = Result.SuccessOrNull(nullModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? actualValue).ShouldBeTrue();
+            actualValue.ShouldBeNull();
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithNullableValueType_ShouldReturnSuccessResultWithNull()
+        {
+            // Arrange
+            int? nullInt = null;
+
+            // Act
+            Result<int?> result = Result.SuccessOrNull(nullInt);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out int? actualValue).ShouldBeTrue();
+            actualValue.ShouldBeNull();
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithNonNullValueType_ShouldReturnSuccessResultWithValue()
+        {
+            // Arrange
+            int? expectedValue = 42;
+
+            // Act
+            Result<int?> result = Result.SuccessOrNull(expectedValue);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out int? actualValue).ShouldBeTrue();
+            actualValue.ShouldBe(expectedValue);
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithCustomResultType_ShouldReturnSuccessResultWithSpecifiedType()
+        {
+            // Arrange
+            string? nullValue = null;
+            ResultType expectedResultType = ResultType.Information;
+
+            // Act
+            Result<string?> result = Result.SuccessOrNull(nullValue, expectedResultType);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.ResultType.ShouldBe(expectedResultType);
+            result.TryGetValue(out string? actualValue).ShouldBeTrue();
+            actualValue.ShouldBeNull();
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithNonNullValueAndCustomResultType_ShouldReturnSuccessResultWithValueAndType()
+        {
+            // Arrange
+            string expectedValue = "test";
+            ResultType expectedResultType = ResultType.Warning;
+
+            // Act
+            Result<string?> result = Result.SuccessOrNull(expectedValue, expectedResultType);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.ResultType.ShouldBe(expectedResultType);
+            result.TryGetValue(out string? actualValue).ShouldBeTrue();
+            actualValue.ShouldBe(expectedValue);
+        }
+
+        [Theory]
+        [InlineData(ResultType.Success)]
+        [InlineData(ResultType.Information)]
+        [InlineData(ResultType.Warning)]
+        public void SuccessOrNull_WithNullValueAndVariousResultTypes_ShouldReturnSuccessResultWithCorrectType(ResultType resultType)
+        {
+            // Arrange
+            TestModel? nullValue = null;
+
+            // Act
+            Result<TestModel?> result = Result.SuccessOrNull(nullValue, resultType);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.ResultType.ShouldBe(resultType);
+            result.TryGetValue(out TestModel? actualValue).ShouldBeTrue();
+            actualValue.ShouldBeNull();
+        }
+
+        [Fact]
+        public void SuccessOrNull_ShouldNeverThrowArgumentNullException()
+        {
+            // Arrange
+            object? nullObject = null;
+
+            // Act & Assert - should not throw any exception
+            Result<object?> result = Result.SuccessOrNull(nullObject);
+
+            // Verify it creates a successful result with null value
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out object? actualValue).ShouldBeTrue();
+            actualValue.ShouldBeNull();
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithEmptyStringValue_ShouldReturnSuccessResultWithEmptyString()
+        {
+            // Arrange
+            string emptyString = string.Empty;
+
+            // Act
+            Result<string?> result = Result.SuccessOrNull(emptyString);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? actualValue).ShouldBeTrue();
+            actualValue.ShouldBe(string.Empty);
+        }
+
+        [Fact]
+        public void SuccessOrNull_WithDefaultValue_ShouldReturnSuccessResultWithDefaultValue()
+        {
+            // Arrange
+            int defaultInt = default;
+
+            // Act
+            int? nullableInt = defaultInt;
+            Result<int?> result = Result.SuccessOrNull(nullableInt);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out int? actualValue).ShouldBeTrue();
+            actualValue.ShouldBe(0);
+        }
+    }
+
+    #endregion TASK-043: SuccessOrNull Factory Method Tests
+
+    #region Helper Methods
+
+    /// <summary>
+    /// Test model for SuccessOrNull tests.
+    /// </summary>
+    private sealed class TestModel
+    {
+        public int Id { get; init; }
+        public string Name { get; init; } = string.Empty;
+    }
+
+    #endregion Helper Methods
 }

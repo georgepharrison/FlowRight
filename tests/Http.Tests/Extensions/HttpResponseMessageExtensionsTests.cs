@@ -365,4 +365,260 @@ public sealed class HttpResponseMessageExtensionsTests
     }
 
     #endregion ToResultFromJsonAsync with JsonTypeInfo Tests
+
+    #region TASK-043: Null Handling Bug Tests
+
+    public class ToResultFromJsonAsyncNullHandling
+    {
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithSuccessStatusCodeAndNullJson_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithSuccessStatusCodeAndEmptyJsonObject_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("{}", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<string?> result = await response.ToResultFromJsonAsync<string>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithSuccessStatusCodeAndEmptyString_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("\"\"", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<string?> result = await response.ToResultFromJsonAsync<string>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? value).ShouldBeTrue();
+            value.ShouldBe(string.Empty);
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithSuccessStatusCodeAndNullableIntNull_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<int?> result = await response.ToResultFromJsonAsync<int?>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out int? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithSuccessStatusCodeAndNullableStringNull_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<string?> result = await response.ToResultFromJsonAsync<string?>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithCustomJsonSerializerOptions_AndNullJson_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            JsonSerializerOptions options = new()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>(options);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithCancellationToken_AndNullJson_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+            using CancellationTokenSource cts = new();
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>(cancellationToken: cts.Token);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfo_AndNullJson_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfo_AndCancellationToken_AndNullJson_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+            using CancellationTokenSource cts = new();
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel, cts.Token);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK)]
+        [InlineData(HttpStatusCode.Created)]
+        [InlineData(HttpStatusCode.Accepted)]
+        [InlineData(HttpStatusCode.NoContent)]
+        public async Task ToResultFromJsonAsync_WithSuccessStatusCodes_AndNullJson_ShouldReturnSuccessWithNullValue(HttpStatusCode statusCode)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(statusCode)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithArrayOfNulls_ShouldReturnSuccessWithArrayContainingNulls()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("[null, null, null]", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?[]?> result = await response.ToResultFromJsonAsync<TestModel?[]>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel?[]? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Length.ShouldBe(3);
+            value[0].ShouldBeNull();
+            value[1].ShouldBeNull();
+            value[2].ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithEmptyJsonContent_ShouldReturnSuccessWithNullValue()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_ShouldNeverThrowArgumentNullExceptionForNullValues()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act & Assert - should not throw any exception
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Verify it returns success with null value instead of throwing
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+    }
+
+    #endregion TASK-043: Null Handling Bug Tests
 }

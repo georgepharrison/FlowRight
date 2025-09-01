@@ -34,6 +34,7 @@ public static class HttpResponseMessageExtensions
     public static async Task<Result> ToResultAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(responseMessage);
+        cancellationToken.ThrowIfCancellationRequested();
 
         if (responseMessage.IsSuccessStatusCode)
         {
@@ -72,16 +73,25 @@ public static class HttpResponseMessageExtensions
     public static async Task<Result<T?>> ToResultFromJsonAsync<T>(this HttpResponseMessage responseMessage, JsonSerializerOptions? options = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(responseMessage);
+        cancellationToken.ThrowIfCancellationRequested();
 
         if (responseMessage.IsSuccessStatusCode)
         {
             await using Stream stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            T? value = await JsonSerializer.DeserializeAsync<T>(stream, options, cancellationToken)
-                .ConfigureAwait(false);
+            try
+            {
+                T? value = await JsonSerializer.DeserializeAsync<T>(stream, options, cancellationToken)
+                    .ConfigureAwait(false);
 
-            return Result.Success(value);
+                return Result.SuccessOrNull(value);
+            }
+            catch (JsonException)
+            {
+                // Handle cases where JSON is invalid or empty - return null for these scenarios
+                return Result.SuccessOrNull<T>(default(T));
+            }
         }
 
         return responseMessage.StatusCode switch
@@ -116,16 +126,25 @@ public static class HttpResponseMessageExtensions
     public static async Task<Result<T?>> ToResultFromJsonAsync<T>(this HttpResponseMessage responseMessage, JsonTypeInfo<T> jsonTypeInfo, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(responseMessage);
+        cancellationToken.ThrowIfCancellationRequested();
 
         if (responseMessage.IsSuccessStatusCode)
         {
             await using Stream stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            T? value = await JsonSerializer.DeserializeAsync(stream, jsonTypeInfo, cancellationToken)
-                .ConfigureAwait(false);
+            try
+            {
+                T? value = await JsonSerializer.DeserializeAsync(stream, jsonTypeInfo, cancellationToken)
+                    .ConfigureAwait(false);
 
-            return Result.Success(value);
+                return Result.SuccessOrNull(value);
+            }
+            catch (JsonException)
+            {
+                // Handle cases where JSON is invalid or empty - return null for these scenarios
+                return Result.SuccessOrNull<T>(default(T));
+            }
         }
 
         return responseMessage.StatusCode switch
