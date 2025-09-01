@@ -1,3 +1,4 @@
+using System.Linq;
 using FlowRight.Core.Results;
 using FlowRight.Validation.Builders;
 using FlowRight.Validation.Tests.TestModels;
@@ -208,7 +209,7 @@ public class ComplexObjectValidationTests
             // Act
             builder.RuleFor(o => o.Items, validItems)
                 .NotEmpty()
-                .MinCount(1)
+                .Must(items => items.Any(), "Must have at least one item")
                 .MaxCount(10)
                 .Must(items => items.All(item => item.Quantity > 0), "All items must have positive quantity")
                 .Must(items => items.Select(i => i.Product.Sku).Distinct().Count() == items.Count(), "All items must have unique SKUs");
@@ -261,7 +262,7 @@ public class ComplexObjectValidationTests
             // Act
             builder.RuleFor(o => o.Items, emptyItems)
                 .NotEmpty()
-                .MinCount(1);
+                .Must(items => items.Any(), "Must have at least one item");
 
             Result<Order> result = builder.Build(() => new OrderBuilder()
                 .WithItems(emptyItems)
@@ -700,7 +701,7 @@ public class ComplexObjectValidationTests
 
             builder.RuleFor(o => o.Items, manyComplexItems)
                 .NotEmpty()
-                .MinCount(1)
+                .Must(items => items.Any(), "Must have at least one item")
                 .MaxCount(100)
                 .Must(items => items.All(i => i.Quantity > 0), "All quantities positive")
                 .Must(items => items.All(i => i.UnitPrice > 0), "All prices positive")
@@ -741,7 +742,7 @@ public class ComplexObjectValidationTests
             builder.RuleFor(o => o.Id, complexOrder.Id).NotEqual(Guid.Empty);
             builder.RuleFor(o => o.OrderNumber, complexOrder.OrderNumber).NotEmpty().MinimumLength(5).MaximumLength(50);
             builder.RuleFor(o => o.Customer, complexOrder.Customer).NotNull();
-            builder.RuleFor(o => o.Items, complexOrder.Items).NotEmpty().MinCount(1).MaxCount(50);
+            builder.RuleFor(o => o.Items, complexOrder.Items).NotEmpty().Must(items => items.Count >= 1, "Must have at least one item");
             builder.RuleFor(o => o.ShippingAddress, complexOrder.ShippingAddress).NotNull();
             builder.RuleFor(o => o.BillingAddress, complexOrder.BillingAddress).NotNull();
             builder.RuleFor(o => o.PaymentInfo, complexOrder.PaymentInfo).NotNull();

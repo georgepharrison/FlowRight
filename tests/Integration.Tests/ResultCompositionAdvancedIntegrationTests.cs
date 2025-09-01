@@ -1347,14 +1347,18 @@ public class User
 public class OrderItem
 {
     public Guid ProductId { get; set; }
+    public Product Product { get; set; } = new();
     public int Quantity { get; set; }
     public decimal UnitPrice { get; set; }
+    public decimal TotalPrice => Quantity * UnitPrice;
 }
 
 public class PaymentMethod
 {
     public string Type { get; set; } = string.Empty;
     public string Token { get; set; } = string.Empty;
+    
+    public static PaymentMethod CreditCard => new() { Type = "CreditCard" };
 }
 
 public class Address
@@ -1386,6 +1390,14 @@ public class Order
     public decimal TotalAmount { get; set; }
     public OrderStatus Status { get; set; }
     public DateTime CreatedDate { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public Customer Customer { get; set; } = new();
+    public List<OrderItem> Items { get; set; } = [];
+    public ShippingAddress ShippingAddress { get; set; } = new();
+    public BillingAddress BillingAddress { get; set; } = new();
+    public PaymentInfo PaymentInfo { get; set; } = new();
+    public string OrderNumber { get; set; } = string.Empty;
+    public Tax Tax { get; set; } = new(0m, 0m);
 }
 
 public enum OrderStatus
@@ -1532,6 +1544,318 @@ public class NestedCategory
 {
     public string Name { get; set; } = string.Empty;
     public List<NestedCategory> Children { get; set; } = [];
+}
+
+// Additional models needed for integration tests
+public class Customer
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public bool IsEmailVerified { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public CustomerType Type { get; set; } = CustomerType.Regular;
+    public List<string> Tags { get; set; } = [];
+    
+    public static FlowRight.Core.Results.Result<Customer> Create(string firstName, string lastName, string email, string phone, DateTime dateOfBirth, Address primaryAddress)
+    {
+        Customer customer = new()
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            Email = email,
+            DateOfBirth = dateOfBirth,
+            CreatedDate = DateTime.UtcNow
+        };
+        return FlowRight.Core.Results.Result.Success(customer);
+    }
+}
+
+public class ShippingAddress : Address
+{
+    // Inherits from Address
+    
+    public static FlowRight.Core.Results.Result<ShippingAddress> Create(string street, string city, string state, string postalCode, string country)
+    {
+        return FlowRight.Core.Results.Result.Success(new ShippingAddress());
+    }
+}
+
+public class BillingAddress : Address
+{
+    // Inherits from Address
+    
+    public static FlowRight.Core.Results.Result<BillingAddress> Create(string street, string city, string state, string postalCode, string country)
+    {
+        return FlowRight.Core.Results.Result.Success(new BillingAddress());
+    }
+}
+
+public class PaymentInfo
+{
+    public string CardNumber { get; set; } = string.Empty;
+    public string CardHolderName { get; set; } = string.Empty;
+    public string ExpiryDate { get; set; } = string.Empty;
+    public PaymentMethod Method { get; set; } = new();
+    
+    public PaymentInfo() { }
+    
+    public PaymentInfo(string cardNumber, string cardHolderName, string expiryDate, PaymentMethod method)
+    {
+        CardNumber = cardNumber;
+        CardHolderName = cardHolderName;
+        ExpiryDate = expiryDate;
+        Method = method;
+    }
+}
+
+public class Product
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Name { get; set; } = string.Empty;
+    public string Sku { get; set; } = string.Empty;
+    public decimal Price { get; set; }
+    public Category Category { get; set; } = new();
+}
+
+public class Category
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public Category? ParentCategory { get; set; }
+    public List<Category> SubCategories { get; set; } = [];
+    public int Level { get; set; }
+    public string Path { get; set; } = string.Empty;
+    public bool IsActive { get; set; } = true;
+}
+
+// Additional supporting types
+public enum CustomerType
+{
+    Regular,
+    Premium,
+    VIP,
+    Corporate
+}
+
+public record Tax(decimal Amount, decimal Rate);
+
+// Builder classes for test data creation
+public class OrderBuilder
+{
+    private readonly Order _order = new();
+
+    public OrderBuilder WithOrderNumber(string orderNumber)
+    {
+        _order.OrderNumber = orderNumber;
+        return this;
+    }
+
+    public OrderBuilder WithCustomer(Customer customer)
+    {
+        _order.Customer = customer;
+        return this;
+    }
+
+    public OrderBuilder WithItems(IEnumerable<OrderItem> items)
+    {
+        _order.Items = items.ToList();
+        return this;
+    }
+
+    public OrderBuilder AddItem(OrderItem item)
+    {
+        _order.Items.Add(item);
+        return this;
+    }
+
+    public OrderBuilder WithShippingAddress(ShippingAddress address)
+    {
+        _order.ShippingAddress = address;
+        return this;
+    }
+
+    public OrderBuilder WithBillingAddress(BillingAddress address)
+    {
+        _order.BillingAddress = address;
+        return this;
+    }
+
+    public OrderBuilder WithPaymentInfo(PaymentInfo paymentInfo)
+    {
+        _order.PaymentInfo = paymentInfo;
+        return this;
+    }
+
+    public OrderBuilder WithTotalAmount(decimal amount)
+    {
+        _order.TotalAmount = amount;
+        return this;
+    }
+
+    public Order Build() => _order;
+}
+
+public class CustomerBuilder
+{
+    private readonly Customer _customer = new();
+
+    public CustomerBuilder WithFirstName(string firstName)
+    {
+        _customer.FirstName = firstName;
+        return this;
+    }
+
+    public CustomerBuilder WithLastName(string lastName)
+    {
+        _customer.LastName = lastName;
+        return this;
+    }
+
+    public CustomerBuilder WithEmail(string email)
+    {
+        _customer.Email = email;
+        return this;
+    }
+
+    public CustomerBuilder WithDateOfBirth(DateTime dateOfBirth)
+    {
+        _customer.DateOfBirth = dateOfBirth;
+        return this;
+    }
+
+    public CustomerBuilder WithType(CustomerType type)
+    {
+        _customer.Type = type;
+        return this;
+    }
+
+    public CustomerBuilder AddTag(string tag)
+    {
+        _customer.Tags.Add(tag);
+        return this;
+    }
+
+    public Customer Build() => _customer;
+}
+
+public class CategoryBuilder
+{
+    private readonly Category _category = new();
+
+    public CategoryBuilder WithName(string name)
+    {
+        _category.Name = name;
+        return this;
+    }
+
+    public CategoryBuilder WithParentCategory(Category parent)
+    {
+        _category.ParentCategory = parent;
+        _category.Level = parent.Level + 1;
+        _category.Path = $"{parent.Path}/{_category.Name}";
+        return this;
+    }
+
+    public Category Build() => _category;
+}
+
+public class ProductBuilder
+{
+    private readonly Product _product = new();
+
+    public ProductBuilder WithName(string name)
+    {
+        _product.Name = name;
+        return this;
+    }
+
+    public ProductBuilder WithSku(string sku)
+    {
+        _product.Sku = sku;
+        return this;
+    }
+
+    public ProductBuilder WithCategory(Category category)
+    {
+        _product.Category = category;
+        return this;
+    }
+
+    public ProductBuilder WithPrice(decimal price)
+    {
+        _product.Price = price;
+        return this;
+    }
+
+    public Product Build() => _product;
+}
+
+public class OrderItemBuilder
+{
+    private readonly OrderItem _orderItem = new();
+
+    public OrderItemBuilder WithProduct(Product product)
+    {
+        _orderItem.Product = product;
+        _orderItem.ProductId = product.Id;
+        return this;
+    }
+
+    public OrderItemBuilder WithQuantity(int quantity)
+    {
+        _orderItem.Quantity = quantity;
+        return this;
+    }
+
+    public OrderItemBuilder WithUnitPrice(decimal price)
+    {
+        _orderItem.UnitPrice = price;
+        return this;
+    }
+
+    public OrderItem Build() => _orderItem;
+}
+
+public class ShippingAddressBuilder
+{
+    private readonly ShippingAddress _address = new();
+
+    public ShippingAddressBuilder WithStreet(string street)
+    {
+        _address.Street = street;
+        return this;
+    }
+
+    public ShippingAddressBuilder WithCity(string city)
+    {
+        _address.City = city;
+        return this;
+    }
+
+    public ShippingAddress Build() => _address;
+}
+
+public class BillingAddressBuilder
+{
+    private readonly BillingAddress _address = new();
+
+    public BillingAddressBuilder WithStreet(string street)
+    {
+        _address.Street = street;
+        return this;
+    }
+
+    public BillingAddressBuilder WithCity(string city)
+    {
+        _address.City = city;
+        return this;
+    }
+
+    public BillingAddress Build() => _address;
 }
 
 #endregion

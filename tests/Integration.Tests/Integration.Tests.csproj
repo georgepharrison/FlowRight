@@ -1,8 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <GenerateDefaultMainMethod>false</GenerateDefaultMainMethod>
+    <StartupObject>FlowRight.Integration.Tests.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
