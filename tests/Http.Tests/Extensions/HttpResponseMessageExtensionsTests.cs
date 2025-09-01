@@ -16,6 +16,50 @@ namespace FlowRight.Http.Tests.Extensions;
 /// </summary>
 public sealed class HttpResponseMessageExtensionsTests
 {
+    /// <summary>
+    /// Helper method to create HttpResponseMessage with content type that may contain parameters.
+    /// </summary>
+    private static HttpResponseMessage CreateResponseWithContent(HttpStatusCode statusCode, string content, Encoding encoding, string contentType)
+    {
+        HttpResponseMessage response = new(statusCode);
+        
+        // Handle content types with parameters
+        if (contentType.Contains(';'))
+        {
+            string[] parts = contentType.Split(';', 2);
+            string mediaType = parts[0].Trim();
+            response.Content = new StringContent(content, encoding, mediaType);
+            
+            // Parse and set parameters
+            if (parts.Length > 1)
+            {
+                string[] parameters = parts[1].Split(';');
+                foreach (string param in parameters)
+                {
+                    string[] keyValue = param.Trim().Split('=', 2);
+                    if (keyValue.Length == 2)
+                    {
+                        string key = keyValue[0].Trim();
+                        string value = keyValue[1].Trim();
+                        if (key == "charset")
+                        {
+                            response.Content.Headers.ContentType!.CharSet = value;
+                        }
+                        else
+                        {
+                            response.Content.Headers.ContentType!.Parameters.Add(new System.Net.Http.Headers.NameValueHeaderValue(key, value));
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            response.Content = new StringContent(content, encoding, contentType);
+        }
+        
+        return response;
+    }
     #region ToResultAsync Tests
 
     [Fact]
@@ -621,4 +665,514 @@ public sealed class HttpResponseMessageExtensionsTests
     }
 
     #endregion TASK-043: Null Handling Bug Tests
+
+    #region TASK-045: Content Type Handling Tests
+
+    public class ContentTypeDetection
+    {
+        [Theory]
+        [InlineData("application/json")]
+        [InlineData("application/json; charset=utf-8")]
+        [InlineData("application/json-patch+json")]
+        [InlineData("application/vnd.api+json")]
+        [InlineData("application/ld+json")]
+        [InlineData("application/hal+json")]
+        public async Task ToResultFromJsonAsync_WithJsonContentTypeVariants_ShouldDeserializeSuccessfully(string contentType)
+        {
+            // Arrange
+            TestModel expected = new() { Id = 1, Name = "Test" };
+            string jsonContent = JsonSerializer.Serialize(expected);
+
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, jsonContent, Encoding.UTF8, contentType);
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Id.ShouldBe(expected.Id);
+            value.Name.ShouldBe(expected.Name);
+        }
+
+        [Theory]
+        [InlineData("application/xml")]
+        [InlineData("text/xml")]
+        [InlineData("application/xml; charset=utf-8")]
+        public async Task ToResultFromXmlAsync_WithXmlContentTypes_ShouldDeserializeSuccessfully(string contentType)
+        {
+            // Arrange
+            string xmlContent = "<TestModel><Id>1</Id><Name>Test</Name></TestModel>";
+
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, xmlContent, Encoding.UTF8, contentType);
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromXmlAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Id.ShouldBe(1);
+            value.Name.ShouldBe("Test");
+        }
+
+        [Theory]
+        [InlineData("text/plain")]
+        [InlineData("text/html")]
+        [InlineData("text/csv")]
+        [InlineData("text/markdown")]
+        [InlineData("text/plain; charset=utf-8")]
+        public async Task ToResultAsTextAsync_WithTextContentTypes_ShouldReturnStringContent(string contentType)
+        {
+            // Arrange
+            string textContent = "This is test content";
+
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, textContent, Encoding.UTF8, contentType);
+
+            // Act
+            Result<string?> result = await response.ToResultAsTextAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? value).ShouldBeTrue();
+            value.ShouldBe(textContent);
+        }
+
+        [Theory]
+        [InlineData("application/octet-stream")]
+        [InlineData("image/jpeg")]
+        [InlineData("image/png")]
+        [InlineData("application/pdf")]
+        [InlineData("video/mp4")]
+        public async Task ToResultAsBytesAsync_WithBinaryContentTypes_ShouldReturnByteArray(string contentType)
+        {
+            // Arrange
+            byte[] binaryContent = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]; // PNG header
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new ByteArrayContent(binaryContent)
+            };
+            response.Content.Headers.ContentType = new(contentType);
+
+            // Act
+            Result<byte[]?> result = await response.ToResultAsBytesAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out byte[]? value).ShouldBeTrue();
+            value.ShouldBe(binaryContent);
+        }
+
+        [Theory]
+        [InlineData("application/x-www-form-urlencoded")]
+        [InlineData("multipart/form-data")]
+        public async Task ToResultAsFormDataAsync_WithFormContentTypes_ShouldReturnFormData(string contentType)
+        {
+            // Arrange
+            string formContent = "name=test&id=1";
+
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, formContent, Encoding.UTF8, contentType);
+
+            // Act
+            Result<Dictionary<string, string>?> result = await response.ToResultAsFormDataAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out Dictionary<string, string>? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value["name"].ShouldBe("test");
+            value["id"].ShouldBe("1");
+        }
+    }
+
+    public class ContentTypeMismatchHandling
+    {
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithNonJsonContentType_ShouldReturnFailureResult()
+        {
+            // Arrange
+            string xmlContent = "<test>data</test>";
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(xmlContent, Encoding.UTF8, "application/xml")
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Content type mismatch");
+            result.Error.ShouldContain("application/xml");
+            result.Error.ShouldContain("JSON");
+        }
+
+        [Fact]
+        public async Task ToResultFromXmlAsync_WithNonXmlContentType_ShouldReturnFailureResult()
+        {
+            // Arrange
+            string jsonContent = "{\"id\": 1}";
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, "application/json")
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromXmlAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Content type mismatch");
+            result.Error.ShouldContain("application/json");
+            result.Error.ShouldContain("XML");
+        }
+
+        [Fact]
+        public async Task ToResultAsTextAsync_WithBinaryContentType_ShouldReturnFailureResult()
+        {
+            // Arrange
+            byte[] binaryContent = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A];
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new ByteArrayContent(binaryContent)
+            };
+            response.Content.Headers.ContentType = new("image/png");
+
+            // Act
+            Result<string?> result = await response.ToResultAsTextAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Binary content cannot be read as text");
+            result.Error.ShouldContain("image/png");
+        }
+
+        [Fact]
+        public async Task ToResultAsBytesAsync_WithUnsupportedContentType_ShouldReturnFailureResult()
+        {
+            // Arrange
+            string textContent = "This is text";
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(textContent, Encoding.UTF8, "application/unsupported")
+            };
+
+            // Act
+            Result<byte[]?> result = await response.ToResultAsBytesAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Unsupported content type");
+            result.Error.ShouldContain("application/unsupported");
+        }
+    }
+
+    public class CharsetEncodingHandling
+    {
+        [Theory]
+        [InlineData("utf-8")]
+        [InlineData("utf-16")]
+        [InlineData("iso-8859-1")]
+        public async Task ToResultAsTextAsync_WithDifferentCharsets_ShouldHandleEncodingCorrectly(string charset)
+        {
+            // Arrange
+            string textContent = "Special characters: äöü";
+            Encoding encoding = charset switch
+            {
+                "utf-16" => Encoding.Unicode,
+                "iso-8859-1" => Encoding.Latin1,
+                _ => Encoding.UTF8
+            };
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(textContent, encoding, "text/plain")
+            };
+            
+            // Manually set the content type to include charset parameter
+            response.Content.Headers.ContentType!.CharSet = charset;
+
+            // Act
+            Result<string?> result = await response.ToResultAsTextAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out string? value).ShouldBeTrue();
+            value.ShouldBe(textContent);
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithUnsupportedCharset_ShouldReturnFailureResult()
+        {
+            // Arrange
+            string jsonContent = "{\"id\": 1}";
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, "application/json")
+            };
+            
+            // Manually set an unsupported charset
+            response.Content.Headers.ContentType!.CharSet = "unsupported-charset";
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Unsupported charset");
+            result.Error.ShouldContain("unsupported-charset");
+        }
+    }
+
+    public class ContentTypeAwareExtensions
+    {
+        [Fact]
+        public async Task ToResultWithContentTypeValidation_WithMatchingContentType_ShouldReturnSuccess()
+        {
+            // Arrange
+            TestModel expected = new() { Id = 1, Name = "Test" };
+            string jsonContent = JsonSerializer.Serialize(expected);
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, "application/json")
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultWithContentTypeValidation<TestModel>("application/json");
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Id.ShouldBe(expected.Id);
+            value.Name.ShouldBe(expected.Name);
+        }
+
+        [Fact]
+        public async Task ToResultWithContentTypeValidation_WithNonMatchingContentType_ShouldReturnFailure()
+        {
+            // Arrange
+            string xmlContent = "<test>data</test>";
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(xmlContent, Encoding.UTF8, "application/xml")
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultWithContentTypeValidation<TestModel>("application/json");
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Expected content type 'application/json' but received 'application/xml'");
+        }
+
+        [Theory]
+        [InlineData("application/json", "application/json", true)]
+        [InlineData("application/json; charset=utf-8", "application/json", true)]
+        [InlineData("application/json", "application/json; charset=utf-8", true)]
+        [InlineData("application/xml", "application/json", false)]
+        [InlineData("text/plain", "application/json", false)]
+        public async Task IsContentType_WithVariousContentTypes_ShouldReturnCorrectMatch(string actualContentType, string expectedContentType, bool shouldMatch)
+        {
+            // Arrange
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, actualContentType);
+
+            // Act
+            bool result = response.IsContentType(expectedContentType);
+
+            // Assert
+            result.ShouldBe(shouldMatch);
+        }
+
+        [Theory]
+        [InlineData("application/json", true)]
+        [InlineData("application/json-patch+json", true)]
+        [InlineData("application/vnd.api+json", true)]
+        [InlineData("application/xml", false)]
+        [InlineData("text/plain", false)]
+        public async Task IsJsonContentType_WithVariousContentTypes_ShouldIdentifyJsonCorrectly(string contentType, bool isJson)
+        {
+            // Arrange
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
+
+            // Act
+            bool result = response.IsJsonContentType();
+
+            // Assert
+            result.ShouldBe(isJson);
+        }
+
+        [Theory]
+        [InlineData("application/xml", true)]
+        [InlineData("text/xml", true)]
+        [InlineData("application/soap+xml", true)]
+        [InlineData("application/json", false)]
+        [InlineData("text/plain", false)]
+        public async Task IsXmlContentType_WithVariousContentTypes_ShouldIdentifyXmlCorrectly(string contentType, bool isXml)
+        {
+            // Arrange
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
+
+            // Act
+            bool result = response.IsXmlContentType();
+
+            // Assert
+            result.ShouldBe(isXml);
+        }
+
+        [Theory]
+        [InlineData("text/plain", true)]
+        [InlineData("text/html", true)]
+        [InlineData("text/csv", true)]
+        [InlineData("text/markdown", true)]
+        [InlineData("application/json", false)]
+        [InlineData("application/xml", false)]
+        [InlineData("image/png", false)]
+        public async Task IsTextContentType_WithVariousContentTypes_ShouldIdentifyTextCorrectly(string contentType, bool isText)
+        {
+            // Arrange
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
+
+            // Act
+            bool result = response.IsTextContentType();
+
+            // Assert
+            result.ShouldBe(isText);
+        }
+
+        [Theory]
+        [InlineData("application/octet-stream", true)]
+        [InlineData("image/jpeg", true)]
+        [InlineData("image/png", true)]
+        [InlineData("video/mp4", true)]
+        [InlineData("application/pdf", true)]
+        [InlineData("text/plain", false)]
+        [InlineData("application/json", false)]
+        [InlineData("application/xml", false)]
+        public async Task IsBinaryContentType_WithVariousContentTypes_ShouldIdentifyBinaryCorrectly(string contentType, bool isBinary)
+        {
+            // Arrange
+            using HttpResponseMessage response = CreateResponseWithContent(HttpStatusCode.OK, "test", Encoding.UTF8, contentType);
+
+            // Act
+            bool result = response.IsBinaryContentType();
+
+            // Assert
+            result.ShouldBe(isBinary);
+        }
+    }
+
+    public class ContentTypeErrorHandling
+    {
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithMissingContentType_ShouldReturnFailureResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("{\"id\": 1}", Encoding.UTF8)
+            };
+            response.Content.Headers.ContentType = null;
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Missing content type header");
+        }
+
+        [Fact]
+        public async Task ToResultFromXmlAsync_WithInvalidXmlContent_ShouldReturnFailureResult()
+        {
+            // Arrange
+            string invalidXml = "<invalid><unclosed>";
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(invalidXml, Encoding.UTF8, "application/xml")
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromXmlAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Invalid XML content");
+        }
+
+        [Fact]
+        public async Task ToResultAsFormDataAsync_WithInvalidFormData_ShouldReturnFailureResult()
+        {
+            // Arrange
+            string invalidFormData = "invalid=form&data&malformed";
+
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(invalidFormData, Encoding.UTF8, "application/x-www-form-urlencoded")
+            };
+
+            // Act
+            Result<Dictionary<string, string>?> result = await response.ToResultAsFormDataAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Invalid form data format");
+        }
+
+        [Fact]
+        public async Task GetContentTypeInfo_WithComplexContentType_ShouldParseCorrectly()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("test", Encoding.UTF8, "application/json")
+            };
+            
+            // Manually set a more complex content type with parameters
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data");
+            response.Content.Headers.ContentType.CharSet = "utf-8";
+            response.Content.Headers.ContentType.Parameters.Add(new System.Net.Http.Headers.NameValueHeaderValue("boundary", "something"));
+
+            // Act
+            FlowRight.Http.Models.ContentTypeInfo contentTypeInfo = response.GetContentTypeInfo();
+
+            // Assert
+            contentTypeInfo.MediaType.ShouldBe("multipart/form-data");
+            contentTypeInfo.Charset.ShouldBe("utf-8");
+            contentTypeInfo.Parameters["boundary"].ShouldBe("something");
+        }
+
+        [Fact]
+        public async Task ToResultWithStrictContentTypeValidation_WithUnsupportedContentType_ShouldReturnFailureResult()
+        {
+            // Arrange
+            using HttpResponseMessage response = new(HttpStatusCode.OK)
+            {
+                Content = new StringContent("test", Encoding.UTF8, "application/custom-unsupported")
+            };
+
+            string[] supportedTypes = ["application/json", "application/xml", "text/plain"];
+
+            // Act
+            Result result = response.ValidateContentType(supportedTypes);
+
+            // Assert
+            result.IsSuccess.ShouldBeFalse();
+            result.Error.ShouldContain("Unsupported content type 'application/custom-unsupported'");
+            result.Error.ShouldContain("Supported types: application/json, application/xml, text/plain");
+        }
+    }
+
+    #endregion TASK-045: Content Type Handling Tests
 }
