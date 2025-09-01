@@ -1,6 +1,7 @@
 using System.Security;
 using BenchmarkDotNet.Attributes;
 using FlowRight.Core.Results;
+using FlowRight.Core.Extensions;
 
 namespace FlowRight.Benchmarks;
 
@@ -602,4 +603,370 @@ public class ResultBenchmarks
     }
     
     #endregion Advanced Scenario Benchmarks
+    
+    #region Async Extension Method Benchmarks
+    
+    /// <summary>
+    /// Benchmarks MatchAsync operation on successful Result.
+    /// </summary>
+    /// <returns>The matched result value.</returns>
+    [Benchmark]
+    public async Task<string> MatchAsyncSuccessOperation()
+    {
+        return await _successIntResult.MatchAsync(
+            async value => {
+                await Task.Yield();
+                return $"Success: {value}";
+            },
+            async error => {
+                await Task.Yield();
+                return $"Failure: {error}";
+            }
+        );
+    }
+    
+    /// <summary>
+    /// Benchmarks MatchAsync operation on failed Result.
+    /// </summary>
+    /// <returns>The matched result value.</returns>
+    [Benchmark]
+    public async Task<string> MatchAsyncFailureOperation()
+    {
+        return await _failureIntResult.MatchAsync(
+            async value => {
+                await Task.Yield();
+                return $"Success: {value}";
+            },
+            async error => {
+                await Task.Yield();
+                return $"Failure: {error}";
+            }
+        );
+    }
+    
+    /// <summary>
+    /// Benchmarks SwitchAsync operation on successful Result.
+    /// </summary>
+    [Benchmark]
+    public async Task SwitchAsyncSuccessOperation()
+    {
+        await _successIntResult.SwitchAsync(
+            async value => {
+                await Task.Yield();
+                // Side effect simulation
+            },
+            async error => {
+                await Task.Yield();
+                // Error handling simulation
+            }
+        );
+    }
+    
+    /// <summary>
+    /// Benchmarks SwitchAsync operation on failed Result.
+    /// </summary>
+    [Benchmark]
+    public async Task SwitchAsyncFailureOperation()
+    {
+        await _failureIntResult.SwitchAsync(
+            async value => {
+                await Task.Yield();
+                // Success handling simulation
+            },
+            async error => {
+                await Task.Yield();
+                // Error handling simulation
+            }
+        );
+    }
+    
+    /// <summary>
+    /// Benchmarks ThenAsync operation chaining successful results.
+    /// </summary>
+    /// <returns>Result of chained operation.</returns>
+    [Benchmark]
+    public async Task<Result<string>> ThenAsyncSuccessOperation()
+    {
+        return await _successIntResult.ThenAsync(async value => {
+            await Task.Yield();
+            return Result.Success($"Processed: {value}");
+        });
+    }
+    
+    /// <summary>
+    /// Benchmarks ThenAsync operation with failed initial result.
+    /// </summary>
+    /// <returns>Result of chained operation.</returns>
+    [Benchmark]
+    public async Task<Result<string>> ThenAsyncFailureOperation()
+    {
+        return await _failureIntResult.ThenAsync(async value => {
+            await Task.Yield();
+            return Result.Success($"Processed: {value}");
+        });
+    }
+    
+    /// <summary>
+    /// Benchmarks MapAsync operation for value transformation.
+    /// </summary>
+    /// <returns>Result with transformed value.</returns>
+    [Benchmark]
+    public async Task<Result<string>> MapAsyncSuccessOperation()
+    {
+        return await _successIntResult.MapAsync(async value => {
+            await Task.Yield();
+            return $"Mapped: {value}";
+        });
+    }
+    
+    /// <summary>
+    /// Benchmarks MapAsync operation with failed initial result.
+    /// </summary>
+    /// <returns>Result with transformed value.</returns>
+    [Benchmark]
+    public async Task<Result<string>> MapAsyncFailureOperation()
+    {
+        return await _failureIntResult.MapAsync(async value => {
+            await Task.Yield();
+            return $"Mapped: {value}";
+        });
+    }
+    
+    /// <summary>
+    /// Benchmarks CombineAsync operation with all successful results.
+    /// </summary>
+    /// <returns>Combined result.</returns>
+    [Benchmark]
+    public async Task<Result> CombineAsyncAllSuccessResults()
+    {
+        Task<Result>[] tasks = [
+            Task.FromResult(Result.Success()),
+            Task.FromResult(Result.Success()),
+            Task.FromResult(Result.Success())
+        ];
+        
+        return await ResultAsyncExtensions.CombineAsync(tasks);
+    }
+    
+    /// <summary>
+    /// Benchmarks CombineAsync operation with mixed success and failure results.
+    /// </summary>
+    /// <returns>Combined result.</returns>
+    [Benchmark]
+    public async Task<Result> CombineAsyncMixedResults()
+    {
+        Task<Result>[] tasks = [
+            Task.FromResult(Result.Success()),
+            Task.FromResult(Result.Failure("Error 1")),
+            Task.FromResult(Result.Success()),
+            Task.FromResult(Result.Failure("Error 2"))
+        ];
+        
+        return await ResultAsyncExtensions.CombineAsync(tasks);
+    }
+    
+    /// <summary>
+    /// Benchmarks CombineAsync operation with generic results.
+    /// </summary>
+    /// <returns>Combined generic result.</returns>
+    [Benchmark]
+    public async Task<Result<int>> CombineAsyncGenericResults()
+    {
+        Task<Result<int>>[] tasks = [
+            Task.FromResult(Result.Success(1)),
+            Task.FromResult(Result.Success(2)),
+            Task.FromResult(Result.Success(3))
+        ];
+        
+        return await ResultAsyncExtensions.CombineAsync(tasks);
+    }
+    
+    #endregion Async Extension Method Benchmarks
+    
+    #region Additional Factory Method Benchmarks
+    
+    /// <summary>
+    /// Benchmarks Result.NotFound() creation performance.
+    /// </summary>
+    /// <returns>A not found Result.</returns>
+    [Benchmark]
+    public Result CreateNotFoundResult() => Result.NotFound();
+    
+    /// <summary>
+    /// Benchmarks Result.NotFound() with resource name.
+    /// </summary>
+    /// <returns>A not found Result with resource name.</returns>
+    [Benchmark]
+    public Result CreateNotFoundWithResourceResult() => Result.NotFound("User");
+    
+    /// <summary>
+    /// Benchmarks Result{T}.NotFound() creation performance.
+    /// </summary>
+    /// <returns>A not found Result{T}.</returns>
+    [Benchmark]
+    public Result<TestObject> CreateNotFoundGenericResult() => Result.NotFound<TestObject>();
+    
+    /// <summary>
+    /// Benchmarks Result{T}.NotFound() with resource name.
+    /// </summary>
+    /// <returns>A not found Result{T} with resource name.</returns>
+    [Benchmark]
+    public Result<TestObject> CreateNotFoundGenericWithResourceResult() => Result.NotFound<TestObject>("User");
+    
+    /// <summary>
+    /// Benchmarks Result.ServerError() creation performance.
+    /// </summary>
+    /// <returns>A server error Result.</returns>
+    [Benchmark]
+    public Result CreateServerErrorResult() => Result.ServerError();
+    
+    /// <summary>
+    /// Benchmarks Result.ServerError() with custom message.
+    /// </summary>
+    /// <returns>A server error Result with custom message.</returns>
+    [Benchmark]
+    public Result CreateServerErrorWithMessageResult() => Result.ServerError("Database connection failed");
+    
+    /// <summary>
+    /// Benchmarks Result{T}.ServerError() creation performance.
+    /// </summary>
+    /// <returns>A server error Result{T}.</returns>
+    [Benchmark]
+    public Result<TestObject> CreateServerErrorGenericResult() => Result.ServerError<TestObject>();
+    
+    /// <summary>
+    /// Benchmarks Result{T}.ServerError() with custom message.
+    /// </summary>
+    /// <returns>A server error Result{T} with custom message.</returns>
+    [Benchmark]
+    public Result<TestObject> CreateServerErrorGenericWithMessageResult() => Result.ServerError<TestObject>("Service unavailable");
+    
+    /// <summary>
+    /// Benchmarks Result.ValidationFailure() creation performance.
+    /// </summary>
+    /// <returns>A validation failure Result.</returns>
+    [Benchmark]
+    public Result CreateValidationFailureResult() => Result.ValidationFailure(_singleValidationError);
+    
+    /// <summary>
+    /// Benchmarks Result{T}.ValidationFailure() creation performance.
+    /// </summary>
+    /// <returns>A validation failure Result{T}.</returns>
+    [Benchmark]
+    public Result<TestObject> CreateValidationFailureGenericResult() => Result.ValidationFailure<TestObject>(_singleValidationError);
+    
+    /// <summary>
+    /// Benchmarks Result.ValidationFailure() with multiple errors.
+    /// </summary>
+    /// <returns>A validation failure Result with multiple errors.</returns>
+    [Benchmark]
+    public Result CreateMultipleValidationFailureResult() => Result.ValidationFailure(_multipleValidationErrors);
+    
+    /// <summary>
+    /// Benchmarks Result{T}.ValidationFailure() with multiple errors.
+    /// </summary>
+    /// <returns>A validation failure Result{T} with multiple errors.</returns>
+    [Benchmark]
+    public Result<TestObject> CreateMultipleValidationFailureGenericResult() => Result.ValidationFailure<TestObject>(_multipleValidationErrors);
+    
+    #endregion Additional Factory Method Benchmarks
+    
+    #region Advanced Property Access Benchmarks
+    
+    /// <summary>
+    /// Benchmarks ResultType property access.
+    /// </summary>
+    /// <returns>The result type.</returns>
+    [Benchmark]
+    public ResultType ResultTypePropertyAccess()
+    {
+        return _successIntResult.ResultType;
+    }
+    
+    /// <summary>
+    /// Benchmarks FailureType property access.
+    /// </summary>
+    /// <returns>The failure type.</returns>
+    [Benchmark]
+    public ResultFailureType FailureTypePropertyAccess()
+    {
+        return _failureIntResult.FailureType;
+    }
+    
+    /// <summary>
+    /// Benchmarks Failures property access on validation failure.
+    /// </summary>
+    /// <returns>The validation failures dictionary.</returns>
+    [Benchmark]
+    public IDictionary<string, string[]> FailuresPropertyAccess()
+    {
+        Result<int> validationFailureResult = Result.ValidationFailure<int>(_singleValidationError);
+        return validationFailureResult.Failures;
+    }
+    
+    #endregion Advanced Property Access Benchmarks
+    
+    #region Memory Allocation Benchmarks
+    
+    /// <summary>
+    /// Benchmarks Result creation in a tight loop to measure allocation patterns.
+    /// </summary>
+    /// <returns>Last created result.</returns>
+    [Benchmark]
+    public Result MemoryAllocationSuccessLoop()
+    {
+        Result result = Result.Success();
+        for (int i = 0; i < 100; i++)
+        {
+            result = Result.Success();
+        }
+        return result;
+    }
+    
+    /// <summary>
+    /// Benchmarks Result{T} creation in a tight loop to measure allocation patterns.
+    /// </summary>
+    /// <returns>Last created result.</returns>
+    [Benchmark]
+    public Result<int> MemoryAllocationGenericSuccessLoop()
+    {
+        Result<int> result = Result.Success(42);
+        for (int i = 0; i < 100; i++)
+        {
+            result = Result.Success(i);
+        }
+        return result;
+    }
+    
+    /// <summary>
+    /// Benchmarks failure Result creation in a tight loop to measure allocation patterns.
+    /// </summary>
+    /// <returns>Last created result.</returns>
+    [Benchmark]
+    public Result MemoryAllocationFailureLoop()
+    {
+        Result result = Result.Failure("Error");
+        for (int i = 0; i < 100; i++)
+        {
+            result = Result.Failure($"Error {i}");
+        }
+        return result;
+    }
+    
+    /// <summary>
+    /// Benchmarks failure Result{T} creation in a tight loop to measure allocation patterns.
+    /// </summary>
+    /// <returns>Last created result.</returns>
+    [Benchmark]
+    public Result<int> MemoryAllocationGenericFailureLoop()
+    {
+        Result<int> result = Result.Failure<int>("Error");
+        for (int i = 0; i < 100; i++)
+        {
+            result = Result.Failure<int>($"Error {i}");
+        }
+        return result;
+    }
+    
+    #endregion Memory Allocation Benchmarks
 }
