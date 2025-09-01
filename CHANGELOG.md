@@ -1,3 +1,10 @@
+# [1.0.0-alpha.9](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-09-01)
+
+
+### Features
+
+* complete TASK-053 - validate all validation rules ([#48](https://github.com/georgepharrison/FlowRight/issues/48)) ([8db62a0](https://github.com/georgepharrison/FlowRight/commit/8db62a06b5b8f8801679c4ee5e1107513e3f1a3b))
+
 # [1.0.0-alpha.8](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-09-01)
 
 
