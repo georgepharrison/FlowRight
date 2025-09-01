@@ -1175,4 +1175,274 @@ public sealed class HttpResponseMessageExtensionsTests
     }
 
     #endregion TASK-045: Content Type Handling Tests
+
+    #region TASK-046: Explicit 2xx Status Code Mapping Tests
+
+    public class Explicit2xxStatusCodeMappingTests
+    {
+        [Theory]
+        [InlineData(HttpStatusCode.OK)]                   // 200
+        [InlineData(HttpStatusCode.Created)]              // 201
+        [InlineData(HttpStatusCode.Accepted)]             // 202
+        [InlineData(HttpStatusCode.NonAuthoritativeInformation)] // 203
+        [InlineData(HttpStatusCode.NoContent)]            // 204
+        [InlineData(HttpStatusCode.ResetContent)]         // 205
+        [InlineData(HttpStatusCode.PartialContent)]       // 206
+        [InlineData((HttpStatusCode)207)]                 // 207 Multi-Status
+        [InlineData((HttpStatusCode)208)]                 // 208 Already Reported
+        [InlineData((HttpStatusCode)226)]                 // 226 IM Used
+        public async Task ToResultAsync_WithSpecific2xxStatusCode_ShouldReturnSuccessResult(HttpStatusCode statusCode)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(statusCode);
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK)]                   // 200
+        [InlineData(HttpStatusCode.Created)]              // 201
+        [InlineData(HttpStatusCode.Accepted)]             // 202
+        [InlineData(HttpStatusCode.NonAuthoritativeInformation)] // 203
+        [InlineData(HttpStatusCode.NoContent)]            // 204
+        [InlineData(HttpStatusCode.ResetContent)]         // 205
+        [InlineData(HttpStatusCode.PartialContent)]       // 206
+        [InlineData((HttpStatusCode)207)]                 // 207 Multi-Status
+        [InlineData((HttpStatusCode)208)]                 // 208 Already Reported
+        [InlineData((HttpStatusCode)226)]                 // 226 IM Used
+        public async Task ToResultFromJsonAsync_WithSpecific2xxStatusCode_ShouldReturnSuccessResult(HttpStatusCode statusCode)
+        {
+            // Arrange
+            TestModel expected = new() { Id = 1, Name = "Test" };
+            string jsonContent = JsonSerializer.Serialize(expected);
+
+            using HttpResponseMessage response = new(statusCode)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Id.ShouldBe(expected.Id);
+            value.Name.ShouldBe(expected.Name);
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK)]                   // 200
+        [InlineData(HttpStatusCode.Created)]              // 201
+        [InlineData(HttpStatusCode.Accepted)]             // 202
+        [InlineData(HttpStatusCode.NonAuthoritativeInformation)] // 203
+        [InlineData(HttpStatusCode.NoContent)]            // 204
+        [InlineData(HttpStatusCode.ResetContent)]         // 205
+        [InlineData(HttpStatusCode.PartialContent)]       // 206
+        [InlineData((HttpStatusCode)207)]                 // 207 Multi-Status
+        [InlineData((HttpStatusCode)208)]                 // 208 Already Reported
+        [InlineData((HttpStatusCode)226)]                 // 226 IM Used
+        public async Task ToResultFromJsonAsync_WithSpecific2xxStatusCodeAndNullContent_ShouldReturnSuccessResultWithNull(HttpStatusCode statusCode)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(statusCode)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK)]                   // 200
+        [InlineData(HttpStatusCode.Created)]              // 201
+        [InlineData(HttpStatusCode.Accepted)]             // 202
+        [InlineData(HttpStatusCode.NonAuthoritativeInformation)] // 203
+        [InlineData(HttpStatusCode.NoContent)]            // 204
+        [InlineData(HttpStatusCode.ResetContent)]         // 205
+        [InlineData(HttpStatusCode.PartialContent)]       // 206
+        [InlineData((HttpStatusCode)207)]                 // 207 Multi-Status
+        [InlineData((HttpStatusCode)208)]                 // 208 Already Reported
+        [InlineData((HttpStatusCode)226)]                 // 226 IM Used
+        public async Task ToResultFromJsonAsync_WithJsonTypeInfoAndSpecific2xxStatusCode_ShouldReturnSuccessResult(HttpStatusCode statusCode)
+        {
+            // Arrange
+            TestModel expected = new() { Id = 42, Name = "JsonTypeInfo Test" };
+            string jsonContent = JsonSerializer.Serialize(expected, TestModelJsonContext.Default.TestModel);
+
+            using HttpResponseMessage response = new(statusCode)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync(TestModelJsonContext.Default.TestModel);
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Id.ShouldBe(expected.Id);
+            value.Name.ShouldBe(expected.Name);
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithCustom2xxStatusCode_ShouldReturnSuccessResult()
+        {
+            // Arrange - Using custom 2xx status code that's not in HttpStatusCode enum
+            HttpStatusCode customSuccessCode = (HttpStatusCode)290; // Custom 2xx code
+
+            using HttpResponseMessage response = new(customSuccessCode);
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithCustom2xxStatusCode_ShouldReturnSuccessResult()
+        {
+            // Arrange - Using custom 2xx status code that's not in HttpStatusCode enum
+            HttpStatusCode customSuccessCode = (HttpStatusCode)299; // Custom 2xx code
+            TestModel expected = new() { Id = 123, Name = "Custom Success Test" };
+            string jsonContent = JsonSerializer.Serialize(expected);
+
+            using HttpResponseMessage response = new(customSuccessCode)
+            {
+                Content = new StringContent(jsonContent, Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldNotBeNull();
+            value.Id.ShouldBe(expected.Id);
+            value.Name.ShouldBe(expected.Name);
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK)]
+        [InlineData(HttpStatusCode.Created)]
+        [InlineData(HttpStatusCode.Accepted)]
+        [InlineData(HttpStatusCode.NonAuthoritativeInformation)]
+        [InlineData(HttpStatusCode.NoContent)]
+        [InlineData(HttpStatusCode.ResetContent)]
+        [InlineData(HttpStatusCode.PartialContent)]
+        [InlineData((HttpStatusCode)207)]
+        [InlineData((HttpStatusCode)208)]
+        [InlineData((HttpStatusCode)226)]
+        public async Task ToResultAsync_With2xxStatusCodeAndResponseContent_ShouldIgnoreContentForSuccess(HttpStatusCode statusCode)
+        {
+            // Arrange
+            using HttpResponseMessage response = new(statusCode)
+            {
+                Content = new StringContent("Some response content", Encoding.UTF8, MediaTypeNames.Text.Plain)
+            };
+
+            // Act
+            Result result = await response.ToResultAsync();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.NoContent)]            // 204
+        [InlineData(HttpStatusCode.ResetContent)]         // 205
+        public async Task ToResultFromJsonAsync_WithNoContentStatusCodes_ShouldReturnSuccessResultWithNullValue(HttpStatusCode statusCode)
+        {
+            // Arrange - No Content status codes with null JSON content
+            using HttpResponseMessage response = new(statusCode)
+            {
+                Content = new StringContent("null", Encoding.UTF8, MediaTypeNames.Application.Json)
+            };
+
+            // Act
+            Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+
+            // Assert
+            result.IsSuccess.ShouldBeTrue();
+            result.Error.ShouldBeNullOrEmpty();
+            result.TryGetValue(out TestModel? value).ShouldBeTrue();
+            value.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task ToResultAsync_WithAll2xxStatusCodesInRange_ShouldReturnSuccessResults()
+        {
+            // Arrange & Act & Assert - Test all 2xx status codes from 200-299
+            for (int statusCode = 200; statusCode <= 299; statusCode++)
+            {
+                using HttpResponseMessage response = new((HttpStatusCode)statusCode);
+                
+                Result result = await response.ToResultAsync();
+                
+                result.IsSuccess.ShouldBeTrue($"Status code {statusCode} should return success");
+                result.Error.ShouldBeNullOrEmpty($"Status code {statusCode} should have no error");
+            }
+        }
+
+        [Fact]
+        public async Task ToResultFromJsonAsync_WithAll2xxStatusCodesInRange_ShouldReturnSuccessResults()
+        {
+            // Arrange
+            TestModel expected = new() { Id = 999, Name = "Range Test" };
+            string jsonContent = JsonSerializer.Serialize(expected);
+
+            // Act & Assert - Test all 2xx status codes from 200-299
+            for (int statusCode = 200; statusCode <= 299; statusCode++)
+            {
+                // For NoContent status codes, use null JSON content
+                string contentToUse = (statusCode == 204 || statusCode == 205) ? "null" : jsonContent;
+                
+                using HttpResponseMessage response = new((HttpStatusCode)statusCode)
+                {
+                    Content = new StringContent(contentToUse, Encoding.UTF8, MediaTypeNames.Application.Json)
+                };
+                
+                Result<TestModel?> result = await response.ToResultFromJsonAsync<TestModel>();
+                
+                result.IsSuccess.ShouldBeTrue($"Status code {statusCode} should return success");
+                result.Error.ShouldBeNullOrEmpty($"Status code {statusCode} should have no error");
+                
+                if (statusCode == 204 || statusCode == 205) // No Content status codes
+                {
+                    result.TryGetValue(out TestModel? value).ShouldBeTrue($"Status code {statusCode} should have value available");
+                    value.ShouldBeNull($"Status code {statusCode} should have null value for No Content responses");
+                }
+                else
+                {
+                    result.TryGetValue(out TestModel? value).ShouldBeTrue($"Status code {statusCode} should have value available");
+                    value.ShouldNotBeNull($"Status code {statusCode} should have non-null value");
+                    value!.Id.ShouldBe(expected.Id, $"Status code {statusCode} should deserialize correctly");
+                    value.Name.ShouldBe(expected.Name, $"Status code {statusCode} should deserialize correctly");
+                }
+            }
+        }
+    }
+
+    #endregion TASK-046: Explicit 2xx Status Code Mapping Tests
 }
