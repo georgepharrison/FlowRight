@@ -350,6 +350,81 @@ public partial class Result
         new(errors ?? throw new ArgumentNullException(nameof(errors)));
 
     /// <summary>
+    /// Creates a failed result indicating that a resource was not found.
+    /// </summary>
+    /// <param name="resource">Optional description of the resource that was not found. If not provided, defaults to "Not Found".</param>
+    /// <returns>A failed <see cref="Result"/> instance with <see cref="ResultFailureType.NotFound"/>.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method creates a "not found" failure result that corresponds to HTTP 404 status codes
+    /// and similar scenarios where a requested resource does not exist. The resulting failure
+    /// will have a <see cref="FailureType"/> of <see cref="ResultFailureType.NotFound"/>.
+    /// </para>
+    /// <para>
+    /// Not found failures are distinct from general errors as they represent expected scenarios
+    /// in many applications (e.g., searching for data that doesn't exist) and may be handled
+    /// differently from actual system errors.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// // Generic not found error
+    /// Result result = Result.NotFound();
+    /// 
+    /// // Specific resource not found
+    /// Result userResult = Result.NotFound("User with ID 123");
+    /// 
+    /// // Usage in a service method
+    /// public Result DeleteUser(int userId)
+    /// {
+    ///     User user = userRepository.GetById(userId);
+    ///     if (user == null)
+    ///         return Result.NotFound($"User with ID {userId}");
+    ///         
+    ///     userRepository.Delete(user);
+    ///     return Result.Success();
+    /// }
+    /// </code>
+    /// </example>
+    public static Result NotFound(string? resource = null) =>
+        new(CreateNotFoundMessage(resource), ResultType.Error, ResultFailureType.NotFound);
+
+    /// <summary>
+    /// Creates a failed result indicating that a resource was not found for a generic result type.
+    /// </summary>
+    /// <typeparam name="T">The type parameter for the generic result.</typeparam>
+    /// <param name="resource">Optional description of the resource that was not found. If not provided, defaults to "Not Found".</param>
+    /// <returns>A failed <see cref="Result{T}"/> instance with <see cref="ResultFailureType.NotFound"/>.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method creates a "not found" failure result for operations that would normally return
+    /// a typed value. The resulting failure will have a <see cref="FailureType"/> of 
+    /// <see cref="ResultFailureType.NotFound"/>, allowing consumers to distinguish between
+    /// not found scenarios and actual errors.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// // Generic not found error
+    /// Result&lt;User&gt; result = Result.NotFound&lt;User&gt;();
+    /// 
+    /// // Specific resource not found
+    /// Result&lt;Document&gt; docResult = Result.NotFound&lt;Document&gt;("Document with ID ABC123");
+    /// 
+    /// // Usage in a repository method
+    /// public Result&lt;User&gt; GetUser(int userId)
+    /// {
+    ///     User user = database.Users.FirstOrDefault(u => u.Id == userId);
+    ///     return user != null 
+    ///         ? Result.Success(user)
+    ///         : Result.NotFound&lt;User&gt;($"User with ID {userId}");
+    /// }
+    /// </code>
+    /// </example>
+    public static Result<T> NotFound<T>(string? resource = null) =>
+        new(CreateNotFoundMessage(resource), ResultType.Error, ResultFailureType.NotFound);
+
+    /// <summary>
     /// Creates a failed result with multiple validation errors (convenience method).
     /// </summary>
     /// <param name="errors">A dictionary containing field names as keys and arrays of error messages as values. Cannot be <see langword="null"/>.</param>
@@ -403,4 +478,21 @@ public partial class Result
         Failure<T>(errors);
 
     #endregion Public Methods
+
+    #region Private Methods
+
+    /// <summary>
+    /// Creates an appropriate not found error message based on the provided resource parameter.
+    /// </summary>
+    /// <param name="resource">The resource that was not found, or null for a generic message.</param>
+    /// <returns>A formatted error message for the not found scenario.</returns>
+    private static string CreateNotFoundMessage(string? resource)
+    {
+        if (string.IsNullOrWhiteSpace(resource))
+            return "Not Found";
+        
+        return $"{resource.Trim()} not found";
+    }
+
+    #endregion Private Methods
 }

@@ -978,4 +978,477 @@ public class ResultTests
     }
 
     #endregion Helper Methods
+
+    #region TASK-049: NotFound Factory Method Tests
+
+    public class NotFoundMethodTests
+    {
+        [Fact]
+        public void NotFound_WithoutResource_ShouldReturnFailureWithNotFoundType()
+        {
+            // Act
+            Result result = Result.NotFound();
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.ResultType.ShouldBe(ResultType.Error);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public void NotFound_WithNullResource_ShouldReturnFailureWithGenericMessage()
+        {
+            // Act
+            Result result = Result.NotFound(null);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public void NotFound_WithEmptyResource_ShouldReturnFailureWithGenericMessage()
+        {
+            // Act
+            Result result = Result.NotFound(string.Empty);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public void NotFound_WithWhitespaceResource_ShouldReturnFailureWithGenericMessage()
+        {
+            // Act
+            Result result = Result.NotFound("   ");
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+        }
+
+        [Fact]
+        public void NotFound_WithSpecificResource_ShouldReturnFailureWithResourceSpecificMessage()
+        {
+            // Arrange
+            string resourceName = "User";
+
+            // Act
+            Result result = Result.NotFound(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("User not found");
+        }
+
+        [Fact]
+        public void NotFound_WithComplexResource_ShouldReturnFailureWithResourceSpecificMessage()
+        {
+            // Arrange
+            string resourceName = "Order with ID 12345";
+
+            // Act
+            Result result = Result.NotFound(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Order with ID 12345 not found");
+        }
+
+        [Theory]
+        [InlineData("User")]
+        [InlineData("Product")]
+        [InlineData("Customer")]
+        [InlineData("Invoice")]
+        public void NotFound_WithVariousResourceNames_ShouldReturnCorrectErrorMessage(string resourceName)
+        {
+            // Act
+            Result result = Result.NotFound(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe($"{resourceName} not found");
+        }
+
+        [Fact]
+        public void NotFound_WithSpecialCharactersInResource_ShouldReturnFailureWithResourceSpecificMessage()
+        {
+            // Arrange
+            string resourceName = "User (ID: @123#)";
+
+            // Act
+            Result result = Result.NotFound(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("User (ID: @123#) not found");
+        }
+
+        [Fact]
+        public void NotFound_ShouldHaveEmptyFailuresDictionary()
+        {
+            // Act
+            Result result = Result.NotFound("Resource");
+
+            // Assert
+            result.Failures.ShouldBeEmpty();
+        }
+
+        [Fact]
+        public void NotFound_ShouldBeConvertibleToBoolAsFalse()
+        {
+            // Act
+            Result result = Result.NotFound();
+
+            // Assert
+            bool isSuccess = (bool)result;
+            isSuccess.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFound_ShouldMatchCorrectlyWithMatch()
+        {
+            // Arrange
+            Result result = Result.NotFound("TestResource");
+
+            // Act
+            string matchResult = result.Match(
+                onSuccess: () => "Success",
+                onFailure: error => $"Failed: {error}"
+            );
+
+            // Assert
+            matchResult.ShouldBe("Failed: TestResource not found");
+        }
+
+        [Fact]
+        public void NotFound_ShouldSwitchCorrectlyWithSimpleSwitch()
+        {
+            // Arrange
+            Result result = Result.NotFound("TestResource");
+            string? capturedError = null;
+            bool onSuccessCalled = false;
+
+            // Act
+            result.Switch(
+                onSuccess: () => onSuccessCalled = true,
+                onFailure: error => capturedError = error
+            );
+
+            // Assert
+            onSuccessCalled.ShouldBeFalse();
+            capturedError.ShouldBe("TestResource not found");
+        }
+
+        [Fact]
+        public void NotFound_ShouldRouteToErrorHandlerInComplexSwitch()
+        {
+            // Arrange
+            Result result = Result.NotFound("TestResource");
+            string? handlerCalled = null;
+            string? capturedError = null;
+
+            // Act
+            result.Switch(
+                onSuccess: () => handlerCalled = "success",
+                onError: error => { handlerCalled = "error"; capturedError = error; },
+                onSecurityException: error => handlerCalled = "security",
+                onValidationException: errors => handlerCalled = "validation",
+                onOperationCanceledException: error => handlerCalled = "cancelled"
+            );
+
+            // Assert
+            handlerCalled.ShouldBe("error");
+            capturedError.ShouldBe("TestResource not found");
+        }
+
+        [Fact]
+        public void NotFound_ShouldRouteToErrorHandlerInComplexMatch()
+        {
+            // Arrange
+            Result result = Result.NotFound("TestResource");
+
+            // Act
+            string matchResult = result.Match(
+                onSuccess: () => "success",
+                onError: error => $"error: {error}",
+                onSecurityException: error => $"security: {error}",
+                onValidationException: errors => $"validation: {errors.Count}",
+                onOperationCanceledException: error => $"cancelled: {error}"
+            );
+
+            // Assert
+            matchResult.ShouldBe("error: TestResource not found");
+        }
+    }
+
+    public class NotFoundGenericMethodTests
+    {
+        [Fact]
+        public void NotFoundGeneric_WithoutResource_ShouldReturnFailureWithNotFoundType()
+        {
+            // Act
+            Result<string> result = Result.NotFound<string>();
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.IsSuccess.ShouldBeFalse();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.ResultType.ShouldBe(ResultType.Error);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out string _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithNullResource_ShouldReturnFailureWithGenericMessage()
+        {
+            // Act
+            Result<int> result = Result.NotFound<int>(null);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out int _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithEmptyResource_ShouldReturnFailureWithGenericMessage()
+        {
+            // Act
+            Result<bool> result = Result.NotFound<bool>(string.Empty);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out bool _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithWhitespaceResource_ShouldReturnFailureWithGenericMessage()
+        {
+            // Act
+            Result<DateTime> result = Result.NotFound<DateTime>("   ");
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Not Found");
+            result.TryGetValue(out DateTime _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithSpecificResource_ShouldReturnFailureWithResourceSpecificMessage()
+        {
+            // Arrange
+            string resourceName = "Customer";
+
+            // Act
+            Result<TestModel> result = Result.NotFound<TestModel>(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Customer not found");
+            result.TryGetValue(out TestModel _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithComplexResource_ShouldReturnFailureWithResourceSpecificMessage()
+        {
+            // Arrange
+            string resourceName = "Product with SKU ABC-123";
+
+            // Act
+            Result<List<string>> result = Result.NotFound<List<string>>(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Product with SKU ABC-123 not found");
+            result.TryGetValue(out List<string> _).ShouldBeFalse();
+        }
+
+        [Theory]
+        [InlineData("Account")]
+        [InlineData("Transaction")]
+        [InlineData("Report")]
+        [InlineData("Document")]
+        public void NotFoundGeneric_WithVariousResourceNames_ShouldReturnCorrectErrorMessage(string resourceName)
+        {
+            // Act
+            Result<Dictionary<string, object>> result = Result.NotFound<Dictionary<string, object>>(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe($"{resourceName} not found");
+            result.TryGetValue(out Dictionary<string, object> _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithNullableType_ShouldReturnFailureWithCorrectType()
+        {
+            // Act
+            Result<int?> result = Result.NotFound<int?>("OptionalValue");
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("OptionalValue not found");
+            result.TryGetValue(out int? _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithValueType_ShouldReturnFailureWithCorrectType()
+        {
+            // Act
+            Result<Guid> result = Result.NotFound<Guid>("UniqueIdentifier");
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("UniqueIdentifier not found");
+            result.TryGetValue(out Guid _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithReferenceType_ShouldReturnFailureWithCorrectType()
+        {
+            // Act
+            Result<string[]> result = Result.NotFound<string[]>("StringArray");
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("StringArray not found");
+            result.TryGetValue(out string[] _).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_ShouldHaveEmptyFailuresDictionary()
+        {
+            // Act
+            Result<TestModel> result = Result.NotFound<TestModel>("TestResource");
+
+            // Assert
+            result.Failures.ShouldBeEmpty();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_ShouldBeConvertibleToBoolAsFalse()
+        {
+            // Act
+            Result<string> result = Result.NotFound<string>("Resource");
+
+            // Assert
+            bool isSuccess = (bool)result;
+            isSuccess.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotFoundGeneric_ShouldMatchCorrectlyWithMatch()
+        {
+            // Arrange
+            Result<TestModel> result = Result.NotFound<TestModel>("TestModel");
+
+            // Act
+            string matchResult = result.Match(
+                onSuccess: value => $"Success: {value?.Id ?? 0}",
+                onFailure: error => $"Failed: {error}"
+            );
+
+            // Assert
+            matchResult.ShouldBe("Failed: TestModel not found");
+        }
+
+        [Fact]
+        public void NotFoundGeneric_ShouldSwitchCorrectlyWithSimpleSwitch()
+        {
+            // Arrange
+            Result<TestModel> result = Result.NotFound<TestModel>("TestModel");
+            string? capturedError = null;
+            bool onSuccessCalled = false;
+
+            // Act
+            result.Switch(
+                onSuccess: value => onSuccessCalled = true,
+                onFailure: error => capturedError = error
+            );
+
+            // Assert
+            onSuccessCalled.ShouldBeFalse();
+            capturedError.ShouldBe("TestModel not found");
+        }
+
+        [Fact]
+        public void NotFoundGeneric_ShouldRouteToErrorHandlerInComplexSwitch()
+        {
+            // Arrange
+            Result<TestModel> result = Result.NotFound<TestModel>("TestModel");
+            string? handlerCalled = null;
+            string? capturedError = null;
+
+            // Act
+            result.Switch(
+                onSuccess: value => handlerCalled = "success",
+                onError: error => { handlerCalled = "error"; capturedError = error; },
+                onSecurityException: error => handlerCalled = "security",
+                onValidationException: errors => handlerCalled = "validation",
+                onOperationCanceledException: error => handlerCalled = "cancelled"
+            );
+
+            // Assert
+            handlerCalled.ShouldBe("error");
+            capturedError.ShouldBe("TestModel not found");
+        }
+
+        [Fact]
+        public void NotFoundGeneric_ShouldRouteToErrorHandlerInComplexMatch()
+        {
+            // Arrange
+            Result<TestModel> result = Result.NotFound<TestModel>("TestModel");
+
+            // Act
+            string matchResult = result.Match(
+                onSuccess: value => $"success: {value?.Name ?? "null"}",
+                onError: error => $"error: {error}",
+                onSecurityException: error => $"security: {error}",
+                onValidationException: errors => $"validation: {errors.Count}",
+                onOperationCanceledException: error => $"cancelled: {error}"
+            );
+
+            // Assert
+            matchResult.ShouldBe("error: TestModel not found");
+        }
+
+        [Fact]
+        public void NotFoundGeneric_WithSpecialCharactersInResource_ShouldReturnFailureWithResourceSpecificMessage()
+        {
+            // Arrange
+            string resourceName = "Entity (ID: @456#)";
+
+            // Act
+            Result<TestModel> result = Result.NotFound<TestModel>(resourceName);
+
+            // Assert
+            result.IsFailure.ShouldBeTrue();
+            result.FailureType.ShouldBe(ResultFailureType.NotFound);
+            result.Error.ShouldBe("Entity (ID: @456#) not found");
+            result.TryGetValue(out TestModel _).ShouldBeFalse();
+        }
+    }
+
+    #endregion TASK-049: NotFound Factory Method Tests
 }

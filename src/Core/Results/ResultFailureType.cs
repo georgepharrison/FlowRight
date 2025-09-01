@@ -76,6 +76,25 @@ public enum ResultFailureType
     Validation,
 
     /// <summary>
+    /// Indicates that the requested resource was not found or does not exist.
+    /// This represents a client error where the resource does not exist
+    /// or the client lacks permission to access it.
+    /// </summary>
+    /// <remarks>
+    /// Not found failures are common in REST APIs and data access scenarios.
+    /// They typically:
+    /// <list type="bullet">
+    /// <item><description>Correspond to HTTP 404 status codes</description></item>
+    /// <item><description>Indicate that a specific resource or entity does not exist</description></item>
+    /// <item><description>Can be handled differently from general errors</description></item>
+    /// <item><description>May trigger fallback or alternative data retrieval strategies</description></item>
+    /// </list>
+    /// This failure type allows consumers to distinguish between actual errors
+    /// and legitimate "not found" scenarios that may be expected during normal operation.
+    /// </remarks>
+    NotFound,
+
+    /// <summary>
     /// Indicates that the operation was canceled before completion, typically due to
     /// cancellation tokens, timeouts, or explicit user cancellation requests.
     /// </summary>
