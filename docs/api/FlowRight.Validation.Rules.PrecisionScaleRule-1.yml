@@ -1,0 +1,327 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.PrecisionScaleRule`1
+  commentId: T:FlowRight.Validation.Rules.PrecisionScaleRule`1
+  id: PrecisionScaleRule`1
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.PrecisionScaleRule`1.#ctor(System.Int32,System.Int32)
+  - FlowRight.Validation.Rules.PrecisionScaleRule`1.Validate(`0,System.String)
+  langs:
+  - csharp
+  - vb
+  name: PrecisionScaleRule<TNumeric>
+  nameWithType: PrecisionScaleRule<TNumeric>
+  fullName: FlowRight.Validation.Rules.PrecisionScaleRule<TNumeric>
+  type: Class
+  source:
+    id: PrecisionScaleRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/PrecisionScaleRule.cs
+    startLine: 10
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures a numeric value meets precision and scale requirements.
+  example: []
+  syntax:
+    content: 'public sealed class PrecisionScaleRule<TNumeric> : IRule<TNumeric> where TNumeric : struct, INumber<TNumeric>'
+    typeParameters:
+    - id: TNumeric
+      description: The numeric type to validate.
+    content.vb: Public NotInheritable Class PrecisionScaleRule(Of TNumeric As {Structure, INumber(Of TNumeric)}) Implements IRule(Of TNumeric)
+  inheritance:
+  - System.Object
+  implements:
+  - FlowRight.Validation.Rules.IRule{{TNumeric}}
+  nameWithType.vb: PrecisionScaleRule(Of TNumeric)
+  fullName.vb: FlowRight.Validation.Rules.PrecisionScaleRule(Of TNumeric)
+  name.vb: PrecisionScaleRule(Of TNumeric)
+- uid: FlowRight.Validation.Rules.PrecisionScaleRule`1.#ctor(System.Int32,System.Int32)
+  commentId: M:FlowRight.Validation.Rules.PrecisionScaleRule`1.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: FlowRight.Validation.Rules.PrecisionScaleRule`1
+  langs:
+  - csharp
+  - vb
+  name: PrecisionScaleRule(int, int)
+  nameWithType: PrecisionScaleRule<TNumeric>.PrecisionScaleRule(int, int)
+  fullName: FlowRight.Validation.Rules.PrecisionScaleRule<TNumeric>.PrecisionScaleRule(int, int)
+  type: Constructor
+  source:
+    id: .ctor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/PrecisionScaleRule.cs
+    startLine: 10
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures a numeric value meets precision and scale requirements.
+  example: []
+  syntax:
+    content: public PrecisionScaleRule(int precision, int scale)
+    parameters:
+    - id: precision
+      type: System.Int32
+      description: The maximum total number of digits.
+    - id: scale
+      type: System.Int32
+      description: The maximum number of decimal places.
+    content.vb: Public Sub New(precision As Integer, scale As Integer)
+  overload: FlowRight.Validation.Rules.PrecisionScaleRule`1.#ctor*
+  nameWithType.vb: PrecisionScaleRule(Of TNumeric).New(Integer, Integer)
+  fullName.vb: FlowRight.Validation.Rules.PrecisionScaleRule(Of TNumeric).New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: FlowRight.Validation.Rules.PrecisionScaleRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.PrecisionScaleRule`1.Validate(`0,System.String)
+  id: Validate(`0,System.String)
+  parent: FlowRight.Validation.Rules.PrecisionScaleRule`1
+  langs:
+  - csharp
+  - vb
+  name: Validate(TNumeric, string)
+  nameWithType: PrecisionScaleRule<TNumeric>.Validate(TNumeric, string)
+  fullName: FlowRight.Validation.Rules.PrecisionScaleRule<TNumeric>.Validate(TNumeric, string)
+  type: Method
+  source:
+    id: Validate
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/PrecisionScaleRule.cs
+    startLine: 28
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Validates that the numeric value meets the precision and scale requirements.
+  example: []
+  syntax:
+    content: public string? Validate(TNumeric value, string displayName)
+    parameters:
+    - id: value
+      type: '{TNumeric}'
+      description: The numeric value to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated.
+    return:
+      type: System.String
+      description: An error message if the value exceeds precision or scale limits; otherwise, null.
+    content.vb: Public Function Validate(value As TNumeric, displayName As String) As String
+  overload: FlowRight.Validation.Rules.PrecisionScaleRule`1.Validate*
+  implements:
+  - FlowRight.Validation.Rules.IRule{{TNumeric}}.Validate({TNumeric},System.String)
+  nameWithType.vb: PrecisionScaleRule(Of TNumeric).Validate(TNumeric, String)
+  fullName.vb: FlowRight.Validation.Rules.PrecisionScaleRule(Of TNumeric).Validate(TNumeric, String)
+  name.vb: Validate(TNumeric, String)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FlowRight.Validation.Rules.IRule{{TNumeric}}
+  commentId: T:FlowRight.Validation.Rules.IRule{`0}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<TNumeric>
+  nameWithType: IRule<TNumeric>
+  fullName: FlowRight.Validation.Rules.IRule<TNumeric>
+  nameWithType.vb: IRule(Of TNumeric)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of TNumeric)
+  name.vb: IRule(Of TNumeric)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: TNumeric
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TNumeric
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.PrecisionScaleRule`1.#ctor*
+  commentId: Overload:FlowRight.Validation.Rules.PrecisionScaleRule`1.#ctor
+  href: FlowRight.Validation.Rules.PrecisionScaleRule-1.html#FlowRight_Validation_Rules_PrecisionScaleRule_1__ctor_System_Int32_System_Int32_
+  name: PrecisionScaleRule
+  nameWithType: PrecisionScaleRule<TNumeric>.PrecisionScaleRule
+  fullName: FlowRight.Validation.Rules.PrecisionScaleRule<TNumeric>.PrecisionScaleRule
+  nameWithType.vb: PrecisionScaleRule(Of TNumeric).New
+  fullName.vb: FlowRight.Validation.Rules.PrecisionScaleRule(Of TNumeric).New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FlowRight.Validation.Rules.PrecisionScaleRule`1.Validate*
+  commentId: Overload:FlowRight.Validation.Rules.PrecisionScaleRule`1.Validate
+  href: FlowRight.Validation.Rules.PrecisionScaleRule-1.html#FlowRight_Validation_Rules_PrecisionScaleRule_1_Validate__0_System_String_
+  name: Validate
+  nameWithType: PrecisionScaleRule<TNumeric>.Validate
+  fullName: FlowRight.Validation.Rules.PrecisionScaleRule<TNumeric>.Validate
+  nameWithType.vb: PrecisionScaleRule(Of TNumeric).Validate
+  fullName.vb: FlowRight.Validation.Rules.PrecisionScaleRule(Of TNumeric).Validate
+- uid: FlowRight.Validation.Rules.IRule{{TNumeric}}.Validate({TNumeric},System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule{`0}.Validate(`0,System.String)
+  parent: FlowRight.Validation.Rules.IRule{{TNumeric}}
+  definition: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(TNumeric, string)
+  nameWithType: IRule<TNumeric>.Validate(TNumeric, string)
+  fullName: FlowRight.Validation.Rules.IRule<TNumeric>.Validate(TNumeric, string)
+  nameWithType.vb: IRule(Of TNumeric).Validate(TNumeric, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of TNumeric).Validate(TNumeric, String)
+  name.vb: Validate(TNumeric, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule{`0}.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: TNumeric
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule{`0}.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: TNumeric
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: '{TNumeric}'
+  commentId: '!:TNumeric'
+  definition: TNumeric
+  name: TNumeric
+  nameWithType: TNumeric
+  fullName: TNumeric
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: TNumeric
+  name: TNumeric
+  nameWithType: TNumeric
+  fullName: TNumeric

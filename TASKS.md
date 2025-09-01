@@ -133,9 +133,9 @@
 
 ### Documentation
 - [ ] **TASK-066**: Write comprehensive XML documentation
-- [ ] **TASK-067**: Create Getting Started guide
-- [ ] **TASK-068**: Write Migration guide from exceptions
-- [ ] **TASK-069**: Document best practices and patterns
+- [x] **TASK-067**: Create Getting Started guide
+- [x] **TASK-068**: Write Migration guide from exceptions
+- [x] **TASK-069**: Document best practices and patterns
 - [x] **TASK-070**: Create API reference with DocFX
 
 ---

@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\src\Core\Core.csproj" />
     <ProjectReference Include="..\..\src\Validation\Validation.csproj" />
     <ProjectReference Include="..\..\src\Http\Http.csproj" />
+    <ProjectReference Include="..\Validation.Tests\Validation.Tests.csproj" />
   </ItemGroup>
 
 </Project>

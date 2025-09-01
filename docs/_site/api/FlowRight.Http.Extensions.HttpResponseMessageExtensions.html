@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class HttpResponseMessageExtensions | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class HttpResponseMessageExtensions | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides extension methods for converting HTTP response messages to Result types.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions">
+
+
+
+  <h1 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions" class="text-break">
+Class HttpResponseMessageExtensions  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Http.html">Http</a>.<a class="xref" href="FlowRight.Http.Extensions.html">Extensions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Http.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides extension methods for converting HTTP response messages to Result types.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class HttpResponseMessageExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><span class="xref">HttpResponseMessageExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_GetContentTypeInfo_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_GetContentTypeInfo_System_Net_Http_HttpResponseMessage_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.GetContentTypeInfo(System.Net.Http.HttpResponseMessage)">
+  GetContentTypeInfo(HttpResponseMessage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets detailed content type information from the HTTP response message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ContentTypeInfo GetContentTypeInfo(this HttpResponseMessage responseMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Http.Models.ContentTypeInfo.html">ContentTypeInfo</a></dt>
+    <dd><p>A ContentTypeInfo object containing parsed content type details.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsBinaryContentType_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsBinaryContentType_System_Net_Http_HttpResponseMessage_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsBinaryContentType(System.Net.Http.HttpResponseMessage)">
+  IsBinaryContentType(HttpResponseMessage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if the response content type represents binary content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsBinaryContentType(this HttpResponseMessage responseMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p>True if the content type represents binary content.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsContentType_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsContentType_System_Net_Http_HttpResponseMessage_System_String_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsContentType(System.Net.Http.HttpResponseMessage,System.String)">
+  IsContentType(HttpResponseMessage, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if the response content type matches the specified media type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsContentType(this HttpResponseMessage responseMessage, string expectedMediaType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message.</p>
+</dd>
+    <dt><code>expectedMediaType</code> <span class="xref">string</span></dt>
+    <dd><p>The expected media type to match.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p>True if the content types match (ignoring parameters like charset).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsJsonContentType_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsJsonContentType_System_Net_Http_HttpResponseMessage_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsJsonContentType(System.Net.Http.HttpResponseMessage)">
+  IsJsonContentType(HttpResponseMessage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if the response content type is a JSON variant.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsJsonContentType(this HttpResponseMessage responseMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p>True if the content type represents JSON content.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsTextContentType_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsTextContentType_System_Net_Http_HttpResponseMessage_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsTextContentType(System.Net.Http.HttpResponseMessage)">
+  IsTextContentType(HttpResponseMessage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if the response content type represents text content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsTextContentType(this HttpResponseMessage responseMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p>True if the content type represents text content.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsXmlContentType_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_IsXmlContentType_System_Net_Http_HttpResponseMessage_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.IsXmlContentType(System.Net.Http.HttpResponseMessage)">
+  IsXmlContentType(HttpResponseMessage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if the response content type is an XML variant.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsXmlContentType(this HttpResponseMessage responseMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p>True if the content type represents XML content.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsBytesAsync_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsBytesAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsBytesAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+  ToResultAsBytesAsync(HttpResponseMessage, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result&lt;byte[]&gt; by reading the content as bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;byte[]?&gt;&gt; ToResultAsBytesAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;<span class="xref">byte</span>[]&gt;&gt;</dt>
+    <dd><p>A Result&lt;byte[]&gt; containing the byte content on success, or failure information on error.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsBytesAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/file");
+Result&lt;byte[]?&gt; bytesResult = await response.ToResultAsBytesAsync();
+if (bytesResult.IsSuccess)
+{
+    byte[]? bytes = bytesResult.Value;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsFormDataAsync_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsFormDataAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsFormDataAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+  ToResultAsFormDataAsync(HttpResponseMessage, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result&lt;Dictionary&lt;string, string&gt;&gt; by parsing form data content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;Dictionary&lt;string, string&gt;?&gt;&gt; ToResultAsFormDataAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;&gt;&gt;</dt>
+    <dd><p>A Result&lt;Dictionary&lt;string, string&gt;&gt; containing the parsed form data on success, or failure information on error.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsFormDataAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.PostAsync("/api/form", formContent);
+Result&lt;Dictionary&lt;string, string&gt;?&gt; formResult = await response.ToResultAsFormDataAsync();
+if (formResult.IsSuccess)
+{
+    Dictionary&lt;string, string&gt;? formData = formResult.Value;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsTextAsync_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsTextAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsTextAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+  ToResultAsTextAsync(HttpResponseMessage, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result&lt;string&gt; by reading the content as text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;string?&gt;&gt; ToResultAsTextAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;<span class="xref">string</span>&gt;&gt;</dt>
+    <dd><p>A Result&lt;string&gt; containing the text content on success, or failure information on error.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsTextAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/text");
+Result&lt;string?&gt; textResult = await response.ToResultAsTextAsync();
+if (textResult.IsSuccess)
+{
+    string? text = textResult.Value;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsync_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultAsync(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+  ToResultAsync(HttpResponseMessage, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result, handling various HTTP status codes appropriately.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&gt; ToResultAsync(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>&gt;</dt>
+    <dd><p>A Result representing the success or failure of the HTTP operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultAsync_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users");
+Result result = await response.ToResultAsync();
+if (result.IsSuccess)
+{
+    // Handle success
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromJsonAsync_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromJsonAsync__1_System_Net_Http_HttpResponseMessage_System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+  ToResultFromJsonAsync&lt;T&gt;(HttpResponseMessage, JsonSerializerOptions?, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result&lt;T&gt; by deserializing the JSON content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;T?&gt;&gt; ToResultFromJsonAsync&lt;T&gt;(this HttpResponseMessage responseMessage, JsonSerializerOptions? options = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>options</code> <span class="xref">JsonSerializerOptions</span></dt>
+    <dd><p>Optional JSON serializer options.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to deserialize the JSON content to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromJsonAsync__1_System_Net_Http_HttpResponseMessage_System_Text_Json_JsonSerializerOptions_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+Result&lt;User?&gt; userResult = await response.ToResultFromJsonAsync&lt;User&gt;();
+if (userResult.IsSuccess)
+{
+    User? user = userResult.Value;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromJsonAsync_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromJsonAsync__1_System_Net_Http_HttpResponseMessage_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromJsonAsync``1(System.Net.Http.HttpResponseMessage,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)">
+  ToResultFromJsonAsync&lt;T&gt;(HttpResponseMessage, JsonTypeInfo&lt;T&gt;, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result&lt;T&gt; by deserializing the JSON content using a JsonTypeInfo.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;T?&gt;&gt; ToResultFromJsonAsync&lt;T&gt;(this HttpResponseMessage responseMessage, JsonTypeInfo&lt;T&gt; jsonTypeInfo, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>jsonTypeInfo</code> <span class="xref">JsonTypeInfo</span>&lt;T&gt;</dt>
+    <dd><p>The JsonTypeInfo for source generation serialization.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to deserialize the JSON content to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromJsonAsync__1_System_Net_Http_HttpResponseMessage_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+Result&lt;User?&gt; userResult = await response.ToResultFromJsonAsync(UserJsonContext.Default.User);
+if (userResult.IsSuccess)
+{
+    User? user = userResult.Value;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromXmlAsync_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromXmlAsync__1_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultFromXmlAsync``1(System.Net.Http.HttpResponseMessage,System.Threading.CancellationToken)">
+  ToResultFromXmlAsync&lt;T&gt;(HttpResponseMessage, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result&lt;T&gt; by deserializing the XML content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;T?&gt;&gt; ToResultFromXmlAsync&lt;T&gt;(this HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to deserialize the XML content to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultFromXmlAsync__1_System_Net_Http_HttpResponseMessage_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+Result&lt;User?&gt; userResult = await response.ToResultFromXmlAsync&lt;User&gt;();
+if (userResult.IsSuccess)
+{
+    User? user = userResult.Value;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultWithContentTypeValidation_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultWithContentTypeValidation__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ToResultWithContentTypeValidation``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)">
+  ToResultWithContentTypeValidation&lt;T&gt;(HttpResponseMessage, string, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an HTTP response message to a Result&lt;T&gt; with content type validation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Result&lt;T?&gt;&gt; ToResultWithContentTypeValidation&lt;T&gt;(this HttpResponseMessage responseMessage, string expectedContentType, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message to convert.</p>
+</dd>
+    <dt><code>expectedContentType</code> <span class="xref">string</span></dt>
+    <dd><p>The expected content type.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>Token to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;&gt;</dt>
+    <dd><p>A Result&lt;T&gt; containing the deserialized value on success, or failure information on error.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type to deserialize the content to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ToResultWithContentTypeValidation__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken__examples">Examples</h4>
+  <pre><code class="lang-csharp">HttpResponseMessage response = await client.GetAsync("/api/users/1");
+Result&lt;User?&gt; userResult = await response.ToResultWithContentTypeValidation&lt;User&gt;("application/json");
+if (userResult.IsSuccess)
+{
+    User? user = userResult.Value;
+}</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ValidateContentType_" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType*"></a>
+
+  <h3 id="FlowRight_Http_Extensions_HttpResponseMessageExtensions_ValidateContentType_System_Net_Http_HttpResponseMessage_System_String___" data-uid="FlowRight.Http.Extensions.HttpResponseMessageExtensions.ValidateContentType(System.Net.Http.HttpResponseMessage,System.String[])">
+  ValidateContentType(HttpResponseMessage, string[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the response content type is one of the supported types.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result ValidateContentType(this HttpResponseMessage responseMessage, string[] supportedTypes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseMessage</code> <span class="xref">HttpResponseMessage</span></dt>
+    <dd><p>The HTTP response message.</p>
+</dd>
+    <dt><code>supportedTypes</code> <span class="xref">string</span>[]</dt>
+    <dd><p>Array of supported content types.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A Result indicating whether the content type is supported.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

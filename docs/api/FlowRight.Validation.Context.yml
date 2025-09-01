@@ -1,0 +1,61 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Context
+  commentId: N:FlowRight.Validation.Context
+  id: FlowRight.Validation.Context
+  children:
+  - FlowRight.Validation.Context.IValidationContext
+  - FlowRight.Validation.Context.ValidationContext
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Validation.Context
+  nameWithType: FlowRight.Validation.Context
+  fullName: FlowRight.Validation.Context
+  type: Namespace
+  assemblies:
+  - FlowRight.Validation
+references:
+- uid: FlowRight.Validation.Context.IValidationContext
+  commentId: T:FlowRight.Validation.Context.IValidationContext
+  parent: FlowRight.Validation.Context
+  href: FlowRight.Validation.Context.IValidationContext.html
+  name: IValidationContext
+  nameWithType: IValidationContext
+  fullName: FlowRight.Validation.Context.IValidationContext
+- uid: FlowRight.Validation.Context.ValidationContext
+  commentId: T:FlowRight.Validation.Context.ValidationContext
+  href: FlowRight.Validation.Context.ValidationContext.html
+  name: ValidationContext
+  nameWithType: ValidationContext
+  fullName: FlowRight.Validation.Context.ValidationContext
+- uid: FlowRight.Validation.Context
+  commentId: N:FlowRight.Validation.Context
+  href: FlowRight.html
+  name: FlowRight.Validation.Context
+  nameWithType: FlowRight.Validation.Context
+  fullName: FlowRight.Validation.Context
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Context
+    name: Context
+    href: FlowRight.Validation.Context.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Context
+    name: Context
+    href: FlowRight.Validation.Context.html

@@ -1,0 +1,2562 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions
+  commentId: T:FlowRight.Core.Extensions.ResultAsyncExtensions
+  id: ResultAsyncExtensions
+  parent: FlowRight.Core.Extensions
+  children:
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync(System.Threading.Tasks.Task{FlowRight.Core.Results.Result}[])
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync``1(System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}[])
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  - FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+  langs:
+  - csharp
+  - vb
+  name: ResultAsyncExtensions
+  nameWithType: ResultAsyncExtensions
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions
+  type: Class
+  source:
+    id: ResultAsyncExtensions
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 39
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: >-
+    Provides async-friendly extension methods for the Result and Result&lt;T&gt; types,
+
+    enabling seamless composition of asynchronous operations with the Result pattern.
+  remarks: >-
+    <p>
+
+    These extension methods bridge the gap between synchronous Result pattern operations
+
+    and asynchronous workflows, allowing for clean and efficient async/await usage
+
+    while maintaining the same error handling semantics as the synchronous counterparts.
+
+    </p>
+
+    <p>
+
+    The async extensions preserve all error categorization, validation information,
+
+    and Result type classifications from the original Result pattern implementation.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">// Async pattern matching
+
+    Result result = await GetDataAsync();
+
+    string response = await result.MatchAsync(
+        onSuccess: async () =&gt; await ProcessSuccessAsync(),
+        onFailure: async error =&gt; await HandleErrorAsync(error)
+    );
+
+
+    // Async operation chaining
+
+    Result&lt;User&gt; userResult = await GetUserAsync()
+        .ThenAsync(async user =&gt; await ValidateUserAsync(user))
+        .ThenAsync(async validUser =&gt; await SaveUserAsync(validUser));
+
+    // Async value transformation
+
+    Result&lt;string&gt; processedResult = await userResult
+        .MapAsync(async user =&gt; await FormatUserDisplayNameAsync(user));</code></pre>
+  syntax:
+    content: public static class ResultAsyncExtensions
+    content.vb: Public Module ResultAsyncExtensions
+  inheritance:
+  - System.Object
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  id: MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: MatchAsync<TResult>(Result, Func<Task<TResult>>, Func<string, Task<TResult>>)
+  nameWithType: ResultAsyncExtensions.MatchAsync<TResult>(Result, Func<Task<TResult>>, Func<string, Task<TResult>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync<TResult>(FlowRight.Core.Results.Result, System.Func<System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>)
+  type: Method
+  source:
+    id: MatchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 78
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching.
+  remarks: >-
+    <p>
+
+    This is the async equivalent of the <xref href="FlowRight.Core.Results.Result.Match%60%601(System.Func%7b%60%600%7d%2cSystem.Func%7bSystem.String%2c%60%600%7d)" data-throw-if-not-resolved="false"></xref> method.
+
+    It enables pattern matching with async handlers, allowing for clean async/await usage within result handling.
+
+    </p>
+
+    <p>
+
+    This method treats all failure types uniformly, calling <code class="paramref">onFailure</code> with the error message.
+
+    For more granular async failure handling, use the overload that provides separate handlers for each failure type.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result operationResult = await PerformOperationAsync();
+
+
+    string response = await operationResult.MatchAsync(
+        onSuccess: async () =&gt; {
+            await LogSuccessAsync("Operation completed");
+            return "Success!";
+        },
+        onFailure: async error =&gt; {
+            await LogErrorAsync($"Operation failed: {error}");
+            return "Failed";
+        }
+    );</code></pre>
+  syntax:
+    content: public static Task<TResult> MatchAsync<TResult>(this Result result, Func<Task<TResult>> onSuccess, Func<string, Task<TResult>> onFailure)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result
+      description: The result to perform pattern matching on.
+    - id: onSuccess
+      type: System.Func{System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is successful.
+    - id: onFailure
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a failure. Receives the error message.
+    typeParameters:
+    - id: TResult
+      description: The type of the result to return.
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+      description: A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> containing the value returned by either <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code>.
+    content.vb: Public Shared Function MatchAsync(Of TResult)(result As Result, onSuccess As Func(Of Task(Of TResult)), onFailure As Func(Of String, Task(Of TResult))) As Task(Of TResult)
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.MatchAsync(Of TResult)(Result, Func(Of Task(Of TResult)), Func(Of String, Task(Of TResult)))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync(Of TResult)(FlowRight.Core.Results.Result, System.Func(Of System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)))
+  name.vb: MatchAsync(Of TResult)(Result, Func(Of Task(Of TResult)), Func(Of String, Task(Of TResult)))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  id: MatchAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``0}},System.Func{System.String,System.Threading.Tasks.Task{``0}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: MatchAsync<TResult>(Result, Func<Task<TResult>>, Func<string, Task<TResult>>, Func<string, Task<TResult>>, Func<IDictionary<string, string[]>, Task<TResult>>, Func<string, Task<TResult>>)
+  nameWithType: ResultAsyncExtensions.MatchAsync<TResult>(Result, Func<Task<TResult>>, Func<string, Task<TResult>>, Func<string, Task<TResult>>, Func<IDictionary<string, string[]>, Task<TResult>>, Func<string, Task<TResult>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync<TResult>(FlowRight.Core.Results.Result, System.Func<System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>, System.Func<System.Collections.Generic.IDictionary<string, string[]>, System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>)
+  type: Method
+  source:
+    id: MatchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 124
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching with specific handlers for each failure type.
+  remarks: >-
+    <p>
+
+    This async overload provides granular control over different failure types with async handlers,
+
+    allowing you to implement specific async logic for each category of failure. This is particularly useful
+
+    when different failure types require different async handling strategies (async logging, async notifications, etc.).
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result operationResult = await ProcessRequestAsync();
+
+
+    string response = await operationResult.MatchAsync(
+        onSuccess: async () =&gt; await SendSuccessNotificationAsync(),
+        onError: async error =&gt; await HandleSystemErrorAsync(error),
+        onSecurityException: async error =&gt; await ReportSecurityViolationAsync(error),
+        onValidationException: async errors =&gt; await DisplayValidationErrorsAsync(errors),
+        onOperationCanceledException: async error =&gt; await HandleCancellationAsync(error)
+    );</code></pre>
+  syntax:
+    content: public static Task<TResult> MatchAsync<TResult>(this Result result, Func<Task<TResult>> onSuccess, Func<string, Task<TResult>> onError, Func<string, Task<TResult>> onSecurityException, Func<IDictionary<string, string[]>, Task<TResult>> onValidationException, Func<string, Task<TResult>> onOperationCanceledException)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result
+      description: The result to perform pattern matching on.
+    - id: onSuccess
+      type: System.Func{System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is successful.
+    - id: onError
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a general error. Receives the error message.
+    - id: onSecurityException
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a security failure. Receives the error message.
+    - id: onValidationException
+      type: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a validation failure. Receives the validation errors dictionary.
+    - id: onOperationCanceledException
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a cancellation failure. Receives the error message.
+    typeParameters:
+    - id: TResult
+      description: The type of the result to return.
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+      description: A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> containing the value returned by the appropriate handler function.
+    content.vb: Public Shared Function MatchAsync(Of TResult)(result As Result, onSuccess As Func(Of Task(Of TResult)), onError As Func(Of String, Task(Of TResult)), onSecurityException As Func(Of String, Task(Of TResult)), onValidationException As Func(Of IDictionary(Of String, String()), Task(Of TResult)), onOperationCanceledException As Func(Of String, Task(Of TResult))) As Task(Of TResult)
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code> or any of the handler functions is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.MatchAsync(Of TResult)(Result, Func(Of Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of IDictionary(Of String, String()), Task(Of TResult)), Func(Of String, Task(Of TResult)))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync(Of TResult)(FlowRight.Core.Results.Result, System.Func(Of System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)), System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)))
+  name.vb: MatchAsync(Of TResult)(Result, Func(Of Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of IDictionary(Of String, String()), Task(Of TResult)), Func(Of String, Task(Of TResult)))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  id: MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: MatchAsync<T, TResult>(Result<T>, Func<T, Task<TResult>>, Func<string, Task<TResult>>)
+  nameWithType: ResultAsyncExtensions.MatchAsync<T, TResult>(Result<T>, Func<T, Task<TResult>>, Func<string, Task<TResult>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync<T, TResult>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>)
+  type: Method
+  source:
+    id: MatchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 190
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching.
+  remarks: >-
+    <p>
+
+    This is the async equivalent of the <xref href="FlowRight.Core.Results.Result%601.Match%60%601(System.Func%7b%600%2c%60%600%7d%2cSystem.Func%7bSystem.String%2c%60%600%7d)" data-throw-if-not-resolved="false"></xref> method.
+
+    It enables pattern matching with async handlers that can work with the success value.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync(userId);
+
+
+    string response = await userResult.MatchAsync(
+        onSuccess: async user =&gt; {
+            await AuditUserAccessAsync(user);
+            return $"Welcome, {user.Name}!";
+        },
+        onFailure: async error =&gt; {
+            await LogFailedLoginAsync(userId, error);
+            return "Login failed";
+        }
+    );</code></pre>
+  syntax:
+    content: public static Task<TResult> MatchAsync<T, TResult>(this Result<T> result, Func<T, Task<TResult>> onSuccess, Func<string, Task<TResult>> onFailure)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result{{T}}
+      description: The result to perform pattern matching on.
+    - id: onSuccess
+      type: System.Func{{T},System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is successful. Receives the success value.
+    - id: onFailure
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a failure. Receives the error message.
+    typeParameters:
+    - id: T
+      description: The type of the success value in the result.
+    - id: TResult
+      description: The type of the result to return.
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+      description: A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> containing the value returned by either <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code>.
+    content.vb: Public Shared Function MatchAsync(Of T, TResult)(result As Result(Of T), onSuccess As Func(Of T, Task(Of TResult)), onFailure As Func(Of String, Task(Of TResult))) As Task(Of TResult)
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.MatchAsync(Of T, TResult)(Result(Of T), Func(Of T, Task(Of TResult)), Func(Of String, Task(Of TResult)))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync(Of T, TResult)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)))
+  name.vb: MatchAsync(Of T, TResult)(Result(Of T), Func(Of T, Task(Of TResult)), Func(Of String, Task(Of TResult)))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  id: MatchAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``1}},System.Func{System.String,System.Threading.Tasks.Task{``1}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: MatchAsync<T, TResult>(Result<T>, Func<T, Task<TResult>>, Func<string, Task<TResult>>, Func<string, Task<TResult>>, Func<IDictionary<string, string[]>, Task<TResult>>, Func<string, Task<TResult>>)
+  nameWithType: ResultAsyncExtensions.MatchAsync<T, TResult>(Result<T>, Func<T, Task<TResult>>, Func<string, Task<TResult>>, Func<string, Task<TResult>>, Func<IDictionary<string, string[]>, Task<TResult>>, Func<string, Task<TResult>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync<T, TResult>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>, System.Func<System.Collections.Generic.IDictionary<string, string[]>, System.Threading.Tasks.Task<TResult>>, System.Func<string, System.Threading.Tasks.Task<TResult>>)
+  type: Method
+  source:
+    id: MatchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 236
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Transforms this result into a value of type <code class="typeparamref">TResult</code> using async pattern matching with specific handlers for each failure type.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;Order&gt; orderResult = await ProcessOrderAsync(request);
+
+
+    IActionResult response = await orderResult.MatchAsync(
+        onSuccess: async order =&gt; {
+            await SendOrderConfirmationAsync(order);
+            return Ok(order);
+        },
+        onError: async error =&gt; await LogAndReturnErrorAsync(error),
+        onSecurityException: async error =&gt; await HandleSecurityViolationAsync(error),
+        onValidationException: async errors =&gt; await ReturnValidationErrorsAsync(errors),
+        onOperationCanceledException: async error =&gt; await HandleTimeoutAsync(error)
+    );</code></pre>
+  syntax:
+    content: public static Task<TResult> MatchAsync<T, TResult>(this Result<T> result, Func<T, Task<TResult>> onSuccess, Func<string, Task<TResult>> onError, Func<string, Task<TResult>> onSecurityException, Func<IDictionary<string, string[]>, Task<TResult>> onValidationException, Func<string, Task<TResult>> onOperationCanceledException)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result{{T}}
+      description: The result to perform pattern matching on.
+    - id: onSuccess
+      type: System.Func{{T},System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is successful. Receives the success value.
+    - id: onError
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a general error. Receives the error message.
+    - id: onSecurityException
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a security failure. Receives the error message.
+    - id: onValidationException
+      type: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a validation failure. Receives the validation errors dictionary.
+    - id: onOperationCanceledException
+      type: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+      description: Async function to execute if the result is a cancellation failure. Receives the error message.
+    typeParameters:
+    - id: T
+      description: The type of the success value in the result.
+    - id: TResult
+      description: The type of the result to return.
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+      description: A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> containing the value returned by the appropriate handler function.
+    content.vb: Public Shared Function MatchAsync(Of T, TResult)(result As Result(Of T), onSuccess As Func(Of T, Task(Of TResult)), onError As Func(Of String, Task(Of TResult)), onSecurityException As Func(Of String, Task(Of TResult)), onValidationException As Func(Of IDictionary(Of String, String()), Task(Of TResult)), onOperationCanceledException As Func(Of String, Task(Of TResult))) As Task(Of TResult)
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code> or any of the handler functions is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.MatchAsync(Of T, TResult)(Result(Of T), Func(Of T, Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of IDictionary(Of String, String()), Task(Of TResult)), Func(Of String, Task(Of TResult)))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync(Of T, TResult)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)), System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), System.Threading.Tasks.Task(Of TResult)), System.Func(Of String, System.Threading.Tasks.Task(Of TResult)))
+  name.vb: MatchAsync(Of T, TResult)(Result(Of T), Func(Of T, Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of String, Task(Of TResult)), Func(Of IDictionary(Of String, String()), Task(Of TResult)), Func(Of String, Task(Of TResult)))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  id: SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: SwitchAsync(Result, Func<Task>, Func<string, Task>, bool)
+  nameWithType: ResultAsyncExtensions.SwitchAsync(Result, Func<Task>, Func<string, Task>, bool)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result, System.Func<System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>, bool)
+  type: Method
+  source:
+    id: SwitchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 301
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Executes async side-effect actions based on the result state.
+  remarks: >-
+    <p>
+
+    This is the async equivalent of the imperative <xref href="FlowRight.Core.Results.Result.Switch(System.Action%2cSystem.Action%7bSystem.String%7d%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref> method.
+
+    It executes async actions with side effects rather than returning transformed values.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result result = await PerformOperationAsync();
+
+
+    await result.SwitchAsync(
+        onSuccess: async () =&gt; {
+            await LogSuccessAsync("Operation completed");
+            await NotifySubscribersAsync();
+        },
+        onFailure: async error =&gt; {
+            await LogErrorAsync($"Operation failed: {error}");
+            await SendAlertAsync(error);
+        }
+    );</code></pre>
+  syntax:
+    content: public static Task SwitchAsync(this Result result, Func<Task> onSuccess, Func<string, Task> onFailure, bool includeOperationCancelledFailures = false)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result
+      description: The result to perform switching on.
+    - id: onSuccess
+      type: System.Func{System.Threading.Tasks.Task}
+      description: Async action to execute if the result is successful.
+    - id: onFailure
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a failure. Receives the error message.
+    - id: includeOperationCancelledFailures
+      type: System.Boolean
+      description: If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, operation cancelled failures will call <code class="paramref">onFailure</code>. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default), they will be ignored.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the async operation.
+    content.vb: Public Shared Function SwitchAsync(result As Result, onSuccess As Func(Of Task), onFailure As Func(Of String, Task), includeOperationCancelledFailures As Boolean = False) As Task
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.SwitchAsync(Result, Func(Of Task), Func(Of String, Task), Boolean)
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result, System.Func(Of System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task), Boolean)
+  name.vb: SwitchAsync(Result, Func(Of Task), Func(Of String, Task), Boolean)
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  id: SwitchAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: SwitchAsync(Result, Func<Task>, Func<string, Task>, Func<string, Task>, Func<IDictionary<string, string[]>, Task>, Func<string, Task>?)
+  nameWithType: ResultAsyncExtensions.SwitchAsync(Result, Func<Task>, Func<string, Task>, Func<string, Task>, Func<IDictionary<string, string[]>, Task>, Func<string, Task>?)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result, System.Func<System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>, System.Func<System.Collections.Generic.IDictionary<string, string[]>, System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>?)
+  type: Method
+  source:
+    id: SwitchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 349
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Executes async side-effect actions based on the result state with separate handlers for different failure types.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result result = await ProcessRequestAsync();
+
+
+    await result.SwitchAsync(
+        onSuccess: async () =&gt; await SendSuccessNotificationAsync(),
+        onError: async error =&gt; await LogSystemErrorAsync(error),
+        onSecurityException: async error =&gt; await AlertSecurityTeamAsync(error),
+        onValidationException: async errors =&gt; await DisplayValidationErrorsAsync(errors),
+        onOperationCanceledException: async error =&gt; await CleanupResourcesAsync()
+    );</code></pre>
+  syntax:
+    content: public static Task SwitchAsync(this Result result, Func<Task> onSuccess, Func<string, Task> onError, Func<string, Task> onSecurityException, Func<IDictionary<string, string[]>, Task> onValidationException, Func<string, Task>? onOperationCanceledException = null)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result
+      description: The result to perform switching on.
+    - id: onSuccess
+      type: System.Func{System.Threading.Tasks.Task}
+      description: Async action to execute if the result is successful.
+    - id: onError
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a general error. Receives the error message.
+    - id: onSecurityException
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a security failure. Receives the error message.
+    - id: onValidationException
+      type: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a validation failure. Receives the validation errors dictionary.
+    - id: onOperationCanceledException
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Optional async action to execute if the result is a cancellation failure. Receives the error message. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, cancellation failures are ignored.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the async operation.
+    content.vb: Public Shared Function SwitchAsync(result As Result, onSuccess As Func(Of Task), onError As Func(Of String, Task), onSecurityException As Func(Of String, Task), onValidationException As Func(Of IDictionary(Of String, String()), Task), onOperationCanceledException As Func(Of String, Task) = Nothing) As Task
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, <code class="paramref">onError</code>, <code class="paramref">onSecurityException</code>, or <code class="paramref">onValidationException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.SwitchAsync(Result, Func(Of Task), Func(Of String, Task), Func(Of String, Task), Func(Of IDictionary(Of String, String()), Task), Func(Of String, Task))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(FlowRight.Core.Results.Result, System.Func(Of System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task), System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task))
+  name.vb: SwitchAsync(Result, Func(Of Task), Func(Of String, Task), Func(Of String, Task), Func(Of IDictionary(Of String, String()), Task), Func(Of String, Task))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  id: SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: SwitchAsync<T>(Result<T>, Func<T, Task>, Func<string, Task>, bool)
+  nameWithType: ResultAsyncExtensions.SwitchAsync<T>(Result<T>, Func<T, Task>, Func<string, Task>, bool)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync<T>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>, bool)
+  type: Method
+  source:
+    id: SwitchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 425
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Executes async side-effect actions based on the result state.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync(userId);
+
+
+    await userResult.SwitchAsync(
+        onSuccess: async user =&gt; {
+            await LogUserAccessAsync(user);
+            await UpdateLastLoginAsync(user);
+        },
+        onFailure: async error =&gt; {
+            await LogFailedLoginAsync(userId, error);
+            await IncrementFailedLoginCountAsync(userId);
+        }
+    );</code></pre>
+  syntax:
+    content: public static Task SwitchAsync<T>(this Result<T> result, Func<T, Task> onSuccess, Func<string, Task> onFailure, bool includeOperationCancelledFailures = false)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result{{T}}
+      description: The result to perform switching on.
+    - id: onSuccess
+      type: System.Func{{T},System.Threading.Tasks.Task}
+      description: Async action to execute if the result is successful. Receives the success value.
+    - id: onFailure
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a failure. Receives the error message.
+    - id: includeOperationCancelledFailures
+      type: System.Boolean
+      description: Whether to execute <code class="paramref">onFailure</code> for <xref href="FlowRight.Core.Results.ResultFailureType.OperationCanceled" data-throw-if-not-resolved="false"></xref> failures. Defaults to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    typeParameters:
+    - id: T
+      description: The type of the success value in the result.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the async operation.
+    content.vb: Public Shared Function SwitchAsync(Of T)(result As Result(Of T), onSuccess As Func(Of T, Task), onFailure As Func(Of String, Task), includeOperationCancelledFailures As Boolean = False) As Task
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.SwitchAsync(Of T)(Result(Of T), Func(Of T, Task), Func(Of String, Task), Boolean)
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(Of T)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task), Boolean)
+  name.vb: SwitchAsync(Of T)(Result(Of T), Func(Of T, Task), Func(Of String, Task), Boolean)
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  id: SwitchAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task},System.Func{System.String,System.Threading.Tasks.Task})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: SwitchAsync<T>(Result<T>, Func<T, Task>, Func<string, Task>, Func<string, Task>, Func<IDictionary<string, string[]>, Task>, Func<string, Task>?)
+  nameWithType: ResultAsyncExtensions.SwitchAsync<T>(Result<T>, Func<T, Task>, Func<string, Task>, Func<string, Task>, Func<IDictionary<string, string[]>, Task>, Func<string, Task>?)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync<T>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>, System.Func<System.Collections.Generic.IDictionary<string, string[]>, System.Threading.Tasks.Task>, System.Func<string, System.Threading.Tasks.Task>?)
+  type: Method
+  source:
+    id: SwitchAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 470
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Executes async side-effect actions based on the result state with separate handlers for different failure types.
+  example: []
+  syntax:
+    content: public static Task SwitchAsync<T>(this Result<T> result, Func<T, Task> onSuccess, Func<string, Task> onError, Func<string, Task> onSecurityException, Func<IDictionary<string, string[]>, Task> onValidationException, Func<string, Task>? onOperationCanceledException = null)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result{{T}}
+      description: The result to perform switching on.
+    - id: onSuccess
+      type: System.Func{{T},System.Threading.Tasks.Task}
+      description: Async action to execute if the result is successful. Receives the success value.
+    - id: onError
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a general error. Receives the error message.
+    - id: onSecurityException
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a security failure. Receives the error message.
+    - id: onValidationException
+      type: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task}
+      description: Async action to execute if the result is a validation failure. Receives the validation errors dictionary.
+    - id: onOperationCanceledException
+      type: System.Func{System.String,System.Threading.Tasks.Task}
+      description: Optional async action to execute if the result is a cancellation failure. Receives the error message. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, cancellation failures are ignored.
+    typeParameters:
+    - id: T
+      description: The type of the success value in the result.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the async operation.
+    content.vb: Public Shared Function SwitchAsync(Of T)(result As Result(Of T), onSuccess As Func(Of T, Task), onError As Func(Of String, Task), onSecurityException As Func(Of String, Task), onValidationException As Func(Of IDictionary(Of String, String()), Task), onOperationCanceledException As Func(Of String, Task) = Nothing) As Task
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code>, <code class="paramref">onSuccess</code>, <code class="paramref">onError</code>, <code class="paramref">onSecurityException</code>, or <code class="paramref">onValidationException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.SwitchAsync(Of T)(Result(Of T), Func(Of T, Task), Func(Of String, Task), Func(Of String, Task), Func(Of IDictionary(Of String, String()), Task), Func(Of String, Task))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync(Of T)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task), System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), System.Threading.Tasks.Task), System.Func(Of String, System.Threading.Tasks.Task))
+  name.vb: SwitchAsync(Of T)(Result(Of T), Func(Of T, Task), Func(Of String, Task), Func(Of String, Task), Func(Of IDictionary(Of String, String()), Task), Func(Of String, Task))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}})
+  id: ThenAsync``1(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: ThenAsync<T>(Result, Func<Task<Result<T>>>)
+  nameWithType: ResultAsyncExtensions.ThenAsync<T>(Result, Func<Task<Result<T>>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync<T>(FlowRight.Core.Results.Result, System.Func<System.Threading.Tasks.Task<FlowRight.Core.Results.Result<T>>>)
+  type: Method
+  source:
+    id: ThenAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 546
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Chains an async operation that returns a Result&lt;T&gt; to be executed only if this result is successful.
+  remarks: >-
+    <p>
+
+    This method enables async operation chaining while preserving the Result pattern semantics.
+
+    If the current result is a failure, the next operation is not executed and the failure is propagated.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result result = await ValidateInputAsync();
+
+
+    Result&lt;User&gt; userResult = await result.ThenAsync(async () =&gt;
+        await CreateUserAsync(validatedInput)
+    );</code></pre>
+  syntax:
+    content: public static Task<Result<T>> ThenAsync<T>(this Result result, Func<Task<Result<T>>> nextAsync)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result
+      description: The result to chain from.
+    - id: nextAsync
+      type: System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}}
+      description: The async function to execute if this result is successful.
+    typeParameters:
+    - id: T
+      description: The type of the result returned by the next operation.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+      description: >-
+        A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+
+        or the failure information from this result if it failed.
+    content.vb: Public Shared Function ThenAsync(Of T)(result As Result, nextAsync As Func(Of Task(Of Result(Of T)))) As Task(Of Result(Of T))
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.ThenAsync(Of T)(Result, Func(Of Task(Of Result(Of T))))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(Of T)(FlowRight.Core.Results.Result, System.Func(Of System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of T))))
+  name.vb: ThenAsync(Of T)(Result, Func(Of Task(Of Result(Of T))))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  id: ThenAsync(FlowRight.Core.Results.Result,System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: ThenAsync(Result, Func<Task<Result>>)
+  nameWithType: ResultAsyncExtensions.ThenAsync(Result, Func<Task<Result>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(FlowRight.Core.Results.Result, System.Func<System.Threading.Tasks.Task<FlowRight.Core.Results.Result>>)
+  type: Method
+  source:
+    id: ThenAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 580
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Chains an async operation that returns a Result to be executed only if this result is successful.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result result = await ValidateInputAsync();
+
+
+    Result finalResult = await result.ThenAsync(async () =&gt;
+        await ProcessValidatedInputAsync()
+    );</code></pre>
+  syntax:
+    content: public static Task<Result> ThenAsync(this Result result, Func<Task<Result>> nextAsync)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result
+      description: The result to chain from.
+    - id: nextAsync
+      type: System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}}
+      description: The async function to execute if this result is successful.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+      description: >-
+        A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+
+        or the failure information from this result if it failed.
+    content.vb: Public Shared Function ThenAsync(result As Result, nextAsync As Func(Of Task(Of Result))) As Task(Of Result)
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.ThenAsync(Result, Func(Of Task(Of Result)))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(FlowRight.Core.Results.Result, System.Func(Of System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result)))
+  name.vb: ThenAsync(Result, Func(Of Task(Of Result)))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+  id: ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: ThenAsync<T, TNext>(Result<T>, Func<T, Task<Result<TNext>>>)
+  nameWithType: ResultAsyncExtensions.ThenAsync<T, TNext>(Result<T>, Func<T, Task<Result<TNext>>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync<T, TNext>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task<FlowRight.Core.Results.Result<TNext>>>)
+  type: Method
+  source:
+    id: ThenAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 616
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Chains an async operation that returns a Result&lt;TNext&gt; to be executed only if this result is successful.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync();
+
+
+    Result&lt;Order&gt; orderResult = await userResult.ThenAsync(async user =&gt;
+        await CreateOrderForUserAsync(user)
+    );</code></pre>
+  syntax:
+    content: public static Task<Result<TNext>> ThenAsync<T, TNext>(this Result<T> result, Func<T, Task<Result<TNext>>> nextAsync)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result{{T}}
+      description: The result to chain from.
+    - id: nextAsync
+      type: System.Func{{T},System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{TNext}}}}
+      description: The async function to execute if this result is successful. Receives the success value.
+    typeParameters:
+    - id: T
+      description: The type of the success value in the current result.
+    - id: TNext
+      description: The type of the result returned by the next operation.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{TNext}}}
+      description: >-
+        A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+
+        or the failure information from this result if it failed.
+    content.vb: Public Shared Function ThenAsync(Of T, TNext)(result As Result(Of T), nextAsync As Func(Of T, Task(Of Result(Of TNext)))) As Task(Of Result(Of TNext))
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.ThenAsync(Of T, TNext)(Result(Of T), Func(Of T, Task(Of Result(Of TNext))))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(Of T, TNext)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of TNext))))
+  name.vb: ThenAsync(Of T, TNext)(Result(Of T), Func(Of T, Task(Of Result(Of TNext))))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  id: ThenAsync``1(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: ThenAsync<T>(Result<T>, Func<T, Task<Result>>)
+  nameWithType: ResultAsyncExtensions.ThenAsync<T>(Result<T>, Func<T, Task<Result>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync<T>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task<FlowRight.Core.Results.Result>>)
+  type: Method
+  source:
+    id: ThenAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 656
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Chains an async operation that returns a Result to be executed only if this result is successful.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync();
+
+
+    Result finalResult = await userResult.ThenAsync(async user =&gt;
+        await ValidateAndSaveUserAsync(user)
+    );</code></pre>
+  syntax:
+    content: public static Task<Result> ThenAsync<T>(this Result<T> result, Func<T, Task<Result>> nextAsync)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result{{T}}
+      description: The result to chain from.
+    - id: nextAsync
+      type: System.Func{{T},System.Threading.Tasks.Task{FlowRight.Core.Results.Result}}
+      description: The async function to execute if this result is successful. Receives the success value.
+    typeParameters:
+    - id: T
+      description: The type of the success value in the current result.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+      description: >-
+        A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> that contains the result of <code class="paramref">nextAsync</code> if this result is successful,
+
+        or the failure information from this result if it failed.
+    content.vb: Public Shared Function ThenAsync(Of T)(result As Result(Of T), nextAsync As Func(Of T, Task(Of Result))) As Task(Of Result)
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code> or <code class="paramref">nextAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.ThenAsync(Of T)(Result(Of T), Func(Of T, Task(Of Result)))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(Of T)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result)))
+  name.vb: ThenAsync(Of T)(Result(Of T), Func(Of T, Task(Of Result)))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}})
+  id: MapAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{``1}})
+  isExtensionMethod: true
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: MapAsync<T, TResult>(Result<T>, Func<T, Task<TResult>>)
+  nameWithType: ResultAsyncExtensions.MapAsync<T, TResult>(Result<T>, Func<T, Task<TResult>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync<T, TResult>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task<TResult>>)
+  type: Method
+  source:
+    id: MapAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 712
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Transforms the success value of this result using an async function.
+  remarks: >-
+    <p>
+
+    This method allows for async transformation of successful result values while preserving
+
+    the Result pattern semantics. If the current result is a failure, the transformation is not
+
+    executed and the failure is preserved.
+
+    </p>
+
+    <p>
+
+    Unlike <xref href="FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync%60%602(FlowRight.Core.Results.Result%7b%60%600%7d%2cSystem.Func%7b%60%600%2cSystem.Threading.Tasks.Task%7bFlowRight.Core.Results.Result%7b%60%601%7d%7d%7d)" data-throw-if-not-resolved="false"></xref>, this method wraps the transformation result in a success Result,
+
+    making it suitable for pure value transformations rather than operations that can themselves fail.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">Result&lt;User&gt; userResult = await GetUserAsync();
+
+
+    Result&lt;string&gt; displayNameResult = await userResult.MapAsync(async user =&gt;
+        await FormatUserDisplayNameAsync(user)
+    );</code></pre>
+  syntax:
+    content: public static Task<Result<TResult>> MapAsync<T, TResult>(this Result<T> result, Func<T, Task<TResult>> mapAsync)
+    parameters:
+    - id: result
+      type: FlowRight.Core.Results.Result{{T}}
+      description: The result to transform.
+    - id: mapAsync
+      type: System.Func{{T},System.Threading.Tasks.Task{{TResult}}}
+      description: The async function to transform the success value.
+    typeParameters:
+    - id: T
+      description: The type of the success value in the current result.
+    - id: TResult
+      description: The type of the transformed result.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{TResult}}}
+      description: >-
+        A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> containing the transformed value if this result is successful,
+
+        or the failure information from this result if it failed.
+    content.vb: Public Shared Function MapAsync(Of T, TResult)(result As Result(Of T), mapAsync As Func(Of T, Task(Of TResult))) As Task(Of Result(Of TResult))
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">result</code> or <code class="paramref">mapAsync</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.MapAsync(Of T, TResult)(Result(Of T), Func(Of T, Task(Of TResult)))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync(Of T, TResult)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task(Of TResult)))
+  name.vb: MapAsync(Of T, TResult)(Result(Of T), Func(Of T, Task(Of TResult)))
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync(System.Threading.Tasks.Task{FlowRight.Core.Results.Result}[])
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync(System.Threading.Tasks.Task{FlowRight.Core.Results.Result}[])
+  id: CombineAsync(System.Threading.Tasks.Task{FlowRight.Core.Results.Result}[])
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: CombineAsync(params Task<Result>[])
+  nameWithType: ResultAsyncExtensions.CombineAsync(params Task<Result>[])
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync(params System.Threading.Tasks.Task<FlowRight.Core.Results.Result>[])
+  type: Method
+  source:
+    id: CombineAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 773
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Combines multiple async Result operations, waiting for all to complete and aggregating failure information.
+  remarks: >-
+    <p>
+
+    This method provides async aggregation of multiple Result operations, enabling parallel
+
+    execution while collecting all errors rather than failing on the first error encountered.
+
+    </p>
+
+    <p>
+
+    All tasks are awaited concurrently for optimal performance. The combining logic preserves
+
+    error categorization just like the synchronous <xref href="FlowRight.Core.Results.Result.Combine(FlowRight.Core.Results.Result%5b%5d)" data-throw-if-not-resolved="false"></xref> method.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">Task&lt;Result&gt;[] operations = [
+        ValidateUserAsync(user),
+        ValidatePermissionsAsync(user),
+        ValidateDataAsync(data)
+    ];
+
+
+    Result combinedResult = await Result.CombineAsync(operations);
+
+
+    if (combinedResult.IsFailure)
+
+    {
+        // Handle all collected errors at once
+        LogErrors(combinedResult.Failures);
+    }</code></pre>
+  syntax:
+    content: public static Task<Result> CombineAsync(params Task<Result>[] tasks)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}[]
+      description: The array of async Result operations to combine.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+      description: >-
+        A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> that is successful if all input operations are successful,
+
+        or a failure result containing aggregated error information from all failed operations.
+    content.vb: Public Shared Function CombineAsync(ParamArray tasks As Task(Of Result)()) As Task(Of Result)
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">tasks</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.CombineAsync(ParamArray Task(Of Result)())
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync(ParamArray System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result)())
+  name.vb: CombineAsync(ParamArray Task(Of Result)())
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync``1(System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}[])
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync``1(System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}[])
+  id: CombineAsync``1(System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}[])
+  parent: FlowRight.Core.Extensions.ResultAsyncExtensions
+  langs:
+  - csharp
+  - vb
+  name: CombineAsync<T>(params Task<Result<T>>[])
+  nameWithType: ResultAsyncExtensions.CombineAsync<T>(params Task<Result<T>>[])
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync<T>(params System.Threading.Tasks.Task<FlowRight.Core.Results.Result<T>>[])
+  type: Method
+  source:
+    id: CombineAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Extensions/ResultAsyncExtensions.cs
+    startLine: 808
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Extensions
+  summary: Combines multiple async Result&lt;T&gt; operations, waiting for all to complete and aggregating failure information.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Task&lt;Result&lt;User&gt;&gt;[] operations = [
+        ValidateUserAsync(user),
+        EnrichUserDataAsync(user),
+        CheckUserPermissionsAsync(user)
+    ];
+
+
+    Result&lt;User&gt; combinedResult = await Result.CombineAsync(operations);
+
+
+    if (combinedResult.IsFailure)
+
+    {
+        // Handle all collected errors at once
+        LogErrors(combinedResult.Failures);
+    }</code></pre>
+  syntax:
+    content: public static Task<Result<T>> CombineAsync<T>(params Task<Result<T>>[] tasks)
+    parameters:
+    - id: tasks
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}[]
+      description: The array of async Result&lt;T&gt; operations to combine.
+    typeParameters:
+    - id: T
+      description: The type of the success values in the results.
+    return:
+      type: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+      description: >-
+        A <xref href="System.Threading.Tasks.Task%601" data-throw-if-not-resolved="false"></xref> that is successful with the value from the first successful result if all input operations are successful,
+
+        or a failure result containing aggregated error information from all failed operations.
+    content.vb: Public Shared Function CombineAsync(Of T)(ParamArray tasks As Task(Of Result(Of T))()) As Task(Of Result(Of T))
+  overload: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when <code class="paramref">tasks</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: ResultAsyncExtensions.CombineAsync(Of T)(ParamArray Task(Of Result(Of T))())
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync(Of T)(ParamArray System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of T))())
+  name.vb: CombineAsync(Of T)(ParamArray Task(Of Result(Of T))())
+references:
+- uid: FlowRight.Core.Extensions
+  commentId: N:FlowRight.Core.Extensions
+  href: FlowRight.html
+  name: FlowRight.Core.Extensions
+  nameWithType: FlowRight.Core.Extensions
+  fullName: FlowRight.Core.Extensions
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Extensions
+    name: Extensions
+    href: FlowRight.Core.Extensions.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Extensions
+    name: Extensions
+    href: FlowRight.Core.Extensions.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FlowRight.Core.Results.Result.Match``1(System.Func{``0},System.Func{System.String,``0})
+  commentId: M:FlowRight.Core.Results.Result.Match``1(System.Func{``0},System.Func{System.String,``0})
+  isExternal: true
+  href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__
+  name: Match<TResult>(Func<TResult>, Func<string, TResult>)
+  nameWithType: Result.Match<TResult>(Func<TResult>, Func<string, TResult>)
+  fullName: FlowRight.Core.Results.Result.Match<TResult>(System.Func<TResult>, System.Func<string, TResult>)
+  nameWithType.vb: Result.Match(Of TResult)(Func(Of TResult), Func(Of String, TResult))
+  fullName.vb: FlowRight.Core.Results.Result.Match(Of TResult)(System.Func(Of TResult), System.Func(Of String, TResult))
+  name.vb: Match(Of TResult)(Func(Of TResult), Func(Of String, TResult))
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result.Match``1(System.Func{``0},System.Func{System.String,``0})
+    name: Match
+    href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: (
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result.Match``1(System.Func{``0},System.Func{System.String,``0})
+    name: Match
+    href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync*
+  commentId: Overload:FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync
+  href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___
+  name: MatchAsync
+  nameWithType: ResultAsyncExtensions.MatchAsync
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.MatchAsync
+- uid: FlowRight.Core.Results.Result
+  commentId: T:FlowRight.Core.Results.Result
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.Result.html
+  name: Result
+  nameWithType: Result
+  fullName: FlowRight.Core.Results.Result
+- uid: System.Func{System.Threading.Tasks.Task{{TResult}}}
+  commentId: T:System.Func{System.Threading.Tasks.Task{``0}}
+  parent: System
+  definition: System.Func`1
+  name: Func<Task<TResult>>
+  nameWithType: Func<Task<TResult>>
+  fullName: System.Func<System.Threading.Tasks.Task<TResult>>
+  nameWithType.vb: Func(Of Task(Of TResult))
+  fullName.vb: System.Func(Of System.Threading.Tasks.Task(Of TResult))
+  name.vb: Func(Of Task(Of TResult))
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: System.Func{System.String,System.Threading.Tasks.Task{{TResult}}}
+  commentId: T:System.Func{System.String,System.Threading.Tasks.Task{``0}}
+  parent: System
+  definition: System.Func`2
+  name: Func<string, Task<TResult>>
+  nameWithType: Func<string, Task<TResult>>
+  fullName: System.Func<string, System.Threading.Tasks.Task<TResult>>
+  nameWithType.vb: Func(Of String, Task(Of TResult))
+  fullName.vb: System.Func(Of String, System.Threading.Tasks.Task(Of TResult))
+  name.vb: Func(Of String, Task(Of TResult))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task{{TResult}}
+  commentId: T:System.Threading.Tasks.Task{``0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{{TResult}}}
+  commentId: T:System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task{``0}}
+  parent: System
+  definition: System.Func`2
+  name: Func<IDictionary<string, string[]>, Task<TResult>>
+  nameWithType: Func<IDictionary<string, string[]>, Task<TResult>>
+  fullName: System.Func<System.Collections.Generic.IDictionary<string, string[]>, System.Threading.Tasks.Task<TResult>>
+  nameWithType.vb: Func(Of IDictionary(Of String, String()), Task(Of TResult))
+  fullName.vb: System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), System.Threading.Tasks.Task(Of TResult))
+  name.vb: Func(Of IDictionary(Of String, String()), Task(Of TResult))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Results.Result`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+  commentId: M:FlowRight.Core.Results.Result`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+  isExternal: true
+  href: FlowRight.Core.Results.Result-1.html#FlowRight_Core_Results_Result_1_Match__1_System_Func__0___0__System_Func_System_String___0__
+  name: Match<TResult>(Func<T, TResult>, Func<string, TResult>)
+  nameWithType: Result<T>.Match<TResult>(Func<T, TResult>, Func<string, TResult>)
+  fullName: FlowRight.Core.Results.Result<T>.Match<TResult>(System.Func<T, TResult>, System.Func<string, TResult>)
+  nameWithType.vb: Result(Of T).Match(Of TResult)(Func(Of T, TResult), Func(Of String, TResult))
+  fullName.vb: FlowRight.Core.Results.Result(Of T).Match(Of TResult)(System.Func(Of T, TResult), System.Func(Of String, TResult))
+  name.vb: Match(Of TResult)(Func(Of T, TResult), Func(Of String, TResult))
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+    name: Match
+    href: FlowRight.Core.Results.Result-1.html#FlowRight_Core_Results_Result_1_Match__1_System_Func__0___0__System_Func_System_String___0__
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result`1.Match``1(System.Func{`0,``0},System.Func{System.String,``0})
+    name: Match
+    href: FlowRight.Core.Results.Result-1.html#FlowRight_Core_Results_Result_1_Match__1_System_Func__0___0__System_Func_System_String___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Results.Result{{T}}
+  commentId: T:FlowRight.Core.Results.Result{`0}
+  parent: FlowRight.Core.Results
+  definition: FlowRight.Core.Results.Result`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Result<T>
+  nameWithType: Result<T>
+  fullName: FlowRight.Core.Results.Result<T>
+  nameWithType.vb: Result(Of T)
+  fullName.vb: FlowRight.Core.Results.Result(Of T)
+  name.vb: Result(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func{{T},System.Threading.Tasks.Task{{TResult}}}
+  commentId: T:System.Func{``0,System.Threading.Tasks.Task{``1}}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, Task<TResult>>
+  nameWithType: Func<T, Task<TResult>>
+  fullName: System.Func<T, System.Threading.Tasks.Task<TResult>>
+  nameWithType.vb: Func(Of T, Task(Of TResult))
+  fullName.vb: System.Func(Of T, System.Threading.Tasks.Task(Of TResult))
+  name.vb: Func(Of T, Task(Of TResult))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Results.Result`1
+  commentId: T:FlowRight.Core.Results.Result`1
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.Result-1.html
+  name: Result<T>
+  nameWithType: Result<T>
+  fullName: FlowRight.Core.Results.Result<T>
+  nameWithType.vb: Result(Of T)
+  fullName.vb: FlowRight.Core.Results.Result(Of T)
+  name.vb: Result(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: FlowRight.Core.Results.Result.Switch(System.Action,System.Action{System.String},System.Boolean)
+  commentId: M:FlowRight.Core.Results.Result.Switch(System.Action,System.Action{System.String},System.Boolean)
+  isExternal: true
+  href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Boolean_
+  name: Switch(Action, Action<string>, bool)
+  nameWithType: Result.Switch(Action, Action<string>, bool)
+  fullName: FlowRight.Core.Results.Result.Switch(System.Action, System.Action<string>, bool)
+  nameWithType.vb: Result.Switch(Action, Action(Of String), Boolean)
+  fullName.vb: FlowRight.Core.Results.Result.Switch(System.Action, System.Action(Of String), Boolean)
+  name.vb: Switch(Action, Action(Of String), Boolean)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result.Switch(System.Action,System.Action{System.String},System.Boolean)
+    name: Switch
+    href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Boolean_
+  - name: (
+  - uid: System.Action
+    name: Action
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result.Switch(System.Action,System.Action{System.String},System.Boolean)
+    name: Switch
+    href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Boolean_
+  - name: (
+  - uid: System.Action
+    name: Action
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync*
+  commentId: Overload:FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync
+  href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Boolean_
+  name: SwitchAsync
+  nameWithType: ResultAsyncExtensions.SwitchAsync
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.SwitchAsync
+- uid: System.Func{System.Threading.Tasks.Task}
+  commentId: T:System.Func{System.Threading.Tasks.Task}
+  parent: System
+  definition: System.Func`1
+  name: Func<Task>
+  nameWithType: Func<Task>
+  fullName: System.Func<System.Threading.Tasks.Task>
+  nameWithType.vb: Func(Of Task)
+  fullName.vb: System.Func(Of System.Threading.Tasks.Task)
+  name.vb: Func(Of Task)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: )
+- uid: System.Func{System.String,System.Threading.Tasks.Task}
+  commentId: T:System.Func{System.String,System.Threading.Tasks.Task}
+  parent: System
+  definition: System.Func`2
+  name: Func<string, Task>
+  nameWithType: Func<string, Task>
+  fullName: System.Func<string, System.Threading.Tasks.Task>
+  nameWithType.vb: Func(Of String, Task)
+  fullName.vb: System.Func(Of String, System.Threading.Tasks.Task)
+  name.vb: Func(Of String, Task)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task}
+  commentId: T:System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},System.Threading.Tasks.Task}
+  parent: System
+  definition: System.Func`2
+  name: Func<IDictionary<string, string[]>, Task>
+  nameWithType: Func<IDictionary<string, string[]>, Task>
+  fullName: System.Func<System.Collections.Generic.IDictionary<string, string[]>, System.Threading.Tasks.Task>
+  nameWithType.vb: Func(Of IDictionary(Of String, String()), Task)
+  fullName.vb: System.Func(Of System.Collections.Generic.IDictionary(Of String, String()), System.Threading.Tasks.Task)
+  name.vb: Func(Of IDictionary(Of String, String()), Task)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: )
+- uid: FlowRight.Core.Results.ResultFailureType.OperationCanceled
+  commentId: F:FlowRight.Core.Results.ResultFailureType.OperationCanceled
+  href: FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_OperationCanceled
+  name: OperationCanceled
+  nameWithType: ResultFailureType.OperationCanceled
+  fullName: FlowRight.Core.Results.ResultFailureType.OperationCanceled
+- uid: System.Func{{T},System.Threading.Tasks.Task}
+  commentId: T:System.Func{``0,System.Threading.Tasks.Task}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, Task>
+  nameWithType: Func<T, Task>
+  fullName: System.Func<T, System.Threading.Tasks.Task>
+  nameWithType.vb: Func(Of T, Task)
+  fullName.vb: System.Func(Of T, System.Threading.Tasks.Task)
+  name.vb: Func(Of T, Task)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+  - name: )
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync*
+  commentId: Overload:FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync
+  href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___0____
+  name: ThenAsync
+  nameWithType: ResultAsyncExtensions.ThenAsync
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync
+- uid: System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}}
+  commentId: T:System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}}
+  parent: System
+  definition: System.Func`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Func<Task<Result<T>>>
+  nameWithType: Func<Task<Result<T>>>
+  fullName: System.Func<System.Threading.Tasks.Task<FlowRight.Core.Results.Result<T>>>
+  nameWithType.vb: Func(Of Task(Of Result(Of T)))
+  fullName.vb: System.Func(Of System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of T)))
+  name.vb: Func(Of Task(Of Result(Of T)))
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<T>>
+  nameWithType: Task<Result<T>>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<T>>
+  nameWithType.vb: Task(Of Result(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of T))
+  name.vb: Task(Of Result(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}}
+  commentId: T:System.Func{System.Threading.Tasks.Task{FlowRight.Core.Results.Result}}
+  parent: System
+  definition: System.Func`1
+  href: FlowRight.Core.Results.Result.html
+  name: Func<Task<Result>>
+  nameWithType: Func<Task<Result>>
+  fullName: System.Func<System.Threading.Tasks.Task<FlowRight.Core.Results.Result>>
+  nameWithType.vb: Func(Of Task(Of Result))
+  fullName.vb: System.Func(Of System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result))
+  name.vb: Func(Of Task(Of Result))
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result.html
+  name: Task<Result>
+  nameWithType: Task<Result>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result>
+  nameWithType.vb: Task(Of Result)
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result)
+  name.vb: Task(Of Result)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: )
+- uid: System.Func{{T},System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{TNext}}}}
+  commentId: T:System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}}
+  parent: System
+  definition: System.Func`2
+  href: FlowRight.Core.Results.Result-1.html
+  name: Func<T, Task<Result<TNext>>>
+  nameWithType: Func<T, Task<Result<TNext>>>
+  fullName: System.Func<T, System.Threading.Tasks.Task<FlowRight.Core.Results.Result<TNext>>>
+  nameWithType.vb: Func(Of T, Task(Of Result(Of TNext)))
+  fullName.vb: System.Func(Of T, System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of TNext)))
+  name.vb: Func(Of T, Task(Of Result(Of TNext)))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: TNext
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TNext
+  - name: )
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{TNext}}}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<TNext>>
+  nameWithType: Task<Result<TNext>>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<TNext>>
+  nameWithType.vb: Task(Of Result(Of TNext))
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of TNext))
+  name.vb: Task(Of Result(Of TNext))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: TNext
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TNext
+  - name: )
+  - name: )
+- uid: System.Func{{T},System.Threading.Tasks.Task{FlowRight.Core.Results.Result}}
+  commentId: T:System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result}}
+  parent: System
+  definition: System.Func`2
+  href: FlowRight.Core.Results.Result.html
+  name: Func<T, Task<Result>>
+  nameWithType: Func<T, Task<Result>>
+  fullName: System.Func<T, System.Threading.Tasks.Task<FlowRight.Core.Results.Result>>
+  nameWithType.vb: Func(Of T, Task(Of Result))
+  fullName.vb: System.Func(Of T, System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result))
+  name.vb: Func(Of T, Task(Of Result))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+  commentId: M:FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+  isExternal: true
+  href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___1____
+  name: ThenAsync<T, TNext>(Result<T>, Func<T, Task<Result<TNext>>>)
+  nameWithType: ResultAsyncExtensions.ThenAsync<T, TNext>(Result<T>, Func<T, Task<Result<TNext>>>)
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync<T, TNext>(FlowRight.Core.Results.Result<T>, System.Func<T, System.Threading.Tasks.Task<FlowRight.Core.Results.Result<TNext>>>)
+  nameWithType.vb: ResultAsyncExtensions.ThenAsync(Of T, TNext)(Result(Of T), Func(Of T, Task(Of Result(Of TNext))))
+  fullName.vb: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync(Of T, TNext)(FlowRight.Core.Results.Result(Of T), System.Func(Of T, System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of TNext))))
+  name.vb: ThenAsync(Of T, TNext)(Result(Of T), Func(Of T, Task(Of Result(Of TNext))))
+  spec.csharp:
+  - uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+    name: ThenAsync
+    href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___1____
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TNext
+  - name: '>'
+  - name: (
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: TNext
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Core.Extensions.ResultAsyncExtensions.ThenAsync``2(FlowRight.Core.Results.Result{``0},System.Func{``0,System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}})
+    name: ThenAsync
+    href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___1____
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TNext
+  - name: )
+  - name: (
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TNext
+  - name: )
+  - name: )
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync*
+  commentId: Overload:FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync
+  href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_MapAsync__2_FlowRight_Core_Results_Result___0__System_Func___0_System_Threading_Tasks_Task___1___
+  name: MapAsync
+  nameWithType: ResultAsyncExtensions.MapAsync
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.MapAsync
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{TResult}}}
+  commentId: T:System.Threading.Tasks.Task{FlowRight.Core.Results.Result{``1}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<TResult>>
+  nameWithType: Task<Result<TResult>>
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<TResult>>
+  nameWithType.vb: Task(Of Result(Of TResult))
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of TResult))
+  name.vb: Task(Of Result(Of TResult))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Results.Result.Combine(FlowRight.Core.Results.Result[])
+  commentId: M:FlowRight.Core.Results.Result.Combine(FlowRight.Core.Results.Result[])
+  href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Combine_FlowRight_Core_Results_Result___
+  name: Combine(params Result[])
+  nameWithType: Result.Combine(params Result[])
+  fullName: FlowRight.Core.Results.Result.Combine(params FlowRight.Core.Results.Result[])
+  nameWithType.vb: Result.Combine(ParamArray Result())
+  fullName.vb: FlowRight.Core.Results.Result.Combine(ParamArray FlowRight.Core.Results.Result())
+  name.vb: Combine(ParamArray Result())
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result.Combine(FlowRight.Core.Results.Result[])
+    name: Combine
+    href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Combine_FlowRight_Core_Results_Result___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result.Combine(FlowRight.Core.Results.Result[])
+    name: Combine
+    href: FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Combine_FlowRight_Core_Results_Result___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: (
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync*
+  commentId: Overload:FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync
+  href: FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_CombineAsync_System_Threading_Tasks_Task_FlowRight_Core_Results_Result____
+  name: CombineAsync
+  nameWithType: ResultAsyncExtensions.CombineAsync
+  fullName: FlowRight.Core.Extensions.ResultAsyncExtensions.CombineAsync
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result}[]
+  isExternal: true
+  href: FlowRight.Core.Results.Result.html
+  name: Task<Result>[]
+  nameWithType: Task<Result>[]
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result>[]
+  nameWithType.vb: Task(Of Result)()
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result)()
+  name.vb: Task(Of Result)()
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: '>'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    href: FlowRight.Core.Results.Result.html
+  - name: )
+  - name: (
+  - name: )
+- uid: System.Threading.Tasks.Task{FlowRight.Core.Results.Result{{T}}}[]
+  isExternal: true
+  href: FlowRight.Core.Results.Result-1.html
+  name: Task<Result<T>>[]
+  nameWithType: Task<Result<T>>[]
+  fullName: System.Threading.Tasks.Task<FlowRight.Core.Results.Result<T>>[]
+  nameWithType.vb: Task(Of Result(Of T))()
+  fullName.vb: System.Threading.Tasks.Task(Of FlowRight.Core.Results.Result(Of T))()
+  name.vb: Task(Of Result(Of T))()
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+  - name: (
+  - name: )

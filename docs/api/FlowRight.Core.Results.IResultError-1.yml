@@ -1,0 +1,121 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Results.IResultError`1
+  commentId: T:FlowRight.Core.Results.IResultError`1
+  id: IResultError`1
+  parent: FlowRight.Core.Results
+  children:
+  - FlowRight.Core.Results.IResultError`1.Error
+  langs:
+  - csharp
+  - vb
+  name: IResultError<T>
+  nameWithType: IResultError<T>
+  fullName: FlowRight.Core.Results.IResultError<T>
+  type: Interface
+  source:
+    id: IResultError
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 229
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Provides access to error messages from result operations, supporting covariant access to error information.
+  remarks: >-
+    This interface is covariant, allowing assignment from more specific error types to more general ones.
+
+    In a Result pattern library, "Error" is the most appropriate and intuitive property name for accessing
+
+    error information, despite analyzer warnings about keyword conflicts in other .NET languages.
+  example: []
+  syntax:
+    content: public interface IResultError<out T>
+    typeParameters:
+    - id: T
+      description: The type of error message or information provided by the result.
+    content.vb: Public Interface IResultError(Of Out T)
+  nameWithType.vb: IResultError(Of T)
+  fullName.vb: FlowRight.Core.Results.IResultError(Of T)
+  name.vb: IResultError(Of T)
+- uid: FlowRight.Core.Results.IResultError`1.Error
+  commentId: P:FlowRight.Core.Results.IResultError`1.Error
+  id: Error
+  parent: FlowRight.Core.Results.IResultError`1
+  langs:
+  - csharp
+  - vb
+  name: Error
+  nameWithType: IResultError<T>.Error
+  fullName: FlowRight.Core.Results.IResultError<T>.Error
+  type: Property
+  source:
+    id: Error
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 240
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Gets the error message or information associated with a failed result.
+  example: []
+  syntax:
+    content: T Error { get; }
+    parameters: []
+    return:
+      type: '{T}'
+      description: >-
+        The error message or information for failed results, or a default/empty value for successful results.
+
+        The specific type and content depend on the implementing result type.
+    content.vb: ReadOnly Property [Error] As T
+  overload: FlowRight.Core.Results.IResultError`1.Error*
+  nameWithType.vb: IResultError(Of T).Error
+  fullName.vb: FlowRight.Core.Results.IResultError(Of T).Error
+references:
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+- uid: FlowRight.Core.Results.IResultError`1.Error*
+  commentId: Overload:FlowRight.Core.Results.IResultError`1.Error
+  href: FlowRight.Core.Results.IResultError-1.html#FlowRight_Core_Results_IResultError_1_Error
+  name: Error
+  nameWithType: IResultError<T>.Error
+  fullName: FlowRight.Core.Results.IResultError<T>.Error
+  nameWithType.vb: IResultError(Of T).Error
+  fullName.vb: FlowRight.Core.Results.IResultError(Of T).Error
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

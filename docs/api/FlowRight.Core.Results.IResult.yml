@@ -1,0 +1,437 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Results.IResult
+  commentId: T:FlowRight.Core.Results.IResult
+  id: IResult
+  parent: FlowRight.Core.Results
+  children:
+  - FlowRight.Core.Results.IResult.FailureType
+  - FlowRight.Core.Results.IResult.Failures
+  - FlowRight.Core.Results.IResult.IsFailure
+  - FlowRight.Core.Results.IResult.IsSuccess
+  - FlowRight.Core.Results.IResult.ResultType
+  langs:
+  - csharp
+  - vb
+  name: IResult
+  nameWithType: IResult
+  fullName: FlowRight.Core.Results.IResult
+  type: Interface
+  source:
+    id: IResult
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 12
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Represents the basic contract for Result pattern implementations, providing access to success/failure state
+
+    and error information without exposing the success value.
+  remarks: >-
+    This interface defines the core properties that all Result types must implement, including failure tracking,
+
+    success/failure state, and categorization of different failure types.
+  example: []
+  syntax:
+    content: public interface IResult
+    content.vb: Public Interface IResult
+- uid: FlowRight.Core.Results.IResult.Failures
+  commentId: P:FlowRight.Core.Results.IResult.Failures
+  id: Failures
+  parent: FlowRight.Core.Results.IResult
+  langs:
+  - csharp
+  - vb
+  name: Failures
+  nameWithType: IResult.Failures
+  fullName: FlowRight.Core.Results.IResult.Failures
+  type: Property
+  source:
+    id: Failures
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 24
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Gets a dictionary of validation failures, where each key represents a field name
+
+    and each value represents an array of error messages for that field.
+  example: []
+  syntax:
+    content: IDictionary<string, string[]> Failures { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IDictionary{System.String,System.String[]}
+      description: >-
+        An <xref href="System.Collections.Generic.IDictionary%602" data-throw-if-not-resolved="false"></xref> containing field-specific error messages.
+
+        Returns an empty dictionary for successful results or non-validation failures.
+    content.vb: ReadOnly Property Failures As IDictionary(Of String, String())
+  overload: FlowRight.Core.Results.IResult.Failures*
+- uid: FlowRight.Core.Results.IResult.FailureType
+  commentId: P:FlowRight.Core.Results.IResult.FailureType
+  id: FailureType
+  parent: FlowRight.Core.Results.IResult
+  langs:
+  - csharp
+  - vb
+  name: FailureType
+  nameWithType: IResult.FailureType
+  fullName: FlowRight.Core.Results.IResult.FailureType
+  type: Property
+  source:
+    id: FailureType
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 34
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Gets the specific type of failure that occurred, providing detailed categorization
+
+    of different error scenarios.
+  example: []
+  syntax:
+    content: ResultFailureType FailureType { get; }
+    parameters: []
+    return:
+      type: FlowRight.Core.Results.ResultFailureType
+      description: >-
+        A <xref href="FlowRight.Core.Results.ResultFailureType" data-throw-if-not-resolved="false"></xref> value indicating the specific type of failure,
+
+        or <xref href="FlowRight.Core.Results.ResultFailureType.None" data-throw-if-not-resolved="false"></xref> for successful results.
+    content.vb: ReadOnly Property FailureType As ResultFailureType
+  overload: FlowRight.Core.Results.IResult.FailureType*
+- uid: FlowRight.Core.Results.IResult.IsFailure
+  commentId: P:FlowRight.Core.Results.IResult.IsFailure
+  id: IsFailure
+  parent: FlowRight.Core.Results.IResult
+  langs:
+  - csharp
+  - vb
+  name: IsFailure
+  nameWithType: IResult.IsFailure
+  fullName: FlowRight.Core.Results.IResult.IsFailure
+  type: Property
+  source:
+    id: IsFailure
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 43
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Gets a value indicating whether the result represents a failure state.
+  example: []
+  syntax:
+    content: bool IsFailure { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: >-
+        <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the result represents a failure; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+
+        This property is always the logical inverse of <xref href="FlowRight.Core.Results.IResult.IsSuccess" data-throw-if-not-resolved="false"></xref>.
+    content.vb: ReadOnly Property IsFailure As Boolean
+  overload: FlowRight.Core.Results.IResult.IsFailure*
+- uid: FlowRight.Core.Results.IResult.IsSuccess
+  commentId: P:FlowRight.Core.Results.IResult.IsSuccess
+  id: IsSuccess
+  parent: FlowRight.Core.Results.IResult
+  langs:
+  - csharp
+  - vb
+  name: IsSuccess
+  nameWithType: IResult.IsSuccess
+  fullName: FlowRight.Core.Results.IResult.IsSuccess
+  type: Property
+  source:
+    id: IsSuccess
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 52
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: Gets a value indicating whether the result represents a successful state.
+  example: []
+  syntax:
+    content: bool IsSuccess { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: >-
+        <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the result represents success; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+
+        This property is always the logical inverse of <xref href="FlowRight.Core.Results.IResult.IsFailure" data-throw-if-not-resolved="false"></xref>.
+    content.vb: ReadOnly Property IsSuccess As Boolean
+  overload: FlowRight.Core.Results.IResult.IsSuccess*
+- uid: FlowRight.Core.Results.IResult.ResultType
+  commentId: P:FlowRight.Core.Results.IResult.ResultType
+  id: ResultType
+  parent: FlowRight.Core.Results.IResult
+  langs:
+  - csharp
+  - vb
+  name: ResultType
+  nameWithType: IResult.ResultType
+  fullName: FlowRight.Core.Results.IResult.ResultType
+  type: Property
+  source:
+    id: ResultType
+    path: /home/ringo/source/FlowRight-documentation/src/Core/Results/IResult.cs
+    startLine: 61
+  assemblies:
+  - FlowRight.Core
+  namespace: FlowRight.Core.Results
+  summary: >-
+    Gets the general category of the result, providing high-level classification
+
+    of success, informational, warning, or error states.
+  example: []
+  syntax:
+    content: ResultType ResultType { get; }
+    parameters: []
+    return:
+      type: FlowRight.Core.Results.ResultType
+      description: A <xref href="FlowRight.Core.Results.IResult.ResultType" data-throw-if-not-resolved="false"></xref> value indicating the general result category.
+    content.vb: ReadOnly Property ResultType As ResultType
+  overload: FlowRight.Core.Results.IResult.ResultType*
+references:
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: FlowRight.Core.Results.IResult.Failures*
+  commentId: Overload:FlowRight.Core.Results.IResult.Failures
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_Failures
+  name: Failures
+  nameWithType: IResult.Failures
+  fullName: FlowRight.Core.Results.IResult.Failures
+- uid: System.Collections.Generic.IDictionary{System.String,System.String[]}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.String[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  name: IDictionary<string, string[]>
+  nameWithType: IDictionary<string, string[]>
+  fullName: System.Collections.Generic.IDictionary<string, string[]>
+  nameWithType.vb: IDictionary(Of String, String())
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String())
+  name.vb: IDictionary(Of String, String())
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: FlowRight.Core.Results.ResultFailureType
+  commentId: T:FlowRight.Core.Results.ResultFailureType
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.ResultFailureType.html
+  name: ResultFailureType
+  nameWithType: ResultFailureType
+  fullName: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.ResultFailureType.None
+  commentId: F:FlowRight.Core.Results.ResultFailureType.None
+  href: FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_None
+  name: None
+  nameWithType: ResultFailureType.None
+  fullName: FlowRight.Core.Results.ResultFailureType.None
+- uid: FlowRight.Core.Results.IResult.FailureType*
+  commentId: Overload:FlowRight.Core.Results.IResult.FailureType
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_FailureType
+  name: FailureType
+  nameWithType: IResult.FailureType
+  fullName: FlowRight.Core.Results.IResult.FailureType
+- uid: FlowRight.Core.Results.IResult.IsSuccess
+  commentId: P:FlowRight.Core.Results.IResult.IsSuccess
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsSuccess
+  name: IsSuccess
+  nameWithType: IResult.IsSuccess
+  fullName: FlowRight.Core.Results.IResult.IsSuccess
+- uid: FlowRight.Core.Results.IResult.IsFailure*
+  commentId: Overload:FlowRight.Core.Results.IResult.IsFailure
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsFailure
+  name: IsFailure
+  nameWithType: IResult.IsFailure
+  fullName: FlowRight.Core.Results.IResult.IsFailure
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FlowRight.Core.Results.IResult
+  commentId: T:FlowRight.Core.Results.IResult
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.IResult.html
+  name: IResult
+  nameWithType: IResult
+  fullName: FlowRight.Core.Results.IResult
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Core.Results.IResult.IsFailure
+  commentId: P:FlowRight.Core.Results.IResult.IsFailure
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsFailure
+  name: IsFailure
+  nameWithType: IResult.IsFailure
+  fullName: FlowRight.Core.Results.IResult.IsFailure
+- uid: FlowRight.Core.Results.IResult.IsSuccess*
+  commentId: Overload:FlowRight.Core.Results.IResult.IsSuccess
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsSuccess
+  name: IsSuccess
+  nameWithType: IResult.IsSuccess
+  fullName: FlowRight.Core.Results.IResult.IsSuccess
+- uid: FlowRight.Core.Results.IResult.ResultType
+  commentId: P:FlowRight.Core.Results.IResult.ResultType
+  parent: FlowRight.Core.Results.IResult
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_ResultType
+  name: ResultType
+  nameWithType: IResult.ResultType
+  fullName: FlowRight.Core.Results.IResult.ResultType
+- uid: FlowRight.Core.Results.IResult.ResultType*
+  commentId: Overload:FlowRight.Core.Results.IResult.ResultType
+  href: FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_ResultType
+  name: ResultType
+  nameWithType: IResult.ResultType
+  fullName: FlowRight.Core.Results.IResult.ResultType
+- uid: FlowRight.Core.Results.ResultType
+  commentId: T:FlowRight.Core.Results.ResultType
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.ResultType.html
+  name: ResultType
+  nameWithType: ResultType
+  fullName: FlowRight.Core.Results.ResultType

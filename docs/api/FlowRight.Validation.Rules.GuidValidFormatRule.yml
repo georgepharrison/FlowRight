@@ -1,0 +1,326 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.GuidValidFormatRule
+  commentId: T:FlowRight.Validation.Rules.GuidValidFormatRule
+  id: GuidValidFormatRule
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.GuidValidFormatRule.Validate(System.Nullable{System.Guid},System.String)
+  langs:
+  - csharp
+  - vb
+  name: GuidValidFormatRule
+  nameWithType: GuidValidFormatRule
+  fullName: FlowRight.Validation.Rules.GuidValidFormatRule
+  type: Class
+  source:
+    id: GuidValidFormatRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/GuidValidFormatRule.cs
+    startLine: 20
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: >-
+    Validation rule that ensures a GUID follows the standard hyphenated format (8-4-4-4-12 characters).
+
+    This validates the string representation of the GUID is properly formatted.
+  example:
+  - >-
+    <pre><code class="lang-csharp">// Valid format
+
+    rule.Validate(Guid.Parse("f47ac10b-58cc-4372-a567-0e02b2c3d479"), "ID") // Returns null (valid)
+
+
+    // Any valid GUID should pass this rule as System.Guid ensures valid format
+
+    rule.Validate(Guid.NewGuid(), "ID") // Returns null (valid)
+
+
+    // Null GUID
+
+    rule.Validate(null, "ID") // Returns "ID must be in valid GUID format"</code></pre>
+  syntax:
+    content: 'public sealed class GuidValidFormatRule : IRule<Guid?>'
+    content.vb: Public NotInheritable Class GuidValidFormatRule Implements IRule(Of Guid?)
+  inheritance:
+  - System.Object
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}
+- uid: FlowRight.Validation.Rules.GuidValidFormatRule.Validate(System.Nullable{System.Guid},System.String)
+  commentId: M:FlowRight.Validation.Rules.GuidValidFormatRule.Validate(System.Nullable{System.Guid},System.String)
+  id: Validate(System.Nullable{System.Guid},System.String)
+  parent: FlowRight.Validation.Rules.GuidValidFormatRule
+  langs:
+  - csharp
+  - vb
+  name: Validate(Guid?, string)
+  nameWithType: GuidValidFormatRule.Validate(Guid?, string)
+  fullName: FlowRight.Validation.Rules.GuidValidFormatRule.Validate(System.Guid?, string)
+  type: Method
+  source:
+    id: Validate
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/GuidValidFormatRule.cs
+    startLine: 33
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Validates the specified value and returns an error message if validation fails.
+  example: []
+  syntax:
+    content: public string? Validate(Guid? value, string displayName)
+    parameters:
+    - id: value
+      type: System.Nullable{System.Guid}
+      description: The value to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated, used in error messages.
+    return:
+      type: System.String
+      description: An error message if validation fails; otherwise, null indicating validation passed.
+    content.vb: Public Function Validate(value As Guid?, displayName As String) As String
+  overload: FlowRight.Validation.Rules.GuidValidFormatRule.Validate*
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}.Validate(System.Nullable{System.Guid},System.String)
+  nameWithType.vb: GuidValidFormatRule.Validate(Guid?, String)
+  fullName.vb: FlowRight.Validation.Rules.GuidValidFormatRule.Validate(System.Guid?, String)
+  name.vb: Validate(Guid?, String)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}
+  commentId: T:FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<Guid?>
+  nameWithType: IRule<Guid?>
+  fullName: FlowRight.Validation.Rules.IRule<System.Guid?>
+  nameWithType.vb: IRule(Of Guid?)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of System.Guid?)
+  name.vb: IRule(Of Guid?)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.GuidValidFormatRule.Validate*
+  commentId: Overload:FlowRight.Validation.Rules.GuidValidFormatRule.Validate
+  href: FlowRight.Validation.Rules.GuidValidFormatRule.html#FlowRight_Validation_Rules_GuidValidFormatRule_Validate_System_Nullable_System_Guid__System_String_
+  name: Validate
+  nameWithType: GuidValidFormatRule.Validate
+  fullName: FlowRight.Validation.Rules.GuidValidFormatRule.Validate
+- uid: FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}.Validate(System.Nullable{System.Guid},System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}.Validate(System.Nullable{System.Guid},System.String)
+  parent: FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}
+  definition: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(Guid?, string)
+  nameWithType: IRule<Guid?>.Validate(Guid?, string)
+  fullName: FlowRight.Validation.Rules.IRule<System.Guid?>.Validate(System.Guid?, string)
+  nameWithType.vb: IRule(Of Guid?).Validate(Guid?, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of System.Guid?).Validate(System.Guid?, String)
+  name.vb: Validate(Guid?, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}.Validate(System.Nullable{System.Guid},System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule{System.Nullable{System.Guid}}.Validate(System.Nullable{System.Guid},System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.Nullable{System.Guid}
+  commentId: T:System.Nullable{System.Guid}
+  parent: System
+  definition: System.Nullable`1
+  name: Guid?
+  nameWithType: Guid?
+  fullName: System.Guid?
+  spec.csharp:
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

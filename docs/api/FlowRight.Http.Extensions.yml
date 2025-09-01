@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Http.Extensions
+  commentId: N:FlowRight.Http.Extensions
+  id: FlowRight.Http.Extensions
+  children:
+  - FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Http.Extensions
+  nameWithType: FlowRight.Http.Extensions
+  fullName: FlowRight.Http.Extensions
+  type: Namespace
+  assemblies:
+  - FlowRight.Http
+references:
+- uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  commentId: T:FlowRight.Http.Extensions.HttpResponseMessageExtensions
+  href: FlowRight.Http.Extensions.HttpResponseMessageExtensions.html
+  name: HttpResponseMessageExtensions
+  nameWithType: HttpResponseMessageExtensions
+  fullName: FlowRight.Http.Extensions.HttpResponseMessageExtensions

@@ -1,0 +1,716 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+  commentId: T:FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+  id: MustAsyncContextAwareRule`1
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.#ctor(System.Func{`0,FlowRight.Validation.Context.IValidationContext,System.Threading.Tasks.Task{System.Boolean}},System.String)
+  - FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  langs:
+  - csharp
+  - vb
+  name: MustAsyncContextAwareRule<T>
+  nameWithType: MustAsyncContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.MustAsyncContextAwareRule<T>
+  type: Class
+  source:
+    id: MustAsyncContextAwareRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MustAsyncContextAwareRule.cs
+    startLine: 82
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: >-
+    An asynchronous context-aware validation rule that applies a custom condition function with access to validation context.
+
+    This rule enables complex validation scenarios that require async operations and access to root objects, services, or custom data.
+  remarks: >-
+    <p>
+
+    This rule extends validation capabilities to support asynchronous operations while providing access to the validation context.
+
+    It enables validation logic that depends on:
+
+    <ul><li>Asynchronous database queries or web service calls</li><li>Other properties of the root object being validated</li><li>External services accessed through dependency injection</li><li>Custom data shared between validation rules</li><li>Parent-child relationships in hierarchical validation</li><li>Previously executed validation rules and their results</li></ul>
+
+    </p>
+
+    <p>
+
+    The condition function should return true if the validation passes, or false if it fails.
+
+    When the condition returns false, the specified error message will be used as the validation error.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">// Async database validation with context
+
+    var rule = new MustAsyncContextAwareRule&lt;string&gt;(
+        async (email, context) =&gt; 
+        {
+            IUserRepository? repository = context.GetService&lt;IUserRepository&gt;();
+            if (repository != null)
+            {
+                return !await repository.EmailExistsAsync(email);
+            }
+            return false;
+        },
+        "Email address is already in use");
+
+    // Async web service validation with cross-property check
+
+    var serviceRule = new MustAsyncContextAwareRule&lt;string&gt;(
+        async (value, context) =&gt; 
+        {
+            User? user = context.GetRootObject&lt;User&gt;();
+            IValidationService? service = context.GetService&lt;IValidationService&gt;();
+
+            if (user != null &amp;&amp; service != null)
+            {
+                return await service.ValidateWithUserContextAsync(value, user.Id);
+            }
+            return false;
+        },
+        "Value failed external validation service");
+
+    // Async validation with custom data and retry logic
+
+    var retryRule = new MustAsyncContextAwareRule&lt;string&gt;(
+        async (value, context) =&gt; 
+        {
+            int maxRetries = context.GetCustomData&lt;int&gt;("MaxRetries");
+            IExternalService? service = context.GetService&lt;IExternalService&gt;();
+
+            for (int i = 0; i &lt;= maxRetries; i++)
+            {
+                try
+                {
+                    return await service?.ValidateAsync(value) ?? false;
+                }
+                catch when (i &lt; maxRetries)
+                {
+                    await Task.Delay(TimeSpan.FromMilliseconds(100 * (i + 1)));
+                }
+            }
+            return false;
+        },
+        "External validation failed after retries");</code></pre>
+  syntax:
+    content: 'public sealed class MustAsyncContextAwareRule<T> : IAsyncContextAwareRule<T>'
+    typeParameters:
+    - id: T
+      description: The type of value to validate.
+    content.vb: Public NotInheritable Class MustAsyncContextAwareRule(Of T) Implements IAsyncContextAwareRule(Of T)
+  inheritance:
+  - System.Object
+  implements:
+  - FlowRight.Validation.Rules.IAsyncContextAwareRule{{T}}
+  nameWithType.vb: MustAsyncContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.MustAsyncContextAwareRule(Of T)
+  name.vb: MustAsyncContextAwareRule(Of T)
+- uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.#ctor(System.Func{`0,FlowRight.Validation.Context.IValidationContext,System.Threading.Tasks.Task{System.Boolean}},System.String)
+  commentId: M:FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.#ctor(System.Func{`0,FlowRight.Validation.Context.IValidationContext,System.Threading.Tasks.Task{System.Boolean}},System.String)
+  id: '#ctor(System.Func{`0,FlowRight.Validation.Context.IValidationContext,System.Threading.Tasks.Task{System.Boolean}},System.String)'
+  parent: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+  langs:
+  - csharp
+  - vb
+  name: MustAsyncContextAwareRule(Func<T, IValidationContext, Task<bool>>, string)
+  nameWithType: MustAsyncContextAwareRule<T>.MustAsyncContextAwareRule(Func<T, IValidationContext, Task<bool>>, string)
+  fullName: FlowRight.Validation.Rules.MustAsyncContextAwareRule<T>.MustAsyncContextAwareRule(System.Func<T, FlowRight.Validation.Context.IValidationContext, System.Threading.Tasks.Task<bool>>, string)
+  type: Constructor
+  source:
+    id: .ctor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MustAsyncContextAwareRule.cs
+    startLine: 82
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: >-
+    An asynchronous context-aware validation rule that applies a custom condition function with access to validation context.
+
+    This rule enables complex validation scenarios that require async operations and access to root objects, services, or custom data.
+  remarks: >-
+    <p>
+
+    This rule extends validation capabilities to support asynchronous operations while providing access to the validation context.
+
+    It enables validation logic that depends on:
+
+    <ul><li>Asynchronous database queries or web service calls</li><li>Other properties of the root object being validated</li><li>External services accessed through dependency injection</li><li>Custom data shared between validation rules</li><li>Parent-child relationships in hierarchical validation</li><li>Previously executed validation rules and their results</li></ul>
+
+    </p>
+
+    <p>
+
+    The condition function should return true if the validation passes, or false if it fails.
+
+    When the condition returns false, the specified error message will be used as the validation error.
+
+    </p>
+  example:
+  - >-
+    <pre><code class="lang-csharp">// Async database validation with context
+
+    var rule = new MustAsyncContextAwareRule&lt;string&gt;(
+        async (email, context) =&gt; 
+        {
+            IUserRepository? repository = context.GetService&lt;IUserRepository&gt;();
+            if (repository != null)
+            {
+                return !await repository.EmailExistsAsync(email);
+            }
+            return false;
+        },
+        "Email address is already in use");
+
+    // Async web service validation with cross-property check
+
+    var serviceRule = new MustAsyncContextAwareRule&lt;string&gt;(
+        async (value, context) =&gt; 
+        {
+            User? user = context.GetRootObject&lt;User&gt;();
+            IValidationService? service = context.GetService&lt;IValidationService&gt;();
+
+            if (user != null &amp;&amp; service != null)
+            {
+                return await service.ValidateWithUserContextAsync(value, user.Id);
+            }
+            return false;
+        },
+        "Value failed external validation service");
+
+    // Async validation with custom data and retry logic
+
+    var retryRule = new MustAsyncContextAwareRule&lt;string&gt;(
+        async (value, context) =&gt; 
+        {
+            int maxRetries = context.GetCustomData&lt;int&gt;("MaxRetries");
+            IExternalService? service = context.GetService&lt;IExternalService&gt;();
+
+            for (int i = 0; i &lt;= maxRetries; i++)
+            {
+                try
+                {
+                    return await service?.ValidateAsync(value) ?? false;
+                }
+                catch when (i &lt; maxRetries)
+                {
+                    await Task.Delay(TimeSpan.FromMilliseconds(100 * (i + 1)));
+                }
+            }
+            return false;
+        },
+        "External validation failed after retries");</code></pre>
+  syntax:
+    content: public MustAsyncContextAwareRule(Func<T, IValidationContext, Task<bool>> condition, string errorMessage)
+    parameters:
+    - id: condition
+      type: System.Func{{T},FlowRight.Validation.Context.IValidationContext,System.Threading.Tasks.Task{System.Boolean}}
+      description: The async condition function that receives both the value and validation context.
+    - id: errorMessage
+      type: System.String
+      description: The error message to return when validation fails.
+    content.vb: Public Sub New(condition As Func(Of T, IValidationContext, Task(Of Boolean)), errorMessage As String)
+  overload: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.#ctor*
+  nameWithType.vb: MustAsyncContextAwareRule(Of T).New(Func(Of T, IValidationContext, Task(Of Boolean)), String)
+  fullName.vb: FlowRight.Validation.Rules.MustAsyncContextAwareRule(Of T).New(System.Func(Of T, FlowRight.Validation.Context.IValidationContext, System.Threading.Tasks.Task(Of Boolean)), String)
+  name.vb: New(Func(Of T, IValidationContext, Task(Of Boolean)), String)
+- uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  commentId: M:FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  id: ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  parent: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+  langs:
+  - csharp
+  - vb
+  name: ValidateAsync(T, string, IValidationContext)
+  nameWithType: MustAsyncContextAwareRule<T>.ValidateAsync(T, string, IValidationContext)
+  fullName: FlowRight.Validation.Rules.MustAsyncContextAwareRule<T>.ValidateAsync(T, string, FlowRight.Validation.Context.IValidationContext)
+  type: Method
+  source:
+    id: ValidateAsync
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MustAsyncContextAwareRule.cs
+    startLine: 103
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Asynchronously validates the value using the custom condition function with access to validation context.
+  example: []
+  syntax:
+    content: public Task<string?> ValidateAsync(T value, string displayName, IValidationContext context)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: The value to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated.
+    - id: context
+      type: FlowRight.Validation.Context.IValidationContext
+      description: The validation context providing access to root object, services, and custom data.
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+      description: >-
+        A task that represents the asynchronous validation operation. The task result contains
+
+        an error message if validation fails; otherwise, null indicating validation passed.
+    content.vb: Public Function ValidateAsync(value As T, displayName As String, context As IValidationContext) As Task(Of String)
+  overload: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.ValidateAsync*
+  implements:
+  - FlowRight.Validation.Rules.IAsyncContextAwareRule{{T}}.ValidateAsync({T},System.String,FlowRight.Validation.Context.IValidationContext)
+  nameWithType.vb: MustAsyncContextAwareRule(Of T).ValidateAsync(T, String, IValidationContext)
+  fullName.vb: FlowRight.Validation.Rules.MustAsyncContextAwareRule(Of T).ValidateAsync(T, String, FlowRight.Validation.Context.IValidationContext)
+  name.vb: ValidateAsync(T, String, IValidationContext)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FlowRight.Validation.Rules.IAsyncContextAwareRule{{T}}
+  commentId: T:FlowRight.Validation.Rules.IAsyncContextAwareRule{`0}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+  href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  name: IAsyncContextAwareRule<T>
+  nameWithType: IAsyncContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.IAsyncContextAwareRule<T>
+  nameWithType.vb: IAsyncContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IAsyncContextAwareRule(Of T)
+  name.vb: IAsyncContextAwareRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+    name: IAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+    name: IAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+  commentId: T:FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+  href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  name: IAsyncContextAwareRule<T>
+  nameWithType: IAsyncContextAwareRule<T>
+  fullName: FlowRight.Validation.Rules.IAsyncContextAwareRule<T>
+  nameWithType.vb: IAsyncContextAwareRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IAsyncContextAwareRule(Of T)
+  name.vb: IAsyncContextAwareRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+    name: IAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+    name: IAsyncContextAwareRule
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.#ctor*
+  commentId: Overload:FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.#ctor
+  href: FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_MustAsyncContextAwareRule_1__ctor_System_Func__0_FlowRight_Validation_Context_IValidationContext_System_Threading_Tasks_Task_System_Boolean___System_String_
+  name: MustAsyncContextAwareRule
+  nameWithType: MustAsyncContextAwareRule<T>.MustAsyncContextAwareRule
+  fullName: FlowRight.Validation.Rules.MustAsyncContextAwareRule<T>.MustAsyncContextAwareRule
+  nameWithType.vb: MustAsyncContextAwareRule(Of T).New
+  fullName.vb: FlowRight.Validation.Rules.MustAsyncContextAwareRule(Of T).New
+  name.vb: New
+- uid: System.Func{{T},FlowRight.Validation.Context.IValidationContext,System.Threading.Tasks.Task{System.Boolean}}
+  commentId: T:System.Func{`0,FlowRight.Validation.Context.IValidationContext,System.Threading.Tasks.Task{System.Boolean}}
+  parent: System
+  definition: System.Func`3
+  href: FlowRight.Validation.Context.IValidationContext.html
+  name: Func<T, IValidationContext, Task<bool>>
+  nameWithType: Func<T, IValidationContext, Task<bool>>
+  fullName: System.Func<T, FlowRight.Validation.Context.IValidationContext, System.Threading.Tasks.Task<bool>>
+  nameWithType.vb: Func(Of T, IValidationContext, Task(Of Boolean))
+  fullName.vb: System.Func(Of T, FlowRight.Validation.Context.IValidationContext, System.Threading.Tasks.Task(Of Boolean))
+  name.vb: Func(Of T, IValidationContext, Task(Of Boolean))
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: FlowRight.Validation.Context.IValidationContext
+    name: IValidationContext
+    href: FlowRight.Validation.Context.IValidationContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: FlowRight.Validation.Context.IValidationContext
+    name: IValidationContext
+    href: FlowRight.Validation.Context.IValidationContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.ValidateAsync*
+  commentId: Overload:FlowRight.Validation.Rules.MustAsyncContextAwareRule`1.ValidateAsync
+  href: FlowRight.Validation.Rules.MustAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_MustAsyncContextAwareRule_1_ValidateAsync__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  name: ValidateAsync
+  nameWithType: MustAsyncContextAwareRule<T>.ValidateAsync
+  fullName: FlowRight.Validation.Rules.MustAsyncContextAwareRule<T>.ValidateAsync
+  nameWithType.vb: MustAsyncContextAwareRule(Of T).ValidateAsync
+  fullName.vb: FlowRight.Validation.Rules.MustAsyncContextAwareRule(Of T).ValidateAsync
+- uid: FlowRight.Validation.Rules.IAsyncContextAwareRule{{T}}.ValidateAsync({T},System.String,FlowRight.Validation.Context.IValidationContext)
+  commentId: M:FlowRight.Validation.Rules.IAsyncContextAwareRule{`0}.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  parent: FlowRight.Validation.Rules.IAsyncContextAwareRule{{T}}
+  definition: FlowRight.Validation.Rules.IAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_IAsyncContextAwareRule_1_ValidateAsync__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  name: ValidateAsync(T, string, IValidationContext)
+  nameWithType: IAsyncContextAwareRule<T>.ValidateAsync(T, string, IValidationContext)
+  fullName: FlowRight.Validation.Rules.IAsyncContextAwareRule<T>.ValidateAsync(T, string, FlowRight.Validation.Context.IValidationContext)
+  nameWithType.vb: IAsyncContextAwareRule(Of T).ValidateAsync(T, String, IValidationContext)
+  fullName.vb: FlowRight.Validation.Rules.IAsyncContextAwareRule(Of T).ValidateAsync(T, String, FlowRight.Validation.Context.IValidationContext)
+  name.vb: ValidateAsync(T, String, IValidationContext)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule{`0}.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+    name: ValidateAsync
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_IAsyncContextAwareRule_1_ValidateAsync__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: FlowRight.Validation.Context.IValidationContext
+    name: IValidationContext
+    href: FlowRight.Validation.Context.IValidationContext.html
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule{`0}.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+    name: ValidateAsync
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_IAsyncContextAwareRule_1_ValidateAsync__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: FlowRight.Validation.Context.IValidationContext
+    name: IValidationContext
+    href: FlowRight.Validation.Context.IValidationContext.html
+  - name: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: FlowRight.Validation.Context.IValidationContext
+  commentId: T:FlowRight.Validation.Context.IValidationContext
+  parent: FlowRight.Validation.Context
+  href: FlowRight.Validation.Context.IValidationContext.html
+  name: IValidationContext
+  nameWithType: IValidationContext
+  fullName: FlowRight.Validation.Context.IValidationContext
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  commentId: M:FlowRight.Validation.Rules.IAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_IAsyncContextAwareRule_1_ValidateAsync__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  name: ValidateAsync(T, string, IValidationContext)
+  nameWithType: IAsyncContextAwareRule<T>.ValidateAsync(T, string, IValidationContext)
+  fullName: FlowRight.Validation.Rules.IAsyncContextAwareRule<T>.ValidateAsync(T, string, FlowRight.Validation.Context.IValidationContext)
+  nameWithType.vb: IAsyncContextAwareRule(Of T).ValidateAsync(T, String, IValidationContext)
+  fullName.vb: FlowRight.Validation.Rules.IAsyncContextAwareRule(Of T).ValidateAsync(T, String, FlowRight.Validation.Context.IValidationContext)
+  name.vb: ValidateAsync(T, String, IValidationContext)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+    name: ValidateAsync
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_IAsyncContextAwareRule_1_ValidateAsync__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: FlowRight.Validation.Context.IValidationContext
+    name: IValidationContext
+    href: FlowRight.Validation.Context.IValidationContext.html
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1.ValidateAsync(`0,System.String,FlowRight.Validation.Context.IValidationContext)
+    name: ValidateAsync
+    href: FlowRight.Validation.Rules.IAsyncContextAwareRule-1.html#FlowRight_Validation_Rules_IAsyncContextAwareRule_1_ValidateAsync__0_System_String_FlowRight_Validation_Context_IValidationContext_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: FlowRight.Validation.Context.IValidationContext
+    name: IValidationContext
+    href: FlowRight.Validation.Context.IValidationContext.html
+  - name: )
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: FlowRight.Validation.Context
+  commentId: N:FlowRight.Validation.Context
+  href: FlowRight.html
+  name: FlowRight.Validation.Context
+  nameWithType: FlowRight.Validation.Context
+  fullName: FlowRight.Validation.Context
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Context
+    name: Context
+    href: FlowRight.Validation.Context.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Context
+    name: Context
+    href: FlowRight.Validation.Context.html
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

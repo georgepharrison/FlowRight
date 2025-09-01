@@ -1,0 +1,4225 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Validators.PropertyValidator`3
+  commentId: T:FlowRight.Validation.Validators.PropertyValidator`3
+  id: PropertyValidator`3
+  parent: FlowRight.Validation.Validators
+  children:
+  - FlowRight.Validation.Validators.PropertyValidator`3.AddRule(FlowRight.Validation.Rules.IRule{`1})
+  - FlowRight.Validation.Validators.PropertyValidator`3.Build(System.Func{`0})
+  - FlowRight.Validation.Validators.PropertyValidator`3.Empty
+  - FlowRight.Validation.Validators.PropertyValidator`3.Equal(`1,System.Collections.Generic.IEqualityComparer{`1})
+  - FlowRight.Validation.Validators.PropertyValidator`3.Must(System.Func{`1,System.Boolean},System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.NotEmpty
+  - FlowRight.Validation.Validators.PropertyValidator`3.NotEqual(`1,System.Collections.Generic.IEqualityComparer{`1})
+  - FlowRight.Validation.Validators.PropertyValidator`3.NotNull
+  - FlowRight.Validation.Validators.PropertyValidator`3.Null
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Byte}},System.Byte,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Char}},System.Char,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.DateTime,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Decimal}},System.Decimal,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Double}},System.Double,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int16}},System.Int16,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.Int32,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int64}},System.Int64,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Boolean}}},System.Nullable{System.Boolean},System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Char}}},System.Nullable{System.Char},System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.DateTime}}},System.Nullable{System.DateTime},System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Guid}}},System.Nullable{System.Guid},System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.SByte}},System.SByte,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Single}},System.Single,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt32}},System.UInt32,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt64}},System.UInt64,System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}},System.Collections.Generic.IEnumerable{``0},System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},FlowRight.Core.Results.Result{``0},``0@)
+  - FlowRight.Validation.Validators.PropertyValidator`3.Unless(System.Func{`1,System.Boolean})
+  - FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastRuleCondition(System.Func{`1,System.Boolean})
+  - FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastValidationMessage(System.String)
+  - FlowRight.Validation.Validators.PropertyValidator`3.When(System.Func{`1,System.Boolean})
+  - FlowRight.Validation.Validators.PropertyValidator`3.WithMessage(System.String)
+  langs:
+  - csharp
+  - vb
+  name: PropertyValidator<T, TProp, TRule>
+  nameWithType: PropertyValidator<T, TProp, TRule>
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>
+  type: Class
+  source:
+    id: PropertyValidator
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 20
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: >-
+    Abstract base class for all property validators, providing core validation functionality and fluent interface patterns
+
+    for building complex validation rules. This class enables type-safe validation chaining and integration with the
+
+    ValidationBuilder&lt;T&gt; framework.
+  remarks: >-
+    This class implements the Fluent Interface pattern to enable method chaining and provides a bridge between
+
+    property-specific validators and the main ValidationBuilder. It manages pending validation rules and applies
+
+    them when transitioning between properties or building the final result.
+  example: []
+  syntax:
+    content: 'public abstract class PropertyValidator<T, TProp, TRule> where TRule : PropertyValidator<T, TProp, TRule>'
+    typeParameters:
+    - id: T
+      description: The type of object being validated.
+    - id: TProp
+      description: The type of property being validated.
+    - id: TRule
+      description: The concrete validator type (used for fluent interface return types).
+    content.vb: Public MustInherit Class PropertyValidator(Of T, TProp, TRule As PropertyValidator(Of T, TProp, TRule))
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+  - FlowRight.Validation.Validators.GenericPropertyValidator`2
+  - FlowRight.Validation.Validators.GuidPropertyValidator`1
+  - FlowRight.Validation.Validators.NumericPropertyValidator`2
+  - FlowRight.Validation.Validators.StringPropertyValidator`1
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule)
+  name.vb: PropertyValidator(Of T, TProp, TRule)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Build(System.Func{`0})
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.Build(System.Func{`0})
+  id: Build(System.Func{`0})
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: Build(Func<T>)
+  nameWithType: PropertyValidator<T, TProp, TRule>.Build(Func<T>)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Build(System.Func<T>)
+  type: Method
+  source:
+    id: Build
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 61
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Applies all pending validation rules for this property and builds the final Result&lt;T&gt;.
+  remarks: >-
+    This method is a convenience shortcut that applies pending rules for the current property
+
+    and immediately builds the final result. It's equivalent to calling the ValidationBuilder's
+
+    Build method after all property validations are complete.
+  example: []
+  syntax:
+    content: public Result<T> Build(Func<T> factory)
+    parameters:
+    - id: factory
+      type: System.Func{{T}}
+      description: A factory function to create the validated object when all validations pass.
+    return:
+      type: FlowRight.Core.Results.Result{{T}}
+      description: A Result&lt;T&gt; containing either the successfully created object or validation errors.
+    content.vb: Public Function Build(factory As Func(Of T)) As Result(Of T)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.Build*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Build(Func(Of T))
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Build(System.Func(Of T))
+  name.vb: Build(Func(Of T))
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Empty
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.Empty
+  id: Empty
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: Empty()
+  nameWithType: PropertyValidator<T, TProp, TRule>.Empty()
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Empty()
+  type: Method
+  source:
+    id: Empty
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 78
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Validates that the property value is considered "empty" according to type-specific rules.
+  remarks: >-
+    Empty validation varies by type:
+
+    - Strings: null or empty string
+
+    - Collections: null or empty collection
+
+    - Nullable types: null value
+
+    - Value types: default value
+  example: []
+  syntax:
+    content: public TRule Empty()
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function Empty() As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.Empty*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Empty()
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Empty()
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Equal(`1,System.Collections.Generic.IEqualityComparer{`1})
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.Equal(`1,System.Collections.Generic.IEqualityComparer{`1})
+  id: Equal(`1,System.Collections.Generic.IEqualityComparer{`1})
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: Equal(TProp, IEqualityComparer<TProp>?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.Equal(TProp, IEqualityComparer<TProp>?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Equal(TProp, System.Collections.Generic.IEqualityComparer<TProp>?)
+  type: Method
+  source:
+    id: Equal
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 89
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Validates that the property value equals the specified comparison value.
+  example: []
+  syntax:
+    content: public TRule Equal(TProp comparisonValue, IEqualityComparer<TProp>? comparer = null)
+    parameters:
+    - id: comparisonValue
+      type: '{TProp}'
+      description: The value to compare against.
+    - id: comparer
+      type: System.Collections.Generic.IEqualityComparer{{TProp}}
+      description: Optional equality comparer for comparison.
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function Equal(comparisonValue As TProp, comparer As IEqualityComparer(Of TProp) = Nothing) As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.Equal*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Equal(TProp, IEqualityComparer(Of TProp))
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Equal(TProp, System.Collections.Generic.IEqualityComparer(Of TProp))
+  name.vb: Equal(TProp, IEqualityComparer(Of TProp))
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Must(System.Func{`1,System.Boolean},System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.Must(System.Func{`1,System.Boolean},System.String)
+  id: Must(System.Func{`1,System.Boolean},System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: Must(Func<TProp, bool>, string)
+  nameWithType: PropertyValidator<T, TProp, TRule>.Must(Func<TProp, bool>, string)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Must(System.Func<TProp, bool>, string)
+  type: Method
+  source:
+    id: Must
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 107
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Validates the property using a custom condition function with a specified error message.
+  example:
+  - >-
+    <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Username, request.Username)
+        .Must(username =&gt; !ReservedUsernames.Contains(username), "Username is reserved")
+        .Must(username =&gt; IsUniqueUsername(username), "Username already exists");</code></pre>
+  syntax:
+    content: public TRule Must(Func<TProp, bool> condition, string errorMessage)
+    parameters:
+    - id: condition
+      type: System.Func{{TProp},System.Boolean}
+      description: A function that returns true if the value is valid.
+    - id: errorMessage
+      type: System.String
+      description: The error message to use if validation fails.
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function Must(condition As Func(Of TProp, Boolean), errorMessage As String) As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.Must*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Must(Func(Of TProp, Boolean), String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Must(System.Func(Of TProp, Boolean), String)
+  name.vb: Must(Func(Of TProp, Boolean), String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.NotEmpty
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.NotEmpty
+  id: NotEmpty
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: NotEmpty()
+  nameWithType: PropertyValidator<T, TProp, TRule>.NotEmpty()
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.NotEmpty()
+  type: Method
+  source:
+    id: NotEmpty
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 116
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Validates that the property value is not empty (handles strings, collections, GUIDs, etc.).
+  example: []
+  syntax:
+    content: public TRule NotEmpty()
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function NotEmpty() As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.NotEmpty*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).NotEmpty()
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).NotEmpty()
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.NotEqual(`1,System.Collections.Generic.IEqualityComparer{`1})
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.NotEqual(`1,System.Collections.Generic.IEqualityComparer{`1})
+  id: NotEqual(`1,System.Collections.Generic.IEqualityComparer{`1})
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: NotEqual(TProp, IEqualityComparer<TProp>?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.NotEqual(TProp, IEqualityComparer<TProp>?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.NotEqual(TProp, System.Collections.Generic.IEqualityComparer<TProp>?)
+  type: Method
+  source:
+    id: NotEqual
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 127
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Validates that the property value does not equal the specified comparison value.
+  example: []
+  syntax:
+    content: public TRule NotEqual(TProp comparisonValue, IEqualityComparer<TProp>? comparer = null)
+    parameters:
+    - id: comparisonValue
+      type: '{TProp}'
+      description: The value to compare against.
+    - id: comparer
+      type: System.Collections.Generic.IEqualityComparer{{TProp}}
+      description: Optional equality comparer for comparison.
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function NotEqual(comparisonValue As TProp, comparer As IEqualityComparer(Of TProp) = Nothing) As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.NotEqual*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).NotEqual(TProp, IEqualityComparer(Of TProp))
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).NotEqual(TProp, System.Collections.Generic.IEqualityComparer(Of TProp))
+  name.vb: NotEqual(TProp, IEqualityComparer(Of TProp))
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.NotNull
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.NotNull
+  id: NotNull
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: NotNull()
+  nameWithType: PropertyValidator<T, TProp, TRule>.NotNull()
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.NotNull()
+  type: Method
+  source:
+    id: NotNull
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 136
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Validates that the property value is not null.
+  example: []
+  syntax:
+    content: public TRule NotNull()
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function NotNull() As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.NotNull*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).NotNull()
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).NotNull()
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Null
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.Null
+  id: "Null"
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: Null()
+  nameWithType: PropertyValidator<T, TProp, TRule>.Null()
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Null()
+  type: Method
+  source:
+    id: "Null"
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 145
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Validates that the property value is null.
+  example: []
+  syntax:
+    content: public TRule Null()
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function Null() As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.Null*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Null()
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Null()
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},FlowRight.Core.Results.Result{``0},``0@)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},FlowRight.Core.Results.Result{``0},``0@)
+  id: RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},FlowRight.Core.Results.Result{``0},``0@)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor<TDifferentProp>(Expression<Func<T, TDifferentProp>>, Result<TDifferentProp>, out TDifferentProp?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor<TDifferentProp>(Expression<Func<T, TDifferentProp>>, Result<TDifferentProp>, out TDifferentProp?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor<TDifferentProp>(System.Linq.Expressions.Expression<System.Func<T, TDifferentProp>>, FlowRight.Core.Results.Result<TDifferentProp>, out TDifferentProp?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 158
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a different property using a Result composition pattern.
+  example: []
+  syntax:
+    content: public ValidationBuilder<T> RuleFor<TDifferentProp>(Expression<Func<T, TDifferentProp>> propertySelector, Result<TDifferentProp> result, out TDifferentProp? value)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},{TDifferentProp}}}
+      description: Expression selecting the property to validate.
+    - id: result
+      type: FlowRight.Core.Results.Result{{TDifferentProp}}
+      description: The Result containing the property value or errors.
+    - id: value
+      type: '{TDifferentProp}'
+      description: Out parameter for the validated value if successful.
+    typeParameters:
+    - id: TDifferentProp
+      description: The type of the different property.
+    return:
+      type: FlowRight.Validation.Builders.ValidationBuilder{{T}}
+      description: The validation builder for method chaining.
+    content.vb: Public Function RuleFor(Of TDifferentProp)(propertySelector As Expression(Of Func(Of T, TDifferentProp)), result As Result(Of TDifferentProp), value As TDifferentProp) As ValidationBuilder(Of T)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Of TDifferentProp)(Expression(Of Func(Of T, TDifferentProp)), Result(Of TDifferentProp), TDifferentProp)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(Of TDifferentProp)(System.Linq.Expressions.Expression(Of System.Func(Of T, TDifferentProp)), FlowRight.Core.Results.Result(Of TDifferentProp), TDifferentProp)
+  name.vb: RuleFor(Of TDifferentProp)(Expression(Of Func(Of T, TDifferentProp)), Result(Of TDifferentProp), TDifferentProp)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, string>>, string, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, string>>, string, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, string>>, string, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 168
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a string property using a fluent interface.
+  example: []
+  syntax:
+    content: public StringPropertyValidator<T> RuleFor(Expression<Func<T, string>> propertySelector, string value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.String}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.String
+      description: The string value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.StringPropertyValidator{{T}}
+      description: A string property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, String)), value As String, displayName As String = Nothing) As StringPropertyValidator(Of T)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, String)), String, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, String)), String, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, String)), String, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Guid}}},System.Nullable{System.Guid},System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Guid}}},System.Nullable{System.Guid},System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Guid}}},System.Nullable{System.Guid},System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, Guid?>>, Guid?, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, Guid?>>, Guid?, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, System.Guid?>>, System.Guid?, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 181
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a GUID property using a fluent interface.
+  example: []
+  syntax:
+    content: public GuidPropertyValidator<T> RuleFor(Expression<Func<T, Guid?>> propertySelector, Guid? value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.Guid}}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Nullable{System.Guid}
+      description: The GUID value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.GuidPropertyValidator{{T}}
+      description: A GUID property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Guid?)), value As Guid?, displayName As String = Nothing) As GuidPropertyValidator(Of T)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Guid?)), Guid?, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Guid?)), System.Guid?, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Guid?)), Guid?, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.Int32,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.Int32,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.Int32,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, int>>, int, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, int>>, int, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, int>>, int, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 194
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for an integer numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, int> RuleFor(Expression<Func<T, int>> propertySelector, int value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Int32}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Int32
+      description: The integer value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Int32}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Integer)), value As Integer, displayName As String = Nothing) As NumericPropertyValidator(Of T, Integer)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Integer)), Integer, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Integer)), Integer, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Integer)), Integer, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int64}},System.Int64,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int64}},System.Int64,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int64}},System.Int64,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, long>>, long, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, long>>, long, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, long>>, long, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 207
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a long numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, long> RuleFor(Expression<Func<T, long>> propertySelector, long value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Int64}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Int64
+      description: The long value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Int64}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Long)), value As Long, displayName As String = Nothing) As NumericPropertyValidator(Of T, Long)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Long)), Long, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Long)), Long, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Long)), Long, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Decimal}},System.Decimal,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Decimal}},System.Decimal,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Decimal}},System.Decimal,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, decimal>>, decimal, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, decimal>>, decimal, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, decimal>>, decimal, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 220
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a decimal numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, decimal> RuleFor(Expression<Func<T, decimal>> propertySelector, decimal value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Decimal}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Decimal
+      description: The decimal value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Decimal}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Decimal)), value As Decimal, displayName As String = Nothing) As NumericPropertyValidator(Of T, Decimal)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Decimal)), Decimal, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Decimal)), Decimal, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Decimal)), Decimal, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Double}},System.Double,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Double}},System.Double,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Double}},System.Double,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, double>>, double, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, double>>, double, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, double>>, double, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 233
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a double numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, double> RuleFor(Expression<Func<T, double>> propertySelector, double value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Double}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Double
+      description: The double value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Double}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Double)), value As Double, displayName As String = Nothing) As NumericPropertyValidator(Of T, Double)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Double)), Double, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Double)), Double, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Double)), Double, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Single}},System.Single,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Single}},System.Single,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Single}},System.Single,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, float>>, float, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, float>>, float, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, float>>, float, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 246
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a float numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, float> RuleFor(Expression<Func<T, float>> propertySelector, float value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Single}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Single
+      description: The float value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Single}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Single)), value As Single, displayName As String = Nothing) As NumericPropertyValidator(Of T, Single)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Single)), Single, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Single)), Single, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Single)), Single, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int16}},System.Int16,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int16}},System.Int16,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int16}},System.Int16,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, short>>, short, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, short>>, short, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, short>>, short, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 259
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a short numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, short> RuleFor(Expression<Func<T, short>> propertySelector, short value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Int16}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Int16
+      description: The short value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Int16}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Short)), value As Short, displayName As String = Nothing) As NumericPropertyValidator(Of T, Short)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Short)), Short, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Short)), Short, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Short)), Short, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}},System.Collections.Generic.IEnumerable{``0},System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}},System.Collections.Generic.IEnumerable{``0},System.String)
+  id: RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}},System.Collections.Generic.IEnumerable{``0},System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor<TItem>(Expression<Func<T, IEnumerable<TItem>>>, IEnumerable<TItem>, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor<TItem>(Expression<Func<T, IEnumerable<TItem>>>, IEnumerable<TItem>, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor<TItem>(System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.IEnumerable<TItem>>>, System.Collections.Generic.IEnumerable<TItem>, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 273
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for an enumerable/collection property using a fluent interface.
+  example: []
+  syntax:
+    content: public EnumerablePropertyValidator<T, TItem> RuleFor<TItem>(Expression<Func<T, IEnumerable<TItem>>> propertySelector, IEnumerable<TItem> value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.IEnumerable{{TItem}}}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Collections.Generic.IEnumerable{{TItem}}
+      description: The collection value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    typeParameters:
+    - id: TItem
+      description: The type of items in the collection.
+    return:
+      type: FlowRight.Validation.Validators.EnumerablePropertyValidator{{T},{TItem}}
+      description: An enumerable property validator for further rule configuration.
+    content.vb: Public Function RuleFor(Of TItem)(propertySelector As Expression(Of Func(Of T, IEnumerable(Of TItem))), value As IEnumerable(Of TItem), displayName As String = Nothing) As EnumerablePropertyValidator(Of T, TItem)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Of TItem)(Expression(Of Func(Of T, IEnumerable(Of TItem))), IEnumerable(Of TItem), String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(Of TItem)(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.IEnumerable(Of TItem))), System.Collections.Generic.IEnumerable(Of TItem), String)
+  name.vb: RuleFor(Of TItem)(Expression(Of Func(Of T, IEnumerable(Of TItem))), IEnumerable(Of TItem), String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.DateTime,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.DateTime,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.DateTime,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, DateTime>>, DateTime, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, DateTime>>, DateTime, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, System.DateTime>>, System.DateTime, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 286
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a DateTime property using a fluent interface.
+  example: []
+  syntax:
+    content: public GenericPropertyValidator<T, DateTime> RuleFor(Expression<Func<T, DateTime>> propertySelector, DateTime value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.DateTime}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.DateTime
+      description: The DateTime value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.DateTime}
+      description: A generic property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Date)), value As Date, displayName As String = Nothing) As GenericPropertyValidator(Of T, Date)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Date)), Date, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Date)), Date, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Date)), Date, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.DateTime}}},System.Nullable{System.DateTime},System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.DateTime}}},System.Nullable{System.DateTime},System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.DateTime}}},System.Nullable{System.DateTime},System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, DateTime?>>, DateTime?, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, DateTime?>>, DateTime?, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, System.DateTime?>>, System.DateTime?, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 299
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a nullable DateTime property using a fluent interface.
+  example: []
+  syntax:
+    content: public GenericPropertyValidator<T, DateTime?> RuleFor(Expression<Func<T, DateTime?>> propertySelector, DateTime? value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.DateTime}}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Nullable{System.DateTime}
+      description: The nullable DateTime value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Nullable{System.DateTime}}
+      description: A generic property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Date?)), value As Date?, displayName As String = Nothing) As GenericPropertyValidator(Of T, Date?)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Date?)), Date?, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Date?)), Date?, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Date?)), Date?, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, bool>>, bool, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, bool>>, bool, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, bool>>, bool, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 312
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a boolean property using a fluent interface.
+  example: []
+  syntax:
+    content: public GenericPropertyValidator<T, bool> RuleFor(Expression<Func<T, bool>> propertySelector, bool value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Boolean
+      description: The boolean value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Boolean}
+      description: A generic property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Boolean)), value As Boolean, displayName As String = Nothing) As GenericPropertyValidator(Of T, Boolean)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Boolean)), Boolean, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)), Boolean, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Boolean)), Boolean, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Boolean}}},System.Nullable{System.Boolean},System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Boolean}}},System.Nullable{System.Boolean},System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Boolean}}},System.Nullable{System.Boolean},System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, bool?>>, bool?, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, bool?>>, bool?, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, bool?>>, bool?, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 325
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a nullable boolean property using a fluent interface.
+  example: []
+  syntax:
+    content: public GenericPropertyValidator<T, bool?> RuleFor(Expression<Func<T, bool?>> propertySelector, bool? value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.Boolean}}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Nullable{System.Boolean}
+      description: The nullable boolean value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Nullable{System.Boolean}}
+      description: A generic property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Boolean?)), value As Boolean?, displayName As String = Nothing) As GenericPropertyValidator(Of T, Boolean?)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Boolean?)), Boolean?, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean?)), Boolean?, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Boolean?)), Boolean?, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Byte}},System.Byte,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Byte}},System.Byte,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Byte}},System.Byte,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, byte>>, byte, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, byte>>, byte, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, byte>>, byte, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 338
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a byte numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, byte> RuleFor(Expression<Func<T, byte>> propertySelector, byte value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Byte}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Byte
+      description: The byte value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Byte}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Byte)), value As Byte, displayName As String = Nothing) As NumericPropertyValidator(Of T, Byte)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Byte)), Byte, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Byte)), Byte, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Byte)), Byte, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.SByte}},System.SByte,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.SByte}},System.SByte,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.SByte}},System.SByte,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, sbyte>>, sbyte, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, sbyte>>, sbyte, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, sbyte>>, sbyte, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 351
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a signed byte numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, sbyte> RuleFor(Expression<Func<T, sbyte>> propertySelector, sbyte value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.SByte}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.SByte
+      description: The sbyte value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.SByte}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, SByte)), value As SByte, displayName As String = Nothing) As NumericPropertyValidator(Of T, SByte)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, SByte)), SByte, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, SByte)), SByte, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, SByte)), SByte, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt32}},System.UInt32,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt32}},System.UInt32,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt32}},System.UInt32,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, uint>>, uint, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, uint>>, uint, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, uint>>, uint, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 364
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for an unsigned integer numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, uint> RuleFor(Expression<Func<T, uint>> propertySelector, uint value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.UInt32}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.UInt32
+      description: The uint value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.UInt32}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, UInteger)), value As UInteger, displayName As String = Nothing) As NumericPropertyValidator(Of T, UInteger)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, UInteger)), UInteger, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, UInteger)), UInteger, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, UInteger)), UInteger, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt64}},System.UInt64,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt64}},System.UInt64,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt64}},System.UInt64,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, ulong>>, ulong, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, ulong>>, ulong, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, ulong>>, ulong, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 377
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for an unsigned long numeric property using a fluent interface.
+  example: []
+  syntax:
+    content: public NumericPropertyValidator<T, ulong> RuleFor(Expression<Func<T, ulong>> propertySelector, ulong value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.UInt64}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.UInt64
+      description: The ulong value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.UInt64}
+      description: A numeric property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, ULong)), value As ULong, displayName As String = Nothing) As NumericPropertyValidator(Of T, ULong)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, ULong)), ULong, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, ULong)), ULong, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, ULong)), ULong, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Char}},System.Char,System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Char}},System.Char,System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Char}},System.Char,System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, char>>, char, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, char>>, char, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, char>>, char, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 390
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a character property using a fluent interface.
+  example: []
+  syntax:
+    content: public GenericPropertyValidator<T, char> RuleFor(Expression<Func<T, char>> propertySelector, char value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Char}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Char
+      description: The character value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Char}
+      description: A generic property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Char)), value As Char, displayName As String = Nothing) As GenericPropertyValidator(Of T, Char)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Char)), Char, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Char)), Char, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Char)), Char, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Char}}},System.Nullable{System.Char},System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Char}}},System.Nullable{System.Char},System.String)
+  id: RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Char}}},System.Nullable{System.Char},System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: RuleFor(Expression<Func<T, char?>>, char?, string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor(Expression<Func<T, char?>>, char?, string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor(System.Linq.Expressions.Expression<System.Func<T, char?>>, char?, string?)
+  type: Method
+  source:
+    id: RuleFor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 403
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Creates validation rules for a nullable character property using a fluent interface.
+  example: []
+  syntax:
+    content: public GenericPropertyValidator<T, char?> RuleFor(Expression<Func<T, char?>> propertySelector, char? value, string? displayName = null)
+    parameters:
+    - id: propertySelector
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.Char}}}
+      description: Expression selecting the property to validate.
+    - id: value
+      type: System.Nullable{System.Char}
+      description: The nullable character value for the property.
+    - id: displayName
+      type: System.String
+      description: Optional display name for validation messages.
+    return:
+      type: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Nullable{System.Char}}
+      description: A generic property validator for further rule configuration.
+    content.vb: Public Function RuleFor(propertySelector As Expression(Of Func(Of T, Char?)), value As Char?, displayName As String = Nothing) As GenericPropertyValidator(Of T, Char?)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor(Expression(Of Func(Of T, Char?)), Char?, String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor(System.Linq.Expressions.Expression(Of System.Func(Of T, Char?)), Char?, String)
+  name.vb: RuleFor(Expression(Of Func(Of T, Char?)), Char?, String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Unless(System.Func{`1,System.Boolean})
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.Unless(System.Func{`1,System.Boolean})
+  id: Unless(System.Func{`1,System.Boolean})
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: Unless(Func<TProp, bool>)
+  nameWithType: PropertyValidator<T, TProp, TRule>.Unless(Func<TProp, bool>)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Unless(System.Func<TProp, bool>)
+  type: Method
+  source:
+    id: Unless
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 415
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: >-
+    Applies a conditional check to the last validation rule, only executing it when the condition is false.
+
+    This is the inverse of When().
+  example: []
+  syntax:
+    content: public TRule Unless(Func<TProp, bool> condition)
+    parameters:
+    - id: condition
+      type: System.Func{{TProp},System.Boolean}
+      description: A function that determines when NOT to apply the previous validation rule.
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function Unless(condition As Func(Of TProp, Boolean)) As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.Unless*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Unless(Func(Of TProp, Boolean))
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Unless(System.Func(Of TProp, Boolean))
+  name.vb: Unless(Func(Of TProp, Boolean))
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.When(System.Func{`1,System.Boolean})
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.When(System.Func{`1,System.Boolean})
+  id: When(System.Func{`1,System.Boolean})
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: When(Func<TProp, bool>)
+  nameWithType: PropertyValidator<T, TProp, TRule>.When(Func<TProp, bool>)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.When(System.Func<TProp, bool>)
+  type: Method
+  source:
+    id: When
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 431
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Applies a conditional check to the last validation rule, only executing it when the condition is true.
+  example:
+  - >-
+    <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.ConfirmPassword, request.ConfirmPassword)
+        .Equal(request.Password)
+        .When(value =&gt; !string.IsNullOrEmpty(request.Password))
+        .WithMessage("Passwords must match when password is provided");</code></pre>
+  syntax:
+    content: public TRule When(Func<TProp, bool> condition)
+    parameters:
+    - id: condition
+      type: System.Func{{TProp},System.Boolean}
+      description: A function that determines whether to apply the previous validation rule.
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function [When](condition As Func(Of TProp, Boolean)) As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.When*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).When(Func(Of TProp, Boolean))
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).When(System.Func(Of TProp, Boolean))
+  name.vb: When(Func(Of TProp, Boolean))
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.WithMessage(System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.WithMessage(System.String)
+  id: WithMessage(System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: WithMessage(string)
+  nameWithType: PropertyValidator<T, TProp, TRule>.WithMessage(string)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.WithMessage(string)
+  type: Method
+  source:
+    id: WithMessage
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 449
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Overrides the default error message for the last validation rule with a custom message.
+  example:
+  - >-
+    <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Age, request.Age)
+        .GreaterThan(0)
+        .WithMessage("Character age must be positive - negative ages are not allowed in Shadowrun");</code></pre>
+  syntax:
+    content: public TRule WithMessage(string customMessage)
+    parameters:
+    - id: customMessage
+      type: System.String
+      description: The custom error message to use instead of the default.
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Public Function WithMessage(customMessage As String) As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.WithMessage*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).WithMessage(String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).WithMessage(String)
+  name.vb: WithMessage(String)
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.AddRule(FlowRight.Validation.Rules.IRule{`1})
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.AddRule(FlowRight.Validation.Rules.IRule{`1})
+  id: AddRule(FlowRight.Validation.Rules.IRule{`1})
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: AddRule(IRule<TProp>?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.AddRule(IRule<TProp>?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.AddRule(FlowRight.Validation.Rules.IRule<TProp>?)
+  type: Method
+  source:
+    id: AddRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 464
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Adds a validation rule and executes it immediately.
+  example: []
+  syntax:
+    content: protected TRule AddRule(IRule<TProp>? rule)
+    parameters:
+    - id: rule
+      type: FlowRight.Validation.Rules.IRule{{TProp}}
+      description: The validation rule to add.
+    return:
+      type: '{TRule}'
+      description: The concrete validator type for method chaining.
+    content.vb: Protected Function AddRule(rule As IRule(Of TProp)) As TRule
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.AddRule*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).AddRule(IRule(Of TProp))
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).AddRule(FlowRight.Validation.Rules.IRule(Of TProp))
+  name.vb: AddRule(IRule(Of TProp))
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastRuleCondition(System.Func{`1,System.Boolean})
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastRuleCondition(System.Func{`1,System.Boolean})
+  id: UpdateLastRuleCondition(System.Func{`1,System.Boolean})
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: UpdateLastRuleCondition(Func<TProp, bool>?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.UpdateLastRuleCondition(Func<TProp, bool>?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.UpdateLastRuleCondition(System.Func<TProp, bool>?)
+  type: Method
+  source:
+    id: UpdateLastRuleCondition
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 487
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Updates the condition function for the last added validation rule.
+  example: []
+  syntax:
+    content: protected void UpdateLastRuleCondition(Func<TProp, bool>? condition)
+    parameters:
+    - id: condition
+      type: System.Func{{TProp},System.Boolean}
+      description: The condition function to apply to the last rule.
+    content.vb: Protected Sub UpdateLastRuleCondition(condition As Func(Of TProp, Boolean))
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastRuleCondition*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).UpdateLastRuleCondition(Func(Of TProp, Boolean))
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).UpdateLastRuleCondition(System.Func(Of TProp, Boolean))
+  name.vb: UpdateLastRuleCondition(Func(Of TProp, Boolean))
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastValidationMessage(System.String)
+  commentId: M:FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastValidationMessage(System.String)
+  id: UpdateLastValidationMessage(System.String)
+  parent: FlowRight.Validation.Validators.PropertyValidator`3
+  langs:
+  - csharp
+  - vb
+  name: UpdateLastValidationMessage(string?)
+  nameWithType: PropertyValidator<T, TProp, TRule>.UpdateLastValidationMessage(string?)
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.UpdateLastValidationMessage(string?)
+  type: Method
+  source:
+    id: UpdateLastValidationMessage
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Validators/PropertyValidator.cs
+    startLine: 526
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Validators
+  summary: Updates the custom error message for the last added validation rule.
+  example: []
+  syntax:
+    content: protected void UpdateLastValidationMessage(string? customMessage)
+    parameters:
+    - id: customMessage
+      type: System.String
+      description: The custom error message to use.
+    content.vb: Protected Sub UpdateLastValidationMessage(customMessage As String)
+  overload: FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastValidationMessage*
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).UpdateLastValidationMessage(String)
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).UpdateLastValidationMessage(String)
+  name.vb: UpdateLastValidationMessage(String)
+references:
+- uid: FlowRight.Validation.Validators
+  commentId: N:FlowRight.Validation.Validators
+  href: FlowRight.html
+  name: FlowRight.Validation.Validators
+  nameWithType: FlowRight.Validation.Validators
+  fullName: FlowRight.Validation.Validators
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Validators
+    name: Validators
+    href: FlowRight.Validation.Validators.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Validators
+    name: Validators
+    href: FlowRight.Validation.Validators.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Build*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.Build
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Build_System_Func__0__
+  name: Build
+  nameWithType: PropertyValidator<T, TProp, TRule>.Build
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Build
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Build
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Build
+- uid: System.Func{{T}}
+  commentId: T:System.Func{`0}
+  parent: System
+  definition: System.Func`1
+  name: Func<T>
+  nameWithType: Func<T>
+  fullName: System.Func<T>
+  nameWithType.vb: Func(Of T)
+  fullName.vb: System.Func(Of T)
+  name.vb: Func(Of T)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Core.Results.Result{{T}}
+  commentId: T:FlowRight.Core.Results.Result{`0}
+  parent: FlowRight.Core.Results
+  definition: FlowRight.Core.Results.Result`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Result<T>
+  nameWithType: Result<T>
+  fullName: FlowRight.Core.Results.Result<T>
+  nameWithType.vb: Result(Of T)
+  fullName.vb: FlowRight.Core.Results.Result(Of T)
+  name.vb: Result(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FlowRight.Core.Results.Result`1
+  commentId: T:FlowRight.Core.Results.Result`1
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.Result-1.html
+  name: Result<T>
+  nameWithType: Result<T>
+  fullName: FlowRight.Core.Results.Result<T>
+  nameWithType.vb: Result(Of T)
+  fullName.vb: FlowRight.Core.Results.Result(Of T)
+  name.vb: Result(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Empty*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.Empty
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Empty
+  name: Empty
+  nameWithType: PropertyValidator<T, TProp, TRule>.Empty
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Empty
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Empty
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Empty
+- uid: '{TRule}'
+  commentId: '!:TRule'
+  definition: TRule
+  name: TRule
+  nameWithType: TRule
+  fullName: TRule
+- uid: TRule
+  name: TRule
+  nameWithType: TRule
+  fullName: TRule
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Equal*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.Equal
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Equal__1_System_Collections_Generic_IEqualityComparer__1__
+  name: Equal
+  nameWithType: PropertyValidator<T, TProp, TRule>.Equal
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Equal
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Equal
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Equal
+- uid: '{TProp}'
+  commentId: '!:TProp'
+  definition: TProp
+  name: TProp
+  nameWithType: TProp
+  fullName: TProp
+- uid: System.Collections.Generic.IEqualityComparer{{TProp}}
+  commentId: T:System.Collections.Generic.IEqualityComparer{`1}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEqualityComparer`1
+  name: IEqualityComparer<TProp>
+  nameWithType: IEqualityComparer<TProp>
+  fullName: System.Collections.Generic.IEqualityComparer<TProp>
+  nameWithType.vb: IEqualityComparer(Of TProp)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of TProp)
+  name.vb: IEqualityComparer(Of TProp)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+  - name: <
+  - name: TProp
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TProp
+  - name: )
+- uid: TProp
+  name: TProp
+  nameWithType: TProp
+  fullName: TProp
+- uid: System.Collections.Generic.IEqualityComparer`1
+  commentId: T:System.Collections.Generic.IEqualityComparer`1
+  isExternal: true
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Must*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.Must
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Must_System_Func__1_System_Boolean__System_String_
+  name: Must
+  nameWithType: PropertyValidator<T, TProp, TRule>.Must
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Must
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Must
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Must
+- uid: System.Func{{TProp},System.Boolean}
+  commentId: T:System.Func{`1,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  name: Func<TProp, bool>
+  nameWithType: Func<TProp, bool>
+  fullName: System.Func<TProp, bool>
+  nameWithType.vb: Func(Of TProp, Boolean)
+  fullName.vb: System.Func(Of TProp, Boolean)
+  name.vb: Func(Of TProp, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: TProp
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TProp
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.NotEmpty*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.NotEmpty
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEmpty
+  name: NotEmpty
+  nameWithType: PropertyValidator<T, TProp, TRule>.NotEmpty
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.NotEmpty
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).NotEmpty
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).NotEmpty
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.NotEqual*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.NotEqual
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEqual__1_System_Collections_Generic_IEqualityComparer__1__
+  name: NotEqual
+  nameWithType: PropertyValidator<T, TProp, TRule>.NotEqual
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.NotEqual
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).NotEqual
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).NotEqual
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.NotNull*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.NotNull
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotNull
+  name: NotNull
+  nameWithType: PropertyValidator<T, TProp, TRule>.NotNull
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.NotNull
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).NotNull
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).NotNull
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Null*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.Null
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Null
+  name: "Null"
+  nameWithType: PropertyValidator<T, TProp, TRule>.Null
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Null
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Null
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Null
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.RuleFor*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.RuleFor
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0___FlowRight_Core_Results_Result___0____0__
+  name: RuleFor
+  nameWithType: PropertyValidator<T, TProp, TRule>.RuleFor
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.RuleFor
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).RuleFor
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).RuleFor
+- uid: System.Linq.Expressions.Expression{System.Func{{T},{TDifferentProp}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,``0}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, TDifferentProp>>
+  nameWithType: Expression<Func<T, TDifferentProp>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, TDifferentProp>>
+  nameWithType.vb: Expression(Of Func(Of T, TDifferentProp))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, TDifferentProp))
+  name.vb: Expression(Of Func(Of T, TDifferentProp))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TDifferentProp
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TDifferentProp
+  - name: )
+  - name: )
+- uid: FlowRight.Core.Results.Result{{TDifferentProp}}
+  commentId: T:FlowRight.Core.Results.Result{``0}
+  parent: FlowRight.Core.Results
+  definition: FlowRight.Core.Results.Result`1
+  href: FlowRight.Core.Results.Result-1.html
+  name: Result<TDifferentProp>
+  nameWithType: Result<TDifferentProp>
+  fullName: FlowRight.Core.Results.Result<TDifferentProp>
+  nameWithType.vb: Result(Of TDifferentProp)
+  fullName.vb: FlowRight.Core.Results.Result(Of TDifferentProp)
+  name.vb: Result(Of TDifferentProp)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: TDifferentProp
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TDifferentProp
+  - name: )
+- uid: '{TDifferentProp}'
+  commentId: '!:TDifferentProp'
+  definition: TDifferentProp
+  name: TDifferentProp
+  nameWithType: TDifferentProp
+  fullName: TDifferentProp
+- uid: FlowRight.Validation.Builders.ValidationBuilder{{T}}
+  commentId: T:FlowRight.Validation.Builders.ValidationBuilder{`0}
+  parent: FlowRight.Validation.Builders
+  definition: FlowRight.Validation.Builders.ValidationBuilder`1
+  href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  name: ValidationBuilder<T>
+  nameWithType: ValidationBuilder<T>
+  fullName: FlowRight.Validation.Builders.ValidationBuilder<T>
+  nameWithType.vb: ValidationBuilder(Of T)
+  fullName.vb: FlowRight.Validation.Builders.ValidationBuilder(Of T)
+  name.vb: ValidationBuilder(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Builders.ValidationBuilder`1
+    name: ValidationBuilder
+    href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Builders.ValidationBuilder`1
+    name: ValidationBuilder
+    href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - name: TDelegate
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TDelegate
+  - name: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: TDifferentProp
+  commentId: '!:TDifferentProp'
+  name: TDifferentProp
+  nameWithType: TDifferentProp
+  fullName: TDifferentProp
+- uid: FlowRight.Validation.Builders.ValidationBuilder`1
+  commentId: T:FlowRight.Validation.Builders.ValidationBuilder`1
+  parent: FlowRight.Validation.Builders
+  href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  name: ValidationBuilder<T>
+  nameWithType: ValidationBuilder<T>
+  fullName: FlowRight.Validation.Builders.ValidationBuilder<T>
+  nameWithType.vb: ValidationBuilder(Of T)
+  fullName.vb: FlowRight.Validation.Builders.ValidationBuilder(Of T)
+  name.vb: ValidationBuilder(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Builders.ValidationBuilder`1
+    name: ValidationBuilder
+    href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Builders.ValidationBuilder`1
+    name: ValidationBuilder
+    href: FlowRight.Validation.Builders.ValidationBuilder-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Builders
+  commentId: N:FlowRight.Validation.Builders
+  href: FlowRight.html
+  name: FlowRight.Validation.Builders
+  nameWithType: FlowRight.Validation.Builders
+  fullName: FlowRight.Validation.Builders
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Builders
+    name: Builders
+    href: FlowRight.Validation.Builders.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Builders
+    name: Builders
+    href: FlowRight.Validation.Builders.html
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.String}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.String}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, string>>
+  nameWithType: Expression<Func<T, string>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, string>>
+  nameWithType.vb: Expression(Of Func(Of T, String))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, String))
+  name.vb: Expression(Of Func(Of T, String))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+  - name: )
+- uid: FlowRight.Validation.Validators.StringPropertyValidator{{T}}
+  commentId: T:FlowRight.Validation.Validators.StringPropertyValidator{`0}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.StringPropertyValidator`1
+  href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  name: StringPropertyValidator<T>
+  nameWithType: StringPropertyValidator<T>
+  fullName: FlowRight.Validation.Validators.StringPropertyValidator<T>
+  nameWithType.vb: StringPropertyValidator(Of T)
+  fullName.vb: FlowRight.Validation.Validators.StringPropertyValidator(Of T)
+  name.vb: StringPropertyValidator(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+    name: StringPropertyValidator
+    href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+    name: StringPropertyValidator
+    href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+  commentId: T:FlowRight.Validation.Validators.StringPropertyValidator`1
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  name: StringPropertyValidator<T>
+  nameWithType: StringPropertyValidator<T>
+  fullName: FlowRight.Validation.Validators.StringPropertyValidator<T>
+  nameWithType.vb: StringPropertyValidator(Of T)
+  fullName.vb: FlowRight.Validation.Validators.StringPropertyValidator(Of T)
+  name.vb: StringPropertyValidator(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+    name: StringPropertyValidator
+    href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+    name: StringPropertyValidator
+    href: FlowRight.Validation.Validators.StringPropertyValidator-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.Guid}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Guid}}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, Guid?>>
+  nameWithType: Expression<Func<T, Guid?>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, System.Guid?>>
+  nameWithType.vb: Expression(Of Func(Of T, Guid?))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, System.Guid?))
+  name.vb: Expression(Of Func(Of T, Guid?))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  - name: )
+  - name: )
+- uid: System.Nullable{System.Guid}
+  commentId: T:System.Nullable{System.Guid}
+  parent: System
+  definition: System.Nullable`1
+  name: Guid?
+  nameWithType: Guid?
+  fullName: System.Guid?
+  spec.csharp:
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+  - name: '?'
+- uid: FlowRight.Validation.Validators.GuidPropertyValidator{{T}}
+  commentId: T:FlowRight.Validation.Validators.GuidPropertyValidator{`0}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.GuidPropertyValidator`1
+  href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  name: GuidPropertyValidator<T>
+  nameWithType: GuidPropertyValidator<T>
+  fullName: FlowRight.Validation.Validators.GuidPropertyValidator<T>
+  nameWithType.vb: GuidPropertyValidator(Of T)
+  fullName.vb: FlowRight.Validation.Validators.GuidPropertyValidator(Of T)
+  name.vb: GuidPropertyValidator(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+    name: GuidPropertyValidator
+    href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+    name: GuidPropertyValidator
+    href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+  commentId: T:FlowRight.Validation.Validators.GuidPropertyValidator`1
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  name: GuidPropertyValidator<T>
+  nameWithType: GuidPropertyValidator<T>
+  fullName: FlowRight.Validation.Validators.GuidPropertyValidator<T>
+  nameWithType.vb: GuidPropertyValidator(Of T)
+  fullName.vb: FlowRight.Validation.Validators.GuidPropertyValidator(Of T)
+  name.vb: GuidPropertyValidator(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+    name: GuidPropertyValidator
+    href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+    name: GuidPropertyValidator
+    href: FlowRight.Validation.Validators.GuidPropertyValidator-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Int32}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Int32}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, int>>
+  nameWithType: Expression<Func<T, int>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, int>>
+  nameWithType.vb: Expression(Of Func(Of T, Integer))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Integer))
+  name.vb: Expression(Of Func(Of T, Integer))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Int32}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.Int32}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, int>
+  nameWithType: NumericPropertyValidator<T, int>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, int>
+  nameWithType.vb: NumericPropertyValidator(Of T, Integer)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, Integer)
+  name.vb: NumericPropertyValidator(Of T, Integer)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator`2
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, TNumeric>
+  nameWithType: NumericPropertyValidator<T, TNumeric>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, TNumeric>
+  nameWithType.vb: NumericPropertyValidator(Of T, TNumeric)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, TNumeric)
+  name.vb: NumericPropertyValidator(Of T, TNumeric)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TNumeric
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TNumeric
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Int64}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Int64}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, long>>
+  nameWithType: Expression<Func<T, long>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, long>>
+  nameWithType.vb: Expression(Of Func(Of T, Long))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Long))
+  name.vb: Expression(Of Func(Of T, Long))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: long
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Int64}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.Int64}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, long>
+  nameWithType: NumericPropertyValidator<T, long>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, long>
+  nameWithType.vb: NumericPropertyValidator(Of T, Long)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, Long)
+  name.vb: NumericPropertyValidator(Of T, Long)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: long
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Decimal}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Decimal}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, decimal>>
+  nameWithType: Expression<Func<T, decimal>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, decimal>>
+  nameWithType.vb: Expression(Of Func(Of T, Decimal))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Decimal))
+  name.vb: Expression(Of Func(Of T, Decimal))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Decimal
+    name: decimal
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Decimal
+    name: Decimal
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Decimal}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.Decimal}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, decimal>
+  nameWithType: NumericPropertyValidator<T, decimal>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, decimal>
+  nameWithType.vb: NumericPropertyValidator(Of T, Decimal)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, Decimal)
+  name.vb: NumericPropertyValidator(Of T, Decimal)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Decimal
+    name: decimal
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Decimal
+    name: Decimal
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Double}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Double}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, double>>
+  nameWithType: Expression<Func<T, double>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, double>>
+  nameWithType.vb: Expression(Of Func(Of T, Double))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Double))
+  name.vb: Expression(Of Func(Of T, Double))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Double}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.Double}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, double>
+  nameWithType: NumericPropertyValidator<T, double>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, double>
+  nameWithType.vb: NumericPropertyValidator(Of T, Double)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, Double)
+  name.vb: NumericPropertyValidator(Of T, Double)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Single}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Single}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, float>>
+  nameWithType: Expression<Func<T, float>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, float>>
+  nameWithType.vb: Expression(Of Func(Of T, Single))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Single))
+  name.vb: Expression(Of Func(Of T, Single))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Single}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.Single}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, float>
+  nameWithType: NumericPropertyValidator<T, float>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, float>
+  nameWithType.vb: NumericPropertyValidator(Of T, Single)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, Single)
+  name.vb: NumericPropertyValidator(Of T, Single)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Int16}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Int16}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, short>>
+  nameWithType: Expression<Func<T, short>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, short>>
+  nameWithType.vb: Expression(Of Func(Of T, Short))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Short))
+  name.vb: Expression(Of Func(Of T, Short))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int16
+    name: short
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int16
+    name: Short
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Int16
+  commentId: T:System.Int16
+  parent: System
+  isExternal: true
+  name: short
+  nameWithType: short
+  fullName: short
+  nameWithType.vb: Short
+  fullName.vb: Short
+  name.vb: Short
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Int16}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.Int16}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, short>
+  nameWithType: NumericPropertyValidator<T, short>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, short>
+  nameWithType.vb: NumericPropertyValidator(Of T, Short)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, Short)
+  name.vb: NumericPropertyValidator(Of T, Short)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int16
+    name: short
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int16
+    name: Short
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Collections.Generic.IEnumerable{{TItem}}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, IEnumerable<TItem>>>
+  nameWithType: Expression<Func<T, IEnumerable<TItem>>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, System.Collections.Generic.IEnumerable<TItem>>>
+  nameWithType.vb: Expression(Of Func(Of T, IEnumerable(Of TItem)))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, System.Collections.Generic.IEnumerable(Of TItem)))
+  name.vb: Expression(Of Func(Of T, IEnumerable(Of TItem)))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: <
+  - name: TItem
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{{TItem}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<TItem>
+  nameWithType: IEnumerable<TItem>
+  fullName: System.Collections.Generic.IEnumerable<TItem>
+  nameWithType.vb: IEnumerable(Of TItem)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of TItem)
+  name.vb: IEnumerable(Of TItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: <
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: FlowRight.Validation.Validators.EnumerablePropertyValidator{{T},{TItem}}
+  commentId: T:FlowRight.Validation.Validators.EnumerablePropertyValidator{`0,``0}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+  href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  name: EnumerablePropertyValidator<T, TItem>
+  nameWithType: EnumerablePropertyValidator<T, TItem>
+  fullName: FlowRight.Validation.Validators.EnumerablePropertyValidator<T, TItem>
+  nameWithType.vb: EnumerablePropertyValidator(Of T, TItem)
+  fullName.vb: FlowRight.Validation.Validators.EnumerablePropertyValidator(Of T, TItem)
+  name.vb: EnumerablePropertyValidator(Of T, TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+    name: EnumerablePropertyValidator
+    href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+    name: EnumerablePropertyValidator
+    href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+  commentId: T:FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+  parent: FlowRight.Validation.Validators
+  href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  name: EnumerablePropertyValidator<T, TItem>
+  nameWithType: EnumerablePropertyValidator<T, TItem>
+  fullName: FlowRight.Validation.Validators.EnumerablePropertyValidator<T, TItem>
+  nameWithType.vb: EnumerablePropertyValidator(Of T, TItem)
+  fullName.vb: FlowRight.Validation.Validators.EnumerablePropertyValidator(Of T, TItem)
+  name.vb: EnumerablePropertyValidator(Of T, TItem)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+    name: EnumerablePropertyValidator
+    href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TItem
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+    name: EnumerablePropertyValidator
+    href: FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TItem
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.DateTime}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, DateTime>>
+  nameWithType: Expression<Func<T, DateTime>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, System.DateTime>>
+  nameWithType.vb: Expression(Of Func(Of T, Date))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Date))
+  name.vb: Expression(Of Func(Of T, Date))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.DateTime}
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator{`0,System.DateTime}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, DateTime>
+  nameWithType: GenericPropertyValidator<T, DateTime>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, System.DateTime>
+  nameWithType.vb: GenericPropertyValidator(Of T, Date)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, Date)
+  name.vb: GenericPropertyValidator(Of T, Date)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+  - name: )
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, TProp>
+  nameWithType: GenericPropertyValidator<T, TProp>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, TProp>
+  nameWithType.vb: GenericPropertyValidator(Of T, TProp)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, TProp)
+  name.vb: GenericPropertyValidator(Of T, TProp)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProp
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProp
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.DateTime}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.DateTime}}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, DateTime?>>
+  nameWithType: Expression<Func<T, DateTime?>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, System.DateTime?>>
+  nameWithType.vb: Expression(Of Func(Of T, Date?))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Date?))
+  name.vb: Expression(Of Func(Of T, Date?))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+  - name: '?'
+  - name: )
+  - name: )
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+  - name: '?'
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Nullable{System.DateTime}}
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator{`0,System.Nullable{System.DateTime}}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, DateTime?>
+  nameWithType: GenericPropertyValidator<T, DateTime?>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, System.DateTime?>
+  nameWithType.vb: GenericPropertyValidator(Of T, Date?)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, Date?)
+  name.vb: GenericPropertyValidator(Of T, Date?)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, bool>>
+  nameWithType: Expression<Func<T, bool>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, bool>>
+  nameWithType.vb: Expression(Of Func(Of T, Boolean))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean))
+  name.vb: Expression(Of Func(Of T, Boolean))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Boolean}
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator{`0,System.Boolean}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, bool>
+  nameWithType: GenericPropertyValidator<T, bool>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, bool>
+  nameWithType.vb: GenericPropertyValidator(Of T, Boolean)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, Boolean)
+  name.vb: GenericPropertyValidator(Of T, Boolean)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.Boolean}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Boolean}}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, bool?>>
+  nameWithType: Expression<Func<T, bool?>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, bool?>>
+  nameWithType.vb: Expression(Of Func(Of T, Boolean?))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean?))
+  name.vb: Expression(Of Func(Of T, Boolean?))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: '?'
+  - name: )
+  - name: )
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: '?'
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Nullable{System.Boolean}}
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator{`0,System.Nullable{System.Boolean}}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, bool?>
+  nameWithType: GenericPropertyValidator<T, bool?>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, bool?>
+  nameWithType.vb: GenericPropertyValidator(Of T, Boolean?)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, Boolean?)
+  name.vb: GenericPropertyValidator(Of T, Boolean?)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Byte}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Byte}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, byte>>
+  nameWithType: Expression<Func<T, byte>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, byte>>
+  nameWithType.vb: Expression(Of Func(Of T, Byte))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Byte))
+  name.vb: Expression(Of Func(Of T, Byte))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.Byte}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.Byte}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, byte>
+  nameWithType: NumericPropertyValidator<T, byte>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, byte>
+  nameWithType.vb: NumericPropertyValidator(Of T, Byte)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, Byte)
+  name.vb: NumericPropertyValidator(Of T, Byte)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.SByte}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.SByte}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, sbyte>>
+  nameWithType: Expression<Func<T, sbyte>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, sbyte>>
+  nameWithType.vb: Expression(Of Func(Of T, SByte))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, SByte))
+  name.vb: Expression(Of Func(Of T, SByte))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.SByte
+    name: sbyte
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.SByte
+    name: SByte
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.SByte
+  commentId: T:System.SByte
+  parent: System
+  isExternal: true
+  name: sbyte
+  nameWithType: sbyte
+  fullName: sbyte
+  nameWithType.vb: SByte
+  fullName.vb: SByte
+  name.vb: SByte
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.SByte}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.SByte}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, sbyte>
+  nameWithType: NumericPropertyValidator<T, sbyte>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, sbyte>
+  nameWithType.vb: NumericPropertyValidator(Of T, SByte)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, SByte)
+  name.vb: NumericPropertyValidator(Of T, SByte)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.SByte
+    name: sbyte
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.SByte
+    name: SByte
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.UInt32}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.UInt32}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, uint>>
+  nameWithType: Expression<Func<T, uint>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, uint>>
+  nameWithType.vb: Expression(Of Func(Of T, UInteger))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, UInteger))
+  name.vb: Expression(Of Func(Of T, UInteger))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.UInt32}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.UInt32}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, uint>
+  nameWithType: NumericPropertyValidator<T, uint>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, uint>
+  nameWithType.vb: NumericPropertyValidator(Of T, UInteger)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, UInteger)
+  name.vb: NumericPropertyValidator(Of T, UInteger)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.UInt64}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.UInt64}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, ulong>>
+  nameWithType: Expression<Func<T, ulong>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, ulong>>
+  nameWithType.vb: Expression(Of Func(Of T, ULong))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, ULong))
+  name.vb: Expression(Of Func(Of T, ULong))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: FlowRight.Validation.Validators.NumericPropertyValidator{{T},System.UInt64}
+  commentId: T:FlowRight.Validation.Validators.NumericPropertyValidator{`0,System.UInt64}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.NumericPropertyValidator`2
+  href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  name: NumericPropertyValidator<T, ulong>
+  nameWithType: NumericPropertyValidator<T, ulong>
+  fullName: FlowRight.Validation.Validators.NumericPropertyValidator<T, ulong>
+  nameWithType.vb: NumericPropertyValidator(Of T, ULong)
+  fullName.vb: FlowRight.Validation.Validators.NumericPropertyValidator(Of T, ULong)
+  name.vb: NumericPropertyValidator(Of T, ULong)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator
+    href: FlowRight.Validation.Validators.NumericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Char}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Char}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, char>>
+  nameWithType: Expression<Func<T, char>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, char>>
+  nameWithType.vb: Expression(Of Func(Of T, Char))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Char))
+  name.vb: Expression(Of Func(Of T, Char))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+  - name: )
+  - name: )
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: char
+  nameWithType: char
+  fullName: char
+  nameWithType.vb: Char
+  fullName.vb: Char
+  name.vb: Char
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Char}
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator{`0,System.Char}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, char>
+  nameWithType: GenericPropertyValidator<T, char>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, char>
+  nameWithType.vb: GenericPropertyValidator(Of T, Char)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, Char)
+  name.vb: GenericPropertyValidator(Of T, Char)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+  - name: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Nullable{System.Char}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Char}}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T, char?>>
+  nameWithType: Expression<Func<T, char?>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, char?>>
+  nameWithType.vb: Expression(Of Func(Of T, Char?))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Char?))
+  name.vb: Expression(Of Func(Of T, Char?))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+  - name: '?'
+  - name: )
+  - name: )
+- uid: System.Nullable{System.Char}
+  commentId: T:System.Nullable{System.Char}
+  parent: System
+  definition: System.Nullable`1
+  name: char?
+  nameWithType: char?
+  fullName: char?
+  nameWithType.vb: Char?
+  fullName.vb: Char?
+  name.vb: Char?
+  spec.csharp:
+  - uid: System.Char
+    name: char
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: System.Char
+    name: Char
+    isExternal: true
+  - name: '?'
+- uid: FlowRight.Validation.Validators.GenericPropertyValidator{{T},System.Nullable{System.Char}}
+  commentId: T:FlowRight.Validation.Validators.GenericPropertyValidator{`0,System.Nullable{System.Char}}
+  parent: FlowRight.Validation.Validators
+  definition: FlowRight.Validation.Validators.GenericPropertyValidator`2
+  href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  name: GenericPropertyValidator<T, char?>
+  nameWithType: GenericPropertyValidator<T, char?>
+  fullName: FlowRight.Validation.Validators.GenericPropertyValidator<T, char?>
+  nameWithType.vb: GenericPropertyValidator(Of T, Char?)
+  fullName.vb: FlowRight.Validation.Validators.GenericPropertyValidator(Of T, Char?)
+  name.vb: GenericPropertyValidator(Of T, Char?)
+  spec.csharp:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator
+    href: FlowRight.Validation.Validators.GenericPropertyValidator-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.Unless*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.Unless
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Unless_System_Func__1_System_Boolean__
+  name: Unless
+  nameWithType: PropertyValidator<T, TProp, TRule>.Unless
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.Unless
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).Unless
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).Unless
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.When*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.When
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_When_System_Func__1_System_Boolean__
+  name: When
+  nameWithType: PropertyValidator<T, TProp, TRule>.When
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.When
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).When
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).When
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.WithMessage*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.WithMessage
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_WithMessage_System_String_
+  name: WithMessage
+  nameWithType: PropertyValidator<T, TProp, TRule>.WithMessage
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.WithMessage
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).WithMessage
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).WithMessage
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.AddRule*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.AddRule
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_AddRule_FlowRight_Validation_Rules_IRule__1__
+  name: AddRule
+  nameWithType: PropertyValidator<T, TProp, TRule>.AddRule
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.AddRule
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).AddRule
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).AddRule
+- uid: FlowRight.Validation.Rules.IRule{{TProp}}
+  commentId: T:FlowRight.Validation.Rules.IRule{`1}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<TProp>
+  nameWithType: IRule<TProp>
+  fullName: FlowRight.Validation.Rules.IRule<TProp>
+  nameWithType.vb: IRule(Of TProp)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of TProp)
+  name.vb: IRule(Of TProp)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: TProp
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TProp
+  - name: )
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastRuleCondition*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastRuleCondition
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_UpdateLastRuleCondition_System_Func__1_System_Boolean__
+  name: UpdateLastRuleCondition
+  nameWithType: PropertyValidator<T, TProp, TRule>.UpdateLastRuleCondition
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.UpdateLastRuleCondition
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).UpdateLastRuleCondition
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).UpdateLastRuleCondition
+- uid: FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastValidationMessage*
+  commentId: Overload:FlowRight.Validation.Validators.PropertyValidator`3.UpdateLastValidationMessage
+  href: FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_UpdateLastValidationMessage_System_String_
+  name: UpdateLastValidationMessage
+  nameWithType: PropertyValidator<T, TProp, TRule>.UpdateLastValidationMessage
+  fullName: FlowRight.Validation.Validators.PropertyValidator<T, TProp, TRule>.UpdateLastValidationMessage
+  nameWithType.vb: PropertyValidator(Of T, TProp, TRule).UpdateLastValidationMessage
+  fullName.vb: FlowRight.Validation.Validators.PropertyValidator(Of T, TProp, TRule).UpdateLastValidationMessage

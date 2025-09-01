@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class NumericPropertyValidator&lt;T, TNumeric&gt; | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class NumericPropertyValidator&lt;T, TNumeric&gt; | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides fluent validation rules specifically designed for numeric properties, offering comprehensive numeric comparison and range validation capabilities for any type implementing INumber&amp;lt;T&amp;gt;.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2">
+
+
+
+  <h1 id="FlowRight_Validation_Validators_NumericPropertyValidator_2" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2" class="text-break">
+Class NumericPropertyValidator&lt;T, TNumeric&gt;  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Validation.html">Validation</a>.<a class="xref" href="FlowRight.Validation.Validators.html">Validators</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Validation.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides fluent validation rules specifically designed for numeric properties, offering comprehensive
+numeric comparison and range validation capabilities for any type implementing INumber&lt;T&gt;.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class NumericPropertyValidator&lt;T, TNumeric&gt; : PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt; where TNumeric : struct, INumber&lt;TNumeric&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of object being validated.</p>
+</dd>
+    <dt><code>TNumeric</code></dt>
+    <dd><p>The numeric type being validated (int, long, decimal, double, float, short, etc.).</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html">PropertyValidator</a>&lt;T, TNumeric, <a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;&gt;</div>
+      <div><span class="xref">NumericPropertyValidator&lt;T, TNumeric&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Build_System_Func__0__">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.Build(Func&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Empty">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.Empty()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Equal__1_System_Collections_Generic_IEqualityComparer__1__">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.Equal(TNumeric, IEqualityComparer&lt;TNumeric&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Must_System_Func__1_System_Boolean__System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.Must(Func&lt;TNumeric, bool&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEmpty">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.NotEmpty()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotEqual__1_System_Collections_Generic_IEqualityComparer__1__">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.NotEqual(TNumeric, IEqualityComparer&lt;TNumeric&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_NotNull">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.NotNull()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Null">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.Null()</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0___FlowRight_Core_Results_Result___0____0__">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor&lt;TDifferentProp&gt;(Expression&lt;Func&lt;T, TDifferentProp&gt;&gt;, Result&lt;TDifferentProp&gt;, out TDifferentProp)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, string&gt;&gt;, string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Guid____System_Nullable_System_Guid__System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, Guid?&gt;&gt;, Guid?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, int&gt;&gt;, int, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int64___System_Int64_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, long&gt;&gt;, long, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Decimal___System_Decimal_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, decimal&gt;&gt;, decimal, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Double___System_Double_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, double&gt;&gt;, double, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Single___System_Single_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, float&gt;&gt;, float, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int16___System_Int16_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, short&gt;&gt;, short, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_IEnumerable___0____System_Collections_Generic_IEnumerable___0__System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor&lt;TItem&gt;(Expression&lt;Func&lt;T, IEnumerable&lt;TItem&gt;&gt;&gt;, IEnumerable&lt;TItem&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_DateTime_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, DateTime&gt;&gt;, DateTime, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_DateTime____System_Nullable_System_DateTime__System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, DateTime?&gt;&gt;, DateTime?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Boolean____System_Nullable_System_Boolean__System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, bool?&gt;&gt;, bool?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Byte___System_Byte_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, byte&gt;&gt;, byte, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_SByte___System_SByte_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, sbyte&gt;&gt;, sbyte, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt32___System_UInt32_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, uint&gt;&gt;, uint, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt64___System_UInt64_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, ulong&gt;&gt;, ulong, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Char___System_Char_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, char&gt;&gt;, char, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Char____System_Nullable_System_Char__System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.RuleFor(Expression&lt;Func&lt;T, char?&gt;&gt;, char?, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_Unless_System_Func__1_System_Boolean__">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.Unless(Func&lt;TNumeric, bool&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_When_System_Func__1_System_Boolean__">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.When(Func&lt;TNumeric, bool&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FlowRight.Validation.Validators.PropertyValidator-3.html#FlowRight_Validation_Validators_PropertyValidator_3_WithMessage_System_String_">PropertyValidator&lt;T, TNumeric, NumericPropertyValidator&lt;T, TNumeric&gt;&gt;.WithMessage(string)</a>
+    </div>
+  </dd></dl>
+
+
+
+  <h2 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_examples">Examples</h2>
+  <pre><code class="lang-csharp">// Integer validation
+ValidationBuilder&lt;Character&gt; builder = new();
+builder.RuleFor(x =&gt; x.Age, request.Age)
+    .GreaterThan(0)
+    .LessThanOrEqualTo(1000)
+    .WithMessage("Character age must be between 1 and 1000");
+
+// Decimal validation with precision
+builder.RuleFor(x =&gt; x.Price, request.Price)
+    .GreaterThanOrEqualTo(0.01m)
+    .LessThan(1000000m)
+    .PrecisionScale(10, 2)
+    .WithMessage("Price must be positive with up to 2 decimal places");
+
+// Range validation
+builder.RuleFor(x =&gt; x.DiceCount, dicePool.TotalDice)
+    .InclusiveBetween(1, 100)
+    .WithMessage("Dice pool must contain 1-100 dice");</code></pre>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Validation_Validators_NumericPropertyValidator_2_ExclusiveBetween_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.ExclusiveBetween*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_ExclusiveBetween__1__1_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.ExclusiveBetween(`1,`1)">
+  ExclusiveBetween(TNumeric, TNumeric)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the numeric value is strictly between the specified bounds (exclusive).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, TNumeric&gt; ExclusiveBetween(TNumeric from, TNumeric to)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The lower bound (exclusive).</p>
+</dd>
+    <dt><code>to</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The upper bound (exclusive).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;</dt>
+    <dd><p>The NumericPropertyValidator&lt;T, TNumeric&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_NumericPropertyValidator_2_ExclusiveBetween__1__1__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Percentage, request.Percentage)
+    .ExclusiveBetween(0, 100)
+    .WithMessage("Percentage must be between 0 and 100 (exclusive)");
+
+// Valid: 0.1, 50, 99.9
+// Invalid: 0, 100, -1, 101</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_NumericPropertyValidator_2_GreaterThan_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.GreaterThan*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_GreaterThan__1_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.GreaterThan(`1)">
+  GreaterThan(TNumeric)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the numeric value is greater than the specified comparison value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, TNumeric&gt; GreaterThan(TNumeric valueToCompare)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>valueToCompare</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The value to compare against.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;</dt>
+    <dd><p>The NumericPropertyValidator&lt;T, TNumeric&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_NumericPropertyValidator_2_GreaterThan__1__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.Price, request.Price)
+    .GreaterThan(0)
+    .WithMessage("Price must be positive");
+
+builder.RuleFor(x =&gt; x.Rating, request.Rating)
+    .GreaterThan(0.0)
+    .WithMessage("Rating must be above zero");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_NumericPropertyValidator_2_GreaterThanOrEqualTo_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.GreaterThanOrEqualTo*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_GreaterThanOrEqualTo__1_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.GreaterThanOrEqualTo(`1)">
+  GreaterThanOrEqualTo(TNumeric)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the numeric value is greater than or equal to the specified comparison value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, TNumeric&gt; GreaterThanOrEqualTo(TNumeric valueToCompare)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>valueToCompare</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The value to compare against.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;</dt>
+    <dd><p>The NumericPropertyValidator&lt;T, TNumeric&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_NumericPropertyValidator_2_GreaterThanOrEqualTo__1__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.MinimumAge, request.MinimumAge)
+    .GreaterThanOrEqualTo(18)
+    .WithMessage("Minimum age must be 18 or older");
+
+builder.RuleFor(x =&gt; x.Balance, account.Balance)
+    .GreaterThanOrEqualTo(0.00m)
+    .WithMessage("Account balance cannot be negative");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_NumericPropertyValidator_2_InclusiveBetween_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.InclusiveBetween*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_InclusiveBetween__1__1_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.InclusiveBetween(`1,`1)">
+  InclusiveBetween(TNumeric, TNumeric)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the numeric value is between the specified bounds (inclusive).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, TNumeric&gt; InclusiveBetween(TNumeric from, TNumeric to)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The lower bound (inclusive).</p>
+</dd>
+    <dt><code>to</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The upper bound (inclusive).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;</dt>
+    <dd><p>The NumericPropertyValidator&lt;T, TNumeric&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_NumericPropertyValidator_2_InclusiveBetween__1__1__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.DiceRoll, roll.Value)
+    .InclusiveBetween(1, 6)
+    .WithMessage("Dice roll must be between 1 and 6");
+
+builder.RuleFor(x =&gt; x.Attribute, character.Strength)
+    .InclusiveBetween(1, 12)
+    .WithMessage("Shadowrun attributes range from 1 to 12");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_NumericPropertyValidator_2_LessThan_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.LessThan*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_LessThan__1_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.LessThan(`1)">
+  LessThan(TNumeric)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the numeric value is less than the specified comparison value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, TNumeric&gt; LessThan(TNumeric valueToCompare)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>valueToCompare</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The value to compare against.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;</dt>
+    <dd><p>The NumericPropertyValidator&lt;T, TNumeric&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_NumericPropertyValidator_2_LessThan__1__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.MaxUsers, request.MaxUsers)
+    .LessThan(10000)
+    .WithMessage("Maximum users must be under 10,000");
+
+builder.RuleFor(x =&gt; x.Discount, request.Discount)
+    .LessThan(1.0)
+    .WithMessage("Discount must be less than 100%");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_NumericPropertyValidator_2_LessThanOrEqualTo_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.LessThanOrEqualTo*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_LessThanOrEqualTo__1_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.LessThanOrEqualTo(`1)">
+  LessThanOrEqualTo(TNumeric)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the numeric value is less than or equal to the specified comparison value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, TNumeric&gt; LessThanOrEqualTo(TNumeric valueToCompare)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>valueToCompare</code> <span class="xref">TNumeric</span></dt>
+    <dd><p>The value to compare against.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;</dt>
+    <dd><p>The NumericPropertyValidator&lt;T, TNumeric&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_NumericPropertyValidator_2_LessThanOrEqualTo__1__examples">Examples</h4>
+  <pre><code class="lang-csharp">builder.RuleFor(x =&gt; x.MaxRetries, request.MaxRetries)
+    .LessThanOrEqualTo(5)
+    .WithMessage("Maximum retries cannot exceed 5");
+
+builder.RuleFor(x =&gt; x.CompletionRate, task.CompletionRate)
+    .LessThanOrEqualTo(1.0)
+    .WithMessage("Completion rate cannot exceed 100%");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Validators_NumericPropertyValidator_2_PrecisionScale_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.PrecisionScale*"></a>
+
+  <h3 id="FlowRight_Validation_Validators_NumericPropertyValidator_2_PrecisionScale_System_Int32_System_Int32_" data-uid="FlowRight.Validation.Validators.NumericPropertyValidator`2.PrecisionScale(System.Int32,System.Int32)">
+  PrecisionScale(int, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates that the numeric value conforms to the specified precision and scale requirements,
+typically used for decimal types to ensure database compatibility.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, TNumeric&gt; PrecisionScale(int precision, int scale)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>precision</code> <span class="xref">int</span></dt>
+    <dd><p>The maximum number of digits (total digits).</p>
+</dd>
+    <dt><code>scale</code> <span class="xref">int</span></dt>
+    <dd><p>The maximum number of decimal places.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, TNumeric&gt;</dt>
+    <dd><p>The NumericPropertyValidator&lt;T, TNumeric&gt; for method chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Validators_NumericPropertyValidator_2_PrecisionScale_System_Int32_System_Int32__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Currency validation: up to 10 digits total, 2 decimal places
+builder.RuleFor(x =&gt; x.Price, request.Price)
+    .PrecisionScale(10, 2)
+    .WithMessage("Price must have at most 8 whole digits and 2 decimal places");
+
+// Percentage with high precision: up to 5 digits total, 3 decimal places
+builder.RuleFor(x =&gt; x.InterestRate, request.InterestRate)
+    .PrecisionScale(5, 3)
+    .WithMessage("Interest rate precision is too high");
+
+// Valid examples for PrecisionScale(10, 2):
+// 12345678.90, 0.01, 99999999.99
+// Invalid: 123456789.123 (too many decimal places), 12345678901 (too many total digits)</code></pre>
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

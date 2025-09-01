@@ -1,0 +1,390 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.MatchesRule
+  commentId: T:FlowRight.Validation.Rules.MatchesRule
+  id: MatchesRule
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.MatchesRule.#ctor(System.String,System.Text.RegularExpressions.RegexOptions)
+  - FlowRight.Validation.Rules.MatchesRule.#ctor(System.Text.RegularExpressions.Regex)
+  - FlowRight.Validation.Rules.MatchesRule.Validate(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: MatchesRule
+  nameWithType: MatchesRule
+  fullName: FlowRight.Validation.Rules.MatchesRule
+  type: Class
+  source:
+    id: MatchesRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MatchesRule.cs
+    startLine: 7
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures a string value matches a specified regular expression pattern.
+  example: []
+  syntax:
+    content: 'public sealed class MatchesRule : IRule<string>'
+    content.vb: Public NotInheritable Class MatchesRule Implements IRule(Of String)
+  inheritance:
+  - System.Object
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.String}
+- uid: FlowRight.Validation.Rules.MatchesRule.#ctor(System.String,System.Text.RegularExpressions.RegexOptions)
+  commentId: M:FlowRight.Validation.Rules.MatchesRule.#ctor(System.String,System.Text.RegularExpressions.RegexOptions)
+  id: '#ctor(System.String,System.Text.RegularExpressions.RegexOptions)'
+  parent: FlowRight.Validation.Rules.MatchesRule
+  langs:
+  - csharp
+  - vb
+  name: MatchesRule(string, RegexOptions)
+  nameWithType: MatchesRule.MatchesRule(string, RegexOptions)
+  fullName: FlowRight.Validation.Rules.MatchesRule.MatchesRule(string, System.Text.RegularExpressions.RegexOptions)
+  type: Constructor
+  source:
+    id: .ctor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MatchesRule.cs
+    startLine: 23
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Initializes a new instance of the MatchesRule with a pattern and options.
+  example: []
+  syntax:
+    content: public MatchesRule(string pattern, RegexOptions options = RegexOptions.None)
+    parameters:
+    - id: pattern
+      type: System.String
+      description: The regular expression pattern.
+    - id: options
+      type: System.Text.RegularExpressions.RegexOptions
+      description: Optional regex options.
+    content.vb: Public Sub New(pattern As String, options As RegexOptions = RegexOptions.None)
+  overload: FlowRight.Validation.Rules.MatchesRule.#ctor*
+  nameWithType.vb: MatchesRule.New(String, RegexOptions)
+  fullName.vb: FlowRight.Validation.Rules.MatchesRule.New(String, System.Text.RegularExpressions.RegexOptions)
+  name.vb: New(String, RegexOptions)
+- uid: FlowRight.Validation.Rules.MatchesRule.#ctor(System.Text.RegularExpressions.Regex)
+  commentId: M:FlowRight.Validation.Rules.MatchesRule.#ctor(System.Text.RegularExpressions.Regex)
+  id: '#ctor(System.Text.RegularExpressions.Regex)'
+  parent: FlowRight.Validation.Rules.MatchesRule
+  langs:
+  - csharp
+  - vb
+  name: MatchesRule(Regex)
+  nameWithType: MatchesRule.MatchesRule(Regex)
+  fullName: FlowRight.Validation.Rules.MatchesRule.MatchesRule(System.Text.RegularExpressions.Regex)
+  type: Constructor
+  source:
+    id: .ctor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MatchesRule.cs
+    startLine: 33
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Initializes a new instance of the MatchesRule with a compiled regex.
+  example: []
+  syntax:
+    content: public MatchesRule(Regex regex)
+    parameters:
+    - id: regex
+      type: System.Text.RegularExpressions.Regex
+      description: The compiled regular expression.
+    content.vb: Public Sub New(regex As Regex)
+  overload: FlowRight.Validation.Rules.MatchesRule.#ctor*
+  nameWithType.vb: MatchesRule.New(Regex)
+  fullName.vb: FlowRight.Validation.Rules.MatchesRule.New(System.Text.RegularExpressions.Regex)
+  name.vb: New(Regex)
+- uid: FlowRight.Validation.Rules.MatchesRule.Validate(System.String,System.String)
+  commentId: M:FlowRight.Validation.Rules.MatchesRule.Validate(System.String,System.String)
+  id: Validate(System.String,System.String)
+  parent: FlowRight.Validation.Rules.MatchesRule
+  langs:
+  - csharp
+  - vb
+  name: Validate(string, string)
+  nameWithType: MatchesRule.Validate(string, string)
+  fullName: FlowRight.Validation.Rules.MatchesRule.Validate(string, string)
+  type: Method
+  source:
+    id: Validate
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MatchesRule.cs
+    startLine: 51
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Validates that the string value matches the regular expression pattern.
+  example: []
+  syntax:
+    content: public string? Validate(string value, string displayName)
+    parameters:
+    - id: value
+      type: System.String
+      description: The string value to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated.
+    return:
+      type: System.String
+      description: An error message if the value does not match the pattern; otherwise, null.
+    content.vb: Public Function Validate(value As String, displayName As String) As String
+  overload: FlowRight.Validation.Rules.MatchesRule.Validate*
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+  nameWithType.vb: MatchesRule.Validate(String, String)
+  fullName.vb: FlowRight.Validation.Rules.MatchesRule.Validate(String, String)
+  name.vb: Validate(String, String)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FlowRight.Validation.Rules.IRule{System.String}
+  commentId: T:FlowRight.Validation.Rules.IRule{System.String}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<string>
+  nameWithType: IRule<string>
+  fullName: FlowRight.Validation.Rules.IRule<string>
+  nameWithType.vb: IRule(Of String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of String)
+  name.vb: IRule(Of String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.MatchesRule.#ctor*
+  commentId: Overload:FlowRight.Validation.Rules.MatchesRule.#ctor
+  href: FlowRight.Validation.Rules.MatchesRule.html#FlowRight_Validation_Rules_MatchesRule__ctor_System_String_System_Text_RegularExpressions_RegexOptions_
+  name: MatchesRule
+  nameWithType: MatchesRule.MatchesRule
+  fullName: FlowRight.Validation.Rules.MatchesRule.MatchesRule
+  nameWithType.vb: MatchesRule.New
+  fullName.vb: FlowRight.Validation.Rules.MatchesRule.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Text.RegularExpressions.RegexOptions
+  commentId: T:System.Text.RegularExpressions.RegexOptions
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  name: RegexOptions
+  nameWithType: RegexOptions
+  fullName: System.Text.RegularExpressions.RegexOptions
+- uid: System.Text.RegularExpressions
+  commentId: N:System.Text.RegularExpressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.RegularExpressions
+  nameWithType: System.Text.RegularExpressions
+  fullName: System.Text.RegularExpressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.RegularExpressions
+    name: RegularExpressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.RegularExpressions
+    name: RegularExpressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions
+- uid: System.Text.RegularExpressions.Regex
+  commentId: T:System.Text.RegularExpressions.Regex
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  name: Regex
+  nameWithType: Regex
+  fullName: System.Text.RegularExpressions.Regex
+- uid: FlowRight.Validation.Rules.MatchesRule.Validate*
+  commentId: Overload:FlowRight.Validation.Rules.MatchesRule.Validate
+  href: FlowRight.Validation.Rules.MatchesRule.html#FlowRight_Validation_Rules_MatchesRule_Validate_System_String_System_String_
+  name: Validate
+  nameWithType: MatchesRule.Validate
+  fullName: FlowRight.Validation.Rules.MatchesRule.Validate
+- uid: FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+  parent: FlowRight.Validation.Rules.IRule{System.String}
+  definition: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(string, string)
+  nameWithType: IRule<string>.Validate(string, string)
+  fullName: FlowRight.Validation.Rules.IRule<string>.Validate(string, string)
+  nameWithType.vb: IRule(Of String).Validate(String, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of String).Validate(String, String)
+  name.vb: Validate(String, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )

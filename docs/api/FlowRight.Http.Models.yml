@@ -1,0 +1,70 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Http.Models
+  commentId: N:FlowRight.Http.Models
+  id: FlowRight.Http.Models
+  children:
+  - FlowRight.Http.Models.ContentTypeInfo
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  - FlowRight.Http.Models.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Http.Models
+  nameWithType: FlowRight.Http.Models
+  fullName: FlowRight.Http.Models
+  type: Namespace
+  assemblies:
+  - FlowRight.Http
+references:
+- uid: FlowRight.Http.Models.ContentTypeInfo
+  commentId: T:FlowRight.Http.Models.ContentTypeInfo
+  parent: FlowRight.Http.Models
+  href: FlowRight.Http.Models.ContentTypeInfo.html
+  name: ContentTypeInfo
+  nameWithType: ContentTypeInfo
+  fullName: FlowRight.Http.Models.ContentTypeInfo
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  commentId: T:FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  parent: FlowRight.Http.Models
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html
+  name: ValidationProblemJsonSerializerContext
+  nameWithType: ValidationProblemJsonSerializerContext
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+- uid: FlowRight.Http.Models.ValidationProblemResponse
+  commentId: T:FlowRight.Http.Models.ValidationProblemResponse
+  parent: FlowRight.Http.Models
+  href: FlowRight.Http.Models.ValidationProblemResponse.html
+  name: ValidationProblemResponse
+  nameWithType: ValidationProblemResponse
+  fullName: FlowRight.Http.Models.ValidationProblemResponse
+- uid: FlowRight.Http.Models
+  commentId: N:FlowRight.Http.Models
+  href: FlowRight.html
+  name: FlowRight.Http.Models
+  nameWithType: FlowRight.Http.Models
+  fullName: FlowRight.Http.Models
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html

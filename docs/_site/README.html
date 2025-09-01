@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>FlowRight API Documentation | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="FlowRight API Documentation | FlowRight - Result Pattern Library for .NET ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="flowright-api-documentation">FlowRight API Documentation</h1>
+
+<p>This directory contains the DocFX configuration and build system for generating comprehensive API documentation for the FlowRight Result pattern library.</p>
+<h2 id="-overview">🎯 Overview</h2>
+<p>The documentation system generates:</p>
+<ul>
+<li><strong>Complete API Reference</strong> - All public APIs across Core, Validation, and Http libraries</li>
+<li><strong>Interactive Documentation</strong> - Searchable, cross-referenced HTML documentation</li>
+<li><strong>Getting Started Guide</strong> - Comprehensive tutorial and examples</li>
+<li><strong>Migration Guide</strong> - Transitioning from exception-based error handling</li>
+<li><strong>Best Practices</strong> - Production-ready patterns and recommendations</li>
+</ul>
+<h2 id="-prerequisites">📋 Prerequisites</h2>
+<ul>
+<li>.NET 9.0 SDK or later</li>
+<li>DocFX (installed automatically by build scripts)</li>
+</ul>
+<h2 id="-quick-start">🚀 Quick Start</h2>
+<h3 id="windows-powershell">Windows (PowerShell)</h3>
+<pre><code class="lang-powershell"># Build and generate documentation
+.\build-docs.ps1
+
+# Build and serve locally
+.\build-docs.ps1 -Serve
+</code></pre>
+<h3 id="linuxmacos-bash">Linux/macOS (Bash)</h3>
+<pre><code class="lang-bash"># Build and generate documentation
+./build-docs.sh
+
+# Serve locally after generation
+docfx serve docs/_site
+</code></pre>
+<h3 id="manual-build">Manual Build</h3>
+<pre><code class="lang-bash"># 1. Install DocFX (if not already installed)
+dotnet tool install -g docfx
+
+# 2. Build the solution to generate XML documentation
+cd .. &amp;&amp; dotnet build FlowRight.sln --configuration Release
+
+# 3. Generate documentation
+cd docs &amp;&amp; docfx
+
+# 4. Serve locally (optional)
+docfx serve _site
+</code></pre>
+<h2 id="-structure">📁 Structure</h2>
+<pre><code>docs/
+├── docfx.json              # DocFX configuration
+├── filterConfig.yml        # API filtering rules
+├── toc.yml                 # Top-level navigation
+├── index.md                # Documentation home page
+├── api/
+│   └── index.md            # API reference landing page
+├── articles/
+│   ├── index.md            # Articles overview
+│   ├── getting-started.md  # Getting started guide
+│   ├── migration-guide.md  # Migration guide
+│   └── best-practices.md   # Best practices guide
+└── _site/                  # Generated documentation (after build)
+    ├── index.html          # Home page
+    ├── api/                # API reference HTML
+    └── articles/           # Article HTML
+</code></pre>
+<h2 id="-configuration">⚙️ Configuration</h2>
+<h3 id="docfx-configuration-docfxjson">DocFX Configuration (<code>docfx.json</code>)</h3>
+<ul>
+<li><strong>Metadata Generation</strong>: Extracts API metadata from all FlowRight projects</li>
+<li><strong>Content Processing</strong>: Processes Markdown articles and API documentation</li>
+<li><strong>Template</strong>: Uses modern DocFX template with search functionality</li>
+<li><strong>Filtering</strong>: Includes only FlowRight namespaces, excludes system types</li>
+</ul>
+<h3 id="api-filtering-filterconfigyml">API Filtering (<code>filterConfig.yml</code>)</h3>
+<ul>
+<li>Includes: <code>FlowRight.*</code> namespaces and types</li>
+<li>Excludes: <code>System.*</code>, <code>Microsoft.*</code>, and build artifacts</li>
+</ul>
+<h3 id="navigation-tocyml">Navigation (<code>toc.yml</code>)</h3>
+<ul>
+<li>Home page</li>
+<li>Articles section with guides</li>
+<li>API reference with comprehensive coverage</li>
+</ul>
+<h2 id="-customization">🔧 Customization</h2>
+<h3 id="adding-new-articles">Adding New Articles</h3>
+<ol>
+<li>Create a new <code>.md</code> file in <code>articles/</code></li>
+<li>Add entry to <code>articles/toc.yml</code></li>
+<li>Rebuild documentation</li>
+</ol>
+<h3 id="modifying-templates">Modifying Templates</h3>
+<p>The configuration uses the default DocFX modern template. To customize:</p>
+<ol>
+<li>Extract template: <code>docfx template export default</code></li>
+<li>Modify template files</li>
+<li>Update <code>docfx.json</code> template reference</li>
+</ol>
+<h3 id="updating-branding">Updating Branding</h3>
+<p>Modify the <code>globalMetadata</code> section in <code>docfx.json</code>:</p>
+<pre><code class="lang-json">&quot;globalMetadata&quot;: {
+  &quot;_appName&quot;: &quot;FlowRight&quot;,
+  &quot;_appTitle&quot;: &quot;FlowRight - Result Pattern Library for .NET&quot;,
+  &quot;_appFooter&quot;: &quot;Your custom footer text&quot;
+}
+</code></pre>
+<h2 id="-hosting">🌐 Hosting</h2>
+<p>The generated <code>_site</code> directory contains static HTML files that can be hosted anywhere:</p>
+<h3 id="github-pages">GitHub Pages</h3>
+<pre><code class="lang-yaml"># .github/workflows/docs.yml
+- name: Build Documentation
+  run: ./docs/build-docs.sh
+- name: Deploy to GitHub Pages
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./docs/_site
+</code></pre>
+<h3 id="azure-static-web-apps">Azure Static Web Apps</h3>
+<pre><code class="lang-yaml">build:
+  commands:
+    - ./docs/build-docs.sh
+  output: docs/_site
+</code></pre>
+<h3 id="docker">Docker</h3>
+<pre><code class="lang-dockerfile">FROM nginx:alpine
+COPY docs/_site /usr/share/nginx/html
+EXPOSE 80
+</code></pre>
+<h2 id="-troubleshooting">🐛 Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>DocFX not found</strong></p>
+<pre><code class="lang-bash">dotnet tool install -g docfx
+# Ensure ~/.dotnet/tools is in PATH
+</code></pre>
+<p><strong>Missing XML documentation warnings</strong></p>
+<ul>
+<li>Ensure projects build successfully with <code>GenerateDocumentationFile</code> enabled</li>
+<li>Check <code>Directory.Build.props</code> has <code>&lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;</code></li>
+</ul>
+<p><strong>API not appearing in documentation</strong></p>
+<ul>
+<li>Verify namespace is included in <code>filterConfig.yml</code></li>
+<li>Check that types are <code>public</code> or <code>internal</code> with appropriate attributes</li>
+</ul>
+<p><strong>Build failures</strong></p>
+<pre><code class="lang-bash"># Clean and rebuild
+dotnet clean &amp;&amp; dotnet build --configuration Release
+cd docs &amp;&amp; docfx --force
+</code></pre>
+<h3 id="performance-optimization">Performance Optimization</h3>
+<ul>
+<li>Use <code>--cleanupCacheHistory</code> in DocFX for clean builds</li>
+<li>Enable incremental builds in CI/CD pipelines</li>
+<li>Consider parallel builds for large documentation sets</li>
+</ul>
+<h2 id="-metrics">📈 Metrics</h2>
+<p>The build system tracks documentation coverage:</p>
+<ul>
+<li><strong>API Coverage</strong>: All public types documented</li>
+<li><strong>XML Documentation</strong>: Comprehensive summaries, parameters, and examples</li>
+<li><strong>Cross-references</strong>: Automated linking between related types</li>
+<li><strong>Search Index</strong>: Full-text search across all content</li>
+</ul>
+<h2 id="-contributing">🤝 Contributing</h2>
+<p>When adding new public APIs:</p>
+<ol>
+<li>Add comprehensive XML documentation</li>
+<li>Include usage examples in <code>&lt;example&gt;</code> tags</li>
+<li>Rebuild documentation to verify coverage</li>
+<li>Update related articles if needed</li>
+</ol>
+<hr>
+<p><em>Generated with DocFX v2.78.3 | FlowRight v1.0.0-preview.1</em></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
