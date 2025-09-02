@@ -1,3 +1,10 @@
+# [1.0.0-alpha.13](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2025-09-02)
+
+
+### Features
+
+* implement Microsoft NuGet package authoring best practices ([09191de](https://github.com/georgepharrison/FlowRight/commit/09191debf8b1df38602dc397bebd21b0064e3e52))
+
 # [1.0.0-alpha.12](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2025-09-02)
 
 
