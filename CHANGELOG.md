@@ -1,3 +1,10 @@
+# [1.0.0-alpha.11](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2025-09-02)
+
+
+### Bug Fixes
+
+* capture semantic-release output to enable NuGet publishing ([8ca6809](https://github.com/georgepharrison/FlowRight/commit/8ca6809ccedccd04de83a9cebb46ac31a9a608d5))
+
 # [1.0.0-alpha.10](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-09-02)
 
 
