@@ -33,8 +33,16 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore --verbosity normal
 
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage --filter "TestCategory!=Integration&FullyQualifiedName!~FlowRight.Integration.Tests"
+    - name: Test Core
+      run: dotnet test tests/Core.Tests/ --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+      continue-on-error: true
+      
+    - name: Test HTTP  
+      run: dotnet test tests/Http.Tests/ --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+      continue-on-error: true
+      
+    - name: Test Validation
+      run: dotnet test tests/Validation.Tests/ --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage  
       continue-on-error: true
 
     - name: Upload coverage reports to Codecov

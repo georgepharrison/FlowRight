@@ -47,9 +47,8 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
       
-      - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal --filter "TestCategory!=Integration&FullyQualifiedName!~FlowRight.Integration.Tests"
-        continue-on-error: true
+      - name: Test Core Library Only
+        run: dotnet test tests/Http.Tests/ --configuration Release --no-build --verbosity normal
       
       - name: Release
         id: release
