@@ -61,7 +61,7 @@ public partial class Result : IResult
     {
         FailureType = ResultFailureType.Validation;
         ResultType = ResultType.Error;
-        Failures.Add(key, [error]);
+        Failures = new Dictionary<string, string[]> { [key] = [error] };
         Error = GetValidationError(Failures);
     }
 
