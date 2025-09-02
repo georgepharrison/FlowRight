@@ -14,8 +14,8 @@
     <Company>FlowRight</Company>
     <Product>FlowRight</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/yourusername/FlowRight</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/yourusername/FlowRight</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/georgepharrison/FlowRight</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/georgepharrison/FlowRight</RepositoryUrl>
     <PackageTags>result;error-handling;validation;functional</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     
