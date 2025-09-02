@@ -14,7 +14,7 @@
       "@semantic-release/exec",
       {
         "verifyReleaseCmd": "echo 'Version: ${nextRelease.version}'",
-        "prepareCmd": "VERSION=${nextRelease.version} && if [[ $VERSION == v* ]]; then VERSION=${VERSION:1}; fi && mkdir -p ./artifacts && dotnet build FlowRight.sln --configuration Release --no-restore -p:Version=$VERSION && dotnet pack FlowRight.sln --configuration Release --no-build --output ./artifacts -p:PackageVersion=$VERSION"
+        "prepareCmd": "VERSION=${nextRelease.version} && if [[ $VERSION == v* ]]; then VERSION=$(echo $VERSION | sed 's/^v//'); fi && mkdir -p ./artifacts && dotnet build FlowRight.sln --configuration Release --no-restore -p:Version=$VERSION && dotnet pack FlowRight.sln --configuration Release --no-build --output ./artifacts -p:PackageVersion=$VERSION"
       }
     ],
     [
