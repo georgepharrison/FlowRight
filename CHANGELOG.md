@@ -1,3 +1,37 @@
+# [1.0.0-alpha.10](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-09-02)
+
+
+### Bug Fixes
+
+* mark TASK-066 as complete - XML documentation was already comprehensive ([6fe3fa9](https://github.com/georgepharrison/FlowRight/commit/6fe3fa931cf85a0e52c2af52e2889a7edfd42659))
+* minimal CI approach - test only HTTP project to unblock release ([fcf595b](https://github.com/georgepharrison/FlowRight/commit/fcf595b39ff5c981e1d01f27bcb989e170d16c9a))
+* replace bash parameter expansion with sed command in semantic-release ([27d6ea3](https://github.com/georgepharrison/FlowRight/commit/27d6ea3d36f7512391e13c271f02e9cf1b48af07))
+* resolve failing tests and configure CI to continue on test failures ([396f6aa](https://github.com/georgepharrison/FlowRight/commit/396f6aa90f77025b446ca2e20da963998fe7d994))
+* resolve semantic-release syntax error in prepareCmd ([c28ce57](https://github.com/georgepharrison/FlowRight/commit/c28ce5732609f4a9f17b0c5ed00d5fc2b5352a24))
+* resolve shared dictionary mutation causing test failures ([6882ddc](https://github.com/georgepharrison/FlowRight/commit/6882ddc0766d501f045d72eebf6bad0ef1330e39))
+* temporarily exclude integration tests from CI workflows ([af489d8](https://github.com/georgepharrison/FlowRight/commit/af489d8e440533cbbe2c2633dd928674e35cdbb9))
+
+
+### Features
+
+* add comprehensive Best Practices guide for FlowRight ([f8d2b55](https://github.com/georgepharrison/FlowRight/commit/f8d2b558a4b72f28d58abcf18b13b10a247e9fd4))
+* add comprehensive integration tests for Result composition scenarios ([#56](https://github.com/georgepharrison/FlowRight/issues/56)) ([fbae585](https://github.com/georgepharrison/FlowRight/commit/fbae585f4ad09d0b02fa6d3d2ae656280fbc7f6a))
+* add comprehensive migration guide from exceptions to Result pattern ([f048543](https://github.com/georgepharrison/FlowRight/commit/f0485439ab7a1e3600834d893172916b2da1ac2c))
+* add comprehensive tests for HTTP extension methods (TASK-054) ([61257fa](https://github.com/georgepharrison/FlowRight/commit/61257fa3b09179df2587b822cb475f6cba59d194))
+* add NuGet package publishing to CI/CD pipeline ([db1b64f](https://github.com/georgepharrison/FlowRight/commit/db1b64f81f46f5ea3fe01ff0dfb131179c78bcc0))
+* implement comprehensive DocFX API reference documentation ([770f332](https://github.com/georgepharrison/FlowRight/commit/770f3324e1b0c23e33a5ee855d9641a2dc503e73))
+* implement TASK-055 - achieve significant test coverage improvement ([6351674](https://github.com/georgepharrison/FlowRight/commit/63516740c0af4170e0c2c2a59bcb70fb384c120f))
+* implement thread-safe ValidationBuilder with ConcurrentDictionary ([#67](https://github.com/georgepharrison/FlowRight/issues/67)) ([981ceab](https://github.com/georgepharrison/FlowRight/commit/981ceab04f19aae76f6025b46be19d02f63cbc78))
+* **task-004:** complete benchmark project configuration ([#61](https://github.com/georgepharrison/FlowRight/issues/61)) ([587d488](https://github.com/georgepharrison/FlowRight/commit/587d488b3928f7472e2b848010d2e9f858f04069))
+* TASK-056 - Integration tests for complex object validation ([#53](https://github.com/georgepharrison/FlowRight/issues/53)) ([712667d](https://github.com/georgepharrison/FlowRight/commit/712667dbe7dfdfd96f482cd641a71fd4ba26f32a))
+* TASK-058 - Integration tests for HTTP responses ([#58](https://github.com/georgepharrison/FlowRight/issues/58)) ([7649de2](https://github.com/georgepharrison/FlowRight/commit/7649de217886c2d1d39f08acbea5c0a6262329e9))
+* TASK-059 - API serialization integration tests ([#64](https://github.com/georgepharrison/FlowRight/issues/64)) ([8a84941](https://github.com/georgepharrison/FlowRight/commit/8a84941b754e2ead65de68300c79cfe79c4f953a))
+
+
+### Performance Improvements
+
+* complete TASK-061 through TASK-065 - comprehensive performance testing and optimizations ([#66](https://github.com/georgepharrison/FlowRight/issues/66)) ([f75da6c](https://github.com/georgepharrison/FlowRight/commit/f75da6c139fd2a27693cd358fdf72b30c6c09bcd))
+
 # [1.0.0-alpha.9](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-09-01)
 
 
