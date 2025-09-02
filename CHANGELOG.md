@@ -1,3 +1,10 @@
+# [1.0.0-alpha.12](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2025-09-02)
+
+
+### Bug Fixes
+
+* correct repository URLs in package metadata ([0307009](https://github.com/georgepharrison/FlowRight/commit/03070096c863b372c14a67f65f7b5e8f5c6571fa))
+
 # [1.0.0-alpha.11](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2025-09-02)
 
 
