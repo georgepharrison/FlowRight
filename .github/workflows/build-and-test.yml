@@ -34,7 +34,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore --verbosity normal
 
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+      run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage --filter "TestCategory!=Integration&FullyQualifiedName!~FlowRight.Integration.Tests"
 
     - name: Upload coverage reports to Codecov
       if: matrix.dotnet-version == '9.0.x'

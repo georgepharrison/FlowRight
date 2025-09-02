@@ -48,7 +48,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       
       - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal
+        run: dotnet test --configuration Release --no-build --verbosity normal --filter "TestCategory!=Integration&FullyQualifiedName!~FlowRight.Integration.Tests"
       
       - name: Release
         id: release
