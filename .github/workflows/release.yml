@@ -54,7 +54,14 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: semantic-release
+        run: |
+          semantic-release > release-output.log 2>&1
+          cat release-output.log
+          if grep -q "Published release" release-output.log; then
+            echo "new_release_published=true" >> $GITHUB_OUTPUT
+          else
+            echo "new_release_published=false" >> $GITHUB_OUTPUT
+          fi
       
       - name: Publish to NuGet
         if: steps.release.outputs.new_release_published == 'true'
