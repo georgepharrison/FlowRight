@@ -51,6 +51,19 @@ jobs:
         run: dotnet test --configuration Release --no-build --verbosity normal
       
       - name: Release
+        id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: semantic-release
+      
+      - name: Publish to NuGet
+        if: steps.release.outputs.new_release_published == 'true'
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          for package in ./artifacts/*.nupkg; do
+            if [[ -f "$package" ]]; then
+              echo "Publishing $package to NuGet..."
+              dotnet nuget push "$package" --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+            fi
+          done
