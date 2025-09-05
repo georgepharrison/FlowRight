@@ -30,7 +30,7 @@ public sealed class MinCountRule<TItem>(int minCount) : IRule<IEnumerable<TItem>
 
         int actualCount = value.Count();
         return actualCount < _minCount
-            ? $"{displayName} must contain at least {_minCount} items but count {actualCount}"
+            ? $"{displayName} must contain at least {_minCount} items but found {actualCount}"
             : null;
     }
 

@@ -18,11 +18,11 @@ public sealed class EmptyRule<T> : IRule<T>
         value switch
         {
             null => null,
-            string s when string.IsNullOrWhiteSpace(s) => null,
+            string s when string.IsNullOrEmpty(s) => null,
             DateTime dt when dt == default => null,
             Guid g when g == Guid.Empty => null,
             System.Collections.IEnumerable e when !e.Cast<object>().Any() => null,
-            _ => $"{displayName} must be empty."
+            _ => $"{displayName} must be empty"
         };
 
     #endregion Public Methods

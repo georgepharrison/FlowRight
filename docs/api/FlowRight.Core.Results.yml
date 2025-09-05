@@ -1,0 +1,157 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  id: FlowRight.Core.Results
+  children:
+  - FlowRight.Core.Results.IResult
+  - FlowRight.Core.Results.IResultError`1
+  - FlowRight.Core.Results.IResult`1
+  - FlowRight.Core.Results.Result
+  - FlowRight.Core.Results.ResultFailureType
+  - FlowRight.Core.Results.ResultType
+  - FlowRight.Core.Results.Result`1
+  langs:
+  - csharp
+  - vb
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  type: Namespace
+  assemblies:
+  - FlowRight.Core
+references:
+- uid: FlowRight.Core.Results.Result
+  commentId: T:FlowRight.Core.Results.Result
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.Result.html
+  name: Result
+  nameWithType: Result
+  fullName: FlowRight.Core.Results.Result
+- uid: FlowRight.Core.Results.IResult
+  commentId: T:FlowRight.Core.Results.IResult
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.IResult.html
+  name: IResult
+  nameWithType: IResult
+  fullName: FlowRight.Core.Results.IResult
+- uid: FlowRight.Core.Results.IResult`1
+  commentId: T:FlowRight.Core.Results.IResult`1
+  href: FlowRight.Core.Results.IResult-1.html
+  name: IResult<T>
+  nameWithType: IResult<T>
+  fullName: FlowRight.Core.Results.IResult<T>
+  nameWithType.vb: IResult(Of T)
+  fullName.vb: FlowRight.Core.Results.IResult(Of T)
+  name.vb: IResult(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.IResult`1
+    name: IResult
+    href: FlowRight.Core.Results.IResult-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.IResult`1
+    name: IResult
+    href: FlowRight.Core.Results.IResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Core.Results.IResultError`1
+  commentId: T:FlowRight.Core.Results.IResultError`1
+  href: FlowRight.Core.Results.IResultError-1.html
+  name: IResultError<T>
+  nameWithType: IResultError<T>
+  fullName: FlowRight.Core.Results.IResultError<T>
+  nameWithType.vb: IResultError(Of T)
+  fullName.vb: FlowRight.Core.Results.IResultError(Of T)
+  name.vb: IResultError(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.IResultError`1
+    name: IResultError
+    href: FlowRight.Core.Results.IResultError-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.IResultError`1
+    name: IResultError
+    href: FlowRight.Core.Results.IResultError-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Core.Results.ResultFailureType
+  commentId: T:FlowRight.Core.Results.ResultFailureType
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.ResultFailureType.html
+  name: ResultFailureType
+  nameWithType: ResultFailureType
+  fullName: FlowRight.Core.Results.ResultFailureType
+- uid: FlowRight.Core.Results.Result`1
+  commentId: T:FlowRight.Core.Results.Result`1
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.Result-1.html
+  name: Result<T>
+  nameWithType: Result<T>
+  fullName: FlowRight.Core.Results.Result<T>
+  nameWithType.vb: Result(Of T)
+  fullName.vb: FlowRight.Core.Results.Result(Of T)
+  name.vb: Result(Of T)
+  spec.csharp:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result
+    href: FlowRight.Core.Results.Result-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Core.Results.ResultType
+  commentId: T:FlowRight.Core.Results.ResultType
+  parent: FlowRight.Core.Results
+  href: FlowRight.Core.Results.ResultType.html
+  name: ResultType
+  nameWithType: ResultType
+  fullName: FlowRight.Core.Results.ResultType
+- uid: FlowRight.Core.Results
+  commentId: N:FlowRight.Core.Results
+  href: FlowRight.html
+  name: FlowRight.Core.Results
+  nameWithType: FlowRight.Core.Results
+  fullName: FlowRight.Core.Results
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Core
+    name: Core
+    href: FlowRight.Core.html
+  - name: .
+  - uid: FlowRight.Core.Results
+    name: Results
+    href: FlowRight.Core.Results.html

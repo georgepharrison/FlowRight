@@ -157,6 +157,10 @@ coverage*.info
 *.coverage
 *.coveragexml
 
+# Test Results and Coverage Reports
+TestResults/
+CoverageReport/
+
 # NCrunch
 _NCrunch_*
 .*crunch*.local.xml
@@ -482,3 +486,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+## DocFX Generated Files
+docs/_site/
+docs/api/*.yml
+!docs/api/index.md

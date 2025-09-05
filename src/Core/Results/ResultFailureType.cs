@@ -76,6 +76,42 @@ public enum ResultFailureType
     Validation,
 
     /// <summary>
+    /// Indicates that the requested resource was not found or does not exist.
+    /// This represents a client error where the resource does not exist
+    /// or the client lacks permission to access it.
+    /// </summary>
+    /// <remarks>
+    /// Not found failures are common in REST APIs and data access scenarios.
+    /// They typically:
+    /// <list type="bullet">
+    /// <item><description>Correspond to HTTP 404 status codes</description></item>
+    /// <item><description>Indicate that a specific resource or entity does not exist</description></item>
+    /// <item><description>Can be handled differently from general errors</description></item>
+    /// <item><description>May trigger fallback or alternative data retrieval strategies</description></item>
+    /// </list>
+    /// This failure type allows consumers to distinguish between actual errors
+    /// and legitimate "not found" scenarios that may be expected during normal operation.
+    /// </remarks>
+    NotFound,
+
+    /// <summary>
+    /// Indicates that the operation failed due to a server-side error, typically
+    /// representing 5xx HTTP status codes or infrastructure-related failures.
+    /// </summary>
+    /// <remarks>
+    /// Server errors represent failures on the server side that are typically temporary
+    /// and may be resolved with retry mechanisms or service recovery:
+    /// <list type="bullet">
+    /// <item><description>Correspond to HTTP 5xx status codes (500-599)</description></item>
+    /// <item><description>Include internal server errors, service unavailable, bad gateway, etc.</description></item>
+    /// <item><description>May be candidates for retry logic with exponential backoff</description></item>
+    /// <item><description>Should be monitored and potentially trigger alerts</description></item>
+    /// <item><description>Distinguished from client errors to enable appropriate handling strategies</description></item>
+    /// </list>
+    /// </remarks>
+    ServerError,
+
+    /// <summary>
     /// Indicates that the operation was canceled before completion, typically due to
     /// cancellation tokens, timeouts, or explicit user cancellation requests.
     /// </summary>

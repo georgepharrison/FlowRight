@@ -26,7 +26,9 @@ public sealed class NotEqualRule<T>(T comparisonValue, IEqualityComparer<T>? com
     public string? Validate(T value, string displayName) =>
         !_comparer.Equals(value, _comparisonValue)
             ? null
-            : $"{displayName} must not be equal to '{_comparisonValue}'";
+            : _comparisonValue is string
+                ? $"{displayName} must not be equal to '{_comparisonValue}'"
+                : $"{displayName} must not be equal to {_comparisonValue}";
 
     #endregion Public Methods
 }

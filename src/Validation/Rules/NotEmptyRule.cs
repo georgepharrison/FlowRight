@@ -9,7 +9,7 @@
 /// <code>
 /// // String validation
 /// rule.Validate("", "Name") // Returns "Name must not be empty"
-/// rule.Validate("   ", "Name") // Returns "Name must not be empty" (whitespace)
+/// rule.Validate("   ", "Name") // Returns null (whitespace is not empty)
 /// rule.Validate("Value", "Name") // Returns null (valid)
 /// 
 /// // GUID validation
@@ -30,7 +30,7 @@ public sealed class NotEmptyRule<T> : IRule<T>
         value switch
         {
             null => $"{displayName} must not be empty",
-            string s when string.IsNullOrWhiteSpace(s) => $"{displayName} must not be empty",
+            string s when string.IsNullOrEmpty(s) => $"{displayName} must not be empty",
             DateTime dt when dt == default => $"{displayName} must not be empty",
             Guid g when g == Guid.Empty => $"{displayName} must not be empty",
             System.Collections.IEnumerable e when !e.Cast<object>().Any() => $"{displayName} must not be empty",

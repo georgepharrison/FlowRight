@@ -1,0 +1,929 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  commentId: T:FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  id: ValidationProblemJsonSerializerContext
+  parent: FlowRight.Http.Models
+  children:
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo(System.Type)
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray
+  - FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  langs:
+  - csharp
+  - vb
+  name: ValidationProblemJsonSerializerContext
+  nameWithType: ValidationProblemJsonSerializerContext
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  type: Class
+  source:
+    id: ValidationProblemJsonSerializerContext
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.StringArray.g.cs
+    startLine: 10
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Provides JSON serialization context for <xref href="FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse" data-throw-if-not-resolved="false"></xref> to enable AOT compilation.
+  remarks: >-
+    This context can be used with System.Text.Json for source-generated serialization,
+
+    improving performance and enabling Native AOT compilation scenarios.
+  example:
+  - >-
+    <pre><code class="lang-csharp">ValidationProblemResponse response = new() { Errors = new() { { "Field", ["Error"] } } };
+
+    string json = JsonSerializer.Serialize(response, ValidationProblemJsonSerializerContext.Default.ValidationProblemResponse);</code></pre>
+  syntax:
+    content: >-
+      [JsonSerializable(typeof(ValidationProblemResponse))]
+
+      public sealed class ValidationProblemJsonSerializerContext : JsonSerializerContext
+    content.vb: >-
+      <JsonSerializable(GetType(ValidationProblemResponse))>
+
+      Public NotInheritable Class ValidationProblemJsonSerializerContext Inherits JsonSerializerContext
+  inheritance:
+  - System.Object
+  - System.Text.Json.Serialization.JsonSerializerContext
+  attributes:
+  - type: System.Text.Json.Serialization.JsonSerializableAttribute
+    ctor: System.Text.Json.Serialization.JsonSerializableAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: FlowRight.Http.Models.ValidationProblemResponse
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo(System.Type)
+  commentId: M:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo(System.Type)
+  id: GetTypeInfo(System.Type)
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: GetTypeInfo(Type)
+  nameWithType: ValidationProblemJsonSerializerContext.GetTypeInfo(Type)
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo(System.Type)
+  type: Method
+  source:
+    id: GetTypeInfo
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.GetJsonTypeInfo.g.cs
+    startLine: 13
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets metadata for the specified type.
+  example: []
+  syntax:
+    content: public override JsonTypeInfo? GetTypeInfo(Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The type to fetch metadata for.
+    return:
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo
+      description: The metadata for the specified type, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the context has no metadata for the type.
+    content.vb: Public Overrides Function GetTypeInfo(type As Type) As JsonTypeInfo
+  overridden: System.Text.Json.Serialization.JsonSerializerContext.GetTypeInfo(System.Type)
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32
+  id: NullableInt32
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: NullableInt32
+  nameWithType: ValidationProblemJsonSerializerContext.NullableInt32
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32
+  type: Property
+  source:
+    id: NullableInt32
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.NullableInt32.g.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Defines the source generated JSON serialization contract metadata for a given type.
+  example: []
+  syntax:
+    content: public JsonTypeInfo<int?> NullableInt32 { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Nullable{System.Int32}}
+    content.vb: Public ReadOnly Property NullableInt32 As JsonTypeInfo(Of Integer?)
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+  id: DictionaryStringStringArray
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: DictionaryStringStringArray
+  nameWithType: ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+  type: Property
+  source:
+    id: DictionaryStringStringArray
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.DictionaryStringStringArray.g.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Defines the source generated JSON serialization contract metadata for a given type.
+  example: []
+  syntax:
+    content: public JsonTypeInfo<Dictionary<string, string[]>> DictionaryStringStringArray { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Collections.Generic.Dictionary{System.String,System.String[]}}
+    content.vb: Public ReadOnly Property DictionaryStringStringArray As JsonTypeInfo(Of Dictionary(Of String, String()))
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  id: ValidationProblemResponse
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: ValidationProblemResponse
+  nameWithType: ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  type: Property
+  source:
+    id: ValidationProblemResponse
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.ValidationProblemResponse.g.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Defines the source generated JSON serialization contract metadata for a given type.
+  example: []
+  syntax:
+    content: public JsonTypeInfo<ValidationProblemResponse> ValidationProblemResponse { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo{FlowRight.Http.Models.ValidationProblemResponse}
+    content.vb: Public ReadOnly Property ValidationProblemResponse As JsonTypeInfo(Of ValidationProblemResponse)
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default
+  id: Default
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: ValidationProblemJsonSerializerContext.Default
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default
+  type: Property
+  source:
+    id: Default
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.g.cs
+    startLine: 23
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: The default <xref href="System.Text.Json.Serialization.JsonSerializerContext" data-throw-if-not-resolved="false"></xref> associated with a default <xref href="System.Text.Json.JsonSerializerOptions" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public static ValidationProblemJsonSerializerContext Default { get; }
+    parameters: []
+    return:
+      type: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+    content.vb: Public Shared ReadOnly Property [Default] As ValidationProblemJsonSerializerContext
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+  id: GeneratedSerializerOptions
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: GeneratedSerializerOptions
+  nameWithType: ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+  type: Property
+  source:
+    id: GeneratedSerializerOptions
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.g.cs
+    startLine: 28
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: The source-generated options associated with this context.
+  example: []
+  syntax:
+    content: protected override JsonSerializerOptions? GeneratedSerializerOptions { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.JsonSerializerOptions
+    content.vb: Protected Overrides ReadOnly Property GeneratedSerializerOptions As JsonSerializerOptions
+  overridden: System.Text.Json.Serialization.JsonSerializerContext.GeneratedSerializerOptions
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor
+  commentId: M:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor
+  id: '#ctor'
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: ValidationProblemJsonSerializerContext()
+  nameWithType: ValidationProblemJsonSerializerContext.ValidationProblemJsonSerializerContext()
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemJsonSerializerContext()
+  type: Constructor
+  source:
+    id: .ctor
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.g.cs
+    startLine: 31
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  example: []
+  syntax:
+    content: public ValidationProblemJsonSerializerContext()
+    content.vb: Public Sub New()
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor*
+  nameWithType.vb: ValidationProblemJsonSerializerContext.New()
+  fullName.vb: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.New()
+  name.vb: New()
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)
+  commentId: M:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)
+  id: '#ctor(System.Text.Json.JsonSerializerOptions)'
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: ValidationProblemJsonSerializerContext(JsonSerializerOptions)
+  nameWithType: ValidationProblemJsonSerializerContext.ValidationProblemJsonSerializerContext(JsonSerializerOptions)
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemJsonSerializerContext(System.Text.Json.JsonSerializerOptions)
+  type: Constructor
+  source:
+    id: .ctor
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.g.cs
+    startLine: 36
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Creates an instance of <xref href="System.Text.Json.Serialization.JsonSerializerContext" data-throw-if-not-resolved="false"></xref> and binds it with the indicated <xref href="System.Text.Json.JsonSerializerOptions" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public ValidationProblemJsonSerializerContext(JsonSerializerOptions options)
+    parameters:
+    - id: options
+      type: System.Text.Json.JsonSerializerOptions
+      description: The run time provided options for the context instance.
+    content.vb: Public Sub New(options As JsonSerializerOptions)
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor*
+  nameWithType.vb: ValidationProblemJsonSerializerContext.New(JsonSerializerOptions)
+  fullName.vb: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.New(System.Text.Json.JsonSerializerOptions)
+  name.vb: New(JsonSerializerOptions)
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32
+  id: Int32
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: Int32
+  nameWithType: ValidationProblemJsonSerializerContext.Int32
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32
+  type: Property
+  source:
+    id: Int32
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.Int32.g.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Defines the source generated JSON serialization contract metadata for a given type.
+  example: []
+  syntax:
+    content: public JsonTypeInfo<int> Int32 { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Int32}
+    content.vb: Public ReadOnly Property Int32 As JsonTypeInfo(Of Integer)
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String
+  id: String
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: ValidationProblemJsonSerializerContext.String
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String
+  type: Property
+  source:
+    id: String
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.String.g.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Defines the source generated JSON serialization contract metadata for a given type.
+  example: []
+  syntax:
+    content: public JsonTypeInfo<string> String { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.String}
+    content.vb: Public ReadOnly Property [String] As JsonTypeInfo(Of String)
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String*
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray
+  id: StringArray
+  parent: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  langs:
+  - csharp
+  - vb
+  name: StringArray
+  nameWithType: ValidationProblemJsonSerializerContext.StringArray
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray
+  type: Property
+  source:
+    id: StringArray
+    path: System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/ValidationProblemJsonSerializerContext.StringArray.g.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Defines the source generated JSON serialization contract metadata for a given type.
+  example: []
+  syntax:
+    content: public JsonTypeInfo<string[]> StringArray { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.String[]}
+    content.vb: Public ReadOnly Property StringArray As JsonTypeInfo(Of String())
+  overload: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray*
+references:
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  commentId: P:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_ValidationProblemResponse
+  name: ValidationProblemResponse
+  nameWithType: ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+- uid: FlowRight.Http.Models
+  commentId: N:FlowRight.Http.Models
+  href: FlowRight.html
+  name: FlowRight.Http.Models
+  nameWithType: FlowRight.Http.Models
+  fullName: FlowRight.Http.Models
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Text.Json.Serialization.JsonSerializerContext
+  commentId: T:System.Text.Json.Serialization.JsonSerializerContext
+  parent: System.Text.Json.Serialization
+  isExternal: true
+  name: JsonSerializerContext
+  nameWithType: JsonSerializerContext
+  fullName: System.Text.Json.Serialization.JsonSerializerContext
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Text.Json.Serialization
+  commentId: N:System.Text.Json.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json.Serialization
+  nameWithType: System.Text.Json.Serialization
+  fullName: System.Text.Json.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+- uid: System.Text.Json.Serialization.JsonSerializerContext.GetTypeInfo(System.Type)
+  commentId: M:System.Text.Json.Serialization.JsonSerializerContext.GetTypeInfo(System.Type)
+  parent: System.Text.Json.Serialization.JsonSerializerContext
+  isExternal: true
+  name: GetTypeInfo(Type)
+  nameWithType: JsonSerializerContext.GetTypeInfo(Type)
+  fullName: System.Text.Json.Serialization.JsonSerializerContext.GetTypeInfo(System.Type)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.JsonSerializerContext.GetTypeInfo(System.Type)
+    name: GetTypeInfo
+    isExternal: true
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: System.Text.Json.Serialization.JsonSerializerContext.GetTypeInfo(System.Type)
+    name: GetTypeInfo
+    isExternal: true
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+  - name: )
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_GetTypeInfo_System_Type_
+  name: GetTypeInfo
+  nameWithType: ValidationProblemJsonSerializerContext.GetTypeInfo
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GetTypeInfo
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo
+  parent: System.Text.Json.Serialization.Metadata
+  isExternal: true
+  name: JsonTypeInfo
+  nameWithType: JsonTypeInfo
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo
+- uid: System.Text.Json.Serialization.Metadata
+  commentId: N:System.Text.Json.Serialization.Metadata
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json.Serialization.Metadata
+  nameWithType: System.Text.Json.Serialization.Metadata
+  fullName: System.Text.Json.Serialization.Metadata
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+  - name: .
+  - uid: System.Text.Json.Serialization.Metadata
+    name: Metadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+  - name: .
+  - uid: System.Text.Json.Serialization.Metadata
+    name: Metadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_NullableInt32
+  name: NullableInt32
+  nameWithType: ValidationProblemJsonSerializerContext.NullableInt32
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.NullableInt32
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Nullable{System.Int32}}
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Nullable{System.Int32}}
+  parent: System.Text.Json.Serialization.Metadata
+  definition: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  name: JsonTypeInfo<int?>
+  nameWithType: JsonTypeInfo<int?>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<int?>
+  nameWithType.vb: JsonTypeInfo(Of Integer?)
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of Integer?)
+  name.vb: JsonTypeInfo(Of Integer?)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: '?'
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  isExternal: true
+  name: JsonTypeInfo<T>
+  nameWithType: JsonTypeInfo<T>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<T>
+  nameWithType.vb: JsonTypeInfo(Of T)
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of T)
+  name.vb: JsonTypeInfo(Of T)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_DictionaryStringStringArray
+  name: DictionaryStringStringArray
+  nameWithType: ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.DictionaryStringStringArray
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Collections.Generic.Dictionary{System.String,System.String[]}}
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Collections.Generic.Dictionary{System.String,System.String[]}}
+  parent: System.Text.Json.Serialization.Metadata
+  definition: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  name: JsonTypeInfo<Dictionary<string, string[]>>
+  nameWithType: JsonTypeInfo<Dictionary<string, string[]>>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<System.Collections.Generic.Dictionary<string, string[]>>
+  nameWithType.vb: JsonTypeInfo(Of Dictionary(Of String, String()))
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of System.Collections.Generic.Dictionary(Of String, String()))
+  name.vb: JsonTypeInfo(Of Dictionary(Of String, String()))
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+  - name: )
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_ValidationProblemResponse
+  name: ValidationProblemResponse
+  nameWithType: ValidationProblemJsonSerializerContext.ValidationProblemResponse
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemResponse
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo{FlowRight.Http.Models.ValidationProblemResponse}
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo{FlowRight.Http.Models.ValidationProblemResponse}
+  parent: System.Text.Json.Serialization.Metadata
+  definition: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  href: FlowRight.Http.Models.ValidationProblemResponse.html
+  name: JsonTypeInfo<ValidationProblemResponse>
+  nameWithType: JsonTypeInfo<ValidationProblemResponse>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<FlowRight.Http.Models.ValidationProblemResponse>
+  nameWithType.vb: JsonTypeInfo(Of ValidationProblemResponse)
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of FlowRight.Http.Models.ValidationProblemResponse)
+  name.vb: JsonTypeInfo(Of ValidationProblemResponse)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - uid: FlowRight.Http.Models.ValidationProblemResponse
+    name: ValidationProblemResponse
+    href: FlowRight.Http.Models.ValidationProblemResponse.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FlowRight.Http.Models.ValidationProblemResponse
+    name: ValidationProblemResponse
+    href: FlowRight.Http.Models.ValidationProblemResponse.html
+  - name: )
+- uid: System.Text.Json.JsonSerializerOptions
+  commentId: T:System.Text.Json.JsonSerializerOptions
+  parent: System.Text.Json
+  isExternal: true
+  name: JsonSerializerOptions
+  nameWithType: JsonSerializerOptions
+  fullName: System.Text.Json.JsonSerializerOptions
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_Default
+  name: Default
+  nameWithType: ValidationProblemJsonSerializerContext.Default
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Default
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  commentId: T:FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+  parent: FlowRight.Http.Models
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html
+  name: ValidationProblemJsonSerializerContext
+  nameWithType: ValidationProblemJsonSerializerContext
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+- uid: System.Text.Json
+  commentId: N:System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json
+  nameWithType: System.Text.Json
+  fullName: System.Text.Json
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+- uid: System.Text.Json.Serialization.JsonSerializerContext.GeneratedSerializerOptions
+  commentId: P:System.Text.Json.Serialization.JsonSerializerContext.GeneratedSerializerOptions
+  parent: System.Text.Json.Serialization.JsonSerializerContext
+  isExternal: true
+  name: GeneratedSerializerOptions
+  nameWithType: JsonSerializerContext.GeneratedSerializerOptions
+  fullName: System.Text.Json.Serialization.JsonSerializerContext.GeneratedSerializerOptions
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_GeneratedSerializerOptions
+  name: GeneratedSerializerOptions
+  nameWithType: ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.GeneratedSerializerOptions
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.#ctor
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext__ctor
+  name: ValidationProblemJsonSerializerContext
+  nameWithType: ValidationProblemJsonSerializerContext.ValidationProblemJsonSerializerContext
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.ValidationProblemJsonSerializerContext
+  nameWithType.vb: ValidationProblemJsonSerializerContext.New
+  fullName.vb: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.New
+  name.vb: New
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_Int32
+  name: Int32
+  nameWithType: ValidationProblemJsonSerializerContext.Int32
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.Int32
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Int32}
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.Int32}
+  parent: System.Text.Json.Serialization.Metadata
+  definition: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  name: JsonTypeInfo<int>
+  nameWithType: JsonTypeInfo<int>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<int>
+  nameWithType.vb: JsonTypeInfo(Of Integer)
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of Integer)
+  name.vb: JsonTypeInfo(Of Integer)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+  - name: )
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_String
+  name: String
+  nameWithType: ValidationProblemJsonSerializerContext.String
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.String
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.String}
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.String}
+  parent: System.Text.Json.Serialization.Metadata
+  definition: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  name: JsonTypeInfo<string>
+  nameWithType: JsonTypeInfo<string>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<string>
+  nameWithType.vb: JsonTypeInfo(Of String)
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of String)
+  name.vb: JsonTypeInfo(Of String)
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray*
+  commentId: Overload:FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray
+  href: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.html#FlowRight_Http_Models_ValidationProblemJsonSerializerContext_StringArray
+  name: StringArray
+  nameWithType: ValidationProblemJsonSerializerContext.StringArray
+  fullName: FlowRight.Http.Models.ValidationProblemJsonSerializerContext.StringArray
+- uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.String[]}
+  commentId: T:System.Text.Json.Serialization.Metadata.JsonTypeInfo{System.String[]}
+  parent: System.Text.Json.Serialization.Metadata
+  definition: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+  name: JsonTypeInfo<string[]>
+  nameWithType: JsonTypeInfo<string[]>
+  fullName: System.Text.Json.Serialization.Metadata.JsonTypeInfo<string[]>
+  nameWithType.vb: JsonTypeInfo(Of String())
+  fullName.vb: System.Text.Json.Serialization.Metadata.JsonTypeInfo(Of String())
+  name.vb: JsonTypeInfo(Of String())
+  spec.csharp:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: '>'
+  spec.vb:
+  - uid: System.Text.Json.Serialization.Metadata.JsonTypeInfo`1
+    name: JsonTypeInfo
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )

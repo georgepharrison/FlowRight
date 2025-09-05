@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -13,11 +13,16 @@
     <Authors>FlowRight Contributors</Authors>
     <Company>FlowRight</Company>
     <Product>FlowRight</Product>
+    <PackageCopyright>Copyright (c) 2024 FlowRight Contributors</PackageCopyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/yourusername/FlowRight</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/yourusername/FlowRight</RepositoryUrl>
-    <PackageTags>result;error-handling;validation;functional</PackageTags>
+    <PackageProjectUrl>https://github.com/georgepharrison/FlowRight</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/georgepharrison/FlowRight</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageTags>result;error-handling;validation;functional;dotnet;csharp;railway;monads;either;flow-control;explicit-errors</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon-nuget.png</PackageIcon>
+    <PackageReleaseNotes>Initial preview release of FlowRight Result pattern library. See README.md for usage examples.</PackageReleaseNotes>
     
     <!-- Build Properties -->
     <Deterministic>true</Deterministic>

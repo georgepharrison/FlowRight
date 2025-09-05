@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text.Json.Serialization;
 
@@ -269,10 +270,13 @@ public partial class Result<T> : IResult<T>
     /// Console.WriteLine(message);
     /// </code>
     /// </example>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TResult Match<TResult>(Func<T, TResult> onSuccess, Func<string, TResult> onFailure)
     {
+#if DEBUG
         ArgumentNullException.ThrowIfNull(onSuccess);
         ArgumentNullException.ThrowIfNull(onFailure);
+#endif
 
         return IsSuccess
             ? onSuccess(SuccessValue)
@@ -334,6 +338,8 @@ public partial class Result<T> : IResult<T>
                 ResultFailureType.Error => onError(Error),
                 ResultFailureType.Security => onSecurityException(Error),
                 ResultFailureType.Validation => onValidationException(Failures),
+                ResultFailureType.NotFound => onError(Error),
+                ResultFailureType.ServerError => onError(Error),
                 ResultFailureType.OperationCanceled => onOperationCanceledException(Error),
                 _ => throw new NotImplementedException()
             };
@@ -394,6 +400,8 @@ public partial class Result<T> : IResult<T>
             case ResultFailureType.Error:
             case ResultFailureType.Security:
             case ResultFailureType.Validation:
+            case ResultFailureType.NotFound:
+            case ResultFailureType.ServerError:
                 onFailure(Error);
                 break;
 
@@ -489,6 +497,14 @@ public partial class Result<T> : IResult<T>
                 onValidationException(Failures);
                 break;
 
+            case ResultFailureType.NotFound:
+                onError(Error);
+                break;
+
+            case ResultFailureType.ServerError:
+                onError(Error);
+                break;
+
             case ResultFailureType.OperationCanceled:
                 if (onOperationCanceledException is not null)
                 {
@@ -540,11 +556,17 @@ public partial class Result<T> : IResult<T>
     /// }
     /// </code>
     /// </example>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetValue([NotNullWhen(returnValue: true)] out T? value)
     {
-        value = IsSuccess ? SuccessValue : default;
-
-        return IsSuccess;
+        if (IsSuccess)
+        {
+            value = SuccessValue!;
+            return true;
+        }
+        
+        value = default;
+        return false;
     }
 
 
@@ -559,6 +581,8 @@ public partial class Result<T> : IResult<T>
             ResultFailureType.Error => Result.Failure(result.Error, result.ResultType),
             ResultFailureType.Security => Result.Failure(new SecurityException(result.Error)),
             ResultFailureType.Validation => Result.Failure(result.Failures),
+            ResultFailureType.NotFound => Result.NotFound(result.Error),
+            ResultFailureType.ServerError => Result.ServerError(result.Error),
             ResultFailureType.OperationCanceled => Result.Failure(new OperationCanceledException(result.Error)),
             _ => throw new NotImplementedException()
         };
@@ -644,7 +668,7 @@ public partial class Result<T> : IResult<T>
     /// It is always the logical inverse of <see cref="IsFailure"/>.
     /// </remarks>
     public bool IsSuccess =>
-        !IsFailure;
+        string.IsNullOrEmpty(Error);
 
     /// <summary>
     /// Gets the general category of this result.

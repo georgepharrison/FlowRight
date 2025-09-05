@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Enum ResultFailureType | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Enum ResultFailureType | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Specifies the specific type of failure that occurred in a result operation, providing detailed categorization for different error scenarios and enabling appropriate error handling strategies.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Core.Results.ResultFailureType">
+
+
+
+
+  <h1 id="FlowRight_Core_Results_ResultFailureType" data-uid="FlowRight.Core.Results.ResultFailureType" class="text-break">
+Enum ResultFailureType  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Core.html">Core</a>.<a class="xref" href="FlowRight.Core.Results.html">Results</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Specifies the specific type of failure that occurred in a result operation,
+providing detailed categorization for different error scenarios and enabling
+appropriate error handling strategies.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum ResultFailureType</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h2 id="fields">Fields
+</h2>
+  <dl class="parameters">
+    <dt id="FlowRight_Core_Results_ResultFailureType_Error"><code>Error = 1</code></dt>
+  <dd><p>Indicates a general error condition that doesn't fall into other specific categories.
+This represents system errors, unexpected exceptions, or business rule violations.</p>
+<p>This is the default failure type for most error scenarios including:</p>
+<ul><li>System or infrastructure failures</li><li>Unexpected exceptions</li><li>Business logic violations</li><li>General application errors</li></ul>
+</dd>
+  
+    <dt id="FlowRight_Core_Results_ResultFailureType_None"><code>None = 0</code></dt>
+  <dd><p>Indicates no failure occurred. This value is used for successful results
+and represents the absence of any error condition.</p>
+<p>This value should only be present in results where <a class="xref" href="FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_IsSuccess">IsSuccess</a>
+is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>. It serves as the default value for successful operations.</p>
+</dd>
+  
+    <dt id="FlowRight_Core_Results_ResultFailureType_NotFound"><code>NotFound = 4</code></dt>
+  <dd><p>Indicates that the requested resource was not found or does not exist.
+This represents a client error where the resource does not exist
+or the client lacks permission to access it.</p>
+<p>Not found failures are common in REST APIs and data access scenarios.
+They typically:</p>
+<ul><li>Correspond to HTTP 404 status codes</li><li>Indicate that a specific resource or entity does not exist</li><li>Can be handled differently from general errors</li><li>May trigger fallback or alternative data retrieval strategies</li></ul>
+This failure type allows consumers to distinguish between actual errors
+and legitimate "not found" scenarios that may be expected during normal operation.
+</dd>
+  
+    <dt id="FlowRight_Core_Results_ResultFailureType_OperationCanceled"><code>OperationCanceled = 6</code></dt>
+  <dd><p>Indicates that the operation was canceled before completion, typically due to
+cancellation tokens, timeouts, or explicit user cancellation requests.</p>
+<p>Operation canceled failures represent a normal part of application flow control
+rather than actual errors. They may be handled differently from other failure types:</p>
+<ul><li>Often ignored in logging</li><li>May not be displayed to users as errors</li><li>Can be filtered out of error handling in some scenarios</li><li>Support graceful shutdown and timeout scenarios</li></ul>
+</dd>
+  
+    <dt id="FlowRight_Core_Results_ResultFailureType_Security"><code>Security = 2</code></dt>
+  <dd><p>Indicates a security-related failure such as authentication failures,
+authorization violations, or security policy breaches.</p>
+<p>Security failures typically require special handling and may need to be:</p>
+<ul><li>Logged to security audit trails</li><li>Reported to security monitoring systems</li><li>Handled with specific error messages that don't reveal sensitive information</li><li>Subject to rate limiting or account lockout policies</li></ul>
+</dd>
+  
+    <dt id="FlowRight_Core_Results_ResultFailureType_ServerError"><code>ServerError = 5</code></dt>
+  <dd><p>Indicates that the operation failed due to a server-side error, typically
+representing 5xx HTTP status codes or infrastructure-related failures.</p>
+<p>Server errors represent failures on the server side that are typically temporary
+and may be resolved with retry mechanisms or service recovery:</p>
+<ul><li>Correspond to HTTP 5xx status codes (500-599)</li><li>Include internal server errors, service unavailable, bad gateway, etc.</li><li>May be candidates for retry logic with exponential backoff</li><li>Should be monitored and potentially trigger alerts</li><li>Distinguished from client errors to enable appropriate handling strategies</li></ul>
+</dd>
+  
+    <dt id="FlowRight_Core_Results_ResultFailureType_Validation"><code>Validation = 3</code></dt>
+  <dd><p>Indicates that the operation failed due to validation errors in the input data,
+typically containing detailed field-level error information.</p>
+<p>Validation failures are commonly encountered in user-facing applications and APIs.
+They typically:</p>
+<ul><li>Contain detailed field-specific error messages</li><li>Can be displayed directly to users</li><li>Should not be logged as system errors</li><li>May include multiple validation errors for different fields</li></ul>
+The detailed validation errors are typically available through <a class="xref" href="FlowRight.Core.Results.IResult.html#FlowRight_Core_Results_IResult_Failures">Failures</a>.
+</dd>
+  
+  </dl>
+
+
+  <h2 id="FlowRight_Core_Results_ResultFailureType_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+This enumeration allows consumers to distinguish between different categories
+of failures and implement specific handling logic for each type. For example,
+validation failures might be displayed to users differently than security failures.
+</p>
+<p>
+The failure types are designed to align with common error scenarios in modern
+applications, including validation, security, and operation lifecycle concerns.
+</p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

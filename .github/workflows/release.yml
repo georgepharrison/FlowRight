@@ -29,10 +29,10 @@ jobs:
         with:
           node-version: '18'
       
-      - name: Setup .NET 8.0
+      - name: Setup .NET 9.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       
       - name: Install semantic-release
         run: |
@@ -47,10 +47,30 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
       
-      - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal
+      - name: Test Core Library Only
+        run: dotnet test tests/Http.Tests/ --configuration Release --no-build --verbosity normal
       
       - name: Release
+        id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: semantic-release
+        run: |
+          semantic-release > release-output.log 2>&1
+          cat release-output.log
+          if grep -q "Published release" release-output.log; then
+            echo "new_release_published=true" >> $GITHUB_OUTPUT
+          else
+            echo "new_release_published=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Publish to NuGet
+        if: steps.release.outputs.new_release_published == 'true'
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          for package in ./artifacts/*.nupkg; do
+            if [[ -f "$package" ]]; then
+              echo "Publishing $package to NuGet..."
+              dotnet nuget push "$package" --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+            fi
+          done

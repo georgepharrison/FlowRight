@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ValidationBuilder&lt;T&gt; | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ValidationBuilder&lt;T&gt; | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="A fluent validation builder that integrates with the Result&amp;lt;T&amp;gt; pattern to provide comprehensive validation capabilities with automatic error aggregation and Result&amp;lt;T&amp;gt; composition support.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Validation.Builders.ValidationBuilder`1">
+
+
+
+  <h1 id="FlowRight_Validation_Builders_ValidationBuilder_1" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1" class="text-break">
+Class ValidationBuilder&lt;T&gt;  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Validation.html">Validation</a>.<a class="xref" href="FlowRight.Validation.Builders.html">Builders</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Validation.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A fluent validation builder that integrates with the Result&lt;T&gt; pattern to provide comprehensive validation capabilities
+with automatic error aggregation and Result&lt;T&gt; composition support.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ValidationBuilder&lt;T&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of object being validated and constructed.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><span class="xref">ValidationBuilder&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+  <h2 id="FlowRight_Validation_Builders_ValidationBuilder_1_examples">Examples</h2>
+  <p><strong>Basic Usage:</strong></p>
+<pre><code class="lang-csharp">Result&lt;Character&gt; result = new ValidationBuilder&lt;Character&gt;()
+    .RuleFor(x =&gt; x.Name, request.Name)
+        .NotEmpty()
+        .MaximumLength(50)
+    .RuleFor(x =&gt; x.Age, request.Age)
+        .GreaterThan(0)
+        .LessThan(120)
+    .Build(() =&gt; new Character(request.Name, request.Age));</code></pre>
+<p><strong>Result&lt;T&gt; Composition:</strong></p>
+<pre><code class="lang-csharp">Result&lt;Character&gt; result = new ValidationBuilder&lt;Character&gt;()
+    .RuleFor(x =&gt; x.Attributes, AttributeSet.Create(attributes), out AttributeSet? validatedAttributes)
+    .RuleFor(x =&gt; x.Edge, Edge.Create(startingEdge), out Edge? validatedEdge)
+    .Build(() =&gt; new Character(name, validatedAttributes!, validatedEdge!));</code></pre>
+<p><strong>Conditional Validation:</strong></p>
+<pre><code class="lang-csharp">ValidationBuilder&lt;DicePool&gt; builder = new();
+return builder
+    .RuleFor(x =&gt; x.Limit, limit)
+        .GreaterThanOrEqualTo(0)
+        .When(value =&gt; !ignoreLimit)
+        .WithMessage("Limit must be specified when not using Edge");</code></pre>
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1__ctor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.#ctor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1__ctor" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.#ctor">
+  ValidationBuilder()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the ValidationBuilder class with default settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1__ctor_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor creates a ValidationBuilder without validation context support.
+For context-aware validation scenarios, use the constructor that accepts an IValidationContext.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1__ctor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.#ctor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1__ctor_FlowRight_Validation_Context_IValidationContext_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.#ctor(FlowRight.Validation.Context.IValidationContext)">
+  ValidationBuilder(IValidationContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the ValidationBuilder class with validation context support.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder(IValidationContext validationContext)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>validationContext</code> <a class="xref" href="FlowRight.Validation.Context.IValidationContext.html">IValidationContext</a></dt>
+    <dd><p>The validation context for complex validation scenarios.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1__ctor_FlowRight_Validation_Context_IValidationContext__examples">Examples</h4>
+  <pre><code class="lang-csharp">User user = new UserBuilder().Build();
+IValidationContext context = ValidationContext.Create(user, serviceProvider);
+context.SetCustomData("ValidationMode", "Strict");
+
+ValidationBuilder&lt;User&gt; builder = new(context);
+Result&lt;User&gt; result = builder
+    .RuleFor(x =&gt; x.Email, request.Email)
+        .Must((email, ctx) =&gt; ValidateWithContext(email, ctx), "Invalid email")
+    .Build(() =&gt; user);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1__ctor_FlowRight_Validation_Context_IValidationContext__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This constructor enables context-aware validation scenarios including cross-property validation,
+service integration, custom data sharing, and hierarchical validation.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_HasErrors_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.HasErrors*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_HasErrors" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.HasErrors">
+  HasErrors
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether any validation errors have been accumulated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasErrors { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p><code>true</code> if there are validation errors; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_HasErrors_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property is used internally by the Build method to determine whether to return
+a success or failure result. It can also be used externally to check validation state
+before calling Build().</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_Build_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.Build*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_Build_System_Func__0__" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.Build(System.Func{`0})">
+  Build(Func&lt;T&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Builds the final Result&lt;T&gt; by validating all accumulated rules and constructing the object if validation succeeds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Result&lt;T&gt; Build(Func&lt;T&gt; factory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>factory</code> <span class="xref">Func</span>&lt;T&gt;</dt>
+    <dd><p>A factory function to create the validated object when all validations pass.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A Result&lt;T&gt; containing either the successfully created object or a validation failure with all accumulated errors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_Build_System_Func__0___examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;User&gt; result = builder.Build(() =&gt; new User(validatedName, validatedEmail));
+
+return result.Match(
+    onSuccess: user =&gt; Ok(user),
+    onValidationException: errors =&gt; BadRequest(errors));</code></pre>
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when factory is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_GetErrors_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.GetErrors*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_GetErrors" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.GetErrors">
+  GetErrors()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all accumulated validation errors as a dictionary mapping property names to error message arrays.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string[]&gt; GetErrors()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Dictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;</dt>
+    <dd><p>A dictionary where keys are property names and values are arrays of error messages for that property.
+Returns an empty dictionary if no validation errors have been accumulated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_GetErrors_examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;User&gt; builder = new();
+builder.RuleFor(x =&gt; x.Name, "").NotEmpty();
+builder.RuleFor(x =&gt; x.Email, "invalid").EmailAddress();
+
+Dictionary&lt;string, string[]&gt; errors = builder.GetErrors();
+// errors["Name"] contains ["Name is required"]
+// errors["Email"] contains ["Email address format is invalid"]</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_System_Nullable_System_Boolean___System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean,System.Nullable{System.Boolean}@,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, out bool?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a boolean property with out parameter support for value extraction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, bool&gt;&gt; propertySelector, bool value, out bool? validatedValue, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">bool</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">bool</span></dt>
+    <dd><p>The actual boolean value to be validated.</p>
+</dd>
+    <dt><code>validatedValue</code> <span class="xref">bool</span>?</dt>
+    <dd><p>Output parameter that receives the validated value.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, bool&gt;&gt;, bool, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a boolean property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, bool&gt; RuleFor(Expression&lt;Func&lt;T, bool&gt;&gt; propertySelector, bool value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">bool</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.IsActive).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">bool</span></dt>
+    <dd><p>The actual boolean value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">bool</span>&gt;</dt>
+    <dd><p>A GenericPropertyValidator&lt;T, bool&gt; for chaining additional validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;User&gt; builder = new();
+builder.RuleFor(x =&gt; x.HasAcceptedTerms, request.HasAcceptedTerms)
+    .Equal(true)
+    .WithMessage("Terms and conditions must be accepted");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Byte___System_Byte_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Byte}},System.Byte,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, byte&gt;&gt;, byte, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a byte numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, byte&gt; RuleFor(Expression&lt;Func&lt;T, byte&gt;&gt; propertySelector, byte value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">byte</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">byte</span></dt>
+    <dd><p>The byte value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">byte</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Char___System_Char_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Char}},System.Char,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, char&gt;&gt;, char, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a character property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, char&gt; RuleFor(Expression&lt;Func&lt;T, char&gt;&gt; propertySelector, char value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">char</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.Grade).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">char</span></dt>
+    <dd><p>The actual character value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">char</span>&gt;</dt>
+    <dd><p>A GenericPropertyValidator&lt;T, char&gt; for chaining additional validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Char___System_Char_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Student&gt; builder = new();
+builder.RuleFor(x =&gt; x.Grade, request.Grade)
+    .Must(grade =&gt; "ABCDF".Contains(grade), "Grade must be A, B, C, D, or F")
+    .WithMessage("Invalid grade provided");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_DateTime_System_Nullable_System_DateTime___System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.DateTime,System.Nullable{System.DateTime}@,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, DateTime&gt;&gt;, DateTime, out DateTime?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a DateTime property with out parameter support for value extraction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, DateTime&gt;&gt; propertySelector, DateTime value, out DateTime? validatedValue, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">DateTime</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">DateTime</span></dt>
+    <dd><p>The actual DateTime value to be validated.</p>
+</dd>
+    <dt><code>validatedValue</code> <span class="xref">DateTime</span>?</dt>
+    <dd><p>Output parameter that receives the validated value if validation succeeds, or null if validation fails.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_DateTime_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.DateTime,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, DateTime&gt;&gt;, DateTime, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a DateTime property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, DateTime&gt; RuleFor(Expression&lt;Func&lt;T, DateTime&gt;&gt; propertySelector, DateTime value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">DateTime</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.CreatedAt).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">DateTime</span></dt>
+    <dd><p>The actual DateTime value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">DateTime</span>&gt;</dt>
+    <dd><p>A GenericPropertyValidator&lt;T, DateTime&gt; for chaining additional validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_DateTime_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Event&gt; builder = new();
+builder.RuleFor(x =&gt; x.StartDate, request.StartDate)
+    .NotEqual(default)
+    .Must(date =&gt; date &gt; DateTime.Now, "Start date must be in the future")
+    .WithMessage("Invalid start date provided");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Decimal___System_Decimal_System_Nullable_System_Decimal___System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Decimal}},System.Decimal,System.Nullable{System.Decimal}@,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, decimal&gt;&gt;, decimal, out decimal?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a decimal property with out parameter support for value extraction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, decimal&gt;&gt; propertySelector, decimal value, out decimal? validatedValue, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">decimal</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">decimal</span></dt>
+    <dd><p>The actual decimal value to be validated.</p>
+</dd>
+    <dt><code>validatedValue</code> <span class="xref">decimal</span>?</dt>
+    <dd><p>Output parameter that receives the validated value if validation succeeds, or null if validation fails.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Decimal___System_Decimal_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Decimal}},System.Decimal,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, decimal&gt;&gt;, decimal, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a decimal numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, decimal&gt; RuleFor(Expression&lt;Func&lt;T, decimal&gt;&gt; propertySelector, decimal value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">decimal</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">decimal</span></dt>
+    <dd><p>The decimal value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">decimal</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Double___System_Double_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Double}},System.Double,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, double&gt;&gt;, double, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a double numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, double&gt; RuleFor(Expression&lt;Func&lt;T, double&gt;&gt; propertySelector, double value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">double</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">double</span></dt>
+    <dd><p>The double value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">double</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int16___System_Int16_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int16}},System.Int16,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, short&gt;&gt;, short, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a short numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, short&gt; RuleFor(Expression&lt;Func&lt;T, short&gt;&gt; propertySelector, short value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">short</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">short</span></dt>
+    <dd><p>The short value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">short</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_Nullable_System_Int32___System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.Int32,System.Nullable{System.Int32}@,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, int&gt;&gt;, int, out int?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for an integer property with out parameter support for value extraction.
+This overload performs basic validation immediately and provides the validated value through the out parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, int&gt;&gt; propertySelector, int value, out int? validatedValue, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">int</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.Age).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">int</span></dt>
+    <dd><p>The actual integer value to be validated.</p>
+</dd>
+    <dt><code>validatedValue</code> <span class="xref">int</span>?</dt>
+    <dd><p>Output parameter that receives the validated value if validation succeeds, or null if validation fails.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining of other property validations.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_Nullable_System_Int32___System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;User&gt; builder = new();
+builder.RuleFor(x =&gt; x.Age, request.Age, out int? validatedAge);
+
+Result&lt;User&gt; result = builder.Build(() =&gt; new User("name", "email", validatedAge!.Value));</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_Nullable_System_Int32___System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This overload enables extraction of validated values for use in object construction patterns.
+The out parameter will contain the input value if it passes basic validation (greater than or equal to 0),
+or null if the basic validation fails.
+For more complex validation rules, use the standard RuleFor overload that returns a property validator.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.Int32,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, int&gt;&gt;, int, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for an integer property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, int&gt; RuleFor(Expression&lt;Func&lt;T, int&gt;&gt; propertySelector, int value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">int</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.Age).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">int</span></dt>
+    <dd><p>The actual integer value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">int</span>&gt;</dt>
+    <dd><p>A NumericPropertyValidator&lt;T, int&gt; for chaining additional numeric validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_Int32_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;User&gt; builder = new();
+builder.RuleFor(x =&gt; x.Age, request.Age)
+    .GreaterThan(0)
+    .LessThan(120)
+    .WithMessage("Age must be between 1 and 119");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Int64___System_Int64_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Int64}},System.Int64,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, long&gt;&gt;, long, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a long numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, long&gt; RuleFor(Expression&lt;Func&lt;T, long&gt;&gt; propertySelector, long value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">long</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">long</span></dt>
+    <dd><p>The long value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">long</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Boolean____System_Nullable_System_Boolean__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Boolean}}},System.Nullable{System.Boolean},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, bool?&gt;&gt;, bool?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable boolean property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, bool?&gt; RuleFor(Expression&lt;Func&lt;T, bool?&gt;&gt; propertySelector, bool? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">bool</span>?&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.IsVerified).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">bool</span>?</dt>
+    <dd><p>The actual nullable boolean value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">bool</span>?&gt;</dt>
+    <dd><p>A GenericPropertyValidator&lt;T, bool?&gt; for chaining additional validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Boolean____System_Nullable_System_Boolean__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Account&gt; builder = new();
+builder.RuleFor(x =&gt; x.IsEmailVerified, request.IsEmailVerified)
+    .Notnull()
+    .Equal(true)
+    .WithMessage("Email verification is required");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Byte____System_Nullable_System_Byte__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Byte}}},System.Nullable{System.Byte},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, byte?&gt;&gt;, byte?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable byte numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, byte?&gt; RuleFor(Expression&lt;Func&lt;T, byte?&gt;&gt; propertySelector, byte? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">byte</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">byte</span>?</dt>
+    <dd><p>The nullable byte value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">byte</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Char____System_Nullable_System_Char__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Char}}},System.Nullable{System.Char},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, char?&gt;&gt;, char?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable character property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, char?&gt; RuleFor(Expression&lt;Func&lt;T, char?&gt;&gt; propertySelector, char? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">char</span>?&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.MiddleInitial).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">char</span>?</dt>
+    <dd><p>The actual nullable character value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">char</span>?&gt;</dt>
+    <dd><p>A GenericPropertyValidator&lt;T, char?&gt; for chaining additional validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Char____System_Nullable_System_Char__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Person&gt; builder = new();
+builder.RuleFor(x =&gt; x.MiddleInitial, request.MiddleInitial)
+    .Must(initial =&gt; initial is null || char.IsLetter(initial.Value), "Middle initial must be a letter")
+    .WithMessage("Invalid middle initial provided");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_DateTime____System_Nullable_System_DateTime__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.DateTime}}},System.Nullable{System.DateTime},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, DateTime?&gt;&gt;, DateTime?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable DateTime property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, DateTime?&gt; RuleFor(Expression&lt;Func&lt;T, DateTime?&gt;&gt; propertySelector, DateTime? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">DateTime</span>?&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.UpdatedAt).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">DateTime</span>?</dt>
+    <dd><p>The actual nullable DateTime value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">DateTime</span>?&gt;</dt>
+    <dd><p>A GenericPropertyValidator&lt;T, DateTime?&gt; for chaining additional validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_DateTime____System_Nullable_System_DateTime__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Event&gt; builder = new();
+builder.RuleFor(x =&gt; x.EndDate, request.EndDate)
+    .Notnull()
+    .Must(date =&gt; date &gt; DateTime.Now, "End date must be in the future")
+    .WithMessage("End date is required and must be valid");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Decimal____System_Nullable_System_Decimal__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Decimal}}},System.Nullable{System.Decimal},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, decimal?&gt;&gt;, decimal?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable decimal numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, decimal?&gt; RuleFor(Expression&lt;Func&lt;T, decimal?&gt;&gt; propertySelector, decimal? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">decimal</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">decimal</span>?</dt>
+    <dd><p>The nullable decimal value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">decimal</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Double____System_Nullable_System_Double__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Double}}},System.Nullable{System.Double},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, double?&gt;&gt;, double?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable double numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, double?&gt; RuleFor(Expression&lt;Func&lt;T, double?&gt;&gt; propertySelector, double? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">double</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">double</span>?</dt>
+    <dd><p>The nullable double value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">double</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Guid____System_Nullable_System_Guid__System_Nullable_System_Guid___System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Guid}}},System.Nullable{System.Guid},System.Nullable{System.Guid}@,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, Guid?&gt;&gt;, Guid?, out Guid?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a Guid? property with out parameter support for value extraction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, Guid?&gt;&gt; propertySelector, Guid? value, out Guid? validatedValue, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">Guid</span>?&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">Guid</span>?</dt>
+    <dd><p>The actual Guid? value to be validated.</p>
+</dd>
+    <dt><code>validatedValue</code> <span class="xref">Guid</span>?</dt>
+    <dd><p>Output parameter that receives the validated value if validation succeeds, or null if validation fails.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Guid____System_Nullable_System_Guid__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Guid}}},System.Nullable{System.Guid},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, Guid?&gt;&gt;, Guid?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a Guid? property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GuidPropertyValidator&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, Guid?&gt;&gt; propertySelector, Guid? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">Guid</span>?&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.Id).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">Guid</span>?</dt>
+    <dd><p>The actual value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GuidPropertyValidator-1.html">GuidPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>A GuidPropertyValidator&lt;T&gt; for chaining additional validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Guid____System_Nullable_System_Guid__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Entity&gt; builder = new();
+builder.RuleFor(x =&gt; x.Id, request.Id)
+    .NotEqual(Guid.Empty)
+    .WithMessage("Entity ID cannot be empty");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Int16____System_Nullable_System_Int16__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Int16}}},System.Nullable{System.Int16},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, short?&gt;&gt;, short?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable short numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, short?&gt; RuleFor(Expression&lt;Func&lt;T, short?&gt;&gt; propertySelector, short? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">short</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">short</span>?</dt>
+    <dd><p>The nullable short value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">short</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Int32____System_Nullable_System_Int32__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Int32}}},System.Nullable{System.Int32},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, int?&gt;&gt;, int?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable integer numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, int?&gt; RuleFor(Expression&lt;Func&lt;T, int?&gt;&gt; propertySelector, int? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">int</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">int</span>?</dt>
+    <dd><p>The nullable integer value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">int</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Int64____System_Nullable_System_Int64__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Int64}}},System.Nullable{System.Int64},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, long?&gt;&gt;, long?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable long numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, long?&gt; RuleFor(Expression&lt;Func&lt;T, long?&gt;&gt; propertySelector, long? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">long</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">long</span>?</dt>
+    <dd><p>The nullable long value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">long</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_SByte____System_Nullable_System_SByte__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.SByte}}},System.Nullable{System.SByte},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, sbyte?&gt;&gt;, sbyte?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable signed byte numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, sbyte?&gt; RuleFor(Expression&lt;Func&lt;T, sbyte?&gt;&gt; propertySelector, sbyte? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">sbyte</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">sbyte</span>?</dt>
+    <dd><p>The nullable sbyte value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">sbyte</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_Single____System_Nullable_System_Single__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.Single}}},System.Nullable{System.Single},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, float?&gt;&gt;, float?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable float numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, float?&gt; RuleFor(Expression&lt;Func&lt;T, float?&gt;&gt; propertySelector, float? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">float</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">float</span>?</dt>
+    <dd><p>The nullable float value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">float</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_UInt32____System_Nullable_System_UInt32__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.UInt32}}},System.Nullable{System.UInt32},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, uint?&gt;&gt;, uint?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable unsigned integer numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, uint?&gt; RuleFor(Expression&lt;Func&lt;T, uint?&gt;&gt; propertySelector, uint? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">uint</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">uint</span>?</dt>
+    <dd><p>The nullable uint value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">uint</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Nullable_System_UInt64____System_Nullable_System_UInt64__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.UInt64}}},System.Nullable{System.UInt64},System.String)">
+  RuleFor(Expression&lt;Func&lt;T, ulong?&gt;&gt;, ulong?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a nullable unsigned long numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, ulong?&gt; RuleFor(Expression&lt;Func&lt;T, ulong?&gt;&gt; propertySelector, ulong? value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">ulong</span>?&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">ulong</span>?</dt>
+    <dd><p>The nullable ulong value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, <span class="xref">ulong</span>?&gt;</dt>
+    <dd><p>A generic property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_SByte___System_SByte_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.SByte}},System.SByte,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, sbyte&gt;&gt;, sbyte, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a signed byte numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, sbyte&gt; RuleFor(Expression&lt;Func&lt;T, sbyte&gt;&gt; propertySelector, sbyte value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">sbyte</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">sbyte</span></dt>
+    <dd><p>The sbyte value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">sbyte</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_Single___System_Single_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.Single}},System.Single,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, float&gt;&gt;, float, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a float numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, float&gt; RuleFor(Expression&lt;Func&lt;T, float&gt;&gt; propertySelector, float value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">float</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">float</span></dt>
+    <dd><p>The float value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">float</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, string&gt;&gt;, string, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a string property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringPropertyValidator&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, string&gt;&gt; propertySelector, string value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">string</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.Name).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">string</span></dt>
+    <dd><p>The actual string value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.StringPropertyValidator-1.html">StringPropertyValidator</a>&lt;T&gt;</dt>
+    <dd><p>A StringPropertyValidator&lt;T&gt; for chaining additional string-specific validation rules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;User&gt; builder = new();
+builder.RuleFor(x =&gt; x.Name, request.Name)
+    .NotEmpty()
+    .MinimumLength(2)
+    .MaximumLength(50)
+    .Matches("^[a-zA-Z ]+$")
+    .WithMessage("Name must contain only letters and spaces");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.String@,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, string&gt;&gt;, string, out string?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for a string property with out parameter support for value extraction.
+This overload performs basic validation immediately and provides the validated value through the out parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor(Expression&lt;Func&lt;T, string&gt;&gt; propertySelector, string value, out string? validatedValue, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">string</span>&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.Name).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">string</span></dt>
+    <dd><p>The actual string value to be validated.</p>
+</dd>
+    <dt><code>validatedValue</code> <span class="xref">string</span></dt>
+    <dd><p>Output parameter that receives the validated value if validation succeeds, or null if validation fails.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining of other property validations.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;User&gt; builder = new();
+builder.RuleFor(x =&gt; x.Name, request.Name, out string? validatedName);
+builder.RuleFor(x =&gt; x.Age, request.Age, out int? validatedAge);
+
+Result&lt;User&gt; result = builder.Build(() =&gt; new User(validatedName!, validatedAge!.Value, "email"));</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_String__System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This overload enables extraction of validated values for use in object construction patterns.
+The out parameter will contain the input value if it passes basic validation (not null/empty for strings),
+or null if the basic validation fails.
+For more complex validation rules, use the standard RuleFor overload that returns a property validator.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt32___System_UInt32_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt32}},System.UInt32,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, uint&gt;&gt;, uint, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for an unsigned integer numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, uint&gt; RuleFor(Expression&lt;Func&lt;T, uint&gt;&gt; propertySelector, uint value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">uint</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">uint</span></dt>
+    <dd><p>The uint value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">uint</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_System_Linq_Expressions_Expression_System_Func__0_System_UInt64___System_UInt64_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor(System.Linq.Expressions.Expression{System.Func{`0,System.UInt64}},System.UInt64,System.String)">
+  RuleFor(Expression&lt;Func&lt;T, ulong&gt;&gt;, ulong, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for an unsigned long numeric property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumericPropertyValidator&lt;T, ulong&gt; RuleFor(Expression&lt;Func&lt;T, ulong&gt;&gt; propertySelector, ulong value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">ulong</span>&gt;&gt;</dt>
+    <dd><p>Expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">ulong</span></dt>
+    <dd><p>The ulong value for the property.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional display name for validation messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.NumericPropertyValidator-2.html">NumericPropertyValidator</a>&lt;T, <span class="xref">ulong</span>&gt;</dt>
+    <dd><p>A numeric property validator for further rule configuration.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_IEnumerable___0____System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IEnumerable___0___System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0}@,System.String)">
+  RuleFor&lt;TItem&gt;(Expression&lt;Func&lt;T, IEnumerable&lt;TItem&gt;&gt;&gt;, IEnumerable&lt;TItem&gt;, out IEnumerable&lt;TItem&gt;?, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for an enumerable property with out parameter support for value extraction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor&lt;TItem&gt;(Expression&lt;Func&lt;T, IEnumerable&lt;TItem&gt;&gt;&gt; propertySelector, IEnumerable&lt;TItem&gt; value, out IEnumerable&lt;TItem&gt;? validatedValue, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">IEnumerable</span>&lt;TItem&gt;&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">IEnumerable</span>&lt;TItem&gt;</dt>
+    <dd><p>The actual enumerable value to be validated.</p>
+</dd>
+    <dt><code>validatedValue</code> <span class="xref">IEnumerable</span>&lt;TItem&gt;</dt>
+    <dd><p>Output parameter that receives the validated value if validation succeeds, or null if validation fails.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TItem</code></dt>
+    <dd><p>The type of items in the enumerable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_IEnumerable___0____System_Collections_Generic_IEnumerable___0__System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}},System.Collections.Generic.IEnumerable{``0},System.String)">
+  RuleFor&lt;TItem&gt;(Expression&lt;Func&lt;T, IEnumerable&lt;TItem&gt;&gt;&gt;, IEnumerable&lt;TItem&gt;, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for an enumerable property using a fluent interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnumerablePropertyValidator&lt;T, TItem&gt; RuleFor&lt;TItem&gt;(Expression&lt;Func&lt;T, IEnumerable&lt;TItem&gt;&gt;&gt; propertySelector, IEnumerable&lt;TItem&gt; value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, <span class="xref">IEnumerable</span>&lt;TItem&gt;&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.Skills).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">IEnumerable</span>&lt;TItem&gt;</dt>
+    <dd><p>The actual enumerable value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.EnumerablePropertyValidator-2.html">EnumerablePropertyValidator</a>&lt;T, TItem&gt;</dt>
+    <dd><p>An EnumerablePropertyValidator&lt;T, TItem&gt; for chaining additional collection-specific validation rules.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TItem</code></dt>
+    <dd><p>The type of items in the enumerable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0_System_Collections_Generic_IEnumerable___0____System_Collections_Generic_IEnumerable___0__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Character&gt; builder = new();
+builder.RuleFor(x =&gt; x.Skills, request.Skills)
+    .NotEmpty()
+    .MinCount(1)
+    .MaxCount(20)
+    .Unique()
+    .WithMessage("Character must have 1-20 unique skills");</code></pre>
+
+
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0___FlowRight_Core_Results_Result___0____0__" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},FlowRight.Core.Results.Result{``0},``0@)">
+  RuleFor&lt;TProp&gt;(Expression&lt;Func&lt;T, TProp&gt;&gt;, Result&lt;TProp&gt;, out TProp?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Integrates Result&lt;T&gt; validation into the validation builder, automatically extracting failures and providing access to successful values.
+This is the key method that enables composition of multiple Result&lt;T&gt; operations in a single validation chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValidationBuilder&lt;T&gt; RuleFor&lt;TProp&gt;(Expression&lt;Func&lt;T, TProp&gt;&gt; propertySelector, Result&lt;TProp&gt; result, out TProp? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, TProp&gt;&gt;</dt>
+    <dd><p>An expression selecting the property (e.g., x =&gt; x.Attributes).</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;TProp&gt;</dt>
+    <dd><p>A Result&lt;TProp&gt; containing either a successful value or validation errors.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">TProp</span></dt>
+    <dd><p>Output parameter providing access to the successful value for object construction, or default if validation failed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Builders.ValidationBuilder-1.html">ValidationBuilder</a>&lt;T&gt;</dt>
+    <dd><p>The ValidationBuilder&lt;T&gt; for continued chaining.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TProp</code></dt>
+    <dd><p>The type of property being validated through a Result&lt;T&gt;.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0___FlowRight_Core_Results_Result___0____0___examples">Examples</h4>
+  <pre><code class="lang-csharp">// Compose multiple Result&lt;T&gt; validations
+Result&lt;Character&gt; result = new ValidationBuilder&lt;Character&gt;()
+    .RuleFor(x =&gt; x.Attributes, AttributeSet.Create(request.Attributes), out AttributeSet? attributes)
+    .RuleFor(x =&gt; x.Edge, Edge.Create(request.StartingEdge), out Edge? edge)
+    .RuleFor(x =&gt; x.Health, ConditionMonitor.Create(attributes), out ConditionMonitor? health)
+    .Build(() =&gt; new Character(request.Name, attributes!, edge!, health!));
+
+// All validation failures are automatically aggregated
+// Success values are available through out parameters</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0___FlowRight_Core_Results_Result___0____0___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method automatically handles all Result&lt;T&gt; failure types:
+- Simple errors: Added as single error messages
+- Validation exceptions: Merged with existing validation errors
+- Security exceptions: Added as security-related errors
+- Operation cancelled exceptions: Added as cancellation errors
+</p>
+<p>
+The out parameter allows access to successful validation results for object construction,
+enabling patterns like: new Character(name, validatedAttributes!, validatedEdge!)
+</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor*"></a>
+
+  <h3 id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0_____0_System_String_" data-uid="FlowRight.Validation.Builders.ValidationBuilder`1.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},``0,System.String)">
+  RuleFor&lt;TProp&gt;(Expression&lt;Func&lt;T, TProp&gt;&gt;, TProp, string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates validation rules for any property type using a fluent interface. This is the fallback validator for types
+that don't have specialized validators (string, numeric, enumerable, guid).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenericPropertyValidator&lt;T, TProp&gt; RuleFor&lt;TProp&gt;(Expression&lt;Func&lt;T, TProp&gt;&gt; propertySelector, TProp value, string? displayName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertySelector</code> <span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;T, TProp&gt;&gt;</dt>
+    <dd><p>An expression selecting the property to validate (e.g., x =&gt; x.CustomType).</p>
+</dd>
+    <dt><code>value</code> <span class="xref">TProp</span></dt>
+    <dd><p>The actual value to be validated.</p>
+</dd>
+    <dt><code>displayName</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom display name for error messages. If null, uses the property name from the expression.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Validation.Validators.GenericPropertyValidator-2.html">GenericPropertyValidator</a>&lt;T, TProp&gt;</dt>
+    <dd><p>A GenericPropertyValidator&lt;T, TProp&gt; for chaining general validation rules.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TProp</code></dt>
+    <dd><p>The type of property being validated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Validation_Builders_ValidationBuilder_1_RuleFor__1_System_Linq_Expressions_Expression_System_Func__0___0_____0_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">ValidationBuilder&lt;Order&gt; builder = new();
+builder.RuleFor(x =&gt; x.Status, request.Status)
+    .NotNull()
+    .Must(status =&gt; status != OrderStatus.Invalid, "Order status cannot be Invalid")
+    .Equal(OrderStatus.Pending);</code></pre>
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

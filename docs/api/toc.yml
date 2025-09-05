@@ -1,0 +1,270 @@
+### YamlMime:TableOfContent
+items:
+- uid: FlowRight.Core.Extensions
+  name: FlowRight.Core.Extensions
+  type: Namespace
+  items:
+  - uid: FlowRight.Core.Extensions.ResultAsyncExtensions
+    name: ResultAsyncExtensions
+    type: Class
+- uid: FlowRight.Core.Results
+  name: FlowRight.Core.Results
+  type: Namespace
+  items:
+  - uid: FlowRight.Core.Results.IResult
+    name: IResult
+    type: Interface
+  - uid: FlowRight.Core.Results.IResultError`1
+    name: IResultError<T>
+    type: Interface
+  - uid: FlowRight.Core.Results.IResult`1
+    name: IResult<T>
+    type: Interface
+  - uid: FlowRight.Core.Results.Result
+    name: Result
+    type: Class
+  - uid: FlowRight.Core.Results.ResultFailureType
+    name: ResultFailureType
+    type: Enum
+  - uid: FlowRight.Core.Results.ResultType
+    name: ResultType
+    type: Enum
+  - uid: FlowRight.Core.Results.Result`1
+    name: Result<T>
+    type: Class
+- uid: FlowRight.Core.Serialization
+  name: FlowRight.Core.Serialization
+  type: Namespace
+  items:
+  - uid: FlowRight.Core.Serialization.ResultJsonConverter
+    name: ResultJsonConverter
+    type: Class
+  - uid: FlowRight.Core.Serialization.ResultTJsonConverter`1
+    name: ResultTJsonConverter<T>
+    type: Class
+- uid: FlowRight.Http.Extensions
+  name: FlowRight.Http.Extensions
+  type: Namespace
+  items:
+  - uid: FlowRight.Http.Extensions.HttpResponseMessageExtensions
+    name: HttpResponseMessageExtensions
+    type: Class
+- uid: FlowRight.Http.Models
+  name: FlowRight.Http.Models
+  type: Namespace
+  items:
+  - uid: FlowRight.Http.Models.ContentTypeInfo
+    name: ContentTypeInfo
+    type: Class
+  - uid: FlowRight.Http.Models.ValidationProblemJsonSerializerContext
+    name: ValidationProblemJsonSerializerContext
+    type: Class
+  - uid: FlowRight.Http.Models.ValidationProblemResponse
+    name: ValidationProblemResponse
+    type: Class
+- uid: FlowRight.Validation.Builders
+  name: FlowRight.Validation.Builders
+  type: Namespace
+  items:
+  - uid: FlowRight.Validation.Builders.ValidationBuilder`1
+    name: ValidationBuilder<T>
+    type: Class
+- uid: FlowRight.Validation.Context
+  name: FlowRight.Validation.Context
+  type: Namespace
+  items:
+  - uid: FlowRight.Validation.Context.IValidationContext
+    name: IValidationContext
+    type: Interface
+  - uid: FlowRight.Validation.Context.ValidationContext
+    name: ValidationContext
+    type: Class
+- uid: FlowRight.Validation.Rules
+  name: FlowRight.Validation.Rules
+  type: Namespace
+  items:
+  - uid: FlowRight.Validation.Rules.AlphaNumericDashRule
+    name: AlphaNumericDashRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.AlphaNumericRule
+    name: AlphaNumericRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.AlphaNumericSpaceRule
+    name: AlphaNumericSpaceRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.AlphaRule
+    name: AlphaRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.BetweenRule`1
+    name: BetweenRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.ContainsItemRule`1
+    name: ContainsItemRule<TItem>
+    type: Class
+  - uid: FlowRight.Validation.Rules.ContainsRule
+    name: ContainsRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.CountRule`1
+    name: CountRule<TItem>
+    type: Class
+  - uid: FlowRight.Validation.Rules.CreditCardRule
+    name: CreditCardRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.EachRule`1
+    name: EachRule<TItem>
+    type: Class
+  - uid: FlowRight.Validation.Rules.EmailRule
+    name: EmailRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.EmptyRule`1
+    name: EmptyRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.EndsWithRule
+    name: EndsWithRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.EqualRule`1
+    name: EqualRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.EqualToRule
+    name: EqualToRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.ExactLengthRule
+    name: ExactLengthRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.ExclusiveBetweenRule`1
+    name: ExclusiveBetweenRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.GreaterThanOrEqualToRule`1
+    name: GreaterThanOrEqualToRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.GreaterThanRule`1
+    name: GreaterThanRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.GuidNonZeroTimestampRule
+    name: GuidNonZeroTimestampRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.GuidNotEmptyRule
+    name: GuidNotEmptyRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.GuidValidFormatRule
+    name: GuidValidFormatRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.IAsyncContextAwareRule`1
+    name: IAsyncContextAwareRule<T>
+    type: Interface
+  - uid: FlowRight.Validation.Rules.IContextAwareRule`1
+    name: IContextAwareRule<T>
+    type: Interface
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule<T>
+    type: Interface
+  - uid: FlowRight.Validation.Rules.InclusiveBetweenRule
+    name: InclusiveBetweenRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.InclusiveBetweenRule`1
+    name: InclusiveBetweenRule<TNumeric>
+    type: Class
+  - uid: FlowRight.Validation.Rules.LengthRule
+    name: LengthRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.LessThanOrEqualToRule`1
+    name: LessThanOrEqualToRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.LessThanRule`1
+    name: LessThanRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.LowerCaseRule
+    name: LowerCaseRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.MatchesRule
+    name: MatchesRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.MaxCountRule`1
+    name: MaxCountRule<TItem>
+    type: Class
+  - uid: FlowRight.Validation.Rules.MaxLengthRule
+    name: MaxLengthRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.MinCountRule`1
+    name: MinCountRule<TItem>
+    type: Class
+  - uid: FlowRight.Validation.Rules.MinLengthRule
+    name: MinLengthRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.MustAsyncContextAwareRule`1
+    name: MustAsyncContextAwareRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.MustContextAwareRule`1
+    name: MustContextAwareRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.MustRule`1
+    name: MustRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.NegativeRule`1
+    name: NegativeRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.NotEmptyRule`1
+    name: NotEmptyRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.NotEqualRule`1
+    name: NotEqualRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.NotNullRule`1
+    name: NotNullRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.NullRule`1
+    name: NullRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.PhoneRule
+    name: PhoneRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.PositiveRule`1
+    name: PositiveRule<T>
+    type: Class
+  - uid: FlowRight.Validation.Rules.PostalCodeRule
+    name: PostalCodeRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.PrecisionScaleRule`1
+    name: PrecisionScaleRule<TNumeric>
+    type: Class
+  - uid: FlowRight.Validation.Rules.SpecificGuidValueRule
+    name: SpecificGuidValueRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.StartsWithRule
+    name: StartsWithRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.UniqueRule`1
+    name: UniqueRule<TItem>
+    type: Class
+  - uid: FlowRight.Validation.Rules.UpperCaseRule
+    name: UpperCaseRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.UrlRule
+    name: UrlRule
+    type: Class
+  - uid: FlowRight.Validation.Rules.ValidGuidFormatRule
+    name: ValidGuidFormatRule
+    type: Class
+- uid: FlowRight.Validation.Validators
+  name: FlowRight.Validation.Validators
+  type: Namespace
+  items:
+  - uid: FlowRight.Validation.Validators.EnumerablePropertyValidator`2
+    name: EnumerablePropertyValidator<T, TItem>
+    type: Class
+  - uid: FlowRight.Validation.Validators.GenericPropertyValidator`2
+    name: GenericPropertyValidator<T, TProp>
+    type: Class
+  - uid: FlowRight.Validation.Validators.GuidPropertyValidator`1
+    name: GuidPropertyValidator<T>
+    type: Class
+  - uid: FlowRight.Validation.Validators.NumericPropertyValidator`2
+    name: NumericPropertyValidator<T, TNumeric>
+    type: Class
+  - uid: FlowRight.Validation.Validators.PropertyValidator`3
+    name: PropertyValidator<T, TProp, TRule>
+    type: Class
+  - uid: FlowRight.Validation.Validators.StringPropertyValidator`1
+    name: StringPropertyValidator<T>
+    type: Class
+memberLayout: SamePage

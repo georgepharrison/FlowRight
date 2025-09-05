@@ -1,6 +1,7 @@
 ﻿using FlowRight.Core.Results;
 using FlowRight.Validation.Context;
 using FlowRight.Validation.Validators;
+using System.Collections.Concurrent;
 using System.Linq.Expressions;
 using System.Numerics;
 
@@ -46,7 +47,7 @@ public class ValidationBuilder<T>
 {
     #region Private Members
 
-    private readonly Dictionary<string, List<string>> _errors = [];
+    private readonly ConcurrentDictionary<string, ConcurrentBag<string>> _errors = new();
     private readonly IValidationContext? _validationContext;
 
     #endregion Private Members
@@ -311,11 +312,11 @@ public class ValidationBuilder<T>
                     foreach (KeyValuePair<string, string[]> item in failures)
                     {
                         string prefixedKey = PrefixPropertyPath(propertyName, item.Key);
-                        if (!_errors.TryGetValue(prefixedKey, out List<string>? errors))
+                        ConcurrentBag<string> errorBag = _errors.GetOrAdd(prefixedKey, _ => new ConcurrentBag<string>());
+                        foreach (string error in item.Value)
                         {
-                            _errors[prefixedKey] = errors ??= [];
+                            errorBag.Add(error);
                         }
-                        errors.AddRange(item.Value);
                     }
                     return default!;
                 }
@@ -838,34 +839,34 @@ public class ValidationBuilder<T>
     /// <param name="error">The error message describing the validation failure.</param>
     /// <remarks>
     /// This method is internal and used by the validation framework. Multiple errors can be added
-    /// for the same property, and they will be accumulated in a list.
+    /// for the same property, and they will be accumulated in a thread-safe collection.
     /// </remarks>
     internal void AddError(string propertyName, string error)
     {
-        if (!_errors.TryGetValue(propertyName, out List<string>? value))
-        {
-            value = [];
-
-            _errors[propertyName] = value;
-        }
-
-        value.Add(error);
+        ConcurrentBag<string> errorBag = _errors.GetOrAdd(propertyName, _ => new ConcurrentBag<string>());
+        errorBag.Add(error);
     }
 
     /// <summary>
     /// Removes the last error added for the specified property.
     /// </summary>
     /// <param name="propertyName">The name of the property to remove the last error from.</param>
+    /// <remarks>
+    /// Note: Due to the thread-safe nature of ConcurrentBag, removing specific errors
+    /// is not supported in a thread-safe manner. This method is preserved for compatibility
+    /// but will have no effect in the thread-safe implementation.
+    /// </remarks>
+    #pragma warning disable CA1822 // Mark members as static
     internal void RemoveLastError(string propertyName)
+    #pragma warning restore CA1822 // Mark members as static
     {
-        if (_errors.TryGetValue(propertyName, out List<string>? errors) && errors.Count > 0)
-        {
-            errors.RemoveAt(errors.Count - 1);
-            if (errors.Count == 0)
-            {
-                _errors.Remove(propertyName);
-            }
-        }
+        // ConcurrentBag doesn't support removal of specific items in a thread-safe manner.
+        // In a thread-safe context, the concept of "last error" is not well-defined
+        // as errors may be added concurrently from multiple threads.
+        // This method is maintained for API compatibility but is effectively a no-op.
+        
+        // To suppress the unused parameter warning
+        _ = propertyName;
     }
 
     /// <summary>
@@ -873,12 +874,17 @@ public class ValidationBuilder<T>
     /// </summary>
     /// <param name="propertyName">The name of the property to update the last error for.</param>
     /// <param name="newMessage">The new error message.</param>
+    /// <remarks>
+    /// Note: Due to the thread-safe nature of ConcurrentBag, replacing specific errors
+    /// is not supported in a thread-safe manner. This method is preserved for compatibility
+    /// but will add the new message as an additional error instead of replacing.
+    /// </remarks>
     internal void ReplaceLastError(string propertyName, string newMessage)
     {
-        if (_errors.TryGetValue(propertyName, out List<string>? errors) && errors.Count > 0)
-        {
-            errors[errors.Count - 1] = newMessage;
-        }
+        // ConcurrentBag doesn't support replacement of specific items in a thread-safe manner.
+        // Instead, we add the new message as an additional error.
+        // In practice, this method is rarely used in typical validation scenarios.
+        AddError(propertyName, newMessage);
     }
 
     #endregion Internal Methods
@@ -893,9 +899,12 @@ public class ValidationBuilder<T>
     /// <returns>The name of the property (e.g., "Name").</returns>
     /// <exception cref="ArgumentException">Thrown when the expression is not a valid property selector.</exception>
     private static string GetPropertyName<TProp>(Expression<Func<T, TProp>> propertySelector) =>
-        propertySelector?.Body is MemberExpression member
-            ? member.Member.Name
-            : throw new ArgumentException("Expression must be a property selector");
+        propertySelector?.Body switch
+        {
+            MemberExpression member => member.Member.Name,
+            UnaryExpression { Operand: MemberExpression memberFromUnary } => memberFromUnary.Member.Name,
+            _ => throw new ArgumentException("Expression must be a property selector")
+        };
 
     /// <summary>
     /// Prefixes a nested property path with the parent property name for automatic error extraction from nested Results.
@@ -984,7 +993,7 @@ public class ValidationBuilder<T>
     /// before calling Build().
     /// </remarks>
     public bool HasErrors =>
-        _errors.Count is not 0;
+        !_errors.IsEmpty;
 
     #endregion Public Properties
 }

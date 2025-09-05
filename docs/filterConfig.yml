@@ -1,0 +1,22 @@
+apiRules:
+- exclude:
+    uidRegex: ^System\.
+    type: Type
+- exclude:
+    uidRegex: ^Microsoft\.
+    type: Type
+- exclude:
+    uidRegex: \.obj\.
+    type: Namespace
+- exclude:
+    uidRegex: ^_
+    type: Type
+- include:
+    uidRegex: ^FlowRight\.
+    type: Namespace
+- include:
+    uidRegex: ^FlowRight\.
+    type: Type
+- include:
+    uidRegex: ^FlowRight\.
+    type: Member

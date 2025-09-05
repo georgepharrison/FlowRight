@@ -1,0 +1,609 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Http.Models.ContentTypeInfo
+  commentId: T:FlowRight.Http.Models.ContentTypeInfo
+  id: ContentTypeInfo
+  parent: FlowRight.Http.Models
+  children:
+  - FlowRight.Http.Models.ContentTypeInfo.Charset
+  - FlowRight.Http.Models.ContentTypeInfo.FromContentType(System.Net.Mime.ContentType)
+  - FlowRight.Http.Models.ContentTypeInfo.IsBinary
+  - FlowRight.Http.Models.ContentTypeInfo.IsFormData
+  - FlowRight.Http.Models.ContentTypeInfo.IsJson
+  - FlowRight.Http.Models.ContentTypeInfo.IsMediaType(System.String)
+  - FlowRight.Http.Models.ContentTypeInfo.IsText
+  - FlowRight.Http.Models.ContentTypeInfo.IsXml
+  - FlowRight.Http.Models.ContentTypeInfo.MediaType
+  - FlowRight.Http.Models.ContentTypeInfo.Parameters
+  langs:
+  - csharp
+  - vb
+  name: ContentTypeInfo
+  nameWithType: ContentTypeInfo
+  fullName: FlowRight.Http.Models.ContentTypeInfo
+  type: Class
+  source:
+    id: ContentTypeInfo
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 8
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Represents parsed content type information including media type, charset, and parameters.
+  example: []
+  syntax:
+    content: public sealed class ContentTypeInfo
+    content.vb: Public NotInheritable Class ContentTypeInfo
+  inheritance:
+  - System.Object
+- uid: FlowRight.Http.Models.ContentTypeInfo.MediaType
+  commentId: P:FlowRight.Http.Models.ContentTypeInfo.MediaType
+  id: MediaType
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: MediaType
+  nameWithType: ContentTypeInfo.MediaType
+  fullName: FlowRight.Http.Models.ContentTypeInfo.MediaType
+  type: Property
+  source:
+    id: MediaType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 13
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets the media type (e.g., "application/json").
+  example: []
+  syntax:
+    content: public string MediaType { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property MediaType As String
+  overload: FlowRight.Http.Models.ContentTypeInfo.MediaType*
+- uid: FlowRight.Http.Models.ContentTypeInfo.Charset
+  commentId: P:FlowRight.Http.Models.ContentTypeInfo.Charset
+  id: Charset
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: Charset
+  nameWithType: ContentTypeInfo.Charset
+  fullName: FlowRight.Http.Models.ContentTypeInfo.Charset
+  type: Property
+  source:
+    id: Charset
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 18
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets the charset parameter (e.g., "utf-8").
+  example: []
+  syntax:
+    content: public string? Charset { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Charset As String
+  overload: FlowRight.Http.Models.ContentTypeInfo.Charset*
+- uid: FlowRight.Http.Models.ContentTypeInfo.Parameters
+  commentId: P:FlowRight.Http.Models.ContentTypeInfo.Parameters
+  id: Parameters
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: Parameters
+  nameWithType: ContentTypeInfo.Parameters
+  fullName: FlowRight.Http.Models.ContentTypeInfo.Parameters
+  type: Property
+  source:
+    id: Parameters
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 23
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Gets additional content type parameters.
+  example: []
+  syntax:
+    content: public ReadOnlyDictionary<string, string> Parameters { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+    content.vb: Public Property Parameters As ReadOnlyDictionary(Of String, String)
+  overload: FlowRight.Http.Models.ContentTypeInfo.Parameters*
+- uid: FlowRight.Http.Models.ContentTypeInfo.FromContentType(System.Net.Mime.ContentType)
+  commentId: M:FlowRight.Http.Models.ContentTypeInfo.FromContentType(System.Net.Mime.ContentType)
+  id: FromContentType(System.Net.Mime.ContentType)
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: FromContentType(ContentType?)
+  nameWithType: ContentTypeInfo.FromContentType(ContentType?)
+  fullName: FlowRight.Http.Models.ContentTypeInfo.FromContentType(System.Net.Mime.ContentType?)
+  type: Method
+  source:
+    id: FromContentType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 30
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Creates a ContentTypeInfo instance from a ContentType object.
+  example: []
+  syntax:
+    content: public static ContentTypeInfo FromContentType(ContentType? contentType)
+    parameters:
+    - id: contentType
+      type: System.Net.Mime.ContentType
+      description: The ContentType to parse.
+    return:
+      type: FlowRight.Http.Models.ContentTypeInfo
+      description: A ContentTypeInfo instance with parsed information.
+    content.vb: Public Shared Function FromContentType(contentType As ContentType) As ContentTypeInfo
+  overload: FlowRight.Http.Models.ContentTypeInfo.FromContentType*
+  nameWithType.vb: ContentTypeInfo.FromContentType(ContentType)
+  fullName.vb: FlowRight.Http.Models.ContentTypeInfo.FromContentType(System.Net.Mime.ContentType)
+  name.vb: FromContentType(ContentType)
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsMediaType(System.String)
+  commentId: M:FlowRight.Http.Models.ContentTypeInfo.IsMediaType(System.String)
+  id: IsMediaType(System.String)
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: IsMediaType(string)
+  nameWithType: ContentTypeInfo.IsMediaType(string)
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsMediaType(string)
+  type: Method
+  source:
+    id: IsMediaType
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 61
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Determines if this content type matches another media type.
+  example: []
+  syntax:
+    content: public bool IsMediaType(string mediaType)
+    parameters:
+    - id: mediaType
+      type: System.String
+      description: The media type to compare against.
+    return:
+      type: System.Boolean
+      description: True if the media types match (ignoring parameters).
+    content.vb: Public Function IsMediaType(mediaType As String) As Boolean
+  overload: FlowRight.Http.Models.ContentTypeInfo.IsMediaType*
+  nameWithType.vb: ContentTypeInfo.IsMediaType(String)
+  fullName.vb: FlowRight.Http.Models.ContentTypeInfo.IsMediaType(String)
+  name.vb: IsMediaType(String)
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsJson
+  commentId: M:FlowRight.Http.Models.ContentTypeInfo.IsJson
+  id: IsJson
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: IsJson()
+  nameWithType: ContentTypeInfo.IsJson()
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsJson()
+  type: Method
+  source:
+    id: IsJson
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 79
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Determines if this content type is a JSON variant.
+  example: []
+  syntax:
+    content: public bool IsJson()
+    return:
+      type: System.Boolean
+      description: True if the media type represents JSON content.
+    content.vb: Public Function IsJson() As Boolean
+  overload: FlowRight.Http.Models.ContentTypeInfo.IsJson*
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsXml
+  commentId: M:FlowRight.Http.Models.ContentTypeInfo.IsXml
+  id: IsXml
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: IsXml()
+  nameWithType: ContentTypeInfo.IsXml()
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsXml()
+  type: Method
+  source:
+    id: IsXml
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 87
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Determines if this content type is an XML variant.
+  example: []
+  syntax:
+    content: public bool IsXml()
+    return:
+      type: System.Boolean
+      description: True if the media type represents XML content.
+    content.vb: Public Function IsXml() As Boolean
+  overload: FlowRight.Http.Models.ContentTypeInfo.IsXml*
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsText
+  commentId: M:FlowRight.Http.Models.ContentTypeInfo.IsText
+  id: IsText
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: IsText()
+  nameWithType: ContentTypeInfo.IsText()
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsText()
+  type: Method
+  source:
+    id: IsText
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 96
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Determines if this content type represents text content.
+  example: []
+  syntax:
+    content: public bool IsText()
+    return:
+      type: System.Boolean
+      description: True if the media type represents text content.
+    content.vb: Public Function IsText() As Boolean
+  overload: FlowRight.Http.Models.ContentTypeInfo.IsText*
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsBinary
+  commentId: M:FlowRight.Http.Models.ContentTypeInfo.IsBinary
+  id: IsBinary
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: IsBinary()
+  nameWithType: ContentTypeInfo.IsBinary()
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsBinary()
+  type: Method
+  source:
+    id: IsBinary
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 103
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Determines if this content type represents binary content.
+  example: []
+  syntax:
+    content: public bool IsBinary()
+    return:
+      type: System.Boolean
+      description: True if the media type represents binary content.
+    content.vb: Public Function IsBinary() As Boolean
+  overload: FlowRight.Http.Models.ContentTypeInfo.IsBinary*
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsFormData
+  commentId: M:FlowRight.Http.Models.ContentTypeInfo.IsFormData
+  id: IsFormData
+  parent: FlowRight.Http.Models.ContentTypeInfo
+  langs:
+  - csharp
+  - vb
+  name: IsFormData()
+  nameWithType: ContentTypeInfo.IsFormData()
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsFormData()
+  type: Method
+  source:
+    id: IsFormData
+    path: /home/ringo/source/FlowRight-documentation/src/Http/Models/ContentTypeInfo.cs
+    startLine: 115
+  assemblies:
+  - FlowRight.Http
+  namespace: FlowRight.Http.Models
+  summary: Determines if this content type represents form data.
+  example: []
+  syntax:
+    content: public bool IsFormData()
+    return:
+      type: System.Boolean
+      description: True if the media type represents form data.
+    content.vb: Public Function IsFormData() As Boolean
+  overload: FlowRight.Http.Models.ContentTypeInfo.IsFormData*
+references:
+- uid: FlowRight.Http.Models
+  commentId: N:FlowRight.Http.Models
+  href: FlowRight.html
+  name: FlowRight.Http.Models
+  nameWithType: FlowRight.Http.Models
+  fullName: FlowRight.Http.Models
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Http
+    name: Http
+    href: FlowRight.Http.html
+  - name: .
+  - uid: FlowRight.Http.Models
+    name: Models
+    href: FlowRight.Http.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Http.Models.ContentTypeInfo.MediaType*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.MediaType
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_MediaType
+  name: MediaType
+  nameWithType: ContentTypeInfo.MediaType
+  fullName: FlowRight.Http.Models.ContentTypeInfo.MediaType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Http.Models.ContentTypeInfo.Charset*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.Charset
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_Charset
+  name: Charset
+  nameWithType: ContentTypeInfo.Charset
+  fullName: FlowRight.Http.Models.ContentTypeInfo.Charset
+- uid: FlowRight.Http.Models.ContentTypeInfo.Parameters*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.Parameters
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_Parameters
+  name: Parameters
+  nameWithType: ContentTypeInfo.Parameters
+  fullName: FlowRight.Http.Models.ContentTypeInfo.Parameters
+- uid: System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+  commentId: T:System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ReadOnlyDictionary`2
+  name: ReadOnlyDictionary<string, string>
+  nameWithType: ReadOnlyDictionary<string, string>
+  fullName: System.Collections.ObjectModel.ReadOnlyDictionary<string, string>
+  nameWithType.vb: ReadOnlyDictionary(Of String, String)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyDictionary(Of String, String)
+  name.vb: ReadOnlyDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+  commentId: T:System.Collections.ObjectModel.ReadOnlyDictionary`2
+  isExternal: true
+  name: ReadOnlyDictionary<TKey, TValue>
+  nameWithType: ReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.ObjectModel.ReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: ReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyDictionary(Of TKey, TValue)
+  name.vb: ReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: FlowRight.Http.Models.ContentTypeInfo.FromContentType*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.FromContentType
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_FromContentType_System_Net_Mime_ContentType_
+  name: FromContentType
+  nameWithType: ContentTypeInfo.FromContentType
+  fullName: FlowRight.Http.Models.ContentTypeInfo.FromContentType
+- uid: System.Net.Mime.ContentType
+  commentId: T:System.Net.Mime.ContentType
+  parent: System.Net.Mime
+  isExternal: true
+  name: ContentType
+  nameWithType: ContentType
+  fullName: System.Net.Mime.ContentType
+- uid: FlowRight.Http.Models.ContentTypeInfo
+  commentId: T:FlowRight.Http.Models.ContentTypeInfo
+  parent: FlowRight.Http.Models
+  href: FlowRight.Http.Models.ContentTypeInfo.html
+  name: ContentTypeInfo
+  nameWithType: ContentTypeInfo
+  fullName: FlowRight.Http.Models.ContentTypeInfo
+- uid: System.Net.Mime
+  commentId: N:System.Net.Mime
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net.Mime
+  nameWithType: System.Net.Mime
+  fullName: System.Net.Mime
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Mime
+    name: Mime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.mime
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Mime
+    name: Mime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.mime
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsMediaType*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.IsMediaType
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_IsMediaType_System_String_
+  name: IsMediaType
+  nameWithType: ContentTypeInfo.IsMediaType
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsMediaType
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsJson*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.IsJson
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_IsJson
+  name: IsJson
+  nameWithType: ContentTypeInfo.IsJson
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsJson
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsXml*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.IsXml
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_IsXml
+  name: IsXml
+  nameWithType: ContentTypeInfo.IsXml
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsXml
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsText*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.IsText
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_IsText
+  name: IsText
+  nameWithType: ContentTypeInfo.IsText
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsText
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsBinary*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.IsBinary
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_IsBinary
+  name: IsBinary
+  nameWithType: ContentTypeInfo.IsBinary
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsBinary
+- uid: FlowRight.Http.Models.ContentTypeInfo.IsFormData*
+  commentId: Overload:FlowRight.Http.Models.ContentTypeInfo.IsFormData
+  href: FlowRight.Http.Models.ContentTypeInfo.html#FlowRight_Http_Models_ContentTypeInfo_IsFormData
+  name: IsFormData
+  nameWithType: ContentTypeInfo.IsFormData
+  fullName: FlowRight.Http.Models.ContentTypeInfo.IsFormData

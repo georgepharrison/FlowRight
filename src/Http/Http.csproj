@@ -4,7 +4,7 @@
     <AssemblyName>FlowRight.Http</AssemblyName>
     <RootNamespace>FlowRight.Http</RootNamespace>
     <PackageId>FlowRight.Http</PackageId>
-    <PackageDescription>HTTP response to Result pattern conversion utilities for .NET applications.</PackageDescription>
+    <PackageDescription>HTTP client extensions for seamless Result pattern integration with web API responses. Features automatic status code mapping, JSON deserialization, validation problem handling, and comprehensive error conversion for HTTP operations.</PackageDescription>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon-nuget.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

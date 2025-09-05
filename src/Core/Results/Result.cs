@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text.Json.Serialization;
 
@@ -60,7 +61,7 @@ public partial class Result : IResult
     {
         FailureType = ResultFailureType.Validation;
         ResultType = ResultType.Error;
-        Failures.Add(key, [error]);
+        Failures = new Dictionary<string, string[]> { [key] = [error] };
         Error = GetValidationError(Failures);
     }
 
@@ -144,6 +145,8 @@ public partial class Result : IResult
             {
                 case ResultFailureType.Error:
                 case ResultFailureType.Security:
+                case ResultFailureType.NotFound:
+                case ResultFailureType.ServerError:
                 case ResultFailureType.OperationCanceled:
                     if (!failures.TryGetValue(result.FailureType.ToString(), out List<string>? errors))
                     {
@@ -250,6 +253,8 @@ public partial class Result : IResult
                 {
                     case ResultFailureType.Error:
                     case ResultFailureType.Security:
+                    case ResultFailureType.NotFound:
+                    case ResultFailureType.ServerError:
                     case ResultFailureType.OperationCanceled:
                         if (!failures.TryGetValue(result.FailureType.ToString(), out List<string>? errors))
                         {
@@ -311,10 +316,13 @@ public partial class Result : IResult
     /// Console.WriteLine(message);
     /// </code>
     /// </example>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TResult Match<TResult>(Func<TResult> onSuccess, Func<string, TResult> onFailure)
     {
+#if DEBUG
         ArgumentNullException.ThrowIfNull(onSuccess);
         ArgumentNullException.ThrowIfNull(onFailure);
+#endif
 
         return IsSuccess
             ? onSuccess()
@@ -376,6 +384,8 @@ public partial class Result : IResult
                 ResultFailureType.Error => onError(Error),
                 ResultFailureType.Security => onSecurityException(Error),
                 ResultFailureType.Validation => onValidationException(Failures),
+                ResultFailureType.NotFound => onError(Error),
+                ResultFailureType.ServerError => onError(Error),
                 ResultFailureType.OperationCanceled => onOperationCanceledException(Error),
                 _ => throw new NotImplementedException()
             };
@@ -516,6 +526,14 @@ public partial class Result : IResult
                 onValidationException(Failures);
                 break;
 
+            case ResultFailureType.NotFound:
+                onError(Error);
+                break;
+
+            case ResultFailureType.ServerError:
+                onError(Error);
+                break;
+
             case ResultFailureType.OperationCanceled:
                 onOperationCanceledException?.Invoke(Error);
                 break;
@@ -598,6 +616,11 @@ public partial class Result : IResult
     public string Error { get; private set; } = string.Empty;
 
     /// <summary>
+    /// Shared empty dictionary to avoid allocations in success cases.
+    /// </summary>
+    private static readonly IDictionary<string, string[]> EmptyFailures = new Dictionary<string, string[]>();
+    
+    /// <summary>
     /// Gets a dictionary of field-specific validation failures.
     /// </summary>
     /// <value>
@@ -610,7 +633,7 @@ public partial class Result : IResult
     /// or properties. For non-validation failures, this dictionary is empty.
     /// </remarks>
     [JsonInclude]
-    public IDictionary<string, string[]> Failures { get; private set; } = new Dictionary<string, string[]>();
+    public IDictionary<string, string[]> Failures { get; private set; } = EmptyFailures;
 
     /// <summary>
     /// Gets the specific type of failure that occurred.
@@ -651,7 +674,7 @@ public partial class Result : IResult
     /// It is always the logical inverse of <see cref="IsFailure"/>.
     /// </remarks>
     public bool IsSuccess =>
-        !IsFailure;
+        string.IsNullOrEmpty(Error);
 
     /// <summary>
     /// Gets the general category of this result.

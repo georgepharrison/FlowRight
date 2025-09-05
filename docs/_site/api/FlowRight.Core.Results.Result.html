@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Result | FlowRight - Result Pattern Library for .NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Result | FlowRight - Result Pattern Library for .NET ">
+      
+      <meta name="description" content="Provides a non-generic Result implementation that represents the outcome of operations that don&#39;t return a value, supporting both success and failure states with detailed error information.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FlowRight">
+            FlowRight
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FlowRight.Core.Results.Result">
+
+
+
+  <h1 id="FlowRight_Core_Results_Result" data-uid="FlowRight.Core.Results.Result" class="text-break">
+Class Result  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FlowRight.html">FlowRight</a>.<a class="xref" href="FlowRight.Core.html">Core</a>.<a class="xref" href="FlowRight.Core.Results.html">Results</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FlowRight.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides a non-generic Result implementation that represents the outcome of operations
+that don't return a value, supporting both success and failure states with detailed error information.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Result : IResult</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><span class="xref">Result</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FlowRight.Core.Results.IResult.html">IResult</a></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___">ResultAsyncExtensions.MatchAsync&lt;TResult&gt;(Result, Func&lt;Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_MatchAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task___0___System_Func_System_String_System_Threading_Tasks_Task___0___">ResultAsyncExtensions.MatchAsync&lt;TResult&gt;(Result, Func&lt;Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;, Func&lt;IDictionary&lt;string, string[]&gt;, Task&lt;TResult&gt;&gt;, Func&lt;string, Task&lt;TResult&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Boolean_">ResultAsyncExtensions.SwitchAsync(Result, Func&lt;Task&gt;, Func&lt;string, Task&gt;, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_SwitchAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_Collections_Generic_IDictionary_System_String_System_String____System_Threading_Tasks_Task__System_Func_System_String_System_Threading_Tasks_Task__">ResultAsyncExtensions.SwitchAsync(Result, Func&lt;Task&gt;, Func&lt;string, Task&gt;, Func&lt;string, Task&gt;, Func&lt;IDictionary&lt;string, string[]&gt;, Task&gt;, Func&lt;string, Task&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___">ResultAsyncExtensions.ThenAsync(Result, Func&lt;Task&lt;Result&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="FlowRight.Core.Extensions.ResultAsyncExtensions.html#FlowRight_Core_Extensions_ResultAsyncExtensions_ThenAsync__1_FlowRight_Core_Results_Result_System_Func_System_Threading_Tasks_Task_FlowRight_Core_Results_Result___0____">ResultAsyncExtensions.ThenAsync&lt;T&gt;(Result, Func&lt;Task&lt;Result&lt;T&gt;&gt;&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+  <h2 id="FlowRight_Core_Results_Result_examples">Examples</h2>
+  <pre><code class="lang-csharp">// Creating success results
+Result successResult = Result.Success();
+Result infoResult = Result.Success(ResultType.Information);
+
+// Creating failure results
+Result errorResult = Result.Failure("Operation failed");
+Result validationResult = Result.ValidationFailure(validationErrors);
+Result securityResult = Result.SecurityFailure("Access denied");
+
+// Pattern matching with results
+string message = result.Match(
+    onSuccess: () =&gt; "Operation completed successfully",
+    onFailure: error =&gt; $"Operation failed: {error}"
+);</code></pre>
+
+
+  <h2 id="FlowRight_Core_Results_Result_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+This class implements the Result pattern for operations that perform actions but don't return
+a specific value (similar to void methods). It provides comprehensive error tracking,
+categorization of different failure types, and full JSON serialization support.
+</p>
+<p>
+The Result class is designed to be immutable after construction and supports
+both simple success/failure scenarios and complex error handling with validation failures,
+security exceptions, and operation cancellation.
+</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FlowRight_Core_Results_Result_Error_" data-uid="FlowRight.Core.Results.Result.Error*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Error" data-uid="FlowRight.Core.Results.Result.Error">
+  Error
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the error message associated with this result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonInclude]
+public string Error { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">string</span></dt>
+    <dd><p>A string containing the error message for failed results, or an empty string for successful results.
+For validation failures, this contains a formatted summary of all validation errors.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Error_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property implements <a class="xref" href="FlowRight.Core.Results.IResultError-1.html#FlowRight_Core_Results_IResultError_1_Error">Error</a> and provides the primary
+error message for the result. The content varies by failure type:</p>
+<ul><li><strong>Success:</strong> Empty string</li><li><strong>General errors:</strong> The specific error message</li><li><strong>Validation errors:</strong> Formatted summary of all field errors</li><li><strong>Security errors:</strong> Security exception message</li><li><strong>Cancellation:</strong> Operation canceled message</li></ul>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_FailureType_" data-uid="FlowRight.Core.Results.Result.FailureType*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_FailureType" data-uid="FlowRight.Core.Results.Result.FailureType">
+  FailureType
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the specific type of failure that occurred.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonInclude]
+public ResultFailureType FailureType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html">ResultFailureType</a></dt>
+    <dd><p>A <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html">ResultFailureType</a> value indicating the specific category of failure,
+or <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_None">None</a> for successful results.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_FailureType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property enables consumers to implement different handling strategies based on
+the type of failure. For example, validation failures might be displayed to users
+while security failures might be logged and result in access denial.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failures_" data-uid="FlowRight.Core.Results.Result.Failures*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failures" data-uid="FlowRight.Core.Results.Result.Failures">
+  Failures
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a dictionary of field-specific validation failures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonInclude]
+public IDictionary&lt;string, string[]&gt; Failures { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;</dt>
+    <dd><p>An <span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span> where keys represent field names and values
+represent arrays of error messages for each field. Empty for non-validation failures.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failures_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property provides detailed field-level error information for validation failures.
+It allows consumers to display specific error messages for individual form fields
+or properties. For non-validation failures, this dictionary is empty.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_IsFailure_" data-uid="FlowRight.Core.Results.Result.IsFailure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_IsFailure" data-uid="FlowRight.Core.Results.Result.IsFailure">
+  IsFailure
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether this result represents a failure state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFailure { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the result represents a failure; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_IsFailure_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property is determined by checking if an error message is present.
+It is always the logical inverse of <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_IsSuccess">IsSuccess</a>.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_IsSuccess_" data-uid="FlowRight.Core.Results.Result.IsSuccess*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_IsSuccess" data-uid="FlowRight.Core.Results.Result.IsSuccess">
+  IsSuccess
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether this result represents a successful state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSuccess { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the result represents success; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_IsSuccess_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property is determined by checking if no error message is present.
+It is always the logical inverse of <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_IsFailure">IsFailure</a>.</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_ResultType_" data-uid="FlowRight.Core.Results.Result.ResultType*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_ResultType" data-uid="FlowRight.Core.Results.Result.ResultType">
+  ResultType
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the general category of this result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonInclude]
+public ResultType ResultType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.ResultType.html">ResultType</a></dt>
+    <dd><p>A <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_ResultType">ResultType</a> value indicating the overall result category.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ResultType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property provides high-level categorization that complements the more specific
+<a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a>. It allows for broad categorization of results into
+success, informational, warning, or error states.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FlowRight_Core_Results_Result_Combine_" data-uid="FlowRight.Core.Results.Result.Combine*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Combine_FlowRight_Core_Results_Result___" data-uid="FlowRight.Core.Results.Result.Combine(FlowRight.Core.Results.Result[])">
+  Combine(params Result[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Combines multiple Result instances into a single Result, aggregating all failure information
+and returning success only if all input results are successful.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result Combine(params Result[] results)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>results</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>[]</dt>
+    <dd><p>The array of Result instances to combine.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> that is successful if all input results are successful,
+or a failure result containing aggregated error information from all failed results.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Combine_FlowRight_Core_Results_Result____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result[] operations = [
+    ValidateUser(user),
+    ValidatePermissions(user),
+    ValidateData(data)
+];
+
+Result combinedResult = Result.Combine(operations);
+
+if (combinedResult.IsFailure)
+{
+    // Handle all collected errors at once
+    LogErrors(combinedResult.Failures);
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Combine_FlowRight_Core_Results_Result____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method provides a way to aggregate multiple operation results into a single result.
+It's particularly useful for batch operations where you want to collect all errors
+rather than failing on the first error encountered.
+</p>
+<p>
+The combining logic preserves error categorization:
+<ul><li>Validation errors are merged by field name</li><li>Other error types are grouped by failure type</li><li>Multiple errors of the same type are collected together</li></ul>
+
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">results</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Combine_" data-uid="FlowRight.Core.Results.Result.Combine*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Combine__1_FlowRight_Core_Results_Result___0____" data-uid="FlowRight.Core.Results.Result.Combine``1(FlowRight.Core.Results.Result{``0}[])">
+  Combine&lt;T&gt;(params Result&lt;T&gt;[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Combines multiple Result{T} instances into a single Result{T}, aggregating all failure information
+and returning success only if all input results are successful.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Combine&lt;T&gt;(params Result&lt;T&gt;[] results)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>results</code> <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;[]</dt>
+    <dd><p>The array of Result{T} instances to combine.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> that is successful with the value from the first successful result if all input results are successful,
+or a failure result containing aggregated error information from all failed results.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success values in the results.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Combine__1_FlowRight_Core_Results_Result___0_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result{User}[] operations = [
+    ValidateUser(user),
+    ValidatePermissions(user),
+    ValidateData(data)
+];
+
+Result{User} combinedResult = Result.Combine(operations);
+
+if (combinedResult.IsFailure)
+{
+    // Handle all collected errors at once
+    LogErrors(combinedResult.Failures);
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Combine__1_FlowRight_Core_Results_Result___0_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method provides a way to aggregate multiple operation results into a single result.
+It's particularly useful for batch operations where you want to collect all errors
+rather than failing on the first error encountered.
+</p>
+<p>
+The combining logic preserves error categorization:
+<ul><li>Validation errors are merged by field name</li><li>Other error types are grouped by failure type</li><li>Multiple errors of the same type are collected together</li></ul>
+
+<p>
+If all results are successful, the returned result will contain the value from the first
+successful result. If you need to combine the actual values, use a different approach
+such as collecting the values after confirming all results are successful.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">results</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure_System_Collections_Generic_IDictionary_System_String_System_String____" data-uid="FlowRight.Core.Results.Result.Failure(System.Collections.Generic.IDictionary{System.String,System.String[]})">
+  Failure(IDictionary&lt;string, string[]&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with multiple validation errors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result Failure(IDictionary&lt;string, string[]&gt; errors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>errors</code> <span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;</dt>
+    <dd><p>A dictionary containing field names as keys and arrays of error messages as values. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> containing all the validation errors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_Collections_Generic_IDictionary_System_String_System_String_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Dictionary&lt;string, string[]&gt; validationErrors = new()
+{
+    ["Email"] = ["Email is required", "Email format is invalid"],
+    ["Password"] = ["Password must be at least 8 characters"],
+    ["Age"] = ["Age must be between 18 and 120"]
+};
+
+Result validationResult = Result.Failure(validationErrors);
+
+// Access specific field errors
+if (validationResult.Failures.TryGetValue("Email", out string[] emailErrors))
+{
+    foreach (string error in emailErrors)
+    {
+        Console.WriteLine($"Email error: {error}");
+    }
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_Collections_Generic_IDictionary_System_String_System_String_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a validation failure result containing multiple field errors.
+It's the primary method for creating comprehensive validation failures that can
+report errors on multiple fields simultaneously.
+</p>
+<p>
+The error dictionary structure allows for multiple error messages per field,
+which is useful for complex validation scenarios where a single field might
+fail multiple validation rules.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">errors</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure_System_OperationCanceledException_" data-uid="FlowRight.Core.Results.Result.Failure(System.OperationCanceledException)">
+  Failure(OperationCanceledException)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result from an operation canceled exception.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result Failure(OperationCanceledException operationCanceledException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>operationCanceledException</code> <span class="xref">OperationCanceledException</span></dt>
+    <dd><p>The operation canceled exception that occurred. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_OperationCanceled">OperationCanceled</a> containing the cancellation information.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_OperationCanceledException__examples">Examples</h4>
+  <pre><code class="lang-csharp">async Task&lt;Result&gt; ProcessDataAsync(CancellationToken cancellationToken)
+{
+    try
+    {
+        await LongRunningOperation(cancellationToken);
+        return Result.Success();
+    }
+    catch (OperationCanceledException ex)
+    {
+        return Result.Failure(ex);
+    }
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_OperationCanceledException__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a cancellation failure result from an <span class="xref">System.OperationCanceledException</span>.
+The resulting failure will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_OperationCanceled">OperationCanceled</a>
+and a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_ResultType">ResultType</a> of <a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Warning">Warning</a>, as cancellation is typically not an error condition.
+</p>
+<p>
+Cancellation failures represent normal application flow control rather than actual errors
+and may be handled differently from other failure types (such as being filtered out of error logging).
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">operationCanceledException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure_System_Security_SecurityException_" data-uid="FlowRight.Core.Results.Result.Failure(System.Security.SecurityException)">
+  Failure(SecurityException)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result from a security exception.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result Failure(SecurityException securityException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>securityException</code> <span class="xref">SecurityException</span></dt>
+    <dd><p>The security exception that occurred. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Security">Security</a> containing the security error.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_Security_SecurityException__examples">Examples</h4>
+  <pre><code class="lang-csharp">try
+{
+    // Some operation that might throw SecurityException
+    PerformSecuritySensitiveOperation();
+    return Result.Success();
+}
+catch (SecurityException ex)
+{
+    return Result.Failure(ex);
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_Security_SecurityException__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a security failure result from a <span class="xref">System.Security.SecurityException</span>.
+The resulting failure will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Security">Security</a>
+and should be handled with appropriate security considerations.
+</p>
+<p>
+Security failures typically require special handling such as audit logging,
+security monitoring integration, and careful error message sanitization to avoid
+information disclosure.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">securityException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure_System_String_FlowRight_Core_Results_ResultType_FlowRight_Core_Results_ResultFailureType_" data-uid="FlowRight.Core.Results.Result.Failure(System.String,FlowRight.Core.Results.ResultType,FlowRight.Core.Results.ResultFailureType)">
+  Failure(string, ResultType, ResultFailureType)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with the specified error message and failure classification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result Failure(string error, ResultType resultType = ResultType.Error, ResultFailureType resultFailureType = ResultFailureType.Error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>error</code> <span class="xref">string</span></dt>
+    <dd><p>The error message describing what went wrong. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>resultType</code> <a class="xref" href="FlowRight.Core.Results.ResultType.html">ResultType</a></dt>
+    <dd><p>The general result type classification. Defaults to <a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Error">Error</a>.</p>
+</dd>
+    <dt><code>resultFailureType</code> <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html">ResultFailureType</a></dt>
+    <dd><p>The specific failure type classification. Defaults to <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Error">Error</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance containing the error information.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_String_FlowRight_Core_Results_ResultType_FlowRight_Core_Results_ResultFailureType__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Basic error
+Result result = Result.Failure("Database connection failed");
+
+// Business logic error
+Result businessError = Result.Failure(
+    "Insufficient inventory for order", 
+    ResultType.Error, 
+    ResultFailureType.Error
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_String_FlowRight_Core_Results_ResultType_FlowRight_Core_Results_ResultFailureType__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the primary method for creating general failure results. It allows full control
+over both the result type and failure type classifications, enabling precise error categorization.
+</p>
+<p>
+Use this method when you need to create custom failure scenarios that don't fit the
+specialized failure methods (validation, security, cancellation).
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">error</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure_System_String_System_String_" data-uid="FlowRight.Core.Results.Result.Failure(System.String,System.String)">
+  Failure(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with a single field validation error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result Failure(string key, string error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">string</span></dt>
+    <dd><p>The name of the field or property that failed validation. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>error</code> <span class="xref">string</span></dt>
+    <dd><p>The validation error message for the specified field. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> containing the field error.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_String_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Single field validation error
+Result emailError = Result.Failure("Email", "Email address is required");
+
+// The error will be available in Failures dictionary
+if (emailError.FailureType == ResultFailureType.Validation)
+{
+    string[] emailErrors = emailError.Failures["Email"];
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a validation failure result for a single field. The resulting failure
+will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> and
+the field error will be available in the <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Failures">Failures</a> dictionary.
+</p>
+<p>
+This is useful for simple validation scenarios where only one field needs to be validated
+or when building up validation errors one at a time.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">key</code> or <code class="paramref">error</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure__1_System_Collections_Generic_IDictionary_System_String_System_String____" data-uid="FlowRight.Core.Results.Result.Failure``1(System.Collections.Generic.IDictionary{System.String,System.String[]})">
+  Failure&lt;T&gt;(IDictionary&lt;string, string[]&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with multiple validation errors for a generic result type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Failure&lt;T&gt;(IDictionary&lt;string, string[]&gt; errors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>errors</code> <span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;</dt>
+    <dd><p>A dictionary containing field names as keys and arrays of error messages as values. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> containing all the validation errors.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_Collections_Generic_IDictionary_System_String_System_String_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;User&gt; CreateUser(CreateUserRequest request)
+{
+    Dictionary&lt;string, string[]&gt; validationErrors = ValidateUser(request);
+
+    if (validationErrors.Any())
+        return Result.Failure&lt;User&gt;(validationErrors);
+
+    User user = new User(request);
+    return Result.Success(user);
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_Collections_Generic_IDictionary_System_String_System_String_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a validation failure result containing multiple field errors
+for operations that would normally return a typed value. It's used when comprehensive
+validation results in multiple field-level errors.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">errors</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure__1_System_OperationCanceledException_" data-uid="FlowRight.Core.Results.Result.Failure``1(System.OperationCanceledException)">
+  Failure&lt;T&gt;(OperationCanceledException)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result from an operation canceled exception for a generic result type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Failure&lt;T&gt;(OperationCanceledException operationCanceledException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>operationCanceledException</code> <span class="xref">OperationCanceledException</span></dt>
+    <dd><p>The operation canceled exception that occurred. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_OperationCanceled">OperationCanceled</a> containing the cancellation information.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_OperationCanceledException__examples">Examples</h4>
+  <pre><code class="lang-csharp">async Task&lt;Result&lt;Data&gt;&gt; FetchDataAsync(CancellationToken cancellationToken)
+{
+    try
+    {
+        Data data = await dataService.GetAsync(cancellationToken);
+        return Result.Success(data);
+    }
+    catch (OperationCanceledException ex)
+    {
+        return Result.Failure&lt;Data&gt;(ex);
+    }
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_OperationCanceledException__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a cancellation failure result from an <span class="xref">System.OperationCanceledException</span>
+for operations that would normally return a typed value. Cancellation represents normal
+flow control rather than an error condition.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">operationCanceledException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure__1_System_Security_SecurityException_" data-uid="FlowRight.Core.Results.Result.Failure``1(System.Security.SecurityException)">
+  Failure&lt;T&gt;(SecurityException)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result from a security exception for a generic result type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Failure&lt;T&gt;(SecurityException securityException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>securityException</code> <span class="xref">SecurityException</span></dt>
+    <dd><p>The security exception that occurred. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Security">Security</a> containing the security error.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_Security_SecurityException__examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;Document&gt; GetSecureDocument(int documentId)
+{
+    try
+    {
+        Document doc = secureRepository.GetDocument(documentId);
+        return Result.Success(doc);
+    }
+    catch (SecurityException ex)
+    {
+        return Result.Failure&lt;Document&gt;(ex);
+    }
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_Security_SecurityException__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a security failure result from a <span class="xref">System.Security.SecurityException</span>
+for operations that would normally return a typed value. Security failures require
+special handling and monitoring considerations.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">securityException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure__1_System_String_FlowRight_Core_Results_ResultType_FlowRight_Core_Results_ResultFailureType_" data-uid="FlowRight.Core.Results.Result.Failure``1(System.String,FlowRight.Core.Results.ResultType,FlowRight.Core.Results.ResultFailureType)">
+  Failure&lt;T&gt;(string, ResultType, ResultFailureType)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with the specified error message and result type classification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Failure&lt;T&gt;(string error, ResultType resultType = ResultType.Error, ResultFailureType resultFailureType = ResultFailureType.Error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>error</code> <span class="xref">string</span></dt>
+    <dd><p>The error message describing what went wrong. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>resultType</code> <a class="xref" href="FlowRight.Core.Results.ResultType.html">ResultType</a></dt>
+    <dd><p>The general result type classification. Defaults to <a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Error">Error</a>.</p>
+</dd>
+    <dt><code>resultFailureType</code> <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html">ResultFailureType</a></dt>
+    <dd><p>The specific failure type classification. Defaults to <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Error">Error</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance containing the error information.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_String_FlowRight_Core_Results_ResultType_FlowRight_Core_Results_ResultFailureType__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Operation that would return a User
+Result&lt;User&gt; GetUserResult(int userId)
+{
+    if (userId &lt;= 0)
+        return Result.Failure&lt;User&gt;("Invalid user ID");
+
+    User user = userRepository.GetById(userId);
+    return user != null 
+        ? Result.Success(user)
+        : Result.Failure&lt;User&gt;("User not found");
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_String_FlowRight_Core_Results_ResultType_FlowRight_Core_Results_ResultFailureType__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the primary method for creating general failure results that would have returned
+a typed value. It allows full control over both the result type and failure type classifications.
+</p>
+<p>
+Use this method when you need to create custom failure scenarios for operations
+that normally return a specific type but have encountered an error condition.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">error</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Failure_" data-uid="FlowRight.Core.Results.Result.Failure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Failure__1_System_String_System_String_" data-uid="FlowRight.Core.Results.Result.Failure``1(System.String,System.String)">
+  Failure&lt;T&gt;(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with a single field validation error for a generic result type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Failure&lt;T&gt;(string key, string error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">string</span></dt>
+    <dd><p>The name of the field or property that failed validation. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>error</code> <span class="xref">string</span></dt>
+    <dd><p>The validation error message for the specified field. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> containing the field error.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_String_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">Result&lt;Order&gt; CreateOrder(CreateOrderRequest request)
+{
+    if (string.IsNullOrEmpty(request.CustomerEmail))
+        return Result.Failure&lt;Order&gt;("CustomerEmail", "Email is required");
+
+    // Continue with order creation...
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Failure__1_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a validation failure result for a single field in the context
+of an operation that would normally return a typed value. The resulting failure
+will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a>.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">key</code> or <code class="paramref">error</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Match_" data-uid="FlowRight.Core.Results.Result.Match*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__" data-uid="FlowRight.Core.Results.Result.Match``1(System.Func{``0},System.Func{System.String,``0})">
+  Match&lt;TResult&gt;(Func&lt;TResult&gt;, Func&lt;string, TResult&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms this result into a value of type <code class="typeparamref">TResult</code> using pattern matching.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TResult Match&lt;TResult&gt;(Func&lt;TResult&gt; onSuccess, Func&lt;string, TResult&gt; onFailure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;TResult&gt;</dt>
+    <dd><p>Function to execute if the result is successful. Returns the success value.</p>
+</dd>
+    <dt><code>onFailure</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, TResult&gt;</dt>
+    <dd><p>Function to execute if the result is a failure. Receives the error message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TResult</span></dt>
+    <dd><p>The value returned by either <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResult</code></dt>
+    <dd><p>The type of the result to return.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0___examples">Examples</h4>
+  <pre><code class="lang-csharp">Result operationResult = PerformOperation();
+
+string message = operationResult.Match(
+    onSuccess: () =&gt; "Operation completed successfully!",
+    onFailure: error =&gt; $"Operation failed: {error}"
+);
+
+Console.WriteLine(message);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the primary pattern matching method for non-generic <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>. It provides a functional
+approach to handling both success and failure cases by requiring explicit handling of both scenarios.
+</p>
+<p>
+This method treats all failure types (Error, Security, Validation, OperationCanceled) uniformly,
+calling <code class="paramref">onFailure</code> with the error message. For more granular failure handling,
+use the overload that provides separate handlers for each failure type.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Match_" data-uid="FlowRight.Core.Results.Result.Match*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__System_Func_System_String___0__System_Func_System_Collections_Generic_IDictionary_System_String_System_String______0__System_Func_System_String___0__" data-uid="FlowRight.Core.Results.Result.Match``1(System.Func{``0},System.Func{System.String,``0},System.Func{System.String,``0},System.Func{System.Collections.Generic.IDictionary{System.String,System.String[]},``0},System.Func{System.String,``0})">
+  Match&lt;TResult&gt;(Func&lt;TResult&gt;, Func&lt;string, TResult&gt;, Func&lt;string, TResult&gt;, Func&lt;IDictionary&lt;string, string[]&gt;, TResult&gt;, Func&lt;string, TResult&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms this result into a value of type <code class="typeparamref">TResult</code> using pattern matching with specific handlers for each failure type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TResult Match&lt;TResult&gt;(Func&lt;TResult&gt; onSuccess, Func&lt;string, TResult&gt; onError, Func&lt;string, TResult&gt; onSecurityException, Func&lt;IDictionary&lt;string, string[]&gt;, TResult&gt; onValidationException, Func&lt;string, TResult&gt; onOperationCanceledException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onSuccess</code> <span class="xref">Func</span>&lt;TResult&gt;</dt>
+    <dd><p>Function to execute if the result is successful. Returns the success value.</p>
+</dd>
+    <dt><code>onError</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, TResult&gt;</dt>
+    <dd><p>Function to execute if the result is a general error. Receives the error message.</p>
+</dd>
+    <dt><code>onSecurityException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, TResult&gt;</dt>
+    <dd><p>Function to execute if the result is a security failure. Receives the error message.</p>
+</dd>
+    <dt><code>onValidationException</code> <span class="xref">Func</span>&lt;<span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;, TResult&gt;</dt>
+    <dd><p>Function to execute if the result is a validation failure. Receives the validation errors dictionary.</p>
+</dd>
+    <dt><code>onOperationCanceledException</code> <span class="xref">Func</span>&lt;<span class="xref">string</span>, TResult&gt;</dt>
+    <dd><p>Function to execute if the result is a cancellation failure. Receives the error message.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TResult</span></dt>
+    <dd><p>The value returned by the appropriate handler function.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResult</code></dt>
+    <dd><p>The type of the result to return.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__System_Func_System_String___0__System_Func_System_Collections_Generic_IDictionary_System_String_System_String______0__System_Func_System_String___0___examples">Examples</h4>
+  <pre><code class="lang-csharp">Result operationResult = ProcessRequest();
+
+string response = operationResult.Match(
+    onSuccess: () =&gt; "Success!",
+    onError: error =&gt; $"Error: {error}",
+    onSecurityException: error =&gt; "Access denied",
+    onValidationException: errors =&gt; $"Validation failed: {errors.Count} errors",
+    onOperationCanceledException: error =&gt; "Operation was cancelled"
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__System_Func_System_String___0__System_Func_System_Collections_Generic_IDictionary_System_String_System_String______0__System_Func_System_String___0___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This overload of Match provides granular control over different failure types, allowing you to
+implement specific logic for each category of failure. This is particularly useful when different
+failure types require different handling strategies.
+</p>
+<p>
+The method routes failures to the appropriate handler based on <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a>:
+<ul><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Error">Error</a> → <code class="paramref">onError</code></li><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Security">Security</a> → <code class="paramref">onSecurityException</code></li><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> → <code class="paramref">onValidationException</code></li><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_OperationCanceled">OperationCanceled</a> → <code class="paramref">onOperationCanceledException</code></li></ul>
+
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when any of the handler functions is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_NotFound_" data-uid="FlowRight.Core.Results.Result.NotFound*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_NotFound_System_String_" data-uid="FlowRight.Core.Results.Result.NotFound(System.String)">
+  NotFound(string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result indicating that a resource was not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result NotFound(string? resource = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>resource</code> <span class="xref">string</span></dt>
+    <dd><p>Optional description of the resource that was not found. If not provided, defaults to &quot;Not Found&quot;.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_NotFound">NotFound</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_NotFound_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Generic not found error
+Result result = Result.NotFound();
+
+// Specific resource not found
+Result userResult = Result.NotFound("User with ID 123");
+
+// Usage in a service method
+public Result DeleteUser(int userId)
+{
+    User user = userRepository.GetById(userId);
+    if (user == null)
+        return Result.NotFound($"User with ID {userId}");
+
+    userRepository.Delete(user);
+    return Result.Success();
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_NotFound_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a "not found" failure result that corresponds to HTTP 404 status codes
+and similar scenarios where a requested resource does not exist. The resulting failure
+will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_NotFound">NotFound</a>.
+</p>
+<p>
+Not found failures are distinct from general errors as they represent expected scenarios
+in many applications (e.g., searching for data that doesn't exist) and may be handled
+differently from actual system errors.
+</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_NotFound_" data-uid="FlowRight.Core.Results.Result.NotFound*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_NotFound__1_System_String_" data-uid="FlowRight.Core.Results.Result.NotFound``1(System.String)">
+  NotFound&lt;T&gt;(string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result indicating that a resource was not found for a generic result type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; NotFound&lt;T&gt;(string? resource = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>resource</code> <span class="xref">string</span></dt>
+    <dd><p>Optional description of the resource that was not found. If not provided, defaults to &quot;Not Found&quot;.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_NotFound">NotFound</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_NotFound__1_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Generic not found error
+Result&lt;User&gt; result = Result.NotFound&lt;User&gt;();
+
+// Specific resource not found
+Result&lt;Document&gt; docResult = Result.NotFound&lt;Document&gt;("Document with ID ABC123");
+
+// Usage in a repository method
+public Result&lt;User&gt; GetUser(int userId)
+{
+    User user = database.Users.FirstOrDefault(u =&gt; u.Id == userId);
+    return user != null 
+        ? Result.Success(user)
+        : Result.NotFound&lt;User&gt;($"User with ID {userId}");
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_NotFound__1_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a "not found" failure result for operations that would normally return
+a typed value. The resulting failure will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of 
+<a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_NotFound">NotFound</a>, allowing consumers to distinguish between
+not found scenarios and actual errors.
+</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_ServerError_" data-uid="FlowRight.Core.Results.Result.ServerError*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_ServerError_System_String_" data-uid="FlowRight.Core.Results.Result.ServerError(System.String)">
+  ServerError(string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result indicating that a server error occurred.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result ServerError(string? message = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom error message. If not provided, defaults to &quot;Server Error&quot;.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_ServerError">ServerError</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ServerError_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Generic server error
+Result result = Result.ServerError();
+
+// Specific server error
+Result dbResult = Result.ServerError("Database connection timeout");
+
+// Usage in a service method
+public Result ProcessRequest()
+{
+    try
+    {
+        // Process request
+        return Result.Success();
+    }
+    catch (TimeoutException)
+    {
+        return Result.ServerError("Request timed out");
+    }
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ServerError_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a server error failure result that corresponds to HTTP 5xx status codes
+and similar scenarios where a server-side error has occurred. The resulting failure
+will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_ServerError">ServerError</a>.
+</p>
+<p>
+Server errors represent temporary failures on the server side that may be resolved
+with retry mechanisms, circuit breakers, or service recovery. They are distinct from
+client errors and may be handled differently (e.g., with retry logic).
+</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_ServerError_" data-uid="FlowRight.Core.Results.Result.ServerError*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_ServerError__1_System_String_" data-uid="FlowRight.Core.Results.Result.ServerError``1(System.String)">
+  ServerError&lt;T&gt;(string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result indicating that a server error occurred for a generic result type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; ServerError&lt;T&gt;(string? message = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <span class="xref">string</span></dt>
+    <dd><p>Optional custom error message. If not provided, defaults to &quot;Server Error&quot;.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_ServerError">ServerError</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ServerError__1_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Generic server error
+Result&lt;User&gt; result = Result.ServerError&lt;User&gt;();
+
+// Specific server error
+Result&lt;Data&gt; dataResult = Result.ServerError&lt;Data&gt;("Service unavailable");
+
+// Usage in a service method
+public Result&lt;User&gt; GetUser(int userId)
+{
+    try
+    {
+        User user = userService.GetById(userId);
+        return Result.Success(user);
+    }
+    catch (ServiceUnavailableException ex)
+    {
+        return Result.ServerError&lt;User&gt;(ex.Message);
+    }
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ServerError__1_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a server error failure result for operations that would normally return
+a typed value. The resulting failure will have a <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a> of 
+<a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_ServerError">ServerError</a>, allowing consumers to distinguish between
+server errors and client errors for appropriate retry strategies.
+</p>
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_Success_" data-uid="FlowRight.Core.Results.Result.Success*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Success_FlowRight_Core_Results_ResultType_" data-uid="FlowRight.Core.Results.Result.Success(FlowRight.Core.Results.ResultType)">
+  Success(ResultType)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a successful result without a value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result Success(ResultType resultType = ResultType.Success)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>resultType</code> <a class="xref" href="FlowRight.Core.Results.ResultType.html">ResultType</a></dt>
+    <dd><p>The type classification for this successful result. Defaults to <a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Success">Success</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A successful <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Success_FlowRight_Core_Results_ResultType__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Basic success
+Result result = Result.Success();
+
+// Success with additional classification
+Result infoResult = Result.Success(ResultType.Information);
+Result warningResult = Result.Success(ResultType.Warning);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Success_FlowRight_Core_Results_ResultType__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates a non-generic result that represents a successful operation
+that doesn't return a specific value (similar to a void method that completed successfully).
+</p>
+<p>
+Common usage scenarios include:
+<ul><li>Operations that modify state but don't return data</li><li>Validation operations that either pass or fail</li><li>Delete or update operations</li></ul>
+
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_SuccessOrNull_" data-uid="FlowRight.Core.Results.Result.SuccessOrNull*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_SuccessOrNull__1___0_FlowRight_Core_Results_ResultType_" data-uid="FlowRight.Core.Results.Result.SuccessOrNull``1(``0,FlowRight.Core.Results.ResultType)">
+  SuccessOrNull&lt;T&gt;(T?, ResultType)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a successful result containing the specified value, allowing null values without throwing exceptions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T?&gt; SuccessOrNull&lt;T&gt;(T? value, ResultType resultType = ResultType.Success)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>The value to wrap in the result. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>resultType</code> <a class="xref" href="FlowRight.Core.Results.ResultType.html">ResultType</a></dt>
+    <dd><p>The type classification for this successful result. Defaults to <a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Success">Success</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A successful <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance containing the specified value, including null values.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_SuccessOrNull__1___0_FlowRight_Core_Results_ResultType__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Create successful result with null value - no exception thrown
+Result&lt;string?&gt; nullResult = Result.SuccessOrNull&lt;string&gt;(null);
+
+// Create successful result with non-null value
+Result&lt;string?&gt; valueResult = Result.SuccessOrNull("Hello World");
+
+// Success with additional context
+Result&lt;User?&gt; userResult = Result.SuccessOrNull(user, ResultType.Information);
+
+// Pattern matching usage
+string displayMessage = userResult.Match(
+    onSuccess: user =&gt; user != null ? $"Welcome, {user.Name}!" : "No user found",
+    onFailure: error =&gt; $"Error: {error}"
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_SuccessOrNull__1___0_FlowRight_Core_Results_ResultType__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method creates successful results that can contain null values without throwing exceptions,
+unlike the standard <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Success__1___0_FlowRight_Core_Results_ResultType_">Success&lt;T&gt;(T, ResultType)</a> method. This is particularly useful
+when deserializing JSON or handling API responses that may legitimately return null values.
+</p>
+<p>
+The result type parameter allows for additional classification of successful operations:
+<ul><li><a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Success">Success</a> - Standard successful operation</li><li><a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Information">Information</a> - Success with informational context</li><li><a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Warning">Warning</a> - Success but with warnings</li></ul>
+
+</div>
+
+
+
+
+  <a id="FlowRight_Core_Results_Result_Success_" data-uid="FlowRight.Core.Results.Result.Success*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Success__1___0_FlowRight_Core_Results_ResultType_" data-uid="FlowRight.Core.Results.Result.Success``1(``0,FlowRight.Core.Results.ResultType)">
+  Success&lt;T&gt;(T, ResultType)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a successful result containing the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Success&lt;T&gt;(T value, ResultType resultType = ResultType.Success)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>The value to wrap in the result. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>resultType</code> <a class="xref" href="FlowRight.Core.Results.ResultType.html">ResultType</a></dt>
+    <dd><p>The type classification for this successful result. Defaults to <a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Success">Success</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A successful <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance containing the specified value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the success value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Success__1___0_FlowRight_Core_Results_ResultType__examples">Examples</h4>
+  <pre><code class="lang-csharp">// Create successful result with value
+User user = GetCurrentUser();
+Result&lt;User&gt; userResult = Result.Success(user);
+
+// Success with additional context
+Result&lt;string&gt; messageResult = Result.Success("Operation completed", ResultType.Information);
+
+// Pattern matching usage
+string displayMessage = userResult.Match(
+    onSuccess: user =&gt; $"Welcome, {user.Name}!",
+    onFailure: error =&gt; $"Error: {error}"
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Success__1___0_FlowRight_Core_Results_ResultType__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the primary method for creating successful results that return typed values.
+The result will be immutable and the value will be safely encapsulated.
+</p>
+<p>
+The result type parameter allows for additional classification of successful operations:
+<ul><li><a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Success">Success</a> - Standard successful operation</li><li><a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Information">Information</a> - Success with informational context</li><li><a class="xref" href="FlowRight.Core.Results.ResultType.html#FlowRight_Core_Results_ResultType_Warning">Warning</a> - Success but with warnings</li></ul>
+
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">value</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Switch_" data-uid="FlowRight.Core.Results.Result.Switch*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Action_System_String__System_Action_System_Collections_Generic_IDictionary_System_String_System_String_____System_Action_System_String__" data-uid="FlowRight.Core.Results.Result.Switch(System.Action,System.Action{System.String},System.Action{System.String},System.Action{System.Collections.Generic.IDictionary{System.String,System.String[]}},System.Action{System.String})">
+  Switch(Action, Action&lt;string&gt;, Action&lt;string&gt;, Action&lt;IDictionary&lt;string, string[]&gt;&gt;, Action&lt;string&gt;?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes side-effect actions based on the result state with separate handlers for different failure types.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Switch(Action onSuccess, Action&lt;string&gt; onError, Action&lt;string&gt; onSecurityException, Action&lt;IDictionary&lt;string, string[]&gt;&gt; onValidationException, Action&lt;string&gt;? onOperationCanceledException = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onSuccess</code> <span class="xref">Action</span></dt>
+    <dd><p>Action to execute if the result is successful.</p>
+</dd>
+    <dt><code>onError</code> <span class="xref">Action</span>&lt;<span class="xref">string</span>&gt;</dt>
+    <dd><p>Action to execute if the result is a general error. Receives the error message.</p>
+</dd>
+    <dt><code>onSecurityException</code> <span class="xref">Action</span>&lt;<span class="xref">string</span>&gt;</dt>
+    <dd><p>Action to execute if the result is a security failure. Receives the error message.</p>
+</dd>
+    <dt><code>onValidationException</code> <span class="xref">Action</span>&lt;<span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;&gt;</dt>
+    <dd><p>Action to execute if the result is a validation failure. Receives the validation errors dictionary.</p>
+</dd>
+    <dt><code>onOperationCanceledException</code> <span class="xref">Action</span>&lt;<span class="xref">string</span>&gt;</dt>
+    <dd><p>Optional action to execute if the result is a cancellation failure. Receives the error message. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, cancellation failures are ignored.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Action_System_String__System_Action_System_Collections_Generic_IDictionary_System_String_System_String_____System_Action_System_String___examples">Examples</h4>
+  <pre><code class="lang-csharp">Result operationResult = ProcessRequest();
+
+operationResult.Switch(
+    onSuccess: () =&gt; {
+        logger.LogInformation("Request processed successfully");
+        SendSuccessNotification();
+    },
+    onError: error =&gt; {
+        logger.LogError("System error: {Error}", error);
+        SendErrorNotification(error);
+    },
+    onSecurityException: error =&gt; {
+        logger.LogWarning("Security violation: {Error}", error);
+        AlertSecurityTeam(error);
+    },
+    onValidationException: errors =&gt; {
+        logger.LogInformation("Validation failed: {ErrorCount} errors", errors.Count);
+        ShowValidationErrors(errors);
+    },
+    onOperationCanceledException: error =&gt; {
+        logger.LogInformation("Request was cancelled: {Error}", error);
+        CleanupResources();
+    }
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Action_System_String__System_Action_System_Collections_Generic_IDictionary_System_String_System_String_____System_Action_System_String___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This overload of Switch provides granular control over different failure types using imperative actions,
+allowing you to implement specific side effects for each category of failure. This is particularly useful
+when different failure types require different handling strategies (logging, notifications, etc.).
+</p>
+<p>
+The method routes failures to the appropriate handler based on <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_FailureType">FailureType</a>:
+<ul><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Error">Error</a> → <code class="paramref">onError</code></li><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Security">Security</a> → <code class="paramref">onSecurityException</code></li><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> → <code class="paramref">onValidationException</code></li><li><a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_OperationCanceled">OperationCanceled</a> → <code class="paramref">onOperationCanceledException</code> (if not null)</li></ul>
+
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">onSuccess</code>, <code class="paramref">onError</code>, <code class="paramref">onSecurityException</code>, or <code class="paramref">onValidationException</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_Switch_" data-uid="FlowRight.Core.Results.Result.Switch*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Boolean_" data-uid="FlowRight.Core.Results.Result.Switch(System.Action,System.Action{System.String},System.Boolean)">
+  Switch(Action, Action&lt;string&gt;, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes side-effect actions based on the result state, with simple success/failure handling.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Switch(Action onSuccess, Action&lt;string&gt; onFailure, bool includeOperationCancelledFailures = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onSuccess</code> <span class="xref">Action</span></dt>
+    <dd><p>Action to execute if the result is successful.</p>
+</dd>
+    <dt><code>onFailure</code> <span class="xref">Action</span>&lt;<span class="xref">string</span>&gt;</dt>
+    <dd><p>Action to execute if the result is a failure. Receives the error message.</p>
+</dd>
+    <dt><code>includeOperationCancelledFailures</code> <span class="xref">bool</span></dt>
+    <dd><p>If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, operation cancelled failures will call <code class="paramref">onFailure</code>. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default), they will be ignored.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Boolean__examples">Examples</h4>
+  <pre><code class="lang-csharp">Result operationResult = PerformOperation();
+
+operationResult.Switch(
+    onSuccess: () =&gt; {
+        Console.WriteLine("Operation completed successfully!");
+        LogSuccess("Operation", DateTime.Now);
+    },
+    onFailure: error =&gt; {
+        Console.WriteLine($"Operation failed: {error}");
+        LogError("Operation", error);
+    }
+);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_Switch_System_Action_System_Action_System_String__System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is the primary imperative pattern matching method for non-generic <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a>. Unlike the functional
+<a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Match__1_System_Func___0__System_Func_System_String___0__">Match&lt;TResult&gt;(Func&lt;TResult&gt;, Func&lt;string, TResult&gt;)</a> method, this executes actions with side effects
+rather than returning transformed values.
+</p>
+<p>
+This method treats most failure types (Error, Security, Validation) uniformly, calling <code class="paramref">onFailure</code>
+with the error message. Operation cancelled failures are treated specially based on the
+<code class="paramref">includeOperationCancelledFailures</code> parameter. For more granular failure handling,
+use the overload that provides separate handlers for each failure type.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">onSuccess</code> or <code class="paramref">onFailure</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_ValidationFailure_" data-uid="FlowRight.Core.Results.Result.ValidationFailure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_ValidationFailure_System_Collections_Generic_IDictionary_System_String_System_String____" data-uid="FlowRight.Core.Results.Result.ValidationFailure(System.Collections.Generic.IDictionary{System.String,System.String[]})">
+  ValidationFailure(IDictionary&lt;string, string[]&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with multiple validation errors (convenience method).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result ValidationFailure(IDictionary&lt;string, string[]&gt; errors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>errors</code> <span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;</dt>
+    <dd><p>A dictionary containing field names as keys and arrays of error messages as values. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> containing all the validation errors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ValidationFailure_System_Collections_Generic_IDictionary_System_String_System_String_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Dictionary&lt;string, string[]&gt; validationErrors = new()
+{
+    ["Email"] = ["Email is required", "Email format is invalid"],
+    ["Password"] = ["Password must be at least 8 characters"]
+};
+
+Result validationResult = Result.ValidationFailure(validationErrors);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ValidationFailure_System_Collections_Generic_IDictionary_System_String_System_String_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is a convenience method that is equivalent to calling <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Failure_System_Collections_Generic_IDictionary_System_String_System_String____">Failure(IDictionary&lt;string, string[]&gt;)</a>.
+It provides a more explicit name when creating validation-specific failures.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">errors</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FlowRight_Core_Results_Result_ValidationFailure_" data-uid="FlowRight.Core.Results.Result.ValidationFailure*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_ValidationFailure__1_System_Collections_Generic_IDictionary_System_String_System_String____" data-uid="FlowRight.Core.Results.Result.ValidationFailure``1(System.Collections.Generic.IDictionary{System.String,System.String[]})">
+  ValidationFailure&lt;T&gt;(IDictionary&lt;string, string[]&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a failed result with multiple validation errors for a generic result type (convenience method).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; ValidationFailure&lt;T&gt;(IDictionary&lt;string, string[]&gt; errors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>errors</code> <span class="xref">IDictionary</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>[]&gt;</dt>
+    <dd><p>A dictionary containing field names as keys and arrays of error messages as values. Cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FlowRight.Core.Results.Result-1.html">Result</a>&lt;T&gt;</dt>
+    <dd><p>A failed <a class="xref" href="FlowRight.Core.Results.Result-1.html">Result&lt;T&gt;</a> instance with <a class="xref" href="FlowRight.Core.Results.ResultFailureType.html#FlowRight_Core_Results_ResultFailureType_Validation">Validation</a> containing all the validation errors.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type parameter for the generic result.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ValidationFailure__1_System_Collections_Generic_IDictionary_System_String_System_String_____examples">Examples</h4>
+  <pre><code class="lang-csharp">Dictionary&lt;string, string[]&gt; validationErrors = new()
+{
+    ["Name"] = ["Name is required"],
+    ["Age"] = ["Age must be between 18 and 120"]
+};
+
+Result&lt;User&gt; validationResult = Result.ValidationFailure&lt;User&gt;(validationErrors);</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_ValidationFailure__1_System_Collections_Generic_IDictionary_System_String_System_String_____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This is a convenience method that is equivalent to calling <a class="xref" href="FlowRight.Core.Results.Result.html#FlowRight_Core_Results_Result_Failure__1_System_Collections_Generic_IDictionary_System_String_System_String____">Failure&lt;T&gt;(IDictionary&lt;string, string[]&gt;)</a>.
+It provides a more explicit name when creating validation-specific failures.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ArgumentNullException</span></dt>
+    <dd><p>Thrown when <code class="paramref">errors</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="FlowRight_Core_Results_Result_op_Explicit_" data-uid="FlowRight.Core.Results.Result.op_Explicit*"></a>
+
+  <h3 id="FlowRight_Core_Results_Result_op_Explicit_FlowRight_Core_Results_Result__System_Boolean" data-uid="FlowRight.Core.Results.Result.op_Explicit(FlowRight.Core.Results.Result)~System.Boolean">
+  explicit operator bool(Result)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Explicitly converts a <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a> to a boolean indicating success or failure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator bool(Result result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FlowRight.Core.Results.Result.html">Result</a></dt>
+    <dd><p>The result to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the result represents success; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_op_Explicit_FlowRight_Core_Results_Result__System_Boolean_examples">Examples</h4>
+  <pre><code class="lang-csharp">Result result = PerformOperation();
+
+if ((bool)result) // Explicit conversion
+{
+    Console.WriteLine("Operation succeeded!");
+}</code></pre>
+
+
+  <h4 class="section" id="FlowRight_Core_Results_Result_op_Explicit_FlowRight_Core_Results_Result__System_Boolean_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This explicit conversion provides a convenient way to use results in boolean contexts
+while making the conversion explicit to avoid accidental usage.
+</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          FlowRight - Explicit error handling without exceptions
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

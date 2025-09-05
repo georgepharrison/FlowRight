@@ -1,0 +1,314 @@
+### YamlMime:ManagedReference
+items:
+- uid: FlowRight.Validation.Rules.MinLengthRule
+  commentId: T:FlowRight.Validation.Rules.MinLengthRule
+  id: MinLengthRule
+  parent: FlowRight.Validation.Rules
+  children:
+  - FlowRight.Validation.Rules.MinLengthRule.#ctor(System.Int32)
+  - FlowRight.Validation.Rules.MinLengthRule.Validate(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: MinLengthRule
+  nameWithType: MinLengthRule
+  fullName: FlowRight.Validation.Rules.MinLengthRule
+  type: Class
+  source:
+    id: MinLengthRule
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MinLengthRule.cs
+    startLine: 6
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures a string meets a minimum length requirement.
+  example: []
+  syntax:
+    content: 'public sealed class MinLengthRule : IRule<string>'
+    content.vb: Public NotInheritable Class MinLengthRule Implements IRule(Of String)
+  inheritance:
+  - System.Object
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.String}
+- uid: FlowRight.Validation.Rules.MinLengthRule.#ctor(System.Int32)
+  commentId: M:FlowRight.Validation.Rules.MinLengthRule.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: FlowRight.Validation.Rules.MinLengthRule
+  langs:
+  - csharp
+  - vb
+  name: MinLengthRule(int)
+  nameWithType: MinLengthRule.MinLengthRule(int)
+  fullName: FlowRight.Validation.Rules.MinLengthRule.MinLengthRule(int)
+  type: Constructor
+  source:
+    id: .ctor
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MinLengthRule.cs
+    startLine: 6
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: A validation rule that ensures a string meets a minimum length requirement.
+  example: []
+  syntax:
+    content: public MinLengthRule(int minLength)
+    parameters:
+    - id: minLength
+      type: System.Int32
+      description: The minimum required length.
+    content.vb: Public Sub New(minLength As Integer)
+  overload: FlowRight.Validation.Rules.MinLengthRule.#ctor*
+  nameWithType.vb: MinLengthRule.New(Integer)
+  fullName.vb: FlowRight.Validation.Rules.MinLengthRule.New(Integer)
+  name.vb: New(Integer)
+- uid: FlowRight.Validation.Rules.MinLengthRule.Validate(System.String,System.String)
+  commentId: M:FlowRight.Validation.Rules.MinLengthRule.Validate(System.String,System.String)
+  id: Validate(System.String,System.String)
+  parent: FlowRight.Validation.Rules.MinLengthRule
+  langs:
+  - csharp
+  - vb
+  name: Validate(string, string)
+  nameWithType: MinLengthRule.Validate(string, string)
+  fullName: FlowRight.Validation.Rules.MinLengthRule.Validate(string, string)
+  type: Method
+  source:
+    id: Validate
+    path: /home/ringo/source/FlowRight-documentation/src/Validation/Rules/MinLengthRule.cs
+    startLine: 22
+  assemblies:
+  - FlowRight.Validation
+  namespace: FlowRight.Validation.Rules
+  summary: Validates that the string meets the minimum length requirement.
+  example: []
+  syntax:
+    content: public string? Validate(string value, string displayName)
+    parameters:
+    - id: value
+      type: System.String
+      description: The string to validate.
+    - id: displayName
+      type: System.String
+      description: The display name for the property being validated.
+    return:
+      type: System.String
+      description: An error message if the string is shorter than the minimum length; otherwise, null.
+    content.vb: Public Function Validate(value As String, displayName As String) As String
+  overload: FlowRight.Validation.Rules.MinLengthRule.Validate*
+  implements:
+  - FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+  nameWithType.vb: MinLengthRule.Validate(String, String)
+  fullName.vb: FlowRight.Validation.Rules.MinLengthRule.Validate(String, String)
+  name.vb: Validate(String, String)
+references:
+- uid: FlowRight.Validation.Rules
+  commentId: N:FlowRight.Validation.Rules
+  href: FlowRight.html
+  name: FlowRight.Validation.Rules
+  nameWithType: FlowRight.Validation.Rules
+  fullName: FlowRight.Validation.Rules
+  spec.csharp:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+  spec.vb:
+  - uid: FlowRight
+    name: FlowRight
+    href: FlowRight.html
+  - name: .
+  - uid: FlowRight.Validation
+    name: Validation
+    href: FlowRight.Validation.html
+  - name: .
+  - uid: FlowRight.Validation.Rules
+    name: Rules
+    href: FlowRight.Validation.Rules.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FlowRight.Validation.Rules.IRule{System.String}
+  commentId: T:FlowRight.Validation.Rules.IRule{System.String}
+  parent: FlowRight.Validation.Rules
+  definition: FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<string>
+  nameWithType: IRule<string>
+  fullName: FlowRight.Validation.Rules.IRule<string>
+  nameWithType.vb: IRule(Of String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of String)
+  name.vb: IRule(Of String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FlowRight.Validation.Rules.IRule`1
+  commentId: T:FlowRight.Validation.Rules.IRule`1
+  href: FlowRight.Validation.Rules.IRule-1.html
+  name: IRule<T>
+  nameWithType: IRule<T>
+  fullName: FlowRight.Validation.Rules.IRule<T>
+  nameWithType.vb: IRule(Of T)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T)
+  name.vb: IRule(Of T)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1
+    name: IRule
+    href: FlowRight.Validation.Rules.IRule-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FlowRight.Validation.Rules.MinLengthRule.#ctor*
+  commentId: Overload:FlowRight.Validation.Rules.MinLengthRule.#ctor
+  href: FlowRight.Validation.Rules.MinLengthRule.html#FlowRight_Validation_Rules_MinLengthRule__ctor_System_Int32_
+  name: MinLengthRule
+  nameWithType: MinLengthRule.MinLengthRule
+  fullName: FlowRight.Validation.Rules.MinLengthRule.MinLengthRule
+  nameWithType.vb: MinLengthRule.New
+  fullName.vb: FlowRight.Validation.Rules.MinLengthRule.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FlowRight.Validation.Rules.MinLengthRule.Validate*
+  commentId: Overload:FlowRight.Validation.Rules.MinLengthRule.Validate
+  href: FlowRight.Validation.Rules.MinLengthRule.html#FlowRight_Validation_Rules_MinLengthRule_Validate_System_String_System_String_
+  name: Validate
+  nameWithType: MinLengthRule.Validate
+  fullName: FlowRight.Validation.Rules.MinLengthRule.Validate
+- uid: FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+  parent: FlowRight.Validation.Rules.IRule{System.String}
+  definition: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(string, string)
+  nameWithType: IRule<string>.Validate(string, string)
+  fullName: FlowRight.Validation.Rules.IRule<string>.Validate(string, string)
+  nameWithType.vb: IRule(Of String).Validate(String, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of String).Validate(String, String)
+  name.vb: Validate(String, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule{System.String}.Validate(System.String,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  commentId: M:FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+  isExternal: true
+  href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  name: Validate(T, string)
+  nameWithType: IRule<T>.Validate(T, string)
+  fullName: FlowRight.Validation.Rules.IRule<T>.Validate(T, string)
+  nameWithType.vb: IRule(Of T).Validate(T, String)
+  fullName.vb: FlowRight.Validation.Rules.IRule(Of T).Validate(T, String)
+  name.vb: Validate(T, String)
+  spec.csharp:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: FlowRight.Validation.Rules.IRule`1.Validate(`0,System.String)
+    name: Validate
+    href: FlowRight.Validation.Rules.IRule-1.html#FlowRight_Validation_Rules_IRule_1_Validate__0_System_String_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )

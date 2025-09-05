@@ -32,7 +32,7 @@ public sealed class UniqueRule<TItem>(IEqualityComparer<TItem>? comparer = null)
         IEnumerable<TItem> uniqueItems = _comparer is not null ? [.. items.Distinct(_comparer)] : [.. items.Distinct()];
 
         return items.Count() != uniqueItems.Count()
-            ? $"{displayName} must contain only unique items"
+            ? $"{displayName} must contain unique items"
             : null;
     }
 

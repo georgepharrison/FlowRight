@@ -26,7 +26,9 @@ public sealed class EqualRule<T>(T comparisonValue, IEqualityComparer<T>? compar
     public string? Validate(T value, string displayName) =>
         _comparer.Equals(value, _comparisonValue)
             ? null
-            : $"{displayName} must be equal to '{_comparisonValue}'";
+            : _comparisonValue is string
+                ? $"{displayName} must be equal to '{_comparisonValue}'"
+                : $"{displayName} must be equal to {_comparisonValue}";
 
     #endregion Public Methods
 }

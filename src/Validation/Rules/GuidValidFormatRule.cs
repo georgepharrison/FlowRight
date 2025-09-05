@@ -34,12 +34,12 @@ public sealed class GuidValidFormatRule : IRule<Guid?>
     public string? Validate(Guid? value, string displayName)
     {
         if (value is null)
-            return $"{displayName} must be in valid GUID format";
+            return $"{displayName} is not a valid GUID";
 
         Guid guid = value.Value;
         string guidString = guid.ToString();
 
-        return GuidFormatRegex.IsMatch(guidString) ? null : $"{displayName} must be in valid GUID format";
+        return GuidFormatRegex.IsMatch(guidString) ? null : $"{displayName} is not a valid GUID";
     }
 
     #endregion Public Methods

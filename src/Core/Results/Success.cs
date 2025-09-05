@@ -2,6 +2,25 @@
 
 public partial class Result
 {
+    #region Cached Static Instances for Performance
+    
+    /// <summary>
+    /// Cached static instance for the most common success case.
+    /// Eliminates allocation overhead for standard success results.
+    /// </summary>
+    private static readonly Result CachedSuccessResult = new(ResultType.Success);
+    
+    /// <summary>
+    /// Cached static instance for information-type success results.
+    /// </summary>
+    private static readonly Result CachedInformationResult = new(ResultType.Information);
+    
+    /// <summary>
+    /// Cached static instance for warning-type success results.
+    /// </summary>
+    private static readonly Result CachedWarningResult = new(ResultType.Warning);
+    
+    #endregion Cached Static Instances for Performance
     #region Public Methods
 
     /// <summary>
@@ -34,7 +53,13 @@ public partial class Result
     /// </code>
     /// </example>
     public static Result Success(ResultType resultType = ResultType.Success) =>
-        new(resultType);
+        resultType switch
+        {
+            ResultType.Success => CachedSuccessResult,
+            ResultType.Information => CachedInformationResult,
+            ResultType.Warning => CachedWarningResult,
+            _ => new(resultType)
+        };
 
     /// <summary>
     /// Creates a successful result containing the specified value.
@@ -76,6 +101,49 @@ public partial class Result
     /// </example>
     public static Result<T> Success<T>(T value, ResultType resultType = ResultType.Success) =>
         new(value ?? throw new ArgumentNullException(nameof(value)), resultType);
+
+    /// <summary>
+    /// Creates a successful result containing the specified value, allowing null values without throwing exceptions.
+    /// </summary>
+    /// <typeparam name="T">The type of the success value.</typeparam>
+    /// <param name="value">The value to wrap in the result. Can be <see langword="null"/>.</param>
+    /// <param name="resultType">The type classification for this successful result. Defaults to <see cref="ResultType.Success"/>.</param>
+    /// <returns>A successful <see cref="Result{T}"/> instance containing the specified value, including null values.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method creates successful results that can contain null values without throwing exceptions,
+    /// unlike the standard <see cref="Success{T}(T, ResultType)"/> method. This is particularly useful
+    /// when deserializing JSON or handling API responses that may legitimately return null values.
+    /// </para>
+    /// <para>
+    /// The result type parameter allows for additional classification of successful operations:
+    /// <list type="bullet">
+    /// <item><description><see cref="ResultType.Success"/> - Standard successful operation</description></item>
+    /// <item><description><see cref="ResultType.Information"/> - Success with informational context</description></item>
+    /// <item><description><see cref="ResultType.Warning"/> - Success but with warnings</description></item>
+    /// </list>
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// // Create successful result with null value - no exception thrown
+    /// Result&lt;string?&gt; nullResult = Result.SuccessOrNull&lt;string&gt;(null);
+    /// 
+    /// // Create successful result with non-null value
+    /// Result&lt;string?&gt; valueResult = Result.SuccessOrNull("Hello World");
+    /// 
+    /// // Success with additional context
+    /// Result&lt;User?&gt; userResult = Result.SuccessOrNull(user, ResultType.Information);
+    /// 
+    /// // Pattern matching usage
+    /// string displayMessage = userResult.Match(
+    ///     onSuccess: user => user != null ? $"Welcome, {user.Name}!" : "No user found",
+    ///     onFailure: error => $"Error: {error}"
+    /// );
+    /// </code>
+    /// </example>
+    public static Result<T?> SuccessOrNull<T>(T? value, ResultType resultType = ResultType.Success) =>
+        new(value, resultType);
 
     #endregion Public Methods
 }

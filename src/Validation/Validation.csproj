@@ -4,7 +4,7 @@
     <AssemblyName>FlowRight.Validation</AssemblyName>
     <RootNamespace>FlowRight.Validation</RootNamespace>
     <PackageId>FlowRight.Validation</PackageId>
-    <PackageDescription>Fluent validation builder with Result pattern integration for .NET applications.</PackageDescription>
+    <PackageDescription>Fluent validation library with integrated Result pattern support and comprehensive rule-based validation. Features property validators, conditional rules, custom validation logic, and automatic error aggregation for complex domain objects.</PackageDescription>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon-nuget.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
