@@ -18,7 +18,14 @@ public class Program
 
     public static WebApplication CreateHostBuilder(string[] args)
     {
-        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+        WebApplicationOptions options = new()
+        {
+            ApplicationName = typeof(Program).Assembly.FullName,
+            ContentRootPath = Directory.GetCurrentDirectory(),
+            Args = args
+        };
+        
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(options);
         
         builder.Services.AddControllers()
             .AddJsonOptions(options =>

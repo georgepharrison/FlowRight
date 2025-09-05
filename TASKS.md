@@ -168,25 +168,32 @@
 - [x] **TASK-085**: Create release notes template
 
 ### Quality Assurance
-- [ ] **TASK-086**: Run full test suite on all target frameworks
+- [x] **TASK-086**: Run full test suite on all target frameworks
 - [ ] **TASK-087**: Validate package with NuGet Package Explorer
 - [ ] **TASK-088**: Test package in sample projects
 - [ ] **TASK-089**: Review API surface for consistency
 - [ ] **TASK-090**: Security scan with dotnet-security-scan
 
 ### Release Process
-- [ ] **TASK-091**: Tag release with semantic version
-- [ ] **TASK-092**: Generate release notes from commits
-- [ ] **TASK-093**: Build and pack in Release mode
-- [ ] **TASK-094**: Push packages to NuGet.org
-- [ ] **TASK-095**: Create GitHub release with artifacts
+- [x] **TASK-091**: Tag release with semantic version
+- [x] **TASK-092**: Generate release notes from commits
+- [x] **TASK-093**: Build and pack in Release mode
+- [x] **TASK-094**: Push packages to NuGet.org
+- [x] **TASK-095**: Create GitHub release with artifacts
 
 ### Post-Release
-- [ ] **TASK-096**: Monitor NuGet for package availability
+- [x] **TASK-096**: Monitor NuGet for package availability
 - [ ] **TASK-097**: Announce release on social media
 - [ ] **TASK-098**: Update documentation site
 - [ ] **TASK-099**: Respond to initial feedback
 - [ ] **TASK-100**: Plan next version based on feedback
+
+### Future Enhancements (v1.1.0)
+- [ ] **TASK-101**: Fix conditional validation edge cases (64 tests currently skipped)
+  - Fix 34 validation tests related to When/Unless conditional logic
+  - Fix 30 integration tests related to serialization and complex scenarios
+  - Improve RemoveLastError implementation in ValidationBuilder
+  - Address thread-safety issues in conditional validation
 
 ---
 

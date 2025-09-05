@@ -1,9 +1,13 @@
-﻿# FlowRight
+<div align="center">
+  <img src="icon.png" alt="FlowRight Logo" width="120" height="120"/>
+  
+# FlowRight
 
 [![Pre-release](https://img.shields.io/github/v/release/georgepharrison/FlowRight?include_prereleases&label=pre-release)](https://github.com/georgepharrison/FlowRight/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/georgepharrison/FlowRight/build.yml?branch=dev)](https://github.com/georgepharrison/FlowRight/actions)
 [![Coverage](https://img.shields.io/badge/coverage-84.6%25-yellow)](https://github.com/georgepharrison/FlowRight)
 [![License](https://img.shields.io/github/license/georgepharrison/FlowRight)](https://github.com/georgepharrison/FlowRight/blob/main/LICENSE)
+</div>
 
 A production-grade Result pattern implementation for .NET that eliminates exception-based control flow while providing comprehensive validation and HTTP integration capabilities.
 
