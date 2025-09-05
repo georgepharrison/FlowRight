@@ -1,3 +1,10 @@
+# [1.0.0-alpha.14](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2025-09-05)
+
+
+### Bug Fixes
+
+* resolve all test failures and add NuGet package icons ([bd92223](https://github.com/georgepharrison/FlowRight/commit/bd922235ec551a865586a6a90c5cb047f8f6c974))
+
 # [1.0.0-alpha.13](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2025-09-02)
 
 
