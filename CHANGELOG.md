@@ -1,3 +1,10 @@
+# [1.0.0-alpha.15](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2025-09-05)
+
+
+### Features
+
+* complete TASK-041 comprehensive HttpResponseMessageExtensions tests ([#33](https://github.com/georgepharrison/FlowRight/issues/33)) ([4aa8570](https://github.com/georgepharrison/FlowRight/commit/4aa8570926b956501ba60d9bf2bd5707558fd867))
+
 # [1.0.0-alpha.14](https://github.com/georgepharrison/FlowRight/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2025-09-05)
 
 
