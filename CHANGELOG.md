@@ -1,3 +1,10 @@
+# [1.1.0-alpha.1](https://github.com/georgepharrison/FlowRight/compare/v1.0.0...v1.1.0-alpha.1) (2025-09-06)
+
+
+### Features
+
+* add Cqrs library with source generator support ([8adabaf](https://github.com/georgepharrison/FlowRight/commit/8adabaf3d8969915b2245cad1c3edaac213d0909))
+
 # 1.0.0 (2025-09-05)
 
 
